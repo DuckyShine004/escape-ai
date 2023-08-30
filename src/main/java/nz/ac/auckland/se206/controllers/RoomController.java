@@ -7,7 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.constants.GameState;
 
 /** Controller class for the room view. */
 public class RoomController {

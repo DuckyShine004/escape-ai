@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206;
+package nz.ac.auckland.se206.constants;
 
 /** Represents the state of the game. */
 public class GameState {
