@@ -54,6 +54,7 @@ public class App extends Application {
 
     // add scenes to sceneManager
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
+    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker"));
 
     // set first scene to display
     scene = new Scene(SceneManager.getUi(AppUi.MENU), 600, 470);
