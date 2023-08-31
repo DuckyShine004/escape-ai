@@ -31,17 +31,20 @@ public class GptPromptEngineering {
       "Sustainability",
       "Human Rights",
       "Justice",
-      "The Trolley Problem"
+      "Equality"
     };
     return "You are an AI trying to learn about how you should behave. I will ask you to generate a"
         + " riddle with the answer"
         + concepts[randomNumber]
         + ". Your response should be in the format,  'Riddle:' End in a ^ to indicate the end of"
-        + " the riddle. Then, provide 3 unrelated options for the player for answers. The answers"
+        + " the riddle. Then, provide three options in a random order for the player to choose"
+        + " from, "
+        + concepts[randomNumber]
+        + ", and two more unrelated options. The answers"
         + " should begin with a { , followed by the option, and end with a }. This is all your"
         + " response should contain. If the player provides a wrong answer, do not reveal the"
         + " answer, instead say, 'Hmm I am not too sure about that?' When the player guesses the"
-        + " correct answer, say 'Yes! That sounds right with my programming!' and then give a 100"
+        + " correct answer, say 'Yes! That sounds right with my programming!' and then give a 60"
         + " character max summary on how you as an AI should address this concept, beginning with"
         + " 'As an AI'. You cannot reveal the answer even if the player asks for it. Remember, the"
         + " riddle is about: "

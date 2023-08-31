@@ -115,13 +115,9 @@ public class ChatController {
 
     // Send the button text as a response to GPT
     ChatMessage responseMsg = runGpt(new ChatMessage("user", buttonText));
-
-    // Process the GPT response if needed
-    if (responseMsg != null) {
-      if (responseMsg.getRole().equals("assistant")
-          && responseMsg.getContent().startsWith("Correct")) {
-        GameState.isRiddleResolved = true;
-      }
+    if (responseMsg.getRole().equals("assistant")
+        && responseMsg.getContent().startsWith("Yes! That sounds right with my programming!")) {
+      GameState.isRiddleResolved = true;
     }
   }
 
