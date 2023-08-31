@@ -1,12 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -17,20 +16,12 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Controller class for the chat view. */
-public class ChatController {
+public class ChatControllerOld {
   @FXML private TextArea chatTextArea;
-  @FXML private Button buttonAnswer1;
-  @FXML private Button buttonAnswer2;
-  @FXML private Button buttonAnswer3;
+  @FXML private TextField inputText;
   @FXML private Button sendButton;
 
   private ChatCompletionRequest chatCompletionRequest;
-  private String answer1;
-  private String answer2;
-  private String answer3;
-  private StringProperty answer1Property = new SimpleStringProperty();
-  private StringProperty answer2Property = new SimpleStringProperty();
-  private StringProperty answer3Property = new SimpleStringProperty();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -39,24 +30,9 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
-
-    buttonAnswer1.textProperty().bind(answer1Property);
-    buttonAnswer2.textProperty().bind(answer2Property);
-    buttonAnswer3.textProperty().bind(answer3Property);
-
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    ChatMessage gptResponse =
-        runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle()));
-
-    if (gptResponse != null && gptResponse.getRole().equals("assistant")) {
-      processGptOutputForButtons(gptResponse.getContent());
-    }
-
-    // Set button texts with the desired values
-    answer1Property.set(answer1);
-    answer2Property.set(answer2);
-    answer3Property.set(answer3);
+    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle()));
   }
 
   /**
@@ -78,18 +54,10 @@ public class ChatController {
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
     try {
-      ChatMessage riddle = null;
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      if (result.getChatMessage().getRole().equals("assistant") && result.getChatMessage().getContent().startsWith("Riddle:")) {
-        if(result.getChatMessage().getContent().indexOf('^') != 1) {
-          riddle = new ChatMessage("assistant", result.getChatMessage().getContent().substring(result.getChatMessage().getContent().indexOf(':') + 1, result.getChatMessage().getContent().indexOf('^')));
-        }
-        appendChatMessage(riddle);
-      } else {
-        appendChatMessage(result.getChatMessage());
-      }
+      appendChatMessage(result.getChatMessage());
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       // TODO handle exception appropriately
@@ -98,25 +66,24 @@ public class ChatController {
     }
   }
 
-  private void processGptOutputForButtons(String gptOutput) {
-    String[] segments = gptOutput.split("\\}");
-
-    if (segments.length >= 3) {
-      answer1 = segments[0].substring(segments[0].lastIndexOf("{") + 1);
-      answer2 = segments[1].substring(segments[1].lastIndexOf("{") + 1);
-      answer3 = segments[2].substring(segments[2].lastIndexOf("{") + 1);
-    }
-  }
-
+  /**
+   * Sends a message to the GPT model.
+   *
+   * @param event the action event triggered by the send button
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
+   */
   @FXML
-  private void onButtonClicked(ActionEvent event) throws ApiProxyException {
-    Button clickedButton = (Button) event.getSource();
-    String buttonText = clickedButton.getText();
-
-    // Send the button text as a response to GPT
-    ChatMessage responseMsg = runGpt(new ChatMessage("user", buttonText));
-    if (responseMsg.getRole().equals("assistant")
-        && responseMsg.getContent().startsWith("Yes! That sounds right with my programming!")) {
+  private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    String message = inputText.getText();
+    if (message.trim().isEmpty()) {
+      return;
+    }
+    inputText.clear();
+    ChatMessage msg = new ChatMessage("user", message);
+    appendChatMessage(msg);
+    ChatMessage lastMsg = runGpt(msg);
+    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
       GameState.isRiddleResolved = true;
     }
   }
