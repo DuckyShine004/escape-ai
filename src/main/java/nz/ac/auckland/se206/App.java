@@ -53,10 +53,10 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     // add scenes to sceneManager
-    SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
+    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
 
     // set first scene to display
-    scene = new Scene(SceneManager.getUi(AppUi.ROOM), 600, 470);
+    scene = new Scene(SceneManager.getUi(AppUi.MENU), 600, 470);
 
     // place scene onto stage
     stage.setScene(scene);

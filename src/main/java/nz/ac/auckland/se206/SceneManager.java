@@ -8,6 +8,7 @@ public class SceneManager {
   // UI fxml files the app can switch between
   public enum AppUi {
     ROOM,
+    MENU,
     CONTROL,
     BREAKER,
     CHAT,

@@ -1,7 +1,8 @@
 {
-    "editor.formatOnSave": true,
-    "[java]": {
-        "editor.defaultFormatter": "josevseb.google-java-format-for-vs-code",
-    },
-    "java.configuration.updateBuildConfiguration": "automatic",
+  "editor.formatOnSave": true,
+  "[java]": {
+    "editor.defaultFormatter": "josevseb.google-java-format-for-vs-code"
+  },
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "git.mergeEditor": false
 }
