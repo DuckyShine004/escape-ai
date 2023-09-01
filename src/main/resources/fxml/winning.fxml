@@ -17,7 +17,7 @@
          <children>
             <Button fx:id="playAgainButton" mnemonicParsing="false" onMouseClicked="#onPlayAgain" prefWidth="100.0" text="Play Again" />
             <Button mnemonicParsing="false" onAction="#onViewGameStats" prefWidth="100.0" text="View Game Stats" />
-            <Button mnemonicParsing="false" onAction="#onMainMenu" prefWidth="100.0" text="Main Menu" />
+            <Button mnemonicParsing="false" onAction="#onBackToMenu" prefWidth="100.0" text="Main Menu" />
          </children>
       </VBox>
    </children>

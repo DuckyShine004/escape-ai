@@ -44,5 +44,7 @@ public class WinningScreenController {
    * This method will set the scene to the main menu
    */
   @FXML
-  private void onMainMenu() {}
+  private void onBackToMenu() {
+    App.setUi(AppUi.MENU);
+  }
 }
