@@ -28,7 +28,7 @@ public class MainMenuController {
     resetGlobalVariables();
 
     // change scene to Room
-    App.setUi(AppUi.ROOM);
+    App.setUi(AppUi.OFFICE);
   }
 
   @FXML
