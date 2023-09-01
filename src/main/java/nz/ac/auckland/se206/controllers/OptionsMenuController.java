@@ -13,7 +13,8 @@ public class OptionsMenuController {
   @FXML private Label lblCurrentSelectedTime;
 
   @FXML
-  private void initalize() {
+  public void initialize() {
+    System.out.println("loading options menu");
     cbTimeSelect.getItems().addAll("2 Minutes", "4 Minutes", "6 Minutes");
     cbTimeSelect.setPromptText("2 Minutes");
   }
