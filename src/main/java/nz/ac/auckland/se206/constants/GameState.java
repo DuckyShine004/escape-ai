@@ -8,4 +8,7 @@ public class GameState {
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
+
+  /** maximum time for the round, will change in options, default is 60 seconds */
+  public static int maxTime = 60; // if think of better variable, please mention in PR review :)
 }
