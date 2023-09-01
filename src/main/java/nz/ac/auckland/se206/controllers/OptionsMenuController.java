@@ -10,14 +10,18 @@ import nz.ac.auckland.se206.constants.GameState;
 
 public class OptionsMenuController {
 
+  // define comboBox which contains String type selections
   @FXML private ComboBox<String> cbTimeSelect;
 
   @FXML private Label lblCurrentSelectedTime;
 
   @FXML
   public void initialize() {
-    System.out.println("loading options menu");
+
+    // define 3 drop down selection items
     cbTimeSelect.getItems().addAll("2 Minutes", "4 Minutes", "6 Minutes");
+
+    // defult 2 minutes
     cbTimeSelect.setPromptText("2 Minutes");
   }
 
@@ -41,8 +45,36 @@ public class OptionsMenuController {
     String strSelected = cbTimeSelect.getSelectionModel().getSelectedItem();
 
     // get the number from the char in position 1
-    int maxTime = strSelected.charAt(0) - 48; // -48 shifts char of '1' to int value 1
+    // int maxTime = strSelected.charAt(0) - 48; // -48 shifts char of '1' to int value 1
+    int maxTime = firstNumberFromString(strSelected);
+
+    System.out.println(maxTime);
 
     GameState.maxTime = maxTime;
+  }
+
+  /*
+   * This method takes in a string, and returns the entire first number as a int
+   */
+  private static int firstNumberFromString(String input) {
+    StringBuilder number = new StringBuilder();
+
+    // loop through the string
+    for (char c : input.toCharArray()) {
+
+      // if the character is a digit
+      if (Character.isDigit(c)) {
+
+        // add digit to number
+        number.append(c);
+      } else {
+
+        // when no more digits
+        break;
+      }
+    }
+
+    // if number is found, return the number, else return null
+    return number.length() > 0 ? Integer.parseInt(number.toString()) : null;
   }
 }
