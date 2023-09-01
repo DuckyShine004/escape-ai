@@ -35,5 +35,9 @@ public class MainMenuController {
   private void onSelectDifficulty() {}
 
   @FXML
-  private void onOptions() {}
+  private void onOptions() {
+
+    // change scene to Options
+    App.setUi(AppUi.OPTIONS);
+  }
 }

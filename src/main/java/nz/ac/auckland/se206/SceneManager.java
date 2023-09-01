@@ -9,6 +9,7 @@ public class SceneManager {
   public enum AppUi {
     ROOM,
     MENU,
+    OPTIONS,
     CONTROL,
     BREAKER,
     CHAT,
