@@ -49,7 +49,10 @@ public class App extends Application {
    */
   private static void initalizeScenes() throws IOException {
     // main menue
-    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
+    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu/menu"));
+
+    // options in main menu
+    SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menu/options"));
 
     // first room --> change to office later
     SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
