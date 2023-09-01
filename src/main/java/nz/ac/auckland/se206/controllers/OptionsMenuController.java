@@ -23,6 +23,9 @@ public class OptionsMenuController {
 
     // defult 2 minutes
     cbTimeSelect.setPromptText("2 Minutes");
+
+    // debug label to show time is properly changing
+    lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
   }
 
   @FXML
@@ -48,9 +51,11 @@ public class OptionsMenuController {
     // int maxTime = strSelected.charAt(0) - 48; // -48 shifts char of '1' to int value 1
     int maxTime = firstNumberFromString(strSelected);
 
-    System.out.println(maxTime);
+    // set Game State time per round in seconds
+    GameState.maxTime = maxTime * 60;
 
-    GameState.maxTime = maxTime;
+    // chaning debug label
+    lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
   }
 
   /*
