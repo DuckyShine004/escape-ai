@@ -22,6 +22,9 @@ public class WinningScreenController {
     GameState.isRiddleResolved = false;
   }
 
+  /*
+   * This method will restart the game
+   */
   @FXML
   private void onPlayAgain() {
 
@@ -31,9 +34,15 @@ public class WinningScreenController {
     App.setUi(AppUi.ROOM);
   }
 
+  /*
+   * This method will show the game stats
+   */
   @FXML
   private void onViewGameStats() {}
 
+  /*
+   * This method will set the scene to the main menu
+   */
   @FXML
   private void onMainMenu() {}
 }
