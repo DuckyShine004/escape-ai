@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 
 /** Controller class for the room view. */
@@ -76,7 +77,7 @@ public class RoomController {
       showDialog(
           "Info", "Find the key!", "You resolved the riddle, now you know where the key is.");
     } else {
-      showDialog("Info", "You Won!", "Good Job!");
+      App.setUi(AppUi.WINNING);
     }
   }
 

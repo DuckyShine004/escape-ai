@@ -56,6 +56,9 @@ public class App extends Application {
 
     // breaker room
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker"));
+
+    // winning screen
+    SceneManager.addAppUi(AppUi.WINNING, loadFxml("winning"));
   }
 
   /**
