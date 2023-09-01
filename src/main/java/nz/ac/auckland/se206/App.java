@@ -43,6 +43,21 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
+  /*
+   * This method will initalize the scenes, by storing instatnces of the loaded fxmls in SceneManager
+   * @throws IOException if fxml is not found
+   */
+  private static void initalizeScenes() throws IOException {
+    // main menue
+    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
+
+    // first room --> change to office later
+    SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
+
+    // breaker room
+    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker"));
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
@@ -53,8 +68,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     // add scenes to sceneManager
-    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu"));
-    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker"));
+    initalizeScenes();
 
     // set first scene to display
     scene = new Scene(SceneManager.getUi(AppUi.MENU), 600, 470);
