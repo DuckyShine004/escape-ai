@@ -18,8 +18,8 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="vase" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="41.0" layoutX="340.0" layoutY="193.0" onMouseClicked="#clickVase" stroke="BLACK" strokeType="INSIDE" width="38.0" />
-      <Text fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="98.0" layoutX="137.0" layoutY="205.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="vase" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="41.0" layoutX="340.0" layoutY="193.0" onMouseClicked="#clickVase" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="98.0" layoutX="137.0" layoutY="205.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="65.0" />
       <Text fx:id="timerText" layoutX="480.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timer Text: 00:00" wrappingWidth="100.0" />
       <Text layoutX="234.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert Background Image" />
    </children>
