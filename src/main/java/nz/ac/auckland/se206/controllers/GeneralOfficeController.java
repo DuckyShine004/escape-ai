@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -9,6 +10,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class GeneralOfficeController {
@@ -23,7 +25,8 @@ public class GeneralOfficeController {
   /** Initializes the control room. */
   @FXML
   private void initialize() {
-    
+    // update the scene
+    updateScene();
   }
 
   /** On mouse clicked, if the button is pressed, then switch to the left scene. */
@@ -50,7 +53,7 @@ public class GeneralOfficeController {
     }
 
     if (!GameState.isKeyFound) {
-     System.out.println("key found");
+      System.out.println("key found");
     } else {
       App.setUi(AppUi.WINNING);
     }
@@ -67,5 +70,21 @@ public class GeneralOfficeController {
     if (GameState.isRiddleResolved && !GameState.isKeyFound) {
       GameState.isKeyFound = true;
     }
+  }
+
+  /**
+   * Update all things related to timing here. Such an example is using animation timer to update
+   * the timer text on each frame.
+   */
+  private void updateScene() {
+    AnimationTimer animationTimer =
+        new AnimationTimer() {
+          @Override
+          public void handle(long time) {
+            timerText.setText(Timer.getTime());
+          }
+        };
+
+    animationTimer.start();
   }
 }
