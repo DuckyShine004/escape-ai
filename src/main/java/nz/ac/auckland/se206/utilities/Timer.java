@@ -13,18 +13,11 @@ public class Timer {
   private static int time;
 
   /**
-   * Create a new instance of timer.
+   * Initializes the timer. Call this method statically when you want to initialize a timer.
    *
    * @param time the input time. This should be 2, 4, or 6 minutes only (in seconds).
    */
-  public Timer(int time) {
-    Timer.time = time;
-
-    initialize();
-  }
-
-  /** Initializes the timer. This is called when a new instance of timer is created. */
-  private static void initialize() {
+  public static void initialize(int time) {
     timer =
         new Timeline(
             new KeyFrame(
