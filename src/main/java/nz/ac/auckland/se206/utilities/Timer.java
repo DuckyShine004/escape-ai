@@ -25,6 +25,8 @@ public class Timer {
                 event -> {
                   Timer.update();
                 }));
+
+    Timer.time = time;
   }
 
   /**
@@ -64,7 +66,10 @@ public class Timer {
     return time;
   }
 
-  /** Updates the timer. This method is called inside of the initialize method. */
+  /**
+   * Updates the timer and the text associated with it. This method is called inside of the timeline
+   * method, which is inside of the initialize method.
+   */
   public static void update() {
     time -= 1;
     minutes = time / 60;
