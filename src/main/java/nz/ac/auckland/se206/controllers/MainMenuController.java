@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.utilities.Timer;
 
 public class MainMenuController {
   @FXML private Button startButton;
@@ -26,6 +27,12 @@ public class MainMenuController {
   private void onStartButton() {
 
     resetGlobalVariables();
+
+    // retrieve the max time from gamestate and initialize the timer
+    Timer.initialize(GameState.maxTime);
+
+    // start the timer
+    Timer.play();
 
     // change scene to Room
     App.setUi(AppUi.OFFICE);
