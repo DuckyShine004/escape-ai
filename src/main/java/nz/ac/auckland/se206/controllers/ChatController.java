@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,19 +47,7 @@ public class ChatController {
     buttonAnswer2.textProperty().bind(answer2Property);
     buttonAnswer3.textProperty().bind(answer3Property);
 
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    ChatMessage gptResponse =
-        runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle()));
-
-    if (gptResponse != null && gptResponse.getRole().equals("assistant")) {
-      processGptOutputForButtons(gptResponse.getContent());
-    }
-
-    // Set button texts with the desired values
-    answer1Property.set(answer1);
-    answer2Property.set(answer2);
-    answer3Property.set(answer3);
+    loadRiddle();
   }
 
   /**
@@ -66,6 +57,54 @@ public class ChatController {
    */
   private void appendChatMessage(ChatMessage msg) {
     chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+  }
+
+  private void loadRiddle() {
+    Task<Void> generateRiddle =
+        new Task<>() {
+          @Override
+          protected Void call() throws Exception {
+            System.out.println("Task.call method: " + Thread.currentThread().getName());
+            // Create a new chat completion request
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.2)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            ChatMessage gptResponse =
+                runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle()));
+
+            if (gptResponse != null && gptResponse.getRole().equals("assistant")) {
+              processGptOutputForButtons(gptResponse.getContent());
+            }
+            // Update the UI thread
+            Platform.runLater(() -> {
+                    answer1Property.set(answer1);
+                    answer2Property.set(answer2);
+                    answer3Property.set(answer3);
+                });
+            return null;
+          }
+
+          // Notify if the API call was successful
+          @Override
+          protected void succeeded() {
+            super.succeeded();
+            System.out.println("Successfully loaded");
+          }
+
+          // Notify if the API call failed
+          @Override
+          protected void failed() {
+            super.failed();
+            System.out.println("Failed to load");
+          }
+        };
+
+    // Start the thread
+    Thread newThread = new Thread(generateRiddle, "New Thread");
+    newThread.start();
   }
 
   /**
@@ -82,9 +121,18 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      if (result.getChatMessage().getRole().equals("assistant") && result.getChatMessage().getContent().startsWith("Riddle:")) {
-        if(result.getChatMessage().getContent().indexOf('^') != 1) {
-          riddle = new ChatMessage("assistant", result.getChatMessage().getContent().substring(result.getChatMessage().getContent().indexOf(':') + 1, result.getChatMessage().getContent().indexOf('^')));
+      if (result.getChatMessage().getRole().equals("assistant")
+          && result.getChatMessage().getContent().startsWith("Riddle:")) {
+        if (result.getChatMessage().getContent().indexOf('^') != 1) {
+          riddle =
+              new ChatMessage(
+                  "assistant",
+                  result
+                      .getChatMessage()
+                      .getContent()
+                      .substring(
+                          result.getChatMessage().getContent().indexOf(':') + 1,
+                          result.getChatMessage().getContent().indexOf('^')));
         }
         appendChatMessage(riddle);
       } else {
