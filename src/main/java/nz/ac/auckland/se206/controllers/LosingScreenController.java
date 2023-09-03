@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.utilities.Timer;
 
 public class LosingScreenController {
   @FXML private Button playAgainButton;
@@ -30,8 +31,14 @@ public class LosingScreenController {
 
     resetGlobalVariables();
 
-    // change scene to Room
-    App.setUi(AppUi.ROOM);
+    // retrieve the max time from gamestate and initialize the timer
+    Timer.initialize(GameState.maxTime);
+
+    // start the timer
+    Timer.play();
+
+    // change scene to Office
+    App.setUi(AppUi.OFFICE);
   }
 
   /*
