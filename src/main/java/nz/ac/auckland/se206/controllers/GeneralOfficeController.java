@@ -31,11 +31,15 @@ public class GeneralOfficeController {
 
   /** On mouse clicked, if the button is pressed, then switch to the left scene. */
   @FXML
-  private void onLeftButton() {}
+  private void onLeftButton() {
+    App.setUi(AppUi.CONTROL);
+  }
 
   /** On mouse clicked, if the button is pressed, then switch to the right scene. */
   @FXML
-  private void onRightButton() {}
+  private void onRightButton() {
+    App.setUi(AppUi.BREAKER);
+  }
 
   /**
    * Handles the click event on the door.

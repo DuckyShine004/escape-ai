@@ -4,6 +4,8 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
@@ -22,11 +24,15 @@ public class ControlRoomController {
 
   /** On mouse clicked, if the button is pressed, then switch to the left scene. */
   @FXML
-  private void onLeftButton() {}
+  private void onLeftButton() {
+    App.setUi(AppUi.BREAKER);
+  }
 
   /** On mouse clicked, if the button is pressed, then switch to the right scene. */
   @FXML
-  private void onRightButton() {}
+  private void onRightButton() {
+    App.setUi(AppUi.OFFICE);
+  }
 
   /**
    * Update all things related to timing here. Such an example is using animation timer to update
