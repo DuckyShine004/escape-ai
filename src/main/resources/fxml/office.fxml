@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -19,7 +20,7 @@
       </Text>
       <Rectangle fx:id="vase" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="41.0" layoutX="340.0" layoutY="193.0" onMouseClicked="#clickVase" stroke="BLACK" strokeType="INSIDE" width="38.0" />
       <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="98.0" layoutX="137.0" layoutY="205.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Text fx:id="timerText" layoutX="480.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timer Text: 00:00" wrappingWidth="100.0" />
+      <Label fx:id="lblTime" layoutX="480.0" layoutY="19.0" text="Timer Text: 00:00" />
       <Text layoutX="234.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert Background Image" />
    </children>
 </Pane>

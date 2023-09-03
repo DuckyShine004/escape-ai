@@ -9,7 +9,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the breaker room. */
 public class BreakerRoomController {
-  @FXML Label timerText;
+  @FXML private Label lblTime;
 
   @FXML
   private void initialize() {
@@ -38,7 +38,7 @@ public class BreakerRoomController {
         new AnimationTimer() {
           @Override
           public void handle(long time) {
-            timerText.setText(Timer.getTime());
+            lblTime.setText(Timer.getTime());
           }
         };
 
