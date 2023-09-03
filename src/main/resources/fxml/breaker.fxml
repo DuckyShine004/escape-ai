@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BreakerRoomController">
    <children>
       <Label layoutX="40.0" layoutY="358.0" text="Change Left?" />
       <Label layoutX="471.0" layoutY="358.0" text="Change  Right?" />
-      <Button layoutX="39.0" layoutY="333.0" mnemonicParsing="false" text="Left Room" />
-      <Button layoutX="471.0" layoutY="333.0" mnemonicParsing="false" text="Right Room" />
+      <Button layoutX="39.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" text="Left Room" />
+      <Button layoutX="471.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onRightButton" text="Right Room" />
       <Pane layoutX="3.0" prefHeight="31.0" prefWidth="592.0">
          <children>
             <Label layoutX="14.0" layoutY="2.0" prefHeight="32.0" prefWidth="153.0" text="Breaker Room">
