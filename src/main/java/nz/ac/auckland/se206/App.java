@@ -54,9 +54,6 @@ public class App extends Application {
     // options in main menu
     SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menu/options"));
 
-    // first room --> change to office later
-    SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
-
     // office room
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("office"));
 

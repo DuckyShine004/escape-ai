@@ -30,8 +30,8 @@ public class WinningScreenController {
 
     resetGlobalVariables();
 
-    // change scene to Room
-    App.setUi(AppUi.ROOM);
+    // change scene to office
+    App.setUi(AppUi.OFFICE);
   }
 
   /*
