@@ -39,8 +39,7 @@ public class WinningScreenController {
 
     // change scene to Office
     App.setUi(AppUi.OFFICE);
-
-
+    
   }
 
   /*
