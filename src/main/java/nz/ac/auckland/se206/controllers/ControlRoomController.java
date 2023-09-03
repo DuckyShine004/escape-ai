@@ -3,14 +3,14 @@ package nz.ac.auckland.se206.controllers;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class ControlRoomController {
-  @FXML private Text timerText;
+  @FXML private Label lblTime;
 
   @FXML private Button leftButton;
   @FXML private Button rightButton;
@@ -43,7 +43,7 @@ public class ControlRoomController {
         new AnimationTimer() {
           @Override
           public void handle(long time) {
-            timerText.setText(Timer.getTime());
+            lblTime.setText(Timer.getTime());
           }
         };
 

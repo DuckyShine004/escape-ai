@@ -4,9 +4,9 @@ import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class GeneralOfficeController {
-  @FXML private Text timerText;
+  @FXML private Label lblTime;
 
   @FXML private Button leftButton;
   @FXML private Button rightButton;
@@ -85,7 +85,7 @@ public class GeneralOfficeController {
         new AnimationTimer() {
           @Override
           public void handle(long time) {
-            timerText.setText(Timer.getTime());
+            lblTime.setText(Timer.getTime());
           }
         };
 

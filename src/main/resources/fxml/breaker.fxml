@@ -20,7 +20,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="timerText" layoutX="473.0" layoutY="10.0" text="Future Timer:  00:00" />
+            <Label fx:id="lblTime" layoutX="473.0" layoutY="10.0" text="Future Timer:  00:00" />
             <Label layoutX="225.0" layoutY="7.0" text="Very Early Layout Concept" />
          </children>
       </Pane>
