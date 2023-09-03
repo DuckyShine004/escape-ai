@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -79,10 +78,11 @@ public class ChatController {
               processGptOutputForButtons(gptResponse.getContent());
             }
             // Update the UI thread
-            Platform.runLater(() -> {
-                    answer1Property.set(answer1);
-                    answer2Property.set(answer2);
-                    answer3Property.set(answer3);
+            Platform.runLater(
+                () -> {
+                  answer1Property.set(answer1);
+                  answer2Property.set(answer2);
+                  answer3Property.set(answer3);
                 });
             return null;
           }
@@ -161,12 +161,31 @@ public class ChatController {
     Button clickedButton = (Button) event.getSource();
     String buttonText = clickedButton.getText();
 
-    // Send the button text as a response to GPT
-    ChatMessage responseMsg = runGpt(new ChatMessage("user", buttonText));
-    if (responseMsg.getRole().equals("assistant")
-        && responseMsg.getContent().startsWith("Yes! That sounds right with my programming!")) {
-      GameState.isRiddleResolved = true;
-    }
+    Task<Void> buttonClickTask =
+        new Task<>() {
+          @Override
+          protected Void call() throws Exception {
+            // Send the button text as a response to GPT
+            ChatMessage responseMsg = runGpt(new ChatMessage("user", buttonText));
+
+            // Update UI based on the response
+            Platform.runLater(
+                () -> {
+                  if (responseMsg.getRole().equals("assistant")
+                      && responseMsg
+                          .getContent()
+                          .startsWith("Yes! That sounds right with my programming!")) {
+                    GameState.isRiddleResolved = true;
+                  }
+                });
+
+            return null;
+          }
+        };
+
+    // Start the thread
+    Thread newThread = new Thread(buttonClickTask, "Button Click Thread");
+    newThread.start();
   }
 
   /**
