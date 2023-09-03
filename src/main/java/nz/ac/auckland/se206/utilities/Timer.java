@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.utilities;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** The timer class keeps track of the time left for the player. */
 public class Timer {
@@ -74,6 +76,10 @@ public class Timer {
     time -= 1;
     minutes = time / 60;
     seconds = time % 60;
+    if (checkTime()) {
+      stop();
+      App.setUi(AppUi.LOSING);
+    }
   }
 
   /**
