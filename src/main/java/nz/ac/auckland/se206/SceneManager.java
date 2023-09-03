@@ -14,7 +14,8 @@ public class SceneManager {
     BREAKER,
     CHAT,
     OFFICE,
-    WINNING
+    WINNING,
+    LOSING
   }
 
   // stores the scenes
