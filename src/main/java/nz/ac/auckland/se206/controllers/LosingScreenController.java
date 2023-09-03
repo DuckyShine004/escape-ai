@@ -7,7 +7,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.Timer;
 
-public class WinningScreenController {
+public class LosingScreenController {
   @FXML private Button playAgainButton;
 
   @FXML
@@ -39,7 +39,6 @@ public class WinningScreenController {
 
     // change scene to Office
     App.setUi(AppUi.OFFICE);
-    
   }
 
   /*

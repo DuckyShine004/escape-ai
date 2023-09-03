@@ -65,6 +65,9 @@ public class App extends Application {
 
     // winning screen
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("winning"));
+
+    // losing screen
+    SceneManager.addAppUi(AppUi.LOSING, loadFxml("losing"));
   }
 
   /**
