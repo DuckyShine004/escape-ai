@@ -59,6 +59,8 @@ public class ChatController {
   }
 
   private void loadRiddle() {
+    ChatMessage loading = new ChatMessage("assistant", "Loading...");
+    appendChatMessage(loading);
     Task<Void> generateRiddle =
         new Task<>() {
           @Override
@@ -161,6 +163,8 @@ public class ChatController {
     Button clickedButton = (Button) event.getSource();
     String buttonText = clickedButton.getText();
 
+    ChatMessage loading = new ChatMessage("assistant", "Loading...");
+    appendChatMessage(loading);
     Task<Void> buttonClickTask =
         new Task<>() {
           @Override
