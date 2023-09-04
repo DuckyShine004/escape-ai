@@ -78,6 +78,7 @@ public class RiddlePuzzleController {
       "Equality"
     };
     String concept = concepts[randomNumber];
+    System.out.println("loaded");
   
     if (GameState.riddlesSolved == 0) {
       ChatMessage intro = new ChatMessage("assistant", "Please help me solve these 3 riddles to update the vocabulary in my programming!");
