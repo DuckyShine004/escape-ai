@@ -76,8 +76,6 @@ public class App extends Application {
     // losing screen
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("losing"));
 
-    // chat screen
-    SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
   }
 
   /**
