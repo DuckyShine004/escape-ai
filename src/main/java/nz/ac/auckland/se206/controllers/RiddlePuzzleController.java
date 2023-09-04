@@ -49,7 +49,6 @@ public class RiddlePuzzleController {
     btnAnswer3.textProperty().bind(answer3Property);
     btnNavigate.textProperty().bind(navigateProperty);
     navigateProperty.set("Go Back");
-  
 
     loadRiddle();
   }
@@ -79,12 +78,17 @@ public class RiddlePuzzleController {
     };
     String concept = concepts[randomNumber];
     System.out.println("loaded");
-  
+
     if (GameState.riddlesSolved == 0) {
-      ChatMessage intro = new ChatMessage("assistant", "Please help me solve these 3 riddles to update the vocabulary in my programming!");
+      ChatMessage intro =
+          new ChatMessage(
+              "assistant",
+              "Please help me solve these 3 riddles to update the vocabulary in my programming!");
       appendChatMessage(intro);
     }
-    ChatMessage loading = new ChatMessage("assistant", "Generating riddle "+ (GameState.riddlesSolved + 1) + " of 3...");
+    ChatMessage loading =
+        new ChatMessage(
+            "assistant", "Generating riddle " + (GameState.riddlesSolved + 1) + " of 3...");
     appendChatMessage(loading);
     Task<Void> generateRiddle =
         new Task<>() {
@@ -239,15 +243,24 @@ public class RiddlePuzzleController {
                     }
                     if (GameState.riddlesSolved == 3) {
                       navigateProperty.set("Exit Puzzle");
-                      ChatMessage outro = new ChatMessage("assistant", "That is three riddles solved! Thank you for helping recalibrate my drives.");
+                      ChatMessage outro =
+                          new ChatMessage(
+                              "assistant",
+                              "That is three riddles solved! Thank you for helping recalibrate my"
+                                  + " drives.");
                       appendChatMessage(outro);
                     }
+                    btnNavigate.setDisable(false);
                   } else {
                     btnAnswer1.setDisable(false);
                     btnAnswer2.setDisable(false);
                     btnAnswer3.setDisable(false);
+                    if (GameState.riddlesSolved != 0) {
+                      btnNavigate.setDisable(true);
+                    } else {
+                      btnNavigate.setDisable(false);
+                    }
                   }
-                  btnNavigate.setDisable(false);
                 });
 
             return null;
@@ -280,6 +293,5 @@ public class RiddlePuzzleController {
       App.setUi(AppUi.OFFICE);
       GameState.isRiddleResolved = true;
     }
-    
   }
 }
