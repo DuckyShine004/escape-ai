@@ -15,7 +15,7 @@
       </Text>
       <VBox layoutX="250.0" layoutY="180.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
          <children>
-            <Button fx:id="startButton" mnemonicParsing="false" onMouseClicked="#onStartButton" prefWidth="100.0" text="Start Game" />
+            <Button fx:id="btnStart" mnemonicParsing="false" onMouseClicked="#onStartButton" prefWidth="100.0" text="Start Game" />
             <Button mnemonicParsing="false" onAction="#onSelectDifficulty" prefWidth="100.0" text="Select Difficulty" />
             <Button mnemonicParsing="false" onAction="#onOptions" prefWidth="100.0" text="Options" />
          </children>

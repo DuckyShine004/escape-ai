@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class MainMenuController {
-  @FXML private Button startButton;
+  @FXML private Button btnStart;
 
   @FXML
   private void initialize() {}
