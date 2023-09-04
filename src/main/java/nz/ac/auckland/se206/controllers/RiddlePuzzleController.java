@@ -241,6 +241,10 @@ public class RiddlePuzzleController {
                       ChatMessage outro = new ChatMessage("assistant", "That is three riddles solved! Thank you for helping recalibrate my drives.");
                       appendChatMessage(outro);
                     }
+                  } else {
+                    btnAnswer1.setDisable(false);
+                    btnAnswer2.setDisable(false);
+                    btnAnswer3.setDisable(false);
                   }
                   btnNavigate.setDisable(false);
                 });
