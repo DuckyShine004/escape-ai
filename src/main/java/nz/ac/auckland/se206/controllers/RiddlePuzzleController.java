@@ -25,7 +25,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the chat view. */
 public class RiddlePuzzleController {
-  @FXML private TextArea chatTextArea;
+  @FXML private TextArea taChat;
   @FXML private Button btnAnswer1;
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
@@ -65,7 +65,7 @@ public class RiddlePuzzleController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    taChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
   }
 
   /**
