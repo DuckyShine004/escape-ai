@@ -11,7 +11,7 @@ public class SceneManager {
     OPTIONS,
     CONTROL,
     BREAKER,
-    CHAT,
+    RIDDLE,
     OFFICE,
     WINNING,
     LOSING

@@ -68,6 +68,9 @@ public class App extends Application {
 
     // losing screen
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("losing"));
+
+    // riddle screen
+    SceneManager.addAppUi(AppUi.RIDDLE, loadFxml("riddle"));
   }
 
   /**
