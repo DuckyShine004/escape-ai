@@ -182,6 +182,17 @@ public class RiddlePuzzleController {
   private void processGptOutputForButtons(String gptOutput, String concept) {
     String[] segments = gptOutput.split("\\}");
     int randomNumber = (int) (Math.random() * 3);
+    boolean conceptPresent = false;
+
+    for (int i = 0; i < segments.length; i++) {
+      if (segments[i].contains(concept)) {
+        conceptPresent = true;
+      }
+    }
+
+    if (!conceptPresent) {
+      segments[randomNumber] = concept;
+    }
 
     if (segments.length >= 2) {
       answer1 =
