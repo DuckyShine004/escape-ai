@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Label;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -14,12 +17,16 @@ public class Timer {
   private static int seconds;
   private static int time;
 
+  private static List<Label> labels;
+
   /**
    * Initializes the timer. Call this method statically when you want to initialize a timer.
    *
    * @param time the input time. This should be 2, 4, or 6 minutes only (in seconds).
    */
-  public static void initialize(int time) {
+  public static void initialize() {
+    labels = new ArrayList<Label>();
+
     timer =
         new Timeline(
             new KeyFrame(
@@ -27,8 +34,31 @@ public class Timer {
                 event -> {
                   Timer.update();
                 }));
+  }
 
+  /**
+   * Sets the timer's countdown time.
+   *
+   * @param time the input time. This should be 2, 4, or 6 minutes only (in seconds).
+   */
+  public static void setTime(int time) {
     Timer.time = time;
+
+    minutes = time / 60;
+    seconds = time % 60;
+
+    for (Label label : labels) {
+      label.setText(getTime());
+    }
+  }
+
+  /**
+   * Adds a label to the arraylist, of course, the label should be timer related.
+   *
+   * @param label the label to be updated by the timer.
+   */
+  public static void addLabel(Label label) {
+    labels.add(label);
   }
 
   /**
@@ -74,8 +104,14 @@ public class Timer {
    */
   public static void update() {
     time -= 1;
+
     minutes = time / 60;
     seconds = time % 60;
+
+    for (Label label : labels) {
+      label.setText(getTime());
+    }
+
     if (checkTime()) {
       stop();
       App.setUi(AppUi.LOSING);

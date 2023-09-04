@@ -32,7 +32,7 @@ public class LosingScreenController {
     resetGlobalVariables();
 
     // retrieve the max time from gamestate and initialize the timer
-    Timer.initialize(GameState.maxTime);
+    Timer.setTime(GameState.maxTime);
 
     // start the timer
     Timer.play();

@@ -12,6 +12,7 @@ public class WinningScreenController {
   @FXML private Button btnMainMenu;
   @FXML private Button btnViewGameStats;
 
+  /** Initialize the controller. */
   @FXML
   private void initialize() {}
 
@@ -33,8 +34,8 @@ public class WinningScreenController {
 
     resetGlobalVariables();
 
-    // retrieve the max time from gamestate and initialize the timer
-    Timer.initialize(GameState.maxTime);
+    // set the timer's countdown time
+    Timer.setTime(GameState.maxTime);
 
     // start the timer
     Timer.play();

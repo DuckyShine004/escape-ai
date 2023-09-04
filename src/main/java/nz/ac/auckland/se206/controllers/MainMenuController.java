@@ -28,8 +28,8 @@ public class MainMenuController {
 
     resetGlobalVariables();
 
-    // retrieve the max time from gamestate and initialize the timer
-    Timer.initialize(GameState.maxTime);
+    // Set the timer's countdown time
+    Timer.setTime(GameState.maxTime);
 
     // start the timer
     Timer.play();

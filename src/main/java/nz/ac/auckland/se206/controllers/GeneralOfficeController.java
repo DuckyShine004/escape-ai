@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,11 +21,11 @@ public class GeneralOfficeController {
   @FXML private Rectangle door;
   @FXML private Rectangle vase;
 
-  /** Initializes the control room. */
+  /** Initializes the general office. */
   @FXML
   private void initialize() {
-    // update the scene
-    updateScene();
+    // add the label to list of labels to be updated.
+    Timer.addLabel(lblTime);
   }
 
   /** On mouse clicked, if the button is pressed, then switch to the left scene. */
@@ -74,21 +73,5 @@ public class GeneralOfficeController {
     if (GameState.isRiddleResolved && !GameState.isKeyFound) {
       GameState.isKeyFound = true;
     }
-  }
-
-  /**
-   * Update all things related to timing here. Such an example is using animation timer to update
-   * the timer text on each frame.
-   */
-  private void updateScene() {
-    AnimationTimer animationTimer =
-        new AnimationTimer() {
-          @Override
-          public void handle(long time) {
-            lblTime.setText(Timer.getTime());
-          }
-        };
-
-    animationTimer.start();
   }
 }
