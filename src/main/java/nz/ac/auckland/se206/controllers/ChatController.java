@@ -22,9 +22,9 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   @FXML private TextArea chatTextArea;
-  @FXML private Button buttonAnswer1;
-  @FXML private Button buttonAnswer2;
-  @FXML private Button buttonAnswer3;
+  @FXML private Button btnAnswer1;
+  @FXML private Button btnAnswer2;
+  @FXML private Button btnAnswer3;
   @FXML private Button btnNavigate;
 
   private ChatCompletionRequest chatCompletionRequest;
@@ -44,9 +44,9 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
 
-    buttonAnswer1.textProperty().bind(answer1Property);
-    buttonAnswer2.textProperty().bind(answer2Property);
-    buttonAnswer3.textProperty().bind(answer3Property);
+    btnAnswer1.textProperty().bind(answer1Property);
+    btnAnswer2.textProperty().bind(answer2Property);
+    btnAnswer3.textProperty().bind(answer3Property);
     btnNavigate.textProperty().bind(navigateProperty);
     navigateProperty.set("Go Back");
   
@@ -197,6 +197,9 @@ public class ChatController {
   private void onButtonClicked(ActionEvent event) throws ApiProxyException {
     Button clickedButton = (Button) event.getSource();
     String buttonText = clickedButton.getText();
+    btnAnswer1.setDisable(true);
+    btnAnswer2.setDisable(true);
+    btnAnswer3.setDisable(true);
 
     ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
     appendChatMessage(loading);
@@ -224,6 +227,10 @@ public class ChatController {
                       appendChatMessage(outro);
                     }
                   }
+                  btnAnswer1.setDisable(false);
+                  btnAnswer2.setDisable(false);
+                  btnAnswer3.setDisable(false);
+                  btnNavigate.setDisable(false);
                 });
 
             return null;
@@ -248,6 +255,7 @@ public class ChatController {
       App.setUi(AppUi.OFFICE);
     } else if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
       loadRiddle();
+      btnNavigate.setDisable(true);
     } else if (GameState.riddlesSolved == 3) {
       App.setUi(AppUi.OFFICE);
       GameState.isRiddleResolved = true;
