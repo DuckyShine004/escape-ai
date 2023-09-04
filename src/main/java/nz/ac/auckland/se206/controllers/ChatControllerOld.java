@@ -15,7 +15,10 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
-/** Controller class for the chat view. */
+/**
+ * Controller class for the chat view. THIS IS DEPRICATED, AND WILL NOT WORK WITH NEW NAMES NOR
+ * FUNCTIONALITY
+ */
 public class ChatControllerOld {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
