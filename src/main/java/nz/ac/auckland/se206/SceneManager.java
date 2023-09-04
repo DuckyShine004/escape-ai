@@ -11,6 +11,7 @@ public class SceneManager {
     OPTIONS,
     CONTROL,
     BREAKER,
+    LOGIC_PUZZLE, // logic gate puzzle in Breaker Room
     CHAT,
     OFFICE,
     WINNING,
