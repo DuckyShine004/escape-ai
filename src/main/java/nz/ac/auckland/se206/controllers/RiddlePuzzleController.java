@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -8,6 +10,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -18,6 +21,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the chat view. */
 public class RiddlePuzzleController {
@@ -26,6 +30,7 @@ public class RiddlePuzzleController {
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
   @FXML private Button btnNavigate;
+  @FXML private Label lblTime;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String answer1;
@@ -50,6 +55,7 @@ public class RiddlePuzzleController {
     btnNavigate.textProperty().bind(navigateProperty);
     navigateProperty.set("Go Back");
 
+    updateScene();
     loadRiddle();
   }
 
@@ -344,5 +350,21 @@ public class RiddlePuzzleController {
       App.setUi(AppUi.OFFICE);
       GameState.isRiddleResolved = true;
     }
+  }
+
+  /**
+   * Update all things related to timing here. Such an example is using animation timer to update
+   * the timer text on each frame.
+   */
+  private void updateScene() {
+    AnimationTimer animationTimer =
+        new AnimationTimer() {
+          @Override
+          public void handle(long time) {
+            lblTime.setText(Timer.getTime());
+          }
+        };
+
+    animationTimer.start();
   }
 }
