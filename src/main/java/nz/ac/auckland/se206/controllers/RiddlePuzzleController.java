@@ -113,6 +113,9 @@ public class RiddlePuzzleController {
                   answer1Property.set(answer1);
                   answer2Property.set(answer2);
                   answer3Property.set(answer3);
+                  btnAnswer1.setDisable(false);
+                  btnAnswer2.setDisable(false);
+                  btnAnswer3.setDisable(false);
                 });
             return null;
           }
@@ -200,6 +203,7 @@ public class RiddlePuzzleController {
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
+    btnNavigate.setDisable(true);
 
     ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
     appendChatMessage(loading);
@@ -227,9 +231,6 @@ public class RiddlePuzzleController {
                       appendChatMessage(outro);
                     }
                   }
-                  btnAnswer1.setDisable(false);
-                  btnAnswer2.setDisable(false);
-                  btnAnswer3.setDisable(false);
                   btnNavigate.setDisable(false);
                 });
 
@@ -256,6 +257,9 @@ public class RiddlePuzzleController {
     } else if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
       loadRiddle();
       btnNavigate.setDisable(true);
+      btnAnswer1.setDisable(true);
+      btnAnswer2.setDisable(true);
+      btnAnswer3.setDisable(true);
     } else if (GameState.riddlesSolved == 3) {
       App.setUi(AppUi.OFFICE);
       GameState.isRiddleResolved = true;
