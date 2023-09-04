@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
@@ -27,6 +28,12 @@ public class BreakerRoomController {
   @FXML
   private void onRightButton() {
     App.setUi(AppUi.CONTROL);
+  }
+
+  /** Change the scene to the logic puzzle */
+  @FXML
+  private void onOpenLogicGatePuzzle() {
+    App.setUi(AppUi.LOGIC_PUZZLE);
   }
 
   /**
