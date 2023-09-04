@@ -61,7 +61,10 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.CONTROL, loadFxml("control"));
 
     // breaker room
-    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker"));
+    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker/breaker"));
+
+    // logic gate puzzle in breaker room
+    SceneManager.addAppUi(AppUi.LOGIC_PUZZLE, loadFxml("breaker/logicGates"));
 
     // winning screen
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("winning"));

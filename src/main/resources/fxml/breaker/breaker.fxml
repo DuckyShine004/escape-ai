@@ -24,6 +24,7 @@
       <Pane layoutX="14.0" layoutY="32.0" prefHeight="279.0" prefWidth="367.0">
          <children>
             <Label layoutX="123.0" layoutY="129.0" text="Back Ground Image" />
+            <Button layoutX="113.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#onOpenLogicGatePuzzle" text="Open Logic Gate Puzzle" />
          </children>
       </Pane>
       <TextArea layoutX="408.0" layoutY="32.0" prefHeight="269.0" prefWidth="178.0" promptText="Maybe this is a side GPT interaction panel that explains what needs to be done..?" />
