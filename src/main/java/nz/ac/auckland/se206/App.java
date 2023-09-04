@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.utilities.Timer;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -48,6 +49,9 @@ public class App extends Application {
    * @throws IOException if fxml is not found
    */
   private static void initalizeScenes() throws IOException {
+    // initialize the timer
+    Timer.initialize();
+
     // main menue
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menu/menu"));
 
@@ -84,7 +88,6 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
     // add scenes to sceneManager
     initalizeScenes();
 
