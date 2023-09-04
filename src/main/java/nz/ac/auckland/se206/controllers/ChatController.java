@@ -21,11 +21,11 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Controller class for the chat view. */
 public class ChatController {
-  @FXML private TextArea chatTextArea;
-  @FXML private Button buttonAnswer1;
-  @FXML private Button buttonAnswer2;
-  @FXML private Button buttonAnswer3;
-  @FXML private Button sendButton;
+  @FXML private TextArea taChat;
+  @FXML private Button btnAnswer1;
+  @FXML private Button btnAnswer2;
+  @FXML private Button btnAnswer3;
+  @FXML private Button btnSend;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String answer1;
@@ -43,9 +43,9 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
 
-    buttonAnswer1.textProperty().bind(answer1Property);
-    buttonAnswer2.textProperty().bind(answer2Property);
-    buttonAnswer3.textProperty().bind(answer3Property);
+    btnAnswer1.textProperty().bind(answer1Property);
+    btnAnswer2.textProperty().bind(answer2Property);
+    btnAnswer3.textProperty().bind(answer3Property);
 
     loadRiddle();
   }
@@ -56,7 +56,7 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    taChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
   }
 
   private void loadRiddle() {
