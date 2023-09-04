@@ -8,7 +8,9 @@ import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class WinningScreenController {
-  @FXML private Button playAgainButton;
+  @FXML private Button btnPlayAgain;
+  @FXML private Button btnMainMenu;
+  @FXML private Button btnViewGameStats;
 
   @FXML
   private void initialize() {}
@@ -39,7 +41,6 @@ public class WinningScreenController {
 
     // change scene to Office
     App.setUi(AppUi.OFFICE);
-    
   }
 
   /*
