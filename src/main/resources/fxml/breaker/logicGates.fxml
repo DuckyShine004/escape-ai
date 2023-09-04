@@ -32,28 +32,40 @@
             </VBox>
             <VBox prefHeight="332.0" prefWidth="216.0">
                <children>
-                  <HBox prefHeight="77.0" prefWidth="212.0">
+                  <HBox prefHeight="60.0" prefWidth="220.0">
                      <children>
-                        <ImageView fx:id="imgGate1" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgTable1" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate1" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable1" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="1.7976931348623157E308" prefHeight="77.0" prefWidth="212.0">
+                     <children>
+                        <ImageView fx:id="imgGate2" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable2" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="77.0" prefWidth="212.0">
                      <children>
-                        <ImageView fx:id="imgGate2" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgTable2" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate3" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable3" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="77.0" prefWidth="212.0">
                      <children>
-                        <ImageView fx:id="imgGate3" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgTable3" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate4" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable4" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                   <HBox prefHeight="77.0" prefWidth="212.0">
                      <children>
-                        <ImageView fx:id="imgGate4" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgTable4" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate5" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable5" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="77.0" prefWidth="212.0">
+                     <children>
+                        <ImageView fx:id="imgGate6" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable6" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>

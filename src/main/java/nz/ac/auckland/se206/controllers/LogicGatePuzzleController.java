@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.utilities.*;
 public class LogicGatePuzzleController {
   @FXML private Label lblTimer;
 
+  // begin side bar helper Gate : Table ImageViews
   @FXML private ImageView imgGate1;
   @FXML private ImageView imgTable1;
 
@@ -23,6 +24,12 @@ public class LogicGatePuzzleController {
 
   @FXML private ImageView imgGate4;
   @FXML private ImageView imgTable4;
+
+  @FXML private ImageView imgGate5;
+  @FXML private ImageView imgTable5;
+
+  @FXML private ImageView imgGate6;
+  @FXML private ImageView imgTable6;
 
   // Logic Gate list
   // 0 - AND
@@ -71,6 +78,14 @@ public class LogicGatePuzzleController {
     // loading side bar slot
     imgGate4.setImage(logicGates.get(3).getImage());
     imgTable4.setImage(logicGates.get(3).getTable());
+
+    // loading side bar slot
+    imgGate5.setImage(logicGates.get(4).getImage());
+    imgTable5.setImage(logicGates.get(4).getTable());
+
+    // loading side bar slot
+    imgGate6.setImage(logicGates.get(5).getImage());
+    imgTable6.setImage(logicGates.get(5).getTable());
   }
 
   @FXML
