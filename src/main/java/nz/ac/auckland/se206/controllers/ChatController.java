@@ -74,7 +74,12 @@ public class ChatController {
       "Equality"
     };
     String concept = concepts[randomNumber];
-    ChatMessage loading = new ChatMessage("assistant", "Loading...");
+  
+    if (GameState.riddlesSolved == 0) {
+      ChatMessage intro = new ChatMessage("assistant", "Please help me solve these 3 riddles to update the vocabulary in my programming!");
+      appendChatMessage(intro);
+    }
+    ChatMessage loading = new ChatMessage("assistant", "Generating riddle "+ (GameState.riddlesSolved + 1) + " of 3...");
     appendChatMessage(loading);
     Task<Void> generateRiddle =
         new Task<>() {
@@ -189,7 +194,7 @@ public class ChatController {
     Button clickedButton = (Button) event.getSource();
     String buttonText = clickedButton.getText();
 
-    ChatMessage loading = new ChatMessage("assistant", "Loading...");
+    ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
     appendChatMessage(loading);
     Task<Void> buttonClickTask =
         new Task<>() {
