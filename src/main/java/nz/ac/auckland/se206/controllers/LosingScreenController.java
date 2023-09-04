@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class LosingScreenController {
-  @FXML private Button playAgainButton;
+  @FXML private Button btnPlayAgain;
 
   @FXML
   private void initialize() {}

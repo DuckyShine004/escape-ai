@@ -16,6 +16,6 @@
       <Label layoutX="128.0" layoutY="142.0" text="Time limit" />
       <Label fx:id="lblCurrentSelectedTime" layoutX="128.0" layoutY="200.0" text="Time: ____ Seconds" />
       <Button layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onAction="#onBackToMenu" text="Back To Main Menu" />
-      <ComboBox fx:id="cbTimeSelect" layoutX="244.0" layoutY="137.0" onAction="#onTimeSelect" prefWidth="150.0" promptText="Time" />
+      <ComboBox fx:id="cmbTimeSelect" layoutX="244.0" layoutY="137.0" onAction="#onTimeSelect" prefWidth="150.0" promptText="Time" />
    </children>
 </Pane>
