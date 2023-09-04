@@ -172,9 +172,15 @@ public class ChatController {
     int randomNumber = (int) (Math.random() * 3);
 
     if (segments.length >= 2) {
-      answer1 = segments[(0 + randomNumber) % 3].substring(segments[(0 + randomNumber) % 3].lastIndexOf("{") + 1);
-      answer2 = segments[(1 + randomNumber) % 3].substring(segments[(1 + randomNumber) % 3].lastIndexOf("{") + 1);
-      answer3 = segments[(2 + randomNumber) % 3].substring(segments[(2 + randomNumber) % 3].lastIndexOf("{") + 1);
+      answer1 =
+          segments[(0 + randomNumber) % 3].substring(
+              segments[(0 + randomNumber) % 3].lastIndexOf("{") + 1);
+      answer2 =
+          segments[(1 + randomNumber) % 3].substring(
+              segments[(1 + randomNumber) % 3].lastIndexOf("{") + 1);
+      answer3 =
+          segments[(2 + randomNumber) % 3].substring(
+              segments[(2 + randomNumber) % 3].lastIndexOf("{") + 1);
     }
   }
 
@@ -199,7 +205,13 @@ public class ChatController {
                       && responseMsg
                           .getContent()
                           .startsWith("Yes! That sounds right with my programming!")) {
-                    GameState.isRiddleResolved = true;
+                    GameState.riddlesSolved++;
+                    if (GameState.riddlesSolved == 3) {
+                      GameState.isRiddleResolved = true;
+                      App.setUi(AppUi.OFFICE);
+                    } else {
+                      loadRiddle();
+                    }
                   }
                 });
 
