@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.constants.GameState;
 public class OptionsMenuController {
 
   // define comboBox which contains String type selections
-  @FXML private ComboBox<String> cbTimeSelect;
+  @FXML private ComboBox<String> cmbTimeSelect;
 
   @FXML private Label lblCurrentSelectedTime;
 
@@ -19,10 +19,10 @@ public class OptionsMenuController {
   public void initialize() {
 
     // define 3 drop down selection items
-    cbTimeSelect.getItems().addAll("2 Minutes", "4 Minutes", "6 Minutes");
+    cmbTimeSelect.getItems().addAll("2 Minutes", "4 Minutes", "6 Minutes");
 
     // defult 2 minutes
-    cbTimeSelect.setPromptText("2 Minutes");
+    cmbTimeSelect.setPromptText("2 Minutes");
 
     // debug label to show time is properly changing
     lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
@@ -45,7 +45,7 @@ public class OptionsMenuController {
   private void onTimeSelect(ActionEvent event) {
 
     // get the string from the comboBox "2 Minutes"
-    String strSelected = cbTimeSelect.getSelectionModel().getSelectedItem();
+    String strSelected = cmbTimeSelect.getSelectionModel().getSelectedItem();
 
     // get the number from the char in position 1
     // int maxTime = strSelected.charAt(0) - 48; // -48 shifts char of '1' to int value 1

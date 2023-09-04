@@ -29,6 +29,12 @@ public class BreakerRoomController {
     App.setUi(AppUi.CONTROL);
   }
 
+  /** Change the scene to the logic puzzle */
+  @FXML
+  private void onOpenLogicGatePuzzle() {
+    App.setUi(AppUi.LOGIC_PUZZLE);
+  }
+
   /**
    * Update all things related to timing here. Such an example is using animation timer to update
    * the timer text on each frame.

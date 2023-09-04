@@ -16,8 +16,8 @@ import nz.ac.auckland.se206.utilities.Timer;
 public class GeneralOfficeController {
   @FXML private Label lblTime;
 
-  @FXML private Button leftButton;
-  @FXML private Button rightButton;
+  @FXML private Button btnLeft;
+  @FXML private Button btnRight;
 
   @FXML private Rectangle door;
   @FXML private Rectangle vase;

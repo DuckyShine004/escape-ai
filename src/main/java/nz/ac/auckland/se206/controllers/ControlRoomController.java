@@ -12,8 +12,8 @@ import nz.ac.auckland.se206.utilities.Timer;
 public class ControlRoomController {
   @FXML private Label lblTime;
 
-  @FXML private Button leftButton;
-  @FXML private Button rightButton;
+  @FXML private Button btnLeft;
+  @FXML private Button btnRight;
 
   /** Initializes the control room. */
   @FXML
