@@ -21,6 +21,7 @@ public class MainMenuController {
     //
     GameState.isKeyFound = false;
     GameState.isRiddleResolved = false;
+    GameState.riddlesSolved = 0;
   }
 
   @FXML
