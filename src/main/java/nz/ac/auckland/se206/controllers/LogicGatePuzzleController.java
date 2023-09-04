@@ -15,20 +15,62 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate1;
   @FXML private ImageView imgTable1;
 
+  @FXML private ImageView imgGate2;
+  @FXML private ImageView imgTable2;
+
+  @FXML private ImageView imgGate3;
+  @FXML private ImageView imgTable3;
+
+  @FXML private ImageView imgGate4;
+  @FXML private ImageView imgTable4;
+
+  // Logic Gate list
+  // 0 - AND
+  // 1 - NAND
+  // 2 - OR
+  // 3 - NOR
+  // 4 - XOR
+  // 5 - XNOR
   private List<LogicGate> logicGates;
 
+  /**
+   * This Method sets up the logicGate array list
+   *
+   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-NOR :: 4-XOR :: 5-XNOR
+   */
   private void setUpLogicGates() {
-    System.out.println("setting up gates");
+
+    // new arraylist
     logicGates = new ArrayList<>();
-    logicGates.add(new LogicGate(LogicGate.Logic.AND)); // add AND gate to list
+
+    // add AND GATE
+    logicGates.add(new LogicGate(LogicGate.Logic.AND)); // AND
+    logicGates.add(new LogicGate(LogicGate.Logic.NAND)); // NAND
+    logicGates.add(new LogicGate(LogicGate.Logic.OR)); // OR
+    logicGates.add(new LogicGate(LogicGate.Logic.NOR)); // NOR
+    logicGates.add(new LogicGate(LogicGate.Logic.XOR)); // XOR
+    logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
 
     // add side bar helper images
     addHelperGateImgs();
   }
 
   private void addHelperGateImgs() {
+    //  loading side bar slot
     imgGate1.setImage(logicGates.get(0).getImage());
     imgTable1.setImage(logicGates.get(0).getTable());
+
+    // loading side bar slot
+    imgGate2.setImage(logicGates.get(1).getImage());
+    imgTable2.setImage(logicGates.get(1).getTable());
+
+    // loading side bar slot
+    imgGate3.setImage(logicGates.get(2).getImage());
+    imgTable3.setImage(logicGates.get(2).getTable());
+
+    // loading side bar slot
+    imgGate4.setImage(logicGates.get(3).getImage());
+    imgTable4.setImage(logicGates.get(3).getTable());
   }
 
   @FXML

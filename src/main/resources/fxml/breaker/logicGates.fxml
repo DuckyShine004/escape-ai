@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LogicGatePuzzleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LogicGatePuzzleController">
    <children>
       <Button layoutX="421.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" text="Back To Breaker" />
       <Label fx:id="lblTimer" layoutX="537.0" layoutY="14.0" text="Time Left" />
@@ -18,11 +18,11 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <HBox layoutX="8.0" layoutY="60.0" prefHeight="332.0" prefWidth="581.0">
+      <HBox layoutX="8.0" layoutY="60.0" prefHeight="450.0" prefWidth="581.0">
          <children>
             <VBox prefHeight="332.0" prefWidth="373.0">
                <children>
-                  <Pane prefHeight="236.0" prefWidth="362.0">
+                  <Pane prefHeight="354.0" prefWidth="362.0">
                      <children>
                         <Label layoutX="135.0" layoutY="110.0" text="gate layout here?" />
                      </children>
@@ -38,14 +38,28 @@
                         <ImageView fx:id="imgTable1" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="77.0" prefWidth="212.0" />
-                  <HBox prefHeight="77.0" prefWidth="212.0" />
-                  <HBox prefHeight="77.0" prefWidth="212.0" />
-                  <HBox prefHeight="77.0" prefWidth="212.0" />
+                  <HBox prefHeight="77.0" prefWidth="212.0">
+                     <children>
+                        <ImageView fx:id="imgGate2" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable2" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="77.0" prefWidth="212.0">
+                     <children>
+                        <ImageView fx:id="imgGate3" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable3" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="77.0" prefWidth="212.0">
+                     <children>
+                        <ImageView fx:id="imgGate4" fitHeight="102.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTable4" fitHeight="101.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <Label layoutX="436.0" layoutY="43.0" text="below are gates | tables" />
+      <Label layoutX="436.0" layoutY="43.0" text="Concpet layout below" />
    </children>
 </Pane>
