@@ -60,6 +60,20 @@ public class ChatController {
   }
 
   private void loadRiddle() {
+    int randomNumber = (int) (Math.random() * 10);
+    String[] concepts = {
+      "Ethics",
+      "Racial Profiling",
+      "Privacy",
+      "Bias",
+      "Consent",
+      "Empathy",
+      "Sustainability",
+      "Human Rights",
+      "Justice",
+      "Equality"
+    };
+    String concept = concepts[randomNumber];
     ChatMessage loading = new ChatMessage("assistant", "Loading...");
     appendChatMessage(loading);
     Task<Void> generateRiddle =
@@ -75,10 +89,14 @@ public class ChatController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             ChatMessage gptResponse =
-                runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle()));
-
+                runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle(concept)));
+            System.out.println(gptResponse.getContent());
             if (gptResponse != null && gptResponse.getRole().equals("assistant")) {
-              processGptOutputForButtons(gptResponse.getContent());
+              processGptOutputForButtons(gptResponse.getContent(), concept);
+            } else {
+              answer1 = concept;
+              answer2 = concepts[(randomNumber + 1) % 10];
+              answer3 = concepts[(randomNumber + 2) % 10];
             }
             // Update the UI thread
             Platform.runLater(
@@ -149,13 +167,14 @@ public class ChatController {
     }
   }
 
-  private void processGptOutputForButtons(String gptOutput) {
+  private void processGptOutputForButtons(String gptOutput, String concept) {
     String[] segments = gptOutput.split("\\}");
+    int randomNumber = (int) (Math.random() * 3);
 
-    if (segments.length >= 3) {
-      answer1 = segments[0].substring(segments[0].lastIndexOf("{") + 1);
-      answer2 = segments[1].substring(segments[1].lastIndexOf("{") + 1);
-      answer3 = segments[2].substring(segments[2].lastIndexOf("{") + 1);
+    if (segments.length >= 2) {
+      answer1 = segments[(0 + randomNumber) % 3].substring(segments[(0 + randomNumber) % 3].lastIndexOf("{") + 1);
+      answer2 = segments[(1 + randomNumber) % 3].substring(segments[(1 + randomNumber) % 3].lastIndexOf("{") + 1);
+      answer3 = segments[(2 + randomNumber) % 3].substring(segments[(2 + randomNumber) % 3].lastIndexOf("{") + 1);
     }
   }
 

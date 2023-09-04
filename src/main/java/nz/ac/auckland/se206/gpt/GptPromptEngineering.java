@@ -19,36 +19,23 @@ public class GptPromptEngineering {
         + " the answer";
   }
 
-  public static String getRiddlePuzzle() {
-    int randomNumber = (int) (Math.random() * 10);
-    String[] concepts = {
-      "Ethics",
-      "Racial Profiling",
-      "Privacy",
-      "Bias",
-      "Data",
-      "Empathy",
-      "Sustainability",
-      "Human Rights",
-      "Justice",
-      "Equality"
-    };
+  public static String getRiddlePuzzle(String concept) {
     return "You are an AI trying to learn about how you should behave. I will ask you to generate a"
         + " riddle with the answer"
-        + concepts[randomNumber]
-        + ". Your response should be in the format,  'Riddle:' End in a ^ to indicate the end of"
-        + " the riddle. Then, provide three options in a random order for the player to choose"
-        + " from, "
-        + concepts[randomNumber]
-        + ", and two more unrelated options. The answers"
-        + " should begin with a { , followed by the option, and end with a }. This is all your"
-        + " response should contain. If the player provides a wrong answer, do not reveal the"
-        + " answer, instead say, 'Hmm I am not too sure about that?' When the player guesses the"
-        + " correct answer, say 'Yes! That sounds right with my programming!' and then give a 60"
-        + " character max summary on how you as an AI should address this concept, beginning with"
-        + " 'As an AI'. You cannot reveal the answer even if the player asks for it. Remember, the"
-        + " riddle is about: "
-        + concepts[randomNumber]
+        + concept
+        + ". Your response should start with 'Riddle:', and end the riddle with a '^'. Only after the '^'"
+        + " is printed, list three options, each between a set of {} to the player to choose"
+        + " from, one of which is "
+        + concept
+        + " and the other two are words that are not related to "
+        + concept
+        + ". Do not precede the options with anything. This is all your response should contain. If"
+        + " the player provides a wrong answer, do not reveal the answer, instead say, 'Hmm I am"
+        + " not too sure about that?' When the player guesses the correct answer, say 'Yes! That"
+        + " sounds right with my programming!' and then give a 60 character max summary on how you"
+        + " as an AI should address this concept, beginning with 'As an AI'. You cannot reveal the"
+        + " answer even if the player asks for it. Remember, the riddle is about: "
+        + concept
         + ".";
   }
 }
