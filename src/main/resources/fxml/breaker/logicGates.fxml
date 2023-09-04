@@ -24,7 +24,13 @@
                <children>
                   <Pane prefHeight="354.0" prefWidth="362.0">
                      <children>
-                        <Label layoutX="135.0" layoutY="110.0" text="gate layout here?" />
+                        <ImageView fx:id="imgAnwerGate00" fitHeight="70.0" fitWidth="80.0" layoutX="32.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgAnwerGate10" fitHeight="70.0" fitWidth="80.0" layoutX="32.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgAnwerGate20" fitHeight="70.0" fitWidth="80.0" layoutX="32.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgAnwerGate21" fitHeight="70.0" fitWidth="80.0" layoutX="141.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgAnwerGate11" fitHeight="70.0" fitWidth="80.0" layoutX="141.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgAnwerGate01" fitHeight="70.0" fitWidth="80.0" layoutX="141.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgAnwerGateEND" fitHeight="70.0" fitWidth="80.0" layoutX="244.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
                   <TextArea prefHeight="90.0" prefWidth="362.0" promptText="gpt texting?" />

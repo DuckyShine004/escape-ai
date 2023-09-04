@@ -31,6 +31,29 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate6;
   @FXML private ImageView imgTable6;
 
+  // Grid of answer logic gates [ROW:COLUMN]
+  //  00 01
+  //  10 11 END
+  //  20 21
+
+  // First Row
+  @FXML private ImageView imgAnwerGate00;
+  @FXML private ImageView imgAnwerGate01;
+
+  // Second Row
+  @FXML private ImageView imgAnwerGate10;
+  @FXML private ImageView imgAnwerGate11;
+
+  // Third Row
+  @FXML private ImageView imgAnwerGate20;
+  @FXML private ImageView imgAnwerGate21;
+
+  // END gate
+  @FXML private ImageView imgAnwerGateEND;
+
+  // current logic gates in submission grid list
+  private List<LogicGate> currentAssembly;
+
   // Logic Gate list
   // 0 - AND
   // 1 - NAND
@@ -59,10 +82,13 @@ public class LogicGatePuzzleController {
     logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
 
     // add side bar helper images
-    addHelperGateImgs();
+    setHelperGateImgs();
+
+    setSubmissionGates();
   }
 
-  private void addHelperGateImgs() {
+  /** This method sets up the right side bar logic gate guide */
+  private void setHelperGateImgs() {
     //  loading side bar slot
     imgGate1.setImage(logicGates.get(0).getImage());
     imgTable1.setImage(logicGates.get(0).getTable());
@@ -88,8 +114,42 @@ public class LogicGatePuzzleController {
     imgTable6.setImage(logicGates.get(5).getTable());
   }
 
+  /**
+   * This method is probably just a debug method to quickly add gates to the middle grid for testing
+   * purposes
+   */
+  private void setSubmissionGates() {
+
+    // set up for debug testing purposes
+    currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+
+    int i = 0;
+    imgAnwerGate00.setImage(currentAssembly.get(i).getImage());
+    i++;
+    imgAnwerGate01.setImage(currentAssembly.get(i).getImage());
+    i++;
+    imgAnwerGate10.setImage(currentAssembly.get(i).getImage());
+    i++;
+    imgAnwerGate11.setImage(currentAssembly.get(i).getImage());
+    i++;
+    imgAnwerGate20.setImage(currentAssembly.get(i).getImage());
+    i++;
+    imgAnwerGate21.setImage(currentAssembly.get(i).getImage());
+    i++;
+    imgAnwerGateEND.setImage(currentAssembly.get(i).getImage());
+  }
+
   @FXML
   private void initialize() {
+    // saves current logic gate positions in grid
+    currentAssembly = new ArrayList<>(); // reserve 6 spaces
+
     setUpLogicGates();
   }
 
