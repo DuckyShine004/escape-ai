@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 public class LogicGate {
 
-  // logic gate logic
+  // logic gate enum type
   public enum Logic {
     AND,
     NAND,
@@ -21,32 +21,40 @@ public class LogicGate {
   @FXML private Image img;
   @FXML private Image tableImg;
 
+  /** constructor for intializing logic gate */
   public LogicGate(Logic type) {
     this.type = type;
     loadGateImage(type);
     loadGateTable(type);
   }
 
+  // get logic gate type
   public Logic getType() {
     return this.type;
   }
 
+  // get the gate image of the gate
   public Image getImage() {
     return this.img;
   }
 
+  // get the table image of the gate
   public Image getTable() {
     return this.tableImg;
   }
 
+  // equals method, does given LogicGate type equal the current
   public boolean equals(LogicGate logicGate) {
     return logicGate.getType() == this.type ? true : false;
   }
 
+  /** Loading logic gate image method */
   private void loadGateImage(Logic logic) {
 
     try {
-      System.out.println("=>  " + logic.toString());
+
+      // try to load gate image using fileInputStream and relative path
+      // src/main/resources/images/BreakerRoom/LogicGatePuzzle/Gates/...'AND' + '.jpg'
       this.img =
           new Image(
               new FileInputStream(
@@ -54,13 +62,15 @@ public class LogicGate {
                       + logic.toString()
                       + ".jpg"));
     } catch (FileNotFoundException e) {
-      System.out.println("Could not find image");
+      System.out.println("FAILED TO FIND LOGIC GATE IMAGE [gate]");
     }
   }
 
   private void loadGateTable(Logic logic) {
     try {
-      System.out.println("Table Loaded for " + logic.toString());
+
+      // try to load table image using fileInputStream and relative path
+      // src/main/resources/images/BreakerRoom/LogicGatePuzzle/Tables/...'AND'+'OUT.jpg'
       this.tableImg =
           new Image(
               new FileInputStream(
@@ -68,7 +78,7 @@ public class LogicGate {
                       + logic.toString()
                       + "OUT.jpg"));
     } catch (FileNotFoundException e) {
-      System.out.println("Could not find image");
+      System.out.println("FAILED TO FIND LOGIC GATE IMAGE [table]");
     }
   }
 }
