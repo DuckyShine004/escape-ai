@@ -25,7 +25,7 @@ public class ChatController {
   @FXML private Button buttonAnswer1;
   @FXML private Button buttonAnswer2;
   @FXML private Button buttonAnswer3;
-  @FXML private Button sendButton;
+  @FXML private Button btnNavigate;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String answer1;
@@ -34,6 +34,7 @@ public class ChatController {
   private StringProperty answer1Property = new SimpleStringProperty();
   private StringProperty answer2Property = new SimpleStringProperty();
   private StringProperty answer3Property = new SimpleStringProperty();
+  private StringProperty navigateProperty = new SimpleStringProperty();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -46,6 +47,9 @@ public class ChatController {
     buttonAnswer1.textProperty().bind(answer1Property);
     buttonAnswer2.textProperty().bind(answer2Property);
     buttonAnswer3.textProperty().bind(answer3Property);
+    btnNavigate.textProperty().bind(navigateProperty);
+    navigateProperty.set("Go Back");
+  
 
     loadRiddle();
   }
@@ -211,11 +215,13 @@ public class ChatController {
                           .getContent()
                           .startsWith("Yes! That sounds right with my programming!")) {
                     GameState.riddlesSolved++;
+                    if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
+                      navigateProperty.set("Next Riddle");
+                    }
                     if (GameState.riddlesSolved == 3) {
-                      GameState.isRiddleResolved = true;
-                      App.setUi(AppUi.OFFICE);
-                    } else {
-                      loadRiddle();
+                      navigateProperty.set("Exit Puzzle");
+                      ChatMessage outro = new ChatMessage("assistant", "That is three riddles solved! Thank you for helping recalibrate my drives.");
+                      appendChatMessage(outro);
                     }
                   }
                 });
@@ -237,7 +243,15 @@ public class ChatController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setUi(AppUi.OFFICE);
+  private void onNavigateButton(ActionEvent event) throws ApiProxyException, IOException {
+    if (GameState.riddlesSolved == 0) {
+      App.setUi(AppUi.OFFICE);
+    } else if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
+      loadRiddle();
+    } else if (GameState.riddlesSolved == 3) {
+      App.setUi(AppUi.OFFICE);
+      GameState.isRiddleResolved = true;
+    }
+    
   }
 }

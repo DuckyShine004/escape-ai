@@ -17,6 +17,6 @@
         <Button fx:id="buttonAnswer3" mnemonicParsing="false" onAction="#onButtonClicked" />
     </HBox>
 
-    <Button layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+    <Button fx:id = "btnNavigate" layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onNavigateButton" text="Go Back" />
   </children>
 </AnchorPane>
