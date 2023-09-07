@@ -5,6 +5,8 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.utilities.*;
@@ -12,17 +14,15 @@ import nz.ac.auckland.se206.utilities.*;
 public class LogicGatePuzzleController {
   @FXML private Label lblTimer;
 
+  // Panes that sit under Answer Gates
+  @FXML private Pane pAnswerGate1;
+
   // begin side bar helper Gate : Table ImageViews
   @FXML private ImageView imgGate1;
-
   @FXML private ImageView imgGate2;
-
   @FXML private ImageView imgGate3;
-
   @FXML private ImageView imgGate4;
-
   @FXML private ImageView imgGate5;
-
   @FXML private ImageView imgGate6;
 
   // Grid of answer logic gates [ROW:COLUMN]
@@ -31,19 +31,17 @@ public class LogicGatePuzzleController {
   //  20 21
 
   // First Row
-  @FXML private ImageView imgAnwerGate00;
-  @FXML private ImageView imgAnwerGate01;
+  @FXML private ImageView imgAnwerGate0;
+  @FXML private ImageView imgAnwerGate1;
+  @FXML private ImageView imgAnwerGate2;
+  @FXML private ImageView imgAnwerGate3;
 
   // Second Row
-  @FXML private ImageView imgAnwerGate10;
-  @FXML private ImageView imgAnwerGate11;
-
-  // Third Row
-  @FXML private ImageView imgAnwerGate20;
-  @FXML private ImageView imgAnwerGate21;
+  @FXML private ImageView imgAnwerGate4;
+  @FXML private ImageView imgAnwerGate5;
 
   // END gate
-  @FXML private ImageView imgAnwerGateEND;
+  @FXML private ImageView imgAnwerGate6;
 
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
@@ -118,19 +116,19 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
 
     int i = 0;
-    imgAnwerGate00.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate0.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate01.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate1.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate10.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate2.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate11.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate3.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate20.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate4.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate21.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate5.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGateEND.setImage(currentAssembly.get(i).getImage());
+    imgAnwerGate6.setImage(currentAssembly.get(i).getImage());
   }
 
   @FXML
@@ -147,5 +145,131 @@ public class LogicGatePuzzleController {
   @FXML
   private void onBackToBreaker() {
     App.setUi(AppUi.BREAKER);
+  }
+
+  @FXML
+  private void onGate0Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate0Enter(MouseEvent event) {
+    //
+    pAnswerGate1.setStyle("-fx-background-color: #1111");
+  }
+
+  @FXML
+  private void onGate0Exit(MouseEvent event) {
+    //
+    pAnswerGate1.setStyle("-fx-background-color: #FFFF");
+  }
+
+  @FXML
+  private void onGate1Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate1Enter(MouseEvent event) {
+    //
+    System.out.println("Enter: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate1Exit(MouseEvent event) {
+    //
+    System.out.println("Exit: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate2Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate2Enter(MouseEvent event) {
+    //
+    System.out.println("Enter: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate2Exit(MouseEvent event) {
+    //
+    System.out.println("Exit: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate3Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate3Enter(MouseEvent event) {
+    //
+    System.out.println("Enter: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate3Exit(MouseEvent event) {
+    //
+    System.out.println("Exit: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate4Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate4Enter(MouseEvent event) {
+    //
+    System.out.println("Enter: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate4Exit(MouseEvent event) {
+    //
+    System.out.println("Exit: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate5Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate5Enter(MouseEvent event) {
+    //
+    System.out.println("Enter: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate5Exit(MouseEvent event) {
+    //
+    System.out.println("Exit: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate6Clicked(MouseEvent event) {
+    //
+    System.out.println("clicked: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate6Enter(MouseEvent event) {
+    //
+    System.out.println("Enter: " + event.getSource().toString());
+  }
+
+  @FXML
+  private void onGate6Exit(MouseEvent event) {
+    //
+    System.out.println("Exit: " + event.getSource().toString());
   }
 }
