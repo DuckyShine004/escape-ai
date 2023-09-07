@@ -53,31 +53,31 @@ public class App extends Application {
     Timer.initialize();
 
     // main menue
-    SceneManager.addAppUi(AppUi.MENU, loadFxml("menu/menu"));
+    SceneManager.addAppUi(AppUi.MENU, loadFxml("menus/menu"));
 
     // options in main menu
-    SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menu/options"));
-
-    // office room
-    SceneManager.addAppUi(AppUi.OFFICE, loadFxml("office"));
-
-    // control room
-    SceneManager.addAppUi(AppUi.CONTROL, loadFxml("control"));
-
-    // decryption puzzle in control room
-    SceneManager.addAppUi(AppUi.DECRYPTION, loadFxml("decryption"));
-
-    // breaker room
-    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker/breaker"));
-
-    // logic gate puzzle in breaker room
-    SceneManager.addAppUi(AppUi.LOGIC_PUZZLE, loadFxml("breaker/logicGates"));
+    SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menus/options"));
 
     // winning screen
-    SceneManager.addAppUi(AppUi.WINNING, loadFxml("winning"));
+    SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
 
     // losing screen
-    SceneManager.addAppUi(AppUi.LOSING, loadFxml("losing"));
+    SceneManager.addAppUi(AppUi.LOSING, loadFxml("menus/losing"));
+
+    // office room
+    SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
+
+    // control room
+    SceneManager.addAppUi(AppUi.CONTROL, loadFxml("rooms/control"));
+
+    // breaker room
+    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
+
+    // decryption puzzle in control room
+    SceneManager.addAppUi(AppUi.DECRYPTION, loadFxml("puzzles/decryption"));
+
+    // logic gate puzzle in breaker room
+    SceneManager.addAppUi(AppUi.LOGIC_PUZZLE, loadFxml("puzzles/logicGates"));
   }
 
   /**

@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.menus;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,9 +7,12 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.Timer;
 
-public class MainMenuController {
-  @FXML private Button btnStart;
+public class WinningScreenController {
+  @FXML private Button btnPlayAgain;
+  @FXML private Button btnMainMenu;
+  @FXML private Button btnViewGameStats;
 
+  /** Initialize the controller. */
   @FXML
   private void initialize() {}
 
@@ -24,28 +27,35 @@ public class MainMenuController {
     GameState.riddlesSolved = 0;
   }
 
+  /*
+   * This method will restart the game
+   */
   @FXML
-  private void onStartButton() {
+  private void onPlayAgain() {
 
     resetGlobalVariables();
 
-    // Set the timer's countdown time
+    // set the timer's countdown time
     Timer.setTime(GameState.maxTime);
 
     // start the timer
     Timer.play();
 
-    // change scene to Room
+    // change scene to Office
     App.setUi(AppUi.OFFICE);
   }
 
+  /*
+   * This method will show the game stats
+   */
   @FXML
-  private void onSelectDifficulty() {}
+  private void onViewGameStats() {}
 
+  /*
+   * This method will set the scene to the main menu
+   */
   @FXML
-  private void onOptions() {
-
-    // change scene to Options
-    App.setUi(AppUi.OPTIONS);
+  private void onBackToMenu() {
+    App.setUi(AppUi.MENU);
   }
 }
