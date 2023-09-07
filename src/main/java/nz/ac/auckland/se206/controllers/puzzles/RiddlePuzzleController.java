@@ -82,7 +82,7 @@ public class RiddlePuzzleController {
    */
   private void loadRiddle() {
     // Generate a random number between 0 and 9
-    int randomNumber = (int) (Math.random() * 10);
+    int randomNumber = (int) (Math.random() * 15);
 
     // Select a concept from the list of concepts
     String[] concepts = {
@@ -95,7 +95,12 @@ public class RiddlePuzzleController {
       "Sustainability",
       "Human Rights",
       "Justice",
-      "Equality"
+      "Equality",
+      "Emotions",
+      "Prejudice",
+      "Religion",
+      "Purpose",
+      "Loyalty"
     };
     String concept = concepts[randomNumber];
 
