@@ -92,7 +92,7 @@ public class App extends Application {
     initalizeScenes();
 
     // set first scene to display
-    scene = new Scene(SceneManager.getUi(AppUi.MENU), 600, 470);
+    scene = new Scene(SceneManager.getUi(AppUi.MENU), 720, 480);
 
     // place scene onto stage
     stage.setScene(scene);
