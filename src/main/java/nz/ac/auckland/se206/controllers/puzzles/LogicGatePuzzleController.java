@@ -14,22 +14,16 @@ public class LogicGatePuzzleController {
 
   // begin side bar helper Gate : Table ImageViews
   @FXML private ImageView imgGate1;
-  @FXML private ImageView imgTable1;
 
   @FXML private ImageView imgGate2;
-  @FXML private ImageView imgTable2;
 
   @FXML private ImageView imgGate3;
-  @FXML private ImageView imgTable3;
 
   @FXML private ImageView imgGate4;
-  @FXML private ImageView imgTable4;
 
   @FXML private ImageView imgGate5;
-  @FXML private ImageView imgTable5;
 
   @FXML private ImageView imgGate6;
-  @FXML private ImageView imgTable6;
 
   // Grid of answer logic gates [ROW:COLUMN]
   //  00 01
@@ -91,27 +85,21 @@ public class LogicGatePuzzleController {
   private void setHelperGateImgs() {
     //  loading side bar slot
     imgGate1.setImage(logicGates.get(0).getImage());
-    imgTable1.setImage(logicGates.get(0).getTable());
 
     // loading side bar slot
     imgGate2.setImage(logicGates.get(1).getImage());
-    imgTable2.setImage(logicGates.get(1).getTable());
 
     // loading side bar slot
     imgGate3.setImage(logicGates.get(2).getImage());
-    imgTable3.setImage(logicGates.get(2).getTable());
 
     // loading side bar slot
     imgGate4.setImage(logicGates.get(3).getImage());
-    imgTable4.setImage(logicGates.get(3).getTable());
 
     // loading side bar slot
     imgGate5.setImage(logicGates.get(4).getImage());
-    imgTable5.setImage(logicGates.get(4).getTable());
 
     // loading side bar slot
     imgGate6.setImage(logicGates.get(5).getImage());
-    imgTable6.setImage(logicGates.get(5).getTable());
   }
 
   /**
