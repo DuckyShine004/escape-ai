@@ -53,7 +53,14 @@ public class RiddlePuzzleController {
     btnAnswer2.textProperty().bind(answer2Property);
     btnAnswer3.textProperty().bind(answer3Property);
     btnNavigate.textProperty().bind(navigateProperty);
+    answer1Property.set("Answer 1");
+    answer2Property.set("Answer 2");
+    answer3Property.set("Answer 3");
     navigateProperty.set("Go Back");
+
+    btnAnswer1.setDisable(true);
+    btnAnswer2.setDisable(true);
+    btnAnswer3.setDisable(true);
 
     updateScene();
     loadRiddle();
