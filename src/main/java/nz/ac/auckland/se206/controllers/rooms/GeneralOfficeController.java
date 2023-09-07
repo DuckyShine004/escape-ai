@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

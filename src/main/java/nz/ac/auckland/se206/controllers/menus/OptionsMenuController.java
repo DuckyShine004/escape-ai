@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.menus;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

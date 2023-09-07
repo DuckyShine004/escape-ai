@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.rooms;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

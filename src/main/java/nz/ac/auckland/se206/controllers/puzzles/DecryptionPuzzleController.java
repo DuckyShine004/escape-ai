@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.puzzles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
