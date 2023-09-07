@@ -14,4 +14,7 @@ public class GameState {
 
   /** number of riddles solved */
   public static int riddlesSolved = 0;
+
+  /** the maximum sequence input limit */
+  public static int maxSequence = 10;
 }
