@@ -32,7 +32,7 @@ public class GptPromptEngineering {
         + ". Do not precede the options with anything. This is all your response should contain. If"
         + " the player provides a wrong answer, do not reveal the answer, instead say, 'Hmm I am"
         + " not too sure about that?' When the player guesses the correct answer, say 'Yes! That"
-        + " sounds right with my programming!' and then give a 60 character max summary on how you"
+        + " sounds right with my programming!' and then give a 1 sentence summary on how you"
         + " as an AI should address this concept, beginning with 'As an AI'. You cannot reveal the"
         + " answer even if the player asks for it. Remember, the riddle is about: "
         + concept
