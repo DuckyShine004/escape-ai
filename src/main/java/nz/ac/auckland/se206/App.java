@@ -64,6 +64,9 @@ public class App extends Application {
     // control room
     SceneManager.addAppUi(AppUi.CONTROL, loadFxml("control"));
 
+    // decryption puzzle in control room
+    SceneManager.addAppUi(AppUi.DECRYPTION, loadFxml("decryption"));
+
     // breaker room
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("breaker/breaker"));
 
@@ -75,7 +78,6 @@ public class App extends Application {
 
     // losing screen
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("losing"));
-
   }
 
   /**
