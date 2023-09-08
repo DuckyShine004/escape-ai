@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.io.IOException;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,6 +39,9 @@ public class RiddlePuzzleController {
   private StringProperty answer2Property = new SimpleStringProperty();
   private StringProperty answer3Property = new SimpleStringProperty();
   private StringProperty navigateProperty = new SimpleStringProperty();
+  private boolean btn1Pressed = false;
+  private boolean btn2Pressed = false;
+  private boolean btn3Pressed = false;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -53,7 +55,14 @@ public class RiddlePuzzleController {
     btnAnswer2.textProperty().bind(answer2Property);
     btnAnswer3.textProperty().bind(answer3Property);
     btnNavigate.textProperty().bind(navigateProperty);
+    answer1Property.set("Answer 1");
+    answer2Property.set("Answer 2");
+    answer3Property.set("Answer 3");
     navigateProperty.set("Go Back");
+
+    btnAnswer1.setDisable(true);
+    btnAnswer2.setDisable(true);
+    btnAnswer3.setDisable(true);
 
     updateScene();
     loadRiddle();
@@ -75,7 +84,7 @@ public class RiddlePuzzleController {
    */
   private void loadRiddle() {
     // Generate a random number between 0 and 9
-    int randomNumber = (int) (Math.random() * 10);
+    int randomNumber = (int) (Math.random() * 15);
 
     // Select a concept from the list of concepts
     String[] concepts = {
@@ -88,7 +97,12 @@ public class RiddlePuzzleController {
       "Sustainability",
       "Human Rights",
       "Justice",
-      "Equality"
+      "Equality",
+      "Emotions",
+      "Prejudice",
+      "Religion",
+      "Purpose",
+      "Loyalty"
     };
     String concept = concepts[randomNumber];
 
@@ -139,6 +153,9 @@ public class RiddlePuzzleController {
                   answer1Property.set(answer1);
                   answer2Property.set(answer2);
                   answer3Property.set(answer3);
+                  btn1Pressed = false;
+                  btn2Pressed = false;
+                  btn3Pressed = false;
                   btnAnswer1.setDisable(false);
                   btnAnswer2.setDisable(false);
                   btnAnswer3.setDisable(false);
@@ -259,6 +276,15 @@ public class RiddlePuzzleController {
     // Get the text from the button
     String buttonText = clickedButton.getText();
 
+    // Set the button pressed to true
+    if (buttonText.equals(answer1)) {
+      btn1Pressed = true;
+    } else if (buttonText.equals(answer2)) {
+      btn2Pressed = true;
+    } else if (buttonText.equals(answer3)) {
+      btn3Pressed = true;
+    }
+
     // Disable all buttons and the navigate button when a button has been clicked
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
@@ -304,10 +330,17 @@ public class RiddlePuzzleController {
                     // Set the navigate button to be enabled if the riddle is solved
                     btnNavigate.setDisable(false);
                   } else {
-                    // If the answer is incorrect, enable the input buttons again
-                    btnAnswer1.setDisable(false);
-                    btnAnswer2.setDisable(false);
-                    btnAnswer3.setDisable(false);
+                    // If the answer is incorrect, enable the input buttons again for the other
+                    // inputs
+                    if (!btn1Pressed) {
+                      btnAnswer1.setDisable(false);
+                    }
+                    if (!btn2Pressed) {
+                      btnAnswer2.setDisable(false);
+                    }
+                    if (!btn3Pressed) {
+                      btnAnswer3.setDisable(false);
+                    }
                     if (GameState.riddlesSolved != 0) {
                       btnNavigate.setDisable(true);
                     } else {
