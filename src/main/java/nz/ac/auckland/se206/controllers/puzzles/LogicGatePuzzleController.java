@@ -31,6 +31,29 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate5;
   @FXML private ImageView imgGate6;
 
+  // input logic img views
+  // TODO: change to images or something other than solid red (off) : green (on)
+  @FXML private Pane pInput0;
+  @FXML private Pane pInput1;
+  @FXML private Pane pInput2;
+  @FXML private Pane pInput3;
+  @FXML private Pane pInput4;
+  @FXML private Pane pInput5;
+  @FXML private Pane pInput6;
+  @FXML private Pane pInput7;
+
+  @FXML private Pane pInput8;
+  @FXML private Pane pInput9;
+  @FXML private Pane pInput10;
+  @FXML private Pane pInput11;
+
+  @FXML private Pane pInput12;
+  @FXML private Pane pInput13;
+
+  @FXML private Pane pInput14; // end gate
+
+  List<Pane> logicInSection;
+
   // Grid of answer logic gates [ROW:COLUMN]
   //  00 01
   //  10 11 END
@@ -77,6 +100,9 @@ public class LogicGatePuzzleController {
   // next 2 positions are resulting from second layer
   // final value is calulated, and if true, puzzle is solved
   private List<Boolean> logicTrail;
+
+  private String onLogicColour = "00ff00";
+  private String offLogicColour = "ff0000";
 
   // layout size is the number of original gates, should only be 2 or 4 depending on diffucity /
   // time ?
@@ -187,6 +213,8 @@ public class LogicGatePuzzleController {
       // 2 --> 10
       logicTrail.set((i) * 2 + (8 - i), result);
     }
+
+    updateDisplayLogicTrail();
   }
 
   /**
@@ -233,8 +261,13 @@ public class LogicGatePuzzleController {
 
       // layout size*2 is number of gates inputs, so 8 inputs required
       for (int i = 0; i < layoutSize * 2; i++) {
-        // TODO: make this random
-        logicTrail.set(i, true);
+
+        // Random Input
+        if (Math.random() < 0.5) {
+          logicTrail.set(i, true);
+        } else {
+          logicTrail.set(i, false);
+        }
       }
     }
   }
@@ -243,6 +276,9 @@ public class LogicGatePuzzleController {
   private void initialize() {
     // saves current logic gate positions in grid
     currentAssembly = new ArrayList<>(); // reserve 6 spaces
+
+    // stores the imgViews for each section of logic between gates
+    logicInSection = new ArrayList<>();
 
     // at initalize, nothing is active looking to swap
     swapping = -1;
@@ -261,6 +297,54 @@ public class LogicGatePuzzleController {
 
     setRandomInput();
     setUpLogicGates();
+    setUpLogicTrail();
+  }
+
+  /**
+   * This method will set up each imgView showing the player what the current logic is in each wire
+   */
+  private void setUpLogicTrail() {
+
+    logicInSection.add(this.pInput0);
+    logicInSection.add(this.pInput1);
+    logicInSection.add(this.pInput2);
+    logicInSection.add(this.pInput3);
+    logicInSection.add(this.pInput4);
+    logicInSection.add(this.pInput5);
+    logicInSection.add(this.pInput6);
+    logicInSection.add(this.pInput7);
+
+    logicInSection.add(this.pInput8);
+    logicInSection.add(this.pInput9);
+    logicInSection.add(this.pInput10);
+    logicInSection.add(this.pInput11);
+
+    logicInSection.add(this.pInput12);
+    logicInSection.add(this.pInput13);
+
+    logicInSection.add(this.pInput14);
+
+    // add the rest
+
+    updateDisplayLogicTrail();
+  }
+
+  private void updateDisplayLogicTrail() {
+
+    for (int i = 0; i < logicInSection.size(); i++) {
+
+      String colour = "";
+
+      if (logicTrail.get(i) == true) {
+
+        colour = onLogicColour;
+      } else {
+
+        colour = offLogicColour;
+      }
+
+      logicInSection.get(i).setStyle("-fx-background-color: #" + colour);
+    }
   }
 
   /**
@@ -305,14 +389,10 @@ public class LogicGatePuzzleController {
       case -1:
         break;
     }
-    System.out.println("Update Backgrounds - active:" + active);
   }
 
   /** This method will swap the gates a and b */
   private void swapGates(int a, int b) {
-    //
-    System.out.println("swap: " + a + " : " + b);
-
     // swap gates
     LogicGate temp = currentAssembly.get(a);
     currentAssembly.set(a, currentAssembly.get(b));

@@ -59,6 +59,21 @@
                               <ImageView fx:id="imgAnswerGate6" fitHeight="70.0" fitWidth="80.0" onMouseClicked="#onGate6Clicked" onMouseEntered="#onGate6Enter" onMouseExited="#onGate6Exit" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
+                        <Pane fx:id="pInput0" layoutX="-7.0" layoutY="14.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput1" layoutX="-7.0" layoutY="51.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput2" layoutX="-14.0" layoutY="87.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput3" layoutX="-14.0" layoutY="123.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput4" layoutX="-14.0" layoutY="159.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput5" layoutX="-14.0" layoutY="195.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput6" layoutX="-7.0" layoutY="237.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput7" layoutX="-7.0" layoutY="281.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput8" layoutX="112.0" layoutY="62.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput9" layoutX="112.0" layoutY="117.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput10" layoutX="112.0" layoutY="189.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput11" layoutX="112.0" layoutY="258.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput12" layoutX="285.0" layoutY="88.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput13" layoutX="285.0" layoutY="232.0" prefHeight="25.0" prefWidth="28.0" />
+                        <Pane fx:id="pInput14" layoutX="427.0" layoutY="157.0" prefHeight="25.0" prefWidth="28.0" />
                      </children>
                   </Pane>
                   <HBox prefHeight="77.0" prefWidth="212.0">
