@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.*;
 
 public class LogicGatePuzzleController {
@@ -32,7 +33,6 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate6;
 
   // input logic img views
-  // TODO: change to images or something other than solid red (off) : green (on)
   @FXML private Pane pInput0;
   @FXML private Pane pInput1;
   @FXML private Pane pInput2;
@@ -108,6 +108,56 @@ public class LogicGatePuzzleController {
   // time ?
   private int layoutSize = 4; // TODO: have this change based on difficulty or time (2 or 4)
 
+  @FXML
+  private void initialize() {
+    // saves current logic gate positions in grid
+    currentAssembly = new ArrayList<>(); // reserve 6 spaces
+
+    // stores the imgViews for each section of logic between gates
+    logicInSection = new ArrayList<>();
+
+    // at initalize, nothing is active looking to swap
+    swapping = -1;
+
+    // new logic trail
+    // reserve layout * 2 -1 spaces
+    // for layout = 4 --> 14
+    // for layout = 2 --> 7
+    // layoutSize*4-0.5*layoutSize
+    // layoutSize(3.5)
+    // logicTrail = new ArrayList<>((int) (layoutSize * 3.5)); // just has to work for 2 and 4
+    logicTrail = new ArrayList<>();
+    for (int i = 0; i < (int) (layoutSize * 3.5 + 1); i++) { // added +1 as debug, proabbly correct
+      logicTrail.add(false); // DEBBUG LOOP
+    }
+
+    setRandomInput();
+    setUpLogicGates();
+    setUpLogicTrail();
+  }
+
+  public static void logicGateRestart() {
+    // TODO: somehow have the level reset
+    System.out.println("RESTARTING");
+  }
+
+  /** TODO: change name, currently this is dead code */
+  public void NONSTATIClogicGateRestart() {
+    currentAssembly.clear();
+    logicInSection.clear();
+
+    swapping = -1;
+
+    logicTrail.clear();
+    for (int i = 0; i < (int) (layoutSize * 3.5 + 1); i++) { // added +1 as debug, proabbly correct
+      logicTrail.add(false); // DEBBUG LOOP
+    }
+
+    setRandomInput();
+    setUpLogicGates();
+    setUpLogicTrail();
+  }
+
   /**
    * This Method sets up the logicGate array list
    *
@@ -118,7 +168,7 @@ public class LogicGatePuzzleController {
     // new arraylist
     logicGates = new ArrayList<>();
 
-    // add AND GATE
+    // add gates
     logicGates.add(new LogicGate(LogicGate.Logic.AND)); // AND
     logicGates.add(new LogicGate(LogicGate.Logic.NAND)); // NAND
     logicGates.add(new LogicGate(LogicGate.Logic.OR)); // OR
@@ -177,6 +227,7 @@ public class LogicGatePuzzleController {
 
   /** This method will layout the current assembly of logic gates */
   private void updateGateLayout() {
+    // can change this to a list containing imgViews for each gate in later refactor
     int i = 0;
     imgAnswerGate0.setImage(currentAssembly.get(i).getImage());
     i++;
@@ -256,55 +307,25 @@ public class LogicGatePuzzleController {
   /** This method sets a random number */
   private void setRandomInput() {
 
-    // TODO: change this to extending logic to avoid code clones and throw exception if layoutsize
-    if (layoutSize == 4) {
+    // layout size*2 is number of gates inputs, so 8 inputs required
+    for (int i = 0; i < layoutSize * 2; i++) {
 
-      // layout size*2 is number of gates inputs, so 8 inputs required
-      for (int i = 0; i < layoutSize * 2; i++) {
-
-        // Random Input
-        if (Math.random() < 0.5) {
-          logicTrail.set(i, true);
-        } else {
-          logicTrail.set(i, false);
-        }
+      // Random Input
+      if (Math.random() < 0.5) {
+        logicTrail.set(i, true);
+      } else {
+        logicTrail.set(i, false);
       }
     }
-  }
-
-  @FXML
-  private void initialize() {
-    // saves current logic gate positions in grid
-    currentAssembly = new ArrayList<>(); // reserve 6 spaces
-
-    // stores the imgViews for each section of logic between gates
-    logicInSection = new ArrayList<>();
-
-    // at initalize, nothing is active looking to swap
-    swapping = -1;
-
-    // new logic trail
-    // reserve layout * 2 -1 spaces
-    // for layout = 4 --> 14
-    // for layout = 2 --> 7
-    // layoutSize*4-0.5*layoutSize
-    // layoutSize(3.5)
-    // logicTrail = new ArrayList<>((int) (layoutSize * 3.5)); // just has to work for 2 and 4
-    logicTrail = new ArrayList<>();
-    for (int i = 0; i < (int) (layoutSize * 3.5 + 1); i++) { // added +1 as debug, proabbly correct
-      logicTrail.add(false); // DEBBUG LOOP
-    }
-
-    setRandomInput();
-    setUpLogicGates();
-    setUpLogicTrail();
   }
 
   /**
    * This method will set up each imgView showing the player what the current logic is in each wire
    */
   private void setUpLogicTrail() {
+    // adding panes to array of panes
 
+    // first column
     logicInSection.add(this.pInput0);
     logicInSection.add(this.pInput1);
     logicInSection.add(this.pInput2);
@@ -314,21 +335,23 @@ public class LogicGatePuzzleController {
     logicInSection.add(this.pInput6);
     logicInSection.add(this.pInput7);
 
+    // second column
     logicInSection.add(this.pInput8);
     logicInSection.add(this.pInput9);
     logicInSection.add(this.pInput10);
     logicInSection.add(this.pInput11);
 
+    // third column
     logicInSection.add(this.pInput12);
     logicInSection.add(this.pInput13);
 
+    // fourth column
     logicInSection.add(this.pInput14);
-
-    // add the rest
 
     updateDisplayLogicTrail();
   }
 
+  /** This Method decides what colour trail each logic input should be */
   private void updateDisplayLogicTrail() {
 
     for (int i = 0; i < logicInSection.size(); i++) {
@@ -337,13 +360,22 @@ public class LogicGatePuzzleController {
 
       if (logicTrail.get(i) == true) {
 
+        // set colour to Green
         colour = onLogicColour;
       } else {
 
+        // set colour to Red
         colour = offLogicColour;
       }
 
+      // set background of pane to colour
       logicInSection.get(i).setStyle("-fx-background-color: #" + colour);
+    }
+
+    if (logicTrail.get(logicTrail.size() - 1) == true) {
+      // the puzzle has been solved
+      System.out.println("Logic Gate Puzzle Solved");
+      GameState.isLogicGateSolved = true;
     }
   }
 
