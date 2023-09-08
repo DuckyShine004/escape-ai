@@ -44,6 +44,18 @@ public class DecryptionPuzzleController {
     lblSequence.setText("");
   }
 
+  @FXML
+  private void onBackSpaceButton() {
+    int length = lblSequence.getText().length();
+
+    // check if the input is already zero
+    if (length == 0) {
+      return;
+    }
+
+    lblSequence.setText(lblSequence.getText().substring(0, length - 1));
+  }
+
   /** On mouse clicked, if a number button is pressed, add the number to the sequence. */
   @FXML
   private void onNumberButton(ActionEvent event) {
