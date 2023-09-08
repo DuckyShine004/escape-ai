@@ -70,6 +70,18 @@ public class LogicGatePuzzleController {
   // 5 - XNOR
   private List<LogicGate> logicGates;
 
+  // logic pathway list that stores the current boolean logic in each node entering and exiting
+  // store as list
+  // first 8 positions are the inital given logic
+  // next 4 positions are resulting from first layer
+  // next 2 positions are resulting from second layer
+  // final value is calulated, and if true, puzzle is solved
+  private List<Boolean> logicTrail;
+
+  // layout size is the number of original gates, should only be 2 or 4 depending on diffucity /
+  // time ?
+  private int layoutSize = 4; // TODO: have this change based on difficulty or time (2 or 4)
+
   /**
    * This Method sets up the logicGate array list
    *
@@ -132,6 +144,9 @@ public class LogicGatePuzzleController {
 
     // lays out current assembly
     updateGateLayout();
+
+    // set current logic trail
+    updateLogicTrail();
   }
 
   /** This method will layout the current assembly of logic gates */
@@ -152,6 +167,78 @@ public class LogicGatePuzzleController {
     imgAnswerGate6.setImage(currentAssembly.get(i).getImage());
   }
 
+  /** This method will calculate the logical pathway for the current assembly */
+  private void updateLogicTrail() {
+    // for now this is of unvarying size
+
+    // for each circuit in assebmly
+    for (int i = 0; i < currentAssembly.size(); i++) {
+      // 0 --> 6
+      //
+      // 0:0  2:1  4:2  6:3  8:4 10:5 12:6
+      boolean a = logicTrail.get(i * 2);
+      boolean b = logicTrail.get(i * 2 + 1);
+
+      // get result
+      boolean result = compare(a, b, currentAssembly.get(i).getType());
+
+      // 0 --> 8
+      // 1 --> 9
+      // 2 --> 10
+      logicTrail.set((i) * 2 + (8 - i), result);
+    }
+  }
+
+  /**
+   * This method will take in current gate's inputs, as well as its type, will return the result of
+   * this boolean oporation
+   *
+   * @param a
+   * @param b
+   * @param logic
+   */
+  private boolean compare(boolean a, boolean b, LogicGate.Logic logic) {
+
+    boolean output = false;
+
+    switch (logic) {
+      case AND:
+        output = a && b;
+        break;
+      case NAND:
+        output = !(a && b);
+        break;
+      case OR:
+        output = a || b;
+        break;
+      case NOR:
+        output = !(a || b);
+        break;
+      case XOR:
+        output = ((a || b) && !(a && b));
+        break;
+      case XNOR:
+        output = a == b;
+        break;
+    }
+
+    return output;
+  }
+
+  /** This method sets a random number */
+  private void setRandomInput() {
+
+    // TODO: change this to extending logic to avoid code clones and throw exception if layoutsize
+    if (layoutSize == 4) {
+
+      // layout size*2 is number of gates inputs, so 8 inputs required
+      for (int i = 0; i < layoutSize * 2; i++) {
+        // TODO: make this random
+        logicTrail.set(i, true);
+      }
+    }
+  }
+
   @FXML
   private void initialize() {
     // saves current logic gate positions in grid
@@ -160,6 +247,19 @@ public class LogicGatePuzzleController {
     // at initalize, nothing is active looking to swap
     swapping = -1;
 
+    // new logic trail
+    // reserve layout * 2 -1 spaces
+    // for layout = 4 --> 14
+    // for layout = 2 --> 7
+    // layoutSize*4-0.5*layoutSize
+    // layoutSize(3.5)
+    // logicTrail = new ArrayList<>((int) (layoutSize * 3.5)); // just has to work for 2 and 4
+    logicTrail = new ArrayList<>();
+    for (int i = 0; i < (int) (layoutSize * 3.5 + 1); i++) { // added +1 as debug, proabbly correct
+      logicTrail.add(false); // DEBBUG LOOP
+    }
+
+    setRandomInput();
     setUpLogicGates();
   }
 
@@ -226,6 +326,9 @@ public class LogicGatePuzzleController {
 
     // clear backgrounds
     updateActiveBackgrounds(this.swapping);
+
+    // update logic trail
+    updateLogicTrail();
   }
 
   /*
