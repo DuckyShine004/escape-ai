@@ -130,6 +130,12 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
 
+    // lays out current assembly
+    updateGateLayout();
+  }
+
+  /** This method will layout the current assembly of logic gates */
+  private void updateGateLayout() {
     int i = 0;
     imgAnswerGate0.setImage(currentAssembly.get(i).getImage());
     i++;
@@ -207,8 +213,16 @@ public class LogicGatePuzzleController {
     //
     System.out.println("swap: " + a + " : " + b);
 
+    // swap gates
+    LogicGate temp = currentAssembly.get(a);
+    currentAssembly.set(a, currentAssembly.get(b));
+    currentAssembly.set(b, temp);
+
     // no current swapping gates
     this.swapping = -1;
+
+    // refresh layout of gates
+    updateGateLayout();
 
     // clear backgrounds
     updateActiveBackgrounds(this.swapping);
