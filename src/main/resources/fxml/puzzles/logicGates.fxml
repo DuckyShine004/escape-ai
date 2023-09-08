@@ -24,15 +24,39 @@
                <children>
                   <Pane prefHeight="314.0" prefWidth="638.0">
                      <children>
-                        <ImageView fx:id="imgAnwerGate1" fitHeight="70.0" fitWidth="80.0" layoutX="32.0" layoutY="97.0" onMouseClicked="#onGate1Clicked" onMouseEntered="#onGate1Enter" onMouseExited="#onGate1Exit" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgAnwerGate2" fitHeight="70.0" fitWidth="80.0" layoutX="32.0" layoutY="167.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgAnwerGate5" fitHeight="70.0" fitWidth="80.0" layoutX="176.0" layoutY="202.0" onMouseClicked="#onGate5Clicked" onMouseEntered="#onGate5Enter" onMouseExited="#onGate5Exit" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgAnwerGate4" fitHeight="70.0" fitWidth="80.0" layoutX="176.0" layoutY="62.0" onMouseClicked="#onGate4Clicked" onMouseEntered="#onGate4Enter" onMouseExited="#onGate4Exit" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgAnwerGate3" fitHeight="70.0" fitWidth="80.0" layoutX="41.0" layoutY="244.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgAnwerGate6" fitHeight="70.0" fitWidth="80.0" layoutX="278.0" layoutY="122.0" onMouseClicked="#onGate6Clicked" onMouseEntered="#onGate6Enter" onMouseExited="#onGate6Exit" pickOnBounds="true" preserveRatio="true" />
-                        <Pane fx:id="pAnswerGate1" layoutX="30.0" layoutY="25.0" prefHeight="75.0" prefWidth="85.0">
+                        <Pane fx:id="pAnswerGate0" layoutX="21.0" layoutY="36.0" prefHeight="75.0" prefWidth="85.0">
                            <children>
-                              <ImageView fx:id="imgAnwerGate0" fitHeight="70.0" fitWidth="80.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgAnswerGate0" fitHeight="70.0" fitWidth="80.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pAnswerGate1" layoutX="21.0" layoutY="111.0" prefHeight="75.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate1" fitHeight="70.0" fitWidth="80.0" onMouseClicked="#onGate1Clicked" onMouseEntered="#onGate1Enter" onMouseExited="#onGate1Exit" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pAnswerGate2" layoutX="21.0" layoutY="169.0" prefHeight="75.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate2" fitHeight="70.0" fitWidth="80.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pAnswerGate3" layoutX="21.0" layoutY="233.0" prefHeight="75.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate3" fitHeight="70.0" fitWidth="80.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pAnswerGate4" layoutX="200.0" layoutY="63.0" prefHeight="75.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate4" fitHeight="70.0" fitWidth="80.0" onMouseClicked="#onGate4Clicked" onMouseEntered="#onGate4Enter" onMouseExited="#onGate4Exit" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pAnswerGate5" layoutX="200.0" layoutY="206.0" prefHeight="75.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate5" fitHeight="70.0" fitWidth="80.0" onMouseClicked="#onGate5Clicked" onMouseEntered="#onGate5Enter" onMouseExited="#onGate5Exit" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pAnswerGate6" layoutX="342.0" layoutY="131.0" prefHeight="75.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate6" fitHeight="70.0" fitWidth="80.0" onMouseClicked="#onGate6Clicked" onMouseEntered="#onGate6Enter" onMouseExited="#onGate6Exit" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
                      </children>

@@ -15,7 +15,13 @@ public class LogicGatePuzzleController {
   @FXML private Label lblTimer;
 
   // Panes that sit under Answer Gates
+  @FXML private Pane pAnswerGate0;
   @FXML private Pane pAnswerGate1;
+  @FXML private Pane pAnswerGate2;
+  @FXML private Pane pAnswerGate3;
+  @FXML private Pane pAnswerGate4;
+  @FXML private Pane pAnswerGate5;
+  @FXML private Pane pAnswerGate6;
 
   // begin side bar helper Gate : Table ImageViews
   @FXML private ImageView imgGate1;
@@ -31,20 +37,29 @@ public class LogicGatePuzzleController {
   //  20 21
 
   // First Row
-  @FXML private ImageView imgAnwerGate0;
-  @FXML private ImageView imgAnwerGate1;
-  @FXML private ImageView imgAnwerGate2;
-  @FXML private ImageView imgAnwerGate3;
+  @FXML private ImageView imgAnswerGate0;
+  @FXML private ImageView imgAnswerGate1;
+  @FXML private ImageView imgAnswerGate2;
+  @FXML private ImageView imgAnswerGate3;
 
   // Second Row
-  @FXML private ImageView imgAnwerGate4;
-  @FXML private ImageView imgAnwerGate5;
+  @FXML private ImageView imgAnswerGate4;
+  @FXML private ImageView imgAnswerGate5;
 
   // END gate
-  @FXML private ImageView imgAnwerGate6;
+  @FXML private ImageView imgAnswerGate6;
 
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
+
+  // is currently active looking to swap
+  private int swapping;
+
+  // highlight colour for hover gate
+  private String activeHighlight = "1111"; // light grey
+
+  // highlight colour for about to swap gate
+  private String swappingHighlight = "3333";
 
   // Logic Gate list
   // 0 - AND
@@ -116,19 +131,19 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
 
     int i = 0;
-    imgAnwerGate0.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate0.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate1.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate1.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate2.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate2.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate3.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate3.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate4.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate4.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate5.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate5.setImage(currentAssembly.get(i).getImage());
     i++;
-    imgAnwerGate6.setImage(currentAssembly.get(i).getImage());
+    imgAnswerGate6.setImage(currentAssembly.get(i).getImage());
   }
 
   @FXML
@@ -136,7 +151,67 @@ public class LogicGatePuzzleController {
     // saves current logic gate positions in grid
     currentAssembly = new ArrayList<>(); // reserve 6 spaces
 
+    // at initalize, nothing is active looking to swap
+    swapping = -1;
+
     setUpLogicGates();
+  }
+
+  /**
+   * This method will set currently clicked background to active colour, and will reset non active
+   * gates to clear colour
+   */
+  private void updateActiveBackgrounds(int active) {
+    // switch statement to change all gates based on int active
+
+    // clears all
+    pAnswerGate0.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate1.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate2.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate3.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate4.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate5.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate6.setStyle("-fx-background-color: #FFFF");
+
+    // sets active gate to highlight
+    switch (active) {
+      case 0:
+        pAnswerGate0.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case 1:
+        pAnswerGate1.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case 2:
+        pAnswerGate2.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case 3:
+        pAnswerGate3.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case 4:
+        pAnswerGate4.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case 5:
+        pAnswerGate5.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case 6:
+        pAnswerGate6.setStyle("-fx-background-color: #" + this.swappingHighlight);
+        break;
+      case -1:
+        break;
+    }
+    System.out.println("Update Backgrounds - active:" + active);
+  }
+
+  /** This method will swap the gates a and b */
+  private void swapGates(int a, int b) {
+    //
+    System.out.println("swap: " + a + " : " + b);
+
+    // no current swapping gates
+    this.swapping = -1;
+
+    // clear backgrounds
+    updateActiveBackgrounds(this.swapping);
   }
 
   /*
@@ -150,126 +225,238 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate0Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 0;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, 0);
+    }
   }
 
   @FXML
   private void onGate0Enter(MouseEvent event) {
     //
-    pAnswerGate1.setStyle("-fx-background-color: #1111");
+    if (this.swapping != 0) {
+      pAnswerGate0.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate0Exit(MouseEvent event) {
     //
-    pAnswerGate1.setStyle("-fx-background-color: #FFFF");
+    if (this.swapping != 0) {
+      pAnswerGate0.setStyle("-fx-background-color: #FFFF");
+    }
   }
 
   @FXML
   private void onGate1Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 1;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, current);
+    }
   }
 
   @FXML
   private void onGate1Enter(MouseEvent event) {
     //
-    System.out.println("Enter: " + event.getSource().toString());
+    if (this.swapping != 1) {
+      pAnswerGate1.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate1Exit(MouseEvent event) {
     //
-    System.out.println("Exit: " + event.getSource().toString());
+    if (this.swapping != 1) {
+      pAnswerGate1.setStyle("-fx-background-color: #FFFF");
+    }
   }
 
   @FXML
   private void onGate2Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 2;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, current);
+    }
   }
 
   @FXML
   private void onGate2Enter(MouseEvent event) {
     //
-    System.out.println("Enter: " + event.getSource().toString());
+    if (this.swapping != 2) {
+      pAnswerGate2.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate2Exit(MouseEvent event) {
     //
-    System.out.println("Exit: " + event.getSource().toString());
+    if (this.swapping != 2) {
+      pAnswerGate2.setStyle("-fx-background-color: #FFFF");
+    }
   }
 
   @FXML
   private void onGate3Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 3;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, current);
+    }
   }
 
   @FXML
   private void onGate3Enter(MouseEvent event) {
     //
-    System.out.println("Enter: " + event.getSource().toString());
+    if (this.swapping != 3) {
+      pAnswerGate3.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate3Exit(MouseEvent event) {
     //
-    System.out.println("Exit: " + event.getSource().toString());
+    if (this.swapping != 3) {
+      pAnswerGate3.setStyle("-fx-background-color: #FFFF");
+    }
   }
 
   @FXML
   private void onGate4Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 4;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, current);
+    }
   }
 
   @FXML
   private void onGate4Enter(MouseEvent event) {
     //
-    System.out.println("Enter: " + event.getSource().toString());
+    if (this.swapping != 4) {
+      pAnswerGate4.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate4Exit(MouseEvent event) {
     //
-    System.out.println("Exit: " + event.getSource().toString());
+    if (this.swapping != 4) {
+      pAnswerGate4.setStyle("-fx-background-color: #FFFF");
+    }
   }
 
   @FXML
   private void onGate5Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 5;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, current);
+    }
   }
 
   @FXML
   private void onGate5Enter(MouseEvent event) {
     //
-    System.out.println("Enter: " + event.getSource().toString());
+    if (this.swapping != 5) {
+      pAnswerGate5.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate5Exit(MouseEvent event) {
     //
-    System.out.println("Exit: " + event.getSource().toString());
+    if (this.swapping != 5) {
+      pAnswerGate5.setStyle("-fx-background-color: #FFFF");
+    }
   }
 
   @FXML
   private void onGate6Clicked(MouseEvent event) {
     //
-    System.out.println("clicked: " + event.getSource().toString());
+    int current = 6;
+    if (this.swapping == -1 | this.swapping == current) {
+
+      // set active swaping gate
+      this.swapping = current;
+
+      // sets active backgrounds, i.e. clicked gates, and clears non active
+      updateActiveBackgrounds(current);
+    } else {
+
+      // if there is an active gate that isn't itself, swap
+      swapGates(this.swapping, current);
+    }
   }
 
   @FXML
   private void onGate6Enter(MouseEvent event) {
     //
-    System.out.println("Enter: " + event.getSource().toString());
+    if (this.swapping != 6) {
+      pAnswerGate6.setStyle("-fx-background-color: #" + activeHighlight);
+    }
   }
 
   @FXML
   private void onGate6Exit(MouseEvent event) {
     //
-    System.out.println("Exit: " + event.getSource().toString());
+    if (this.swapping != 6) {
+      pAnswerGate6.setStyle("-fx-background-color: #FFFF");
+    }
   }
 }
