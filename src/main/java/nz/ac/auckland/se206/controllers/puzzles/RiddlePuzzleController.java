@@ -65,7 +65,9 @@ public class RiddlePuzzleController {
     btnAnswer3.setDisable(true);
 
     updateScene();
-    loadRiddle();
+    if (!GameState.isDeveloperMode) {
+      loadRiddle();
+    }
   }
 
   /**
