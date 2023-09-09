@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -14,6 +15,8 @@ public class OptionsMenuController {
   @FXML private ComboBox<String> cmbTimeSelect;
 
   @FXML private Label lblCurrentSelectedTime;
+
+  @FXML private ToggleButton tbtnDeveloperMode;
 
   @FXML
   public void initialize() {
@@ -34,13 +37,14 @@ public class OptionsMenuController {
     App.setUi(AppUi.MENU);
   }
 
-  @FXML 
+  @FXML
   private void onDeveloperMode() {
-    if (GameState.isDeveloperMode) {
-      GameState.isDeveloperMode = false;
-    } else {
-      GameState.isDeveloperMode = true;
-    }
+    // Toggle the developer mode state
+    GameState.isDeveloperMode = !GameState.isDeveloperMode;
+
+    // Update the button text based on the new state
+    tbtnDeveloperMode.setText(
+        GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
   }
 
   /*
