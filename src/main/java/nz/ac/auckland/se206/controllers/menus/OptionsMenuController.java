@@ -34,6 +34,15 @@ public class OptionsMenuController {
     App.setUi(AppUi.MENU);
   }
 
+  @FXML 
+  private void onDeveloperMode() {
+    if (GameState.isDeveloperMode) {
+      GameState.isDeveloperMode = false;
+    } else {
+      GameState.isDeveloperMode = true;
+    }
+  }
+
   /*
    * This is the on select item in comboBox method
    * This method will change the Game State variable for max Time in round
