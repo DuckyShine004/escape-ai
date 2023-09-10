@@ -466,10 +466,14 @@ public class LogicGatePuzzleController {
     App.setUi(AppUi.BREAKER);
   }
 
-  @FXML
-  private void onGate0Clicked(MouseEvent event) {
+  /**
+   * This method takes in the currently clicked gate, and determins if it should be highlighed or
+   * swapped
+   *
+   * @param current
+   */
+  private void onClickedGate(int current) {
     //
-    int current = 0;
     if (this.swapping == -1 | this.swapping == current) {
 
       // set active swaping gate
@@ -480,8 +484,14 @@ public class LogicGatePuzzleController {
     } else {
 
       // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, 0);
+      swapGates(this.swapping, current);
     }
+  }
+
+  @FXML
+  private void onGate0Clicked(MouseEvent event) {
+    // on hover enter
+    onClickedGate(0);
   }
 
   @FXML
@@ -503,19 +513,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate1Clicked(MouseEvent event) {
     //
-    int current = 1;
-    if (this.swapping == -1 | this.swapping == current) {
-
-      // set active swaping gate
-      this.swapping = current;
-
-      // sets active backgrounds, i.e. clicked gates, and clears non active
-      updateActiveBackgrounds(current);
-    } else {
-
-      // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, current);
-    }
+    onClickedGate(1);
   }
 
   @FXML
@@ -537,19 +535,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate2Clicked(MouseEvent event) {
     //
-    int current = 2;
-    if (this.swapping == -1 | this.swapping == current) {
-
-      // set active swaping gate
-      this.swapping = current;
-
-      // sets active backgrounds, i.e. clicked gates, and clears non active
-      updateActiveBackgrounds(current);
-    } else {
-
-      // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, current);
-    }
+    onClickedGate(2);
   }
 
   @FXML
@@ -571,19 +557,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate3Clicked(MouseEvent event) {
     //
-    int current = 3;
-    if (this.swapping == -1 | this.swapping == current) {
-
-      // set active swaping gate
-      this.swapping = current;
-
-      // sets active backgrounds, i.e. clicked gates, and clears non active
-      updateActiveBackgrounds(current);
-    } else {
-
-      // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, current);
-    }
+    onClickedGate(3);
   }
 
   @FXML
@@ -605,19 +579,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate4Clicked(MouseEvent event) {
     //
-    int current = 4;
-    if (this.swapping == -1 | this.swapping == current) {
-
-      // set active swaping gate
-      this.swapping = current;
-
-      // sets active backgrounds, i.e. clicked gates, and clears non active
-      updateActiveBackgrounds(current);
-    } else {
-
-      // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, current);
-    }
+    onClickedGate(4);
   }
 
   @FXML
@@ -639,19 +601,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate5Clicked(MouseEvent event) {
     //
-    int current = 5;
-    if (this.swapping == -1 | this.swapping == current) {
-
-      // set active swaping gate
-      this.swapping = current;
-
-      // sets active backgrounds, i.e. clicked gates, and clears non active
-      updateActiveBackgrounds(current);
-    } else {
-
-      // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, current);
-    }
+    onClickedGate(5);
   }
 
   @FXML
@@ -673,19 +623,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate6Clicked(MouseEvent event) {
     //
-    int current = 6;
-    if (this.swapping == -1 | this.swapping == current) {
-
-      // set active swaping gate
-      this.swapping = current;
-
-      // sets active backgrounds, i.e. clicked gates, and clears non active
-      updateActiveBackgrounds(current);
-    } else {
-
-      // if there is an active gate that isn't itself, swap
-      swapGates(this.swapping, current);
-    }
+    onClickedGate(6);
   }
 
   @FXML
