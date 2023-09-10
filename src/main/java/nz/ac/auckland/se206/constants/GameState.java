@@ -17,4 +17,7 @@ public class GameState {
 
   /** the maximum sequence input limit for the decryption puzzle */
   public static int maxSequence = 4;
+
+  /** the number of pseudocodes in decrpytion puzzle. */
+  public static int maxPseudocodes = 1;
 }

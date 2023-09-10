@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 
 /** Controller class for the decryption puzzle scene. */
@@ -28,9 +30,17 @@ public class DecryptionPuzzleController {
   @FXML private Button btnEnter;
   @FXML private Button btnBackSpace;
 
+  @FXML private TextArea taDescription;
+
+  private int psuedocodeIndex;
+
+  private String description;
+
   /** Initializes the decryption puzzle. */
   @FXML
-  private void initialize() {}
+  private void initialize() throws Exception {
+    initializePseudocode();
+  }
 
   /** On mouse clicked, if the button is pressed, then switch to the control room scene. */
   @FXML
@@ -61,11 +71,22 @@ public class DecryptionPuzzleController {
   @FXML
   private void onNumberButton(ActionEvent event) {
     // check if the player's input is too long
-    if (lblSequence.getText().length() > GameState.maxSequence) {
+    if (lblSequence.getText().length() == GameState.maxSequence) {
       return;
     }
 
     lblSequence.setText(lblSequence.getText() + getButtonIndex(event));
+  }
+
+  private void initializePseudocode() throws Exception {
+    // get a random pseudocode index
+    psuedocodeIndex = (int) Math.floor(Math.random() * (GameState.maxPseudocodes + 1));
+
+    // get the psuedocode snippets
+    description = getDescription();
+
+    // set up the text areas
+    taDescription.appendText(description);
   }
 
   /**
@@ -74,9 +95,15 @@ public class DecryptionPuzzleController {
    * @param event the event representing the type of action.
    * @return the button index of the button pressed.
    */
-  public String getButtonIndex(ActionEvent event) {
+  private String getButtonIndex(ActionEvent event) {
     String buttonIndex = ((Control) event.getSource()).getId();
 
     return buttonIndex.substring(buttonIndex.length() - 1);
+  }
+
+  private String getDescription() throws Exception {
+    String variableName = "description" + Integer.toString(psuedocodeIndex);
+
+    return (String) (new Description()).getClass().getField(variableName).get("");
   }
 }
