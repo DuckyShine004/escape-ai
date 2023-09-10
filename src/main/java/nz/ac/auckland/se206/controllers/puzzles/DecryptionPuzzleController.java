@@ -93,6 +93,12 @@ public class DecryptionPuzzleController {
     lblSequence.setText(lblSequence.getText() + getButtonIndex(event));
   }
 
+  /**
+   * Initializes the pseudocode snippets. A random pseudocode index will be picked at run time, then
+   * the text areas will be set up for the corresponding code snippets.
+   *
+   * @throws Exception
+   */
   private void initializePseudocode() throws Exception {
     // get a random pseudocode index
     psuedocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
@@ -123,24 +129,48 @@ public class DecryptionPuzzleController {
     return buttonIndex.substring(buttonIndex.length() - 1);
   }
 
+  /**
+   * Get the string sequence for the corresponding random pseudocode index.
+   *
+   * @return the string value of the sequence.
+   * @throws Exception
+   */
   private String getSequence() throws Exception {
     String variableName = "sequence" + Integer.toString(psuedocodeIndex);
 
     return (String) (new Sequence()).getClass().getField(variableName).get("");
   }
 
+  /**
+   * Get the string algorithm code snippet for the corresponding random pseudocode index.
+   *
+   * @return the string value of the algorithm code snippet.
+   * @throws Exception
+   */
   private String getAlgorithm() throws Exception {
     String variableName = "algorithm" + Integer.toString(psuedocodeIndex);
 
     return (String) (new Algorithm()).getClass().getField(variableName).get("");
   }
 
+  /**
+   * Get the string description for the corresponding random pseudocode index.
+   *
+   * @return the string value of the description.
+   * @throws Exception
+   */
   private String getDescription() throws Exception {
     String variableName = "description" + Integer.toString(psuedocodeIndex);
 
     return (String) (new Description()).getClass().getField(variableName).get("");
   }
 
+  /**
+   * Get the string declaration code snippet for the corresponding random pseudocode index.
+   *
+   * @return the string value of the declaration code snippet.
+   * @throws Exception
+   */
   private String getDeclaration() throws Exception {
     String variableName = "declaration" + Integer.toString(psuedocodeIndex);
 
