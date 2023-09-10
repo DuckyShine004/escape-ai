@@ -21,6 +21,9 @@ public class GameState {
   /** number of riddles solved */
   public static int riddlesSolved = 0;
 
-  /** the maximum sequence input limit */
-  public static int maxSequence = 10;
+  /** the maximum sequence input limit for the decryption puzzle */
+  public static int maxSequence = 4;
+
+  /** the number of pseudocodes in decrpytion puzzle. */
+  public static int maxPseudocodes = 1;
 }
