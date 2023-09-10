@@ -29,6 +29,7 @@ public class RiddlePuzzleController {
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
   @FXML private Button btnNavigate;
+  @FXML private Button btnGetHint;
   @FXML private Label lblTime;
 
   private ChatCompletionRequest chatCompletionRequest;
@@ -42,6 +43,7 @@ public class RiddlePuzzleController {
   private boolean btn1Pressed = false;
   private boolean btn2Pressed = false;
   private boolean btn3Pressed = false;
+  private boolean getHint = false;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -276,6 +278,13 @@ public class RiddlePuzzleController {
     // Get the text from the button
     String buttonText = clickedButton.getText();
 
+    if (getHint) {
+      ChatMessage definition = runGpt(new ChatMessage("user", "Define: " + buttonText));
+      System.out.println(definition.getContent());
+      getHint = false;
+      return;
+    }
+
     // Set the button pressed to true
     if (buttonText.equals(answer1)) {
       btn1Pressed = true;
@@ -301,8 +310,9 @@ public class RiddlePuzzleController {
           @Override
           protected Void call() throws Exception {
             // Send the button text as a response to GPT
-            ChatMessage responseMsg = runGpt(new ChatMessage("user", buttonText));
-
+            System.out.println(buttonText);
+            ChatMessage responseMsg = runGpt(new ChatMessage("user", "Is it " + buttonText));
+            System.out.println(responseMsg.getContent());
             // Update UI based on the response
             Platform.runLater(
                 () -> {
@@ -383,6 +393,15 @@ public class RiddlePuzzleController {
       App.setUi(AppUi.OFFICE);
       GameState.isRiddleResolved = true;
     }
+  }
+
+  @FXML
+  private void onGetHintButton(ActionEvent event) throws ApiProxyException {
+    // Generate a loading message
+    ChatMessage loading = new ChatMessage("assistant", "Select a word to get a hint for...");
+    appendChatMessage(loading);
+
+    getHint = true;
   }
 
   /**
