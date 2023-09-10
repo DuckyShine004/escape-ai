@@ -17,6 +17,6 @@
 
     <Label fx:id="lblTime" layoutX="480.0" layoutY="19.0" text="Timer Text: 00:00" />
     <Button fx:id="btnNavigate" layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onNavigateButton" text="Go Back" />
-    <Button fx:id="btnGetHint" layoutX="450.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGetHintButton" text="Use Hint" />
+    <Button fx:id="btnGetHint" layoutX="380.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGetHintButton" text="Use Hint" />
   </children>
 </AnchorPane>

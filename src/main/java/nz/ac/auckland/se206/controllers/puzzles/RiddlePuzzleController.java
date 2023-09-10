@@ -65,6 +65,7 @@ public class RiddlePuzzleController {
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
+    btnGetHint.setDisable(true);
 
     updateScene();
     loadRiddle();
@@ -161,6 +162,7 @@ public class RiddlePuzzleController {
                   btnAnswer1.setDisable(false);
                   btnAnswer2.setDisable(false);
                   btnAnswer3.setDisable(false);
+                  btnGetHint.setDisable(false);
                 });
             return null;
           }
@@ -299,6 +301,7 @@ public class RiddlePuzzleController {
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
     btnNavigate.setDisable(true);
+    btnGetHint.setDisable(true);
 
     // Generate a loading message
     ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
@@ -356,6 +359,7 @@ public class RiddlePuzzleController {
                     } else {
                       btnNavigate.setDisable(false);
                     }
+                    btnGetHint.setDisable(false);
                   }
                 });
 
@@ -388,6 +392,7 @@ public class RiddlePuzzleController {
       btnAnswer1.setDisable(true);
       btnAnswer2.setDisable(true);
       btnAnswer3.setDisable(true);
+      btnGetHint.setDisable(true);
     } else if (GameState.riddlesSolved == 3) {
       // If all riddles are solved, navigate back to the office
       App.setUi(AppUi.OFFICE);
