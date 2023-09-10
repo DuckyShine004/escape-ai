@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.constants.Algorithm;
 import nz.ac.auckland.se206.constants.Declaration;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Sequence;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
@@ -38,6 +39,7 @@ public class DecryptionPuzzleController {
 
   private int psuedocodeIndex;
 
+  private String sequence;
   private String algorithm;
   private String description;
   private String declaration;
@@ -73,6 +75,13 @@ public class DecryptionPuzzleController {
     lblSequence.setText(lblSequence.getText().substring(0, length - 1));
   }
 
+  @FXML
+  private void onEnterButton() {
+    if (lblSequence.getText().equals(sequence)) {
+      System.out.println("CORRECT");
+    }
+  }
+
   /** On mouse clicked, if a number button is pressed, add the number to the sequence. */
   @FXML
   private void onNumberButton(ActionEvent event) {
@@ -86,7 +95,10 @@ public class DecryptionPuzzleController {
 
   private void initializePseudocode() throws Exception {
     // get a random pseudocode index
-    psuedocodeIndex = (int) Math.floor(Math.random() * (GameState.maxPseudocodes + 1));
+    psuedocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
+
+    // get the sequence for the corresponding psuedocode snippet
+    sequence = getSequence();
 
     // get the psuedocode snippets
     algorithm = getAlgorithm();
@@ -109,6 +121,12 @@ public class DecryptionPuzzleController {
     String buttonIndex = ((Control) event.getSource()).getId();
 
     return buttonIndex.substring(buttonIndex.length() - 1);
+  }
+
+  private String getSequence() throws Exception {
+    String variableName = "sequence" + Integer.toString(psuedocodeIndex);
+
+    return (String) (new Sequence()).getClass().getField(variableName).get("");
   }
 
   private String getAlgorithm() throws Exception {

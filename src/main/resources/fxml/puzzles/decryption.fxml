@@ -46,7 +46,7 @@
                <children>
                   <Button fx:id="btnClear" mnemonicParsing="false" onMouseClicked="#onClearButton" prefHeight="80.0" prefWidth="80.0" text="Clear" />
                   <Button fx:id="btnBackSpace" mnemonicParsing="false" onMouseClicked="#onBackSpaceButton" prefHeight="80.0" prefWidth="80.0" text="Back" />
-                  <Button fx:id="btnEnter" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Enter" />
+                  <Button fx:id="btnEnter" mnemonicParsing="false" onMouseClicked="#onEnterButton" prefHeight="80.0" prefWidth="80.0" text="Enter" />
                </children>
             </HBox>
          </children>

@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.constants;
 
 public class Algorithm {
-  public static final String algorithm1 =
+  public static final String algorithm0 =
       "1. integer rectangleArea = rectangleWidth * rectangleHeight; \n"
           + "2. integer triangleArea = triangleHeight / rectangleArea; \n"
           + "3. \n"
