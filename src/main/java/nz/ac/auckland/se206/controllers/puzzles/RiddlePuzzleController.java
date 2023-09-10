@@ -29,6 +29,7 @@ public class RiddlePuzzleController {
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
   @FXML private Button btnNavigate;
+  @FXML private Button btnGetHint;
   @FXML private Label lblTime;
 
   private ChatCompletionRequest chatCompletionRequest;
@@ -42,6 +43,7 @@ public class RiddlePuzzleController {
   private boolean btn1Pressed = false;
   private boolean btn2Pressed = false;
   private boolean btn3Pressed = false;
+  private boolean getHint = false;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -63,6 +65,7 @@ public class RiddlePuzzleController {
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
+    btnGetHint.setDisable(true);
 
     updateScene();
     if (!GameState.isDeveloperMode) {
@@ -161,6 +164,7 @@ public class RiddlePuzzleController {
                   btnAnswer1.setDisable(false);
                   btnAnswer2.setDisable(false);
                   btnAnswer3.setDisable(false);
+                  btnGetHint.setDisable(false);
                 });
             return null;
           }
@@ -278,13 +282,15 @@ public class RiddlePuzzleController {
     // Get the text from the button
     String buttonText = clickedButton.getText();
 
-    // Set the button pressed to true
-    if (buttonText.equals(answer1)) {
-      btn1Pressed = true;
-    } else if (buttonText.equals(answer2)) {
-      btn2Pressed = true;
-    } else if (buttonText.equals(answer3)) {
-      btn3Pressed = true;
+    if (!getHint) {
+      // Set the button pressed to true
+      if (buttonText.equals(answer1)) {
+        btn1Pressed = true;
+      } else if (buttonText.equals(answer2)) {
+        btn2Pressed = true;
+      } else if (buttonText.equals(answer3)) {
+        btn3Pressed = true;
+      }
     }
 
     // Disable all buttons and the navigate button when a button has been clicked
@@ -292,19 +298,33 @@ public class RiddlePuzzleController {
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
     btnNavigate.setDisable(true);
+    btnGetHint.setDisable(true);
 
     // Generate a loading message
-    ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
-    appendChatMessage(loading);
+    if (getHint) {
+      ChatMessage loading = new ChatMessage("assistant", "Searching my database...");
+      appendChatMessage(loading);
+    } else {
+      ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
+      appendChatMessage(loading);
+    }
 
     // Create a new thread to run the GPT model
     Task<Void> buttonClickTask =
         new Task<>() {
           @Override
           protected Void call() throws Exception {
+            ChatMessage responseMsg;
             // Send the button text as a response to GPT
-            ChatMessage responseMsg = runGpt(new ChatMessage("user", buttonText));
-
+            System.out.println(buttonText);
+            if (getHint) {
+              responseMsg = runGpt(new ChatMessage("user", "Define: " + buttonText));
+              System.out.println(responseMsg.getContent());
+              getHint = false;
+            } else {
+              responseMsg = runGpt(new ChatMessage("user", "Is it " + buttonText));
+              System.out.println(responseMsg.getContent());
+            }
             // Update UI based on the response
             Platform.runLater(
                 () -> {
@@ -348,9 +368,9 @@ public class RiddlePuzzleController {
                     } else {
                       btnNavigate.setDisable(false);
                     }
+                    btnGetHint.setDisable(false);
                   }
                 });
-
             return null;
           }
         };
@@ -380,11 +400,21 @@ public class RiddlePuzzleController {
       btnAnswer1.setDisable(true);
       btnAnswer2.setDisable(true);
       btnAnswer3.setDisable(true);
+      btnGetHint.setDisable(true);
     } else if (GameState.riddlesSolved == 3) {
       // If all riddles are solved, navigate back to the office
       App.setUi(AppUi.OFFICE);
       GameState.isRiddleResolved = true;
     }
+  }
+
+  @FXML
+  private void onGetHintButton(ActionEvent event) throws ApiProxyException {
+    // Generate a loading message
+    ChatMessage loading = new ChatMessage("assistant", "Select a word to get a hint for...");
+    appendChatMessage(loading);
+
+    getHint = true;
   }
 
   /**
