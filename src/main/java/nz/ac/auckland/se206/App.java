@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /**
@@ -91,6 +93,9 @@ public class App extends Application {
     // add scenes to sceneManager
     initalizeScenes();
 
+    // Create an instance of KeyEventHandler
+    KeyEventsHandler keyEventsHandler = new KeyEventsHandler();
+
     // set first scene to display
     scene = new Scene(SceneManager.getUi(AppUi.MENU), 720, 480);
 
@@ -102,5 +107,8 @@ public class App extends Application {
 
     // request control focus
     scene.getRoot().requestFocus();
+
+    // Add the KeyEventHandler to the primary scene
+    scene.addEventHandler(KeyEvent.KEY_PRESSED, keyEventsHandler);
   }
 }

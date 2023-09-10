@@ -3,6 +3,9 @@ package nz.ac.auckland.se206.constants;
 /** Represents the state of the game. */
 public class GameState {
 
+  /** Indicates whether the game is in developer mode. */
+  public static boolean isDeveloperMode = false;
+
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
 

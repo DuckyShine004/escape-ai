@@ -33,7 +33,9 @@ public class MainMenuController {
     Timer.setTime(GameState.maxTime);
 
     // start the timer
-    Timer.play();
+    if (!GameState.isDeveloperMode) {
+      Timer.play();
+    }
 
     // change scene to Room
     App.setUi(AppUi.OFFICE);
