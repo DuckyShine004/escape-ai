@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.controllers.puzzles.LogicGatePuzzleController;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class LosingScreenController {
@@ -31,6 +32,7 @@ public class LosingScreenController {
   private void onPlayAgain() {
 
     resetGlobalVariables();
+    LogicGatePuzzleController.logicGateRestart();
 
     // retrieve the max time from gamestate and initialize the timer
     Timer.setTime(GameState.maxTime);
