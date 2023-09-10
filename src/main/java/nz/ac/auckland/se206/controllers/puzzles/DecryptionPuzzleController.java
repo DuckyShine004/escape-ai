@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.constants.GameState;
 public class DecryptionPuzzleController {
   @FXML private Label lblSequence;
 
-  @FXML private Button btn0;
   @FXML private Button btn1;
   @FXML private Button btn2;
   @FXML private Button btn3;
@@ -27,6 +26,7 @@ public class DecryptionPuzzleController {
   @FXML private Button btnBack;
   @FXML private Button btnClear;
   @FXML private Button btnEnter;
+  @FXML private Button btnBackSpace;
 
   /** Initializes the decryption puzzle. */
   @FXML
@@ -44,6 +44,7 @@ public class DecryptionPuzzleController {
     lblSequence.setText("");
   }
 
+  /** On mouse clicked, if the button is pressed, remove the last digit from the sequence. */
   @FXML
   private void onBackSpaceButton() {
     int length = lblSequence.getText().length();
