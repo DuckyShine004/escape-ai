@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.Algorithm;
+import nz.ac.auckland.se206.constants.Declaration;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 
@@ -30,11 +32,15 @@ public class DecryptionPuzzleController {
   @FXML private Button btnEnter;
   @FXML private Button btnBackSpace;
 
+  @FXML private TextArea taAlgorithm;
   @FXML private TextArea taDescription;
+  @FXML private TextArea taDeclaration;
 
   private int psuedocodeIndex;
 
+  private String algorithm;
   private String description;
+  private String declaration;
 
   /** Initializes the decryption puzzle. */
   @FXML
@@ -83,10 +89,14 @@ public class DecryptionPuzzleController {
     psuedocodeIndex = (int) Math.floor(Math.random() * (GameState.maxPseudocodes + 1));
 
     // get the psuedocode snippets
+    algorithm = getAlgorithm();
     description = getDescription();
+    declaration = getDeclaration();
 
     // set up the text areas
+    taAlgorithm.appendText(algorithm);
     taDescription.appendText(description);
+    taDeclaration.appendText(declaration);
   }
 
   /**
@@ -101,9 +111,21 @@ public class DecryptionPuzzleController {
     return buttonIndex.substring(buttonIndex.length() - 1);
   }
 
+  private String getAlgorithm() throws Exception {
+    String variableName = "algorithm" + Integer.toString(psuedocodeIndex);
+
+    return (String) (new Algorithm()).getClass().getField(variableName).get("");
+  }
+
   private String getDescription() throws Exception {
     String variableName = "description" + Integer.toString(psuedocodeIndex);
 
     return (String) (new Description()).getClass().getField(variableName).get("");
+  }
+
+  private String getDeclaration() throws Exception {
+    String variableName = "declaration" + Integer.toString(psuedocodeIndex);
+
+    return (String) (new Declaration()).getClass().getField(variableName).get("");
   }
 }

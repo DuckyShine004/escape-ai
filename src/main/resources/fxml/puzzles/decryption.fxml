@@ -11,9 +11,9 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
    <children>
       <TextArea editable="false" layoutX="5.0" layoutY="400.0" prefHeight="40.0" prefWidth="400.0" promptText="GPT hint will be less than 10 words." />
-      <TextArea fx:id="taDescription" layoutX="5.0" layoutY="30.0" prefHeight="80.0" prefWidth="400.0" wrapText="true" />
-      <TextArea layoutX="5.0" layoutY="140.0" prefHeight="80.0" prefWidth="400.0" />
-      <TextArea layoutX="5.0" layoutY="250.0" prefHeight="140.0" prefWidth="400.0" />
+      <TextArea fx:id="taDescription" editable="false" layoutX="5.0" layoutY="30.0" prefHeight="80.0" prefWidth="400.0" wrapText="true" />
+      <TextArea fx:id="taDeclaration" editable="false" layoutX="5.0" layoutY="140.0" prefHeight="80.0" prefWidth="400.0" />
+      <TextArea fx:id="taAlgorithm" editable="false" layoutX="5.0" layoutY="250.0" prefHeight="140.0" prefWidth="400.0" />
       <VBox layoutX="440.0" layoutY="50.0" prefHeight="400.0" prefWidth="260.0" spacing="10.0">
          <children>
             <Label fx:id="lblSequence" prefHeight="0.0" prefWidth="260.0">
