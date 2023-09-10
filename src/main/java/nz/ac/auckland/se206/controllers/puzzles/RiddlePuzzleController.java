@@ -280,20 +280,15 @@ public class RiddlePuzzleController {
     // Get the text from the button
     String buttonText = clickedButton.getText();
 
-    if (getHint) {
-      ChatMessage definition = runGpt(new ChatMessage("user", "Define: " + buttonText));
-      System.out.println(definition.getContent());
-      getHint = false;
-      return;
-    }
-
-    // Set the button pressed to true
-    if (buttonText.equals(answer1)) {
-      btn1Pressed = true;
-    } else if (buttonText.equals(answer2)) {
-      btn2Pressed = true;
-    } else if (buttonText.equals(answer3)) {
-      btn3Pressed = true;
+    if (!getHint) {
+      // Set the button pressed to true
+      if (buttonText.equals(answer1)) {
+        btn1Pressed = true;
+      } else if (buttonText.equals(answer2)) {
+        btn2Pressed = true;
+      } else if (buttonText.equals(answer3)) {
+        btn3Pressed = true;
+      }
     }
 
     // Disable all buttons and the navigate button when a button has been clicked
@@ -304,18 +299,30 @@ public class RiddlePuzzleController {
     btnGetHint.setDisable(true);
 
     // Generate a loading message
-    ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
-    appendChatMessage(loading);
+    if (getHint) {
+      ChatMessage loading = new ChatMessage("assistant", "Searching my database...");
+      appendChatMessage(loading);
+    } else {
+      ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
+      appendChatMessage(loading);
+    }
 
     // Create a new thread to run the GPT model
     Task<Void> buttonClickTask =
         new Task<>() {
           @Override
           protected Void call() throws Exception {
+            ChatMessage responseMsg;
             // Send the button text as a response to GPT
             System.out.println(buttonText);
-            ChatMessage responseMsg = runGpt(new ChatMessage("user", "Is it " + buttonText));
-            System.out.println(responseMsg.getContent());
+            if (getHint) {
+              responseMsg = runGpt(new ChatMessage("user", "Define: " + buttonText));
+              System.out.println(responseMsg.getContent());
+              getHint = false;
+            } else {
+              responseMsg = runGpt(new ChatMessage("user", "Is it " + buttonText));
+              System.out.println(responseMsg.getContent());
+            }
             // Update UI based on the response
             Platform.runLater(
                 () -> {
@@ -362,7 +369,6 @@ public class RiddlePuzzleController {
                     btnGetHint.setDisable(false);
                   }
                 });
-
             return null;
           }
         };
