@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -52,6 +53,7 @@ public class LogicGatePuzzleController {
 
   @FXML private Pane pInput14; // end gate
 
+  // list of panes to change colour based on logic in the current wire
   List<Pane> logicInSection;
 
   // Grid of answer logic gates [ROW:COLUMN]
@@ -75,6 +77,9 @@ public class LogicGatePuzzleController {
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
 
+  // stores the image views of the current assembly
+  private List<ImageView> currentAssemblyImages;
+
   // is currently active looking to swap
   private int swapping;
 
@@ -82,7 +87,7 @@ public class LogicGatePuzzleController {
   private String activeHighlight = "1111"; // light grey
 
   // highlight colour for about to swap gate
-  private String swappingHighlight = "3333";
+  private String swappingHighlight = "3333"; // darker grey
 
   // Logic Gate list
   // 0 - AND
@@ -101,17 +106,24 @@ public class LogicGatePuzzleController {
   // final value is calulated, and if true, puzzle is solved
   private List<Boolean> logicTrail;
 
-  private String onLogicColour = "00ff00";
-  private String offLogicColour = "ff0000";
+  private String onLogicColour = "00ff00"; // green
+  private String offLogicColour = "ff0000"; // red
 
-  // layout size is the number of original gates, should only be 2 or 4 depending on diffucity /
-  // time ?
-  private int layoutSize = 4; // TODO: have this change based on difficulty or time (2 or 4)
+  // This is the number of first column gates
+  // x
+  // x
+  // x
+  // x
+  // => 4
+  private int layoutSize = 4;
 
   @FXML
   private void initialize() {
     // saves current logic gate positions in grid
     currentAssembly = new ArrayList<>(); // reserve 6 spaces
+
+    // saves the list of image views in grid
+    currentAssemblyImages = new ArrayList<>();
 
     // stores the imgViews for each section of logic between gates
     logicInSection = new ArrayList<>();
@@ -176,6 +188,14 @@ public class LogicGatePuzzleController {
     logicGates.add(new LogicGate(LogicGate.Logic.XOR)); // XOR
     logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
 
+    currentAssemblyImages.add(imgAnswerGate0);
+    currentAssemblyImages.add(imgAnswerGate1);
+    currentAssemblyImages.add(imgAnswerGate2);
+    currentAssemblyImages.add(imgAnswerGate3);
+    currentAssemblyImages.add(imgAnswerGate4);
+    currentAssemblyImages.add(imgAnswerGate5);
+    currentAssemblyImages.add(imgAnswerGate6);
+
     // add side bar helper images
     setHelperGateImgs();
 
@@ -227,24 +247,19 @@ public class LogicGatePuzzleController {
 
   /** This method will layout the current assembly of logic gates */
   private void updateGateLayout() {
-    // can change this to a list containing imgViews for each gate in later refactor
-    int i = 0;
-    imgAnswerGate0.setImage(currentAssembly.get(i).getImage());
-    i++;
-    imgAnswerGate1.setImage(currentAssembly.get(i).getImage());
-    i++;
-    imgAnswerGate2.setImage(currentAssembly.get(i).getImage());
-    i++;
-    imgAnswerGate3.setImage(currentAssembly.get(i).getImage());
-    i++;
-    imgAnswerGate4.setImage(currentAssembly.get(i).getImage());
-    i++;
-    imgAnswerGate5.setImage(currentAssembly.get(i).getImage());
-    i++;
-    imgAnswerGate6.setImage(currentAssembly.get(i).getImage());
+
+    for (int j = 0; j < currentAssemblyImages.size(); j++) {
+      // set temp image from the current assembly layout
+      Image currentImage = currentAssembly.get(j).getImage();
+      // set the imgView to this image in layout
+      currentAssemblyImages.get(j).setImage(currentImage);
+    }
   }
 
-  /** This method will calculate the logical pathway for the current assembly */
+  /**
+   * This method will calculate the logical pathway for the current assembly This is calculations
+   * based on a grid of logic gates See Rules/Guidance Doccument to understand layout calculations:
+   */
   private void updateLogicTrail() {
     // for now this is of unvarying size
 
@@ -282,22 +297,22 @@ public class LogicGatePuzzleController {
 
     switch (logic) {
       case AND:
-        output = a && b;
+        output = a && b; // bit wise and
         break;
       case NAND:
-        output = !(a && b);
+        output = !(a && b); // not bit wise and
         break;
       case OR:
-        output = a || b;
+        output = a || b; // bit wise or
         break;
       case NOR:
-        output = !(a || b);
+        output = !(a || b); // not bit wise or
         break;
       case XOR:
-        output = ((a || b) && !(a && b));
+        output = ((a || b) && !(a && b)); // (a+b)!(ab)
         break;
       case XNOR:
-        output = a == b;
+        output = a == b; // bit wise equality
         break;
     }
 
@@ -387,7 +402,7 @@ public class LogicGatePuzzleController {
     // switch statement to change all gates based on int active
 
     // clears all
-    pAnswerGate0.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate0.setStyle("-fx-background-color: #FFFF"); // white collour
     pAnswerGate1.setStyle("-fx-background-color: #FFFF");
     pAnswerGate2.setStyle("-fx-background-color: #FFFF");
     pAnswerGate3.setStyle("-fx-background-color: #FFFF");
