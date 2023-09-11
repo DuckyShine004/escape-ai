@@ -1,11 +1,12 @@
 package nz.ac.auckland.se206.controllers.menus;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.controllers.puzzles.LogicGatePuzzleController;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class LosingScreenController {
@@ -32,7 +33,14 @@ public class LosingScreenController {
   private void onPlayAgain() {
 
     resetGlobalVariables();
-    LogicGatePuzzleController.logicGateRestart();
+
+    // try to reset the levels
+    try {
+      SceneManager.onResetLevel();
+    } catch (IOException e) {
+      // on error print stack trace
+      e.printStackTrace();
+    }
 
     // retrieve the max time from gamestate and initialize the timer
     Timer.setTime(GameState.maxTime);
