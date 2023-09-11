@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.TerminalController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="410.0" prefWidth="710.0" style="-fx-background-color: black;" styleClass="green-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <effect>
+            <Bloom />
+         </effect>
+         <children>
+            <TextArea prefHeight="405.0" prefWidth="705.0" styleClass="text-area" stylesheets="@../../css/menus/terminal.css" text="&gt;sdfhsdjkfhkfjsd">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </TextArea>
+         </children>
+      </Pane>
+      <Pane layoutX="5.0" layoutY="422.5" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: black;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+         <children>
+            <Label layoutX="9.0" layoutY="2.0" text="Back" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="92.5" layoutY="422.5" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: black;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <children>
+            <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+      </Pane>
+      <Circle fill="#ff3030" layoutX="686.0" layoutY="447.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <Bloom />
+         </effect>
+      </Circle>
+   </children>
+</Pane>

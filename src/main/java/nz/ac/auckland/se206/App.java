@@ -75,6 +75,9 @@ public class App extends Application {
     // breaker room
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
 
+    // terminal
+    SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
+
     // decryption puzzle in control room
     SceneManager.addAppUi(AppUi.DECRYPTION, loadFxml("puzzles/decryption"));
 
