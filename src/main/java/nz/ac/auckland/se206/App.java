@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.utilities.KeyEventsHandler;
@@ -44,6 +45,10 @@ public class App extends Application {
    */
   private static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+  }
+
+  private static void loadFont(final String font) {
+    Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + ".ttf"), 30);
   }
 
   /*
@@ -86,6 +91,13 @@ public class App extends Application {
   }
 
   /**
+   * This method will initialize fonts. Like with the FXML files, fonts have to be loaded as well.
+   */
+  private void initializeFonts() {
+    loadFont("determination");
+  }
+
+  /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
    * @param stage The primary stage of the application.
@@ -95,6 +107,9 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     // add scenes to sceneManager
     initalizeScenes();
+
+    // initialize fonts
+    initializeFonts();
 
     // Create an instance of KeyEventHandler
     KeyEventsHandler keyEventsHandler = new KeyEventsHandler();

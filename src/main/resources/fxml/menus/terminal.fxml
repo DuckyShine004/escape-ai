@@ -16,12 +16,12 @@
             <Bloom />
          </effect>
          <children>
-            <TextArea fx:id="taTerminal" editable="false" focusTraversable="false" prefHeight="440.0" prefWidth="705.0" styleClass="text-area" stylesheets="@../../css/menus/terminal.css">
+            <TextArea fx:id="taTerminal" disable="true" editable="false" focusTraversable="false" prefHeight="440.0" prefWidth="705.0" styleClass="custom-text-area" stylesheets="@../../css/menus/terminal.css">
                <font>
                   <Font size="18.0" />
                </font>
                <effect>
-                  <Glow level="0.2" />
+                  <Glow level="0.15" />
                </effect>
             </TextArea>
          </children>

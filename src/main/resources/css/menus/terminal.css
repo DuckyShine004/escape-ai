@@ -10,21 +10,30 @@
   -fx-border-width: 3px;
 }
 
-/* For the text area styling*/
-.text-area {
+/* Font styling */
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/determination.ttf");
+}
+
+/* For the text area styling */
+.custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
   -fx-text-inner-color: rgb(0, 255, 0);
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 24;
+  -fx-opacity: 1;
 }
 
-.text-area .scroll-pane {
+.custom-text-area .scroll-pane {
   -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .viewport {
+.custom-text-area .scroll-pane .viewport {
   -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .content {
+.custom-text-area .scroll-pane .content {
   -fx-background-color: transparent;
 }

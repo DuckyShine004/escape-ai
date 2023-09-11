@@ -16,6 +16,6 @@ public class TerminalController {
   }
 
   private void initializeInstructions() {
-    Printer.printText(taTerminal, Instructions.instruction);
+    Printer.printText(taTerminal, Instructions.instruction, Instructions.printSpeed);
   }
 }

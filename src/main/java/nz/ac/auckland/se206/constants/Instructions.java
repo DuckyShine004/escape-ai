@@ -16,4 +16,6 @@ public class Instructions {
           + "> Resolve errors in password.pscode to proceed! \n"
           + "===================================================== \n"
           + "> Awaiting user response... ";
+
+  public static final double printSpeed = 0.025;
 }

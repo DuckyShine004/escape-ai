@@ -8,13 +8,19 @@ import javafx.util.Duration;
 public class Printer {
   private static int letterPosition;
 
-  public static void printText(TextArea textArea, String message) {
+  /**
+   * Prints the message onto the text area, letter by letter.
+   *
+   * @param textArea the passed in text area
+   * @param message the message to be printed
+   */
+  public static void printText(TextArea textArea, String message, double speed) {
     letterPosition = 0;
 
     Timeline printTextEvent =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(0.025),
+                Duration.seconds(speed),
                 event -> {
                   // get the current letter of the string to be appended to the text area
                   char currentCharacter = message.charAt(letterPosition);
