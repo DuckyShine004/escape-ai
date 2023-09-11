@@ -148,28 +148,6 @@ public class LogicGatePuzzleController {
     setUpLogicTrail();
   }
 
-  public static void logicGateRestart() {
-    // TODO: somehow have the level reset
-    System.out.println("RESTARTING");
-  }
-
-  /** TODO: change name, currently this is dead code */
-  public void NONSTATIClogicGateRestart() {
-    currentAssembly.clear();
-    logicInSection.clear();
-
-    swapping = -1;
-
-    logicTrail.clear();
-    for (int i = 0; i < (int) (layoutSize * 3.5 + 1); i++) { // added +1 as debug, proabbly correct
-      logicTrail.add(false); // DEBBUG LOOP
-    }
-
-    setRandomInput();
-    setUpLogicGates();
-    setUpLogicTrail();
-  }
-
   /**
    * This Method sets up the logicGate array list
    *

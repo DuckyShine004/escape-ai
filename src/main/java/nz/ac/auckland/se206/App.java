@@ -66,6 +66,11 @@ public class App extends Application {
     // losing screen
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("menus/losing"));
 
+    // remaining puzzle scenes
+    initalizePuzzleScenes();
+  }
+
+  protected static void initalizePuzzleScenes() throws IOException {
     // office room
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
 
