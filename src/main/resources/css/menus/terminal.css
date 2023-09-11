@@ -1,17 +1,20 @@
+/* For a red border style pane */
 .red-border-pane {
-  -fx-border-color: rgb(255, 0, 0); /* Set the border color to blue */
-  -fx-border-width: 3px; /* Set the border width */
+  -fx-border-color: rgb(255, 0, 0);
+  -fx-border-width: 3px;
 }
 
+/* For a green border style pane */
 .green-border-pane {
-  -fx-border-color: rgb(0, 255, 0); /* Set the border color to blue */
-  -fx-border-width: 3px; /* Set the border width */
+  -fx-border-color: rgb(0, 255, 0);
+  -fx-border-width: 3px;
 }
 
+/* For the text area styling*/
 .text-area {
+  -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
   -fx-text-inner-color: rgb(0, 255, 0);
-  -fx-font-smoothing-type: gray;
 }
 
 .text-area .scroll-pane {

@@ -16,7 +16,7 @@
             <Bloom />
          </effect>
          <children>
-            <TextArea prefHeight="405.0" prefWidth="705.0" styleClass="text-area" stylesheets="@../../css/menus/terminal.css" text="&gt;sdfhsdjkfhkfjsd">
+            <TextArea fx:id="taTerminal" editable="false" focusTraversable="false" prefHeight="440.0" prefWidth="705.0" styleClass="text-area" stylesheets="@../../css/menus/terminal.css">
                <font>
                   <Font size="18.0" />
                </font>
