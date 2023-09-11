@@ -1,12 +1,19 @@
 package nz.ac.auckland.se206.constants;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Instructions {
   public static final String instruction =
       "Copyright (C) Evil Corporations \n"
           + "===================================================== \n"
           + "OS: AIOS \n"
-          + "Date: \n"
-          + "Time: \n"
+          + "Date: "
+          + LocalDate.now()
+          + "\n"
+          + "Time: "
+          + LocalTime.now().toString().substring(0, 8)
+          + "\n"
           + "Resolution: 720x480 \n"
           + "Terminal: CONTROL \n"
           + "===================================================== \n"

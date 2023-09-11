@@ -12,8 +12,8 @@
 
 /* Font styling */
 @font-face {
-  font-family: Determination Mono Web;
-  src: url("/../../fonts/determination.ttf");
+  font-family: Terminus (TTF);
+  src: url("/../../fonts/terminal.ttf");
 }
 
 /* For the text area styling */
@@ -21,8 +21,8 @@
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
   -fx-text-inner-color: rgb(0, 255, 0);
-  -fx-font-family: "Determination Mono Web";
-  -fx-font-size: 24;
+  -fx-font-family: "Terminus (TTF)";
+  -fx-font-size: 23;
   -fx-opacity: 1;
 }
 

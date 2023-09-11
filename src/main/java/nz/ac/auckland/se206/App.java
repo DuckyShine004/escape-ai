@@ -47,8 +47,15 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
-  private static void loadFont(final String font) {
-    Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + ".ttf"), 30);
+  /**
+   * Loads the requested font. The method expects that the file is located in
+   * "src/main/resources/fonts".
+   *
+   * @param font the name of the font file (without extension).
+   * @param size the size of the font.
+   */
+  private static void loadFont(final String font, final int size) {
+    Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + ".ttf"), size);
   }
 
   /*
@@ -80,7 +87,7 @@ public class App extends Application {
     // breaker room
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
 
-    // terminal
+    // terminal scene
     SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
 
     // decryption puzzle in control room
@@ -94,7 +101,8 @@ public class App extends Application {
    * This method will initialize fonts. Like with the FXML files, fonts have to be loaded as well.
    */
   private void initializeFonts() {
-    loadFont("determination");
+    // load the terminal font
+    loadFont("terminal", 23);
   }
 
   /**
