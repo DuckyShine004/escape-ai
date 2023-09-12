@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -276,15 +277,26 @@ public class LogicGatePuzzleController {
   /** This method sets a random number */
   private void setRandomInput() {
 
-    // layout size*2 is number of gates inputs, so 8 inputs required
-    for (int i = 0; i < layoutSize * 2; i++) {
+    List<Boolean> tempLogic = new ArrayList<>();
 
-      // Random Input
-      if (Math.random() < 0.5) {
-        logicTrail.set(i, true);
-      } else {
-        logicTrail.set(i, false);
-      }
+    // layout size*2 is number of gates inputs, so 8 inputs required
+    for (int i = 0; i < layoutSize; i++) {
+      tempLogic.add(true);
+      tempLogic.add(false);
+    }
+
+    for (int j = 0; j < layoutSize * 2; j++) {
+      // add to actual inputs
+
+      // get random value
+      Random rand = new Random();
+      int randomValue = rand.nextInt(tempLogic.size());
+
+      // add random into actual inputs
+      logicTrail.set(j, tempLogic.get(randomValue));
+
+      // remove that value from the auxilliary array
+      tempLogic.remove(randomValue);
     }
   }
 
