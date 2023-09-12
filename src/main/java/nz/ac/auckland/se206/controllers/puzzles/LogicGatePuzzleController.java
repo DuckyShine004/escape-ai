@@ -150,7 +150,7 @@ public class LogicGatePuzzleController {
   /**
    * This Method sets up the logicGate array list
    *
-   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-XNOR
+   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-NOR
    */
   private void setUpLogicGates() {
 
@@ -160,7 +160,7 @@ public class LogicGatePuzzleController {
     // add gates
     logicGates.add(new LogicGate(LogicGate.Logic.AND)); // AND
     logicGates.add(new LogicGate(LogicGate.Logic.OR)); // OR
-    logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
+    logicGates.add(new LogicGate(LogicGate.Logic.NOR)); // NOR
 
     currentAssemblyImages.add(imgAnswerGate0);
     currentAssemblyImages.add(imgAnswerGate1);
@@ -198,20 +198,21 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
 
     Collections.shuffle(currentAssembly); // randomly shuffles the current Assembly
 
     // locked end gate
-    currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+    currentAssembly.add(
+        new LogicGate(LogicGate.Logic.OR)); // start as OR, but change to NOR if already solved
 
     // lays out current assembly
     updateGateLayout();
 
     // set current logic trail
-    updateLogicTrail();
+    updateLogicTrail(true);
   }
 
   /** This method will layout the current assembly of logic gates */
@@ -229,7 +230,7 @@ public class LogicGatePuzzleController {
    * This method will calculate the logical pathway for the current assembly This is calculations
    * based on a grid of logic gates See Rules/Guidance Doccument to understand layout calculations:
    */
-  private void updateLogicTrail() {
+  private void updateLogicTrail(boolean firstTime) {
     // for now this is of unvarying size
 
     // for each circuit in assebmly
@@ -249,6 +250,18 @@ public class LogicGatePuzzleController {
       logicTrail.set((i) * 2 + (8 - i), result);
     }
 
+    // if this is the first time after set up, and the puzzle is already solved
+    if (firstTime && logicTrail.get(logicTrail.size() - 1) == true) {
+
+      // change last gate to XNOR
+      currentAssembly.set(currentAssembly.size() - 1, new LogicGate(LogicGate.Logic.NOR));
+
+      // update visuals of gate layout
+      updateGateLayout();
+
+      // call to update once fixed
+      updateLogicTrail(false);
+    }
     updateDisplayLogicTrail();
   }
 
@@ -274,8 +287,11 @@ public class LogicGatePuzzleController {
         // case XOR:
         //   output = ((a || b) && !(a && b)); // (a+b)!(ab)
         //   break;
-      case XNOR:
-        output = a == b; // equality gate
+        // case XNOR:
+        //   output = a == b; // equality gate
+        //   break;
+      case NOR:
+        output = !(a || b); // not or gate
         break;
     }
 
@@ -429,7 +445,7 @@ public class LogicGatePuzzleController {
     updateActiveBackgrounds(this.swapping);
 
     // update logic trail
-    updateLogicTrail();
+    updateLogicTrail(false);
   }
 
   /*
