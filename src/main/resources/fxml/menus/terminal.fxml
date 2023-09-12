@@ -5,11 +5,9 @@
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.TerminalController">
+<Pane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.TerminalController">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" prefHeight="410.0" prefWidth="710.0" style="-fx-background-color: black;" styleClass="green-border-pane" stylesheets="@../../css/menus/terminal.css">
          <effect>
@@ -26,11 +24,12 @@
             </TextArea>
          </children>
       </Pane>
-      <Pane layoutX="5.0" layoutY="422.5" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: black;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="422.5" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
          <effect>
             <Bloom threshold="0.0" />
          </effect>
          <children>
+            <Pane fx:id="paBackOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
             <Label layoutX="9.0" layoutY="2.0" text="Back" textFill="RED">
                <font>
                   <Font size="30.0" />
@@ -41,8 +40,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="92.5" layoutY="422.5" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: black;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="423.0" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
+            <Pane fx:id="paNextOverlay" blendMode="RED" focusTraversable="true" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
             <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
                <font>
                   <Font size="30.0" />
@@ -56,10 +56,5 @@
             <Bloom threshold="0.0" />
          </effect>
       </Pane>
-      <Circle fill="#ff3030" layoutX="686.0" layoutY="447.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
-         <effect>
-            <Bloom />
-         </effect>
-      </Circle>
    </children>
 </Pane>

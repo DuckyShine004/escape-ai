@@ -72,6 +72,9 @@ public class App extends Application {
     // options in main menu
     SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menus/options"));
 
+    // terminal screen
+    SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
+
     // winning screen
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
 
@@ -91,9 +94,6 @@ public class App extends Application {
 
     // breaker room
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
-
-    // terminal scene
-    SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
 
     // decryption puzzle in control room
     SceneManager.addAppUi(AppUi.DECRYPTION, loadFxml("puzzles/decryption"));

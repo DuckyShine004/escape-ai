@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextArea;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.constants.GameState;
 
 public class Printer {
   private static int letterPosition;
@@ -26,12 +27,22 @@ public class Printer {
                   char currentCharacter = message.charAt(letterPosition);
                   String currentLetter = String.valueOf(currentCharacter);
 
+                  // append the current letter to the text area
                   textArea.appendText(currentLetter);
 
                   letterPosition++;
                 }));
 
+    GameState.isPrinting = true;
+
+    // printing event will finish once the full message has been displayed
     printTextEvent.setCycleCount(message.length());
     printTextEvent.play();
+
+    // let the program know the printing event is finished
+    printTextEvent.setOnFinished(
+        e -> {
+          GameState.isPrinting = false;
+        });
   }
 }
