@@ -29,9 +29,6 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate1;
   @FXML private ImageView imgGate2;
   @FXML private ImageView imgGate3;
-  @FXML private ImageView imgGate4;
-  @FXML private ImageView imgGate5;
-  @FXML private ImageView imgGate6;
 
   // input logic img views
   @FXML private Pane pInput0;
@@ -160,11 +157,8 @@ public class LogicGatePuzzleController {
 
     // add gates
     logicGates.add(new LogicGate(LogicGate.Logic.AND)); // AND
-    logicGates.add(new LogicGate(LogicGate.Logic.NAND)); // NAND
     logicGates.add(new LogicGate(LogicGate.Logic.OR)); // OR
-    logicGates.add(new LogicGate(LogicGate.Logic.NOR)); // NOR
     logicGates.add(new LogicGate(LogicGate.Logic.XOR)); // XOR
-    logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
 
     currentAssemblyImages.add(imgAnswerGate0);
     currentAssemblyImages.add(imgAnswerGate1);
@@ -190,15 +184,6 @@ public class LogicGatePuzzleController {
 
     // loading side bar slot
     imgGate3.setImage(logicGates.get(2).getImage());
-
-    // loading side bar slot
-    imgGate4.setImage(logicGates.get(3).getImage());
-
-    // loading side bar slot
-    imgGate5.setImage(logicGates.get(4).getImage());
-
-    // loading side bar slot
-    imgGate6.setImage(logicGates.get(5).getImage());
   }
 
   /**
@@ -212,7 +197,7 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.XOR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
 
@@ -277,20 +262,11 @@ public class LogicGatePuzzleController {
       case AND:
         output = a && b; // bit wise and
         break;
-      case NAND:
-        output = !(a && b); // not bit wise and
-        break;
       case OR:
         output = a || b; // bit wise or
         break;
-      case NOR:
-        output = !(a || b); // not bit wise or
-        break;
       case XOR:
         output = ((a || b) && !(a && b)); // (a+b)!(ab)
-        break;
-      case XNOR:
-        output = a == b; // bit wise equality
         break;
     }
 
@@ -595,28 +571,6 @@ public class LogicGatePuzzleController {
     //
     if (this.swapping != 5) {
       pAnswerGate5.setStyle("-fx-background-color: #FFFF");
-    }
-  }
-
-  @FXML
-  private void onGate6Clicked(MouseEvent event) {
-    //
-    onClickedGate(6);
-  }
-
-  @FXML
-  private void onGate6Enter(MouseEvent event) {
-    //
-    if (this.swapping != 6) {
-      pAnswerGate6.setStyle("-fx-background-color: #" + activeHighlight);
-    }
-  }
-
-  @FXML
-  private void onGate6Exit(MouseEvent event) {
-    //
-    if (this.swapping != 6) {
-      pAnswerGate6.setStyle("-fx-background-color: #FFFF");
     }
   }
 }

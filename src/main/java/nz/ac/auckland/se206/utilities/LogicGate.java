@@ -10,10 +10,7 @@ public class LogicGate {
   // logic gate enum type
   public enum Logic {
     AND,
-    NAND,
-    NOR,
     OR,
-    XNOR,
     XOR,
   }
 
