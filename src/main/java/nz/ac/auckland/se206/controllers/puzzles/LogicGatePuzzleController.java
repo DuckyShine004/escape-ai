@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import javafx.fxml.FXML;
@@ -149,7 +150,7 @@ public class LogicGatePuzzleController {
   /**
    * This Method sets up the logicGate array list
    *
-   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-NOR :: 4-XOR :: 5-XNOR
+   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-XNOR
    */
   private void setUpLogicGates() {
 
@@ -159,7 +160,7 @@ public class LogicGatePuzzleController {
     // add gates
     logicGates.add(new LogicGate(LogicGate.Logic.AND)); // AND
     logicGates.add(new LogicGate(LogicGate.Logic.OR)); // OR
-    logicGates.add(new LogicGate(LogicGate.Logic.XOR)); // XOR
+    logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
 
     currentAssemblyImages.add(imgAnswerGate0);
     currentAssemblyImages.add(imgAnswerGate1);
@@ -197,9 +198,13 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.XOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+
+    Collections.shuffle(currentAssembly); // randomly shuffles the current Assembly
+
+    // locked end gate
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
 
     // lays out current assembly
@@ -266,8 +271,11 @@ public class LogicGatePuzzleController {
       case OR:
         output = a || b; // bit wise or
         break;
-      case XOR:
-        output = ((a || b) && !(a && b)); // (a+b)!(ab)
+        // case XOR:
+        //   output = ((a || b) && !(a && b)); // (a+b)!(ab)
+        //   break;
+      case XNOR:
+        output = a == b; // equality gate
         break;
     }
 

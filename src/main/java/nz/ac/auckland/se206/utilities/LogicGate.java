@@ -11,7 +11,7 @@ public class LogicGate {
   public enum Logic {
     AND,
     OR,
-    XOR,
+    XNOR,
   }
 
   private Logic type;
