@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -97,6 +98,8 @@ public class LogicGatePuzzleController {
   // 5 - XNOR
   private List<LogicGate> logicGates;
 
+  private List<ImageView> helperGates;
+
   // logic pathway list that stores the current boolean logic in each node entering and exiting
   // store as list
   // first 8 positions are the inital given logic
@@ -178,14 +181,18 @@ public class LogicGatePuzzleController {
 
   /** This method sets up the right side bar logic gate guide */
   private void setHelperGateImgs() {
-    //  loading side bar slot
-    imgGate1.setImage(logicGates.get(0).getImage());
 
-    // loading side bar slot
-    imgGate2.setImage(logicGates.get(1).getImage());
+    helperGates = new ArrayList<>();
 
-    // loading side bar slot
-    imgGate3.setImage(logicGates.get(2).getImage());
+    // add helper gates to array
+    helperGates.add(imgGate1);
+    helperGates.add(imgGate2);
+    helperGates.add(imgGate3);
+
+    // sets the logic gate images
+    for (int i = 0; i < helperGates.size(); i++) {
+      helperGates.get(i).setImage(logicGates.get(i).getImage());
+    }
   }
 
   /**
@@ -608,5 +615,61 @@ public class LogicGatePuzzleController {
     if (this.swapping != 5) {
       pAnswerGate5.setStyle("-fx-background-color: #FFFF");
     }
+  }
+
+  /**
+   * This method toggles the gate and table image of the given helperGate
+   *
+   * @param helperGate
+   */
+  private void toggleHelperGate(int helperGate) {
+
+    // get the current helper gate clicked
+    ImageView currentGate = helperGates.get(helperGate);
+
+    // get the current image displayed
+    Image currentImage = currentGate.getImage();
+
+    // get the gate and table images
+    Image gateImage = logicGates.get(helperGate).getImage();
+    Image tableImage = logicGates.get(helperGate).getTable();
+
+    if (currentImage == gateImage) {
+      // change to table image
+      currentGate.setImage(tableImage);
+    } else {
+      // change to gate image
+      currentGate.setImage(gateImage);
+    }
+  }
+
+  /**
+   * This method is the on click method for helper gate 1
+   *
+   * @param event
+   */
+  @FXML
+  private void onHelper1Clicked(Event event) {
+    toggleHelperGate(0);
+  }
+
+  /**
+   * This method is the on click method for helper gate 2
+   *
+   * @param event
+   */
+  @FXML
+  private void onHelper2Clicked(Event event) {
+    toggleHelperGate(1);
+  }
+
+  /**
+   * This method is the on click method for helper gate 3
+   *
+   * @param event
+   */
+  @FXML
+  private void onHelper3Clicked(Event event) {
+    toggleHelperGate(2);
   }
 }
