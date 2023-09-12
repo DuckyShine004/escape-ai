@@ -99,9 +99,9 @@
                   </Pane>
                   <HBox prefHeight="77.0" prefWidth="212.0">
                      <children>
-                        <ImageView fx:id="imgGate1" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate2" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate3" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate1" fitHeight="70.0" fitWidth="106.0" onMouseClicked="#onHelper1Clicked" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate2" fitHeight="70.0" fitWidth="106.0" onMouseClicked="#onHelper2Clicked" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate3" fitHeight="70.0" fitWidth="106.0" onMouseClicked="#onHelper3Clicked" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
