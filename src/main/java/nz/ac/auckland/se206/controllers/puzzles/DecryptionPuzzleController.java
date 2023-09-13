@@ -2,6 +2,9 @@ package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
 import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
 import nz.ac.auckland.se206.constants.Declaration;
 import nz.ac.auckland.se206.constants.Description;
@@ -10,6 +13,9 @@ import nz.ac.auckland.se206.constants.Sequence;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
+  @FXML private Pane paBack;
+  @FXML private Pane paBackOverlay;
+
   private int psuedocodeIndex;
 
   private String sequence;
@@ -32,6 +38,24 @@ public class DecryptionPuzzleController {
     initializeAlgorithm();
     initializeDescription();
     initializeDeclaration();
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  @FXML
+  private void onBackPaneEntered() {
+    paBackOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (back). */
+  @FXML
+  private void onBackPaneExited() {
+    paBackOverlay.setVisible(false);
+  }
+
+  /** When back is clicked, go back to previous section (control room). */
+  @FXML
+  private void onBackPaneClicked() {
+    App.setUi(AppUi.TERMINAL);
   }
 
   /**
