@@ -6,20 +6,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
       <Button fx:id="btnLeft" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefWidth="100.0" text="Left" />
       <Text layoutX="20.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go left" wrappingWidth="100.0" />
       <Button fx:id="btnRight" layoutX="480.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefWidth="100.0" text="Right" />
       <Text layoutX="480.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go right" wrappingWidth="100.0" />
-      <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Room">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Label fx:id="lblTime" layoutX="480.0" layoutY="19.0" text="Timer Text: 00:00" />
       <Text layoutX="130.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Swipe down to open a console (GUI) which allows the player to interact with the AI- Kind of like in FNAF, this way it won't break the immersion" wrappingWidth="340.0" />
       <Text layoutX="234.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert Background Image" />
       <Button fx:id="btnPlayPuzzle" layoutX="232.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#onPlayPuzzleButton" text="Play Decryption Puzzle" />
+      <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
+         <children>
+            <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Control Room">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="375.0" layoutY="17.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints Left: 0/4" />
+            <Button layoutX="463.0" layoutY="12.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
+         </children>
+      </Pane>
    </children>
 </Pane>
