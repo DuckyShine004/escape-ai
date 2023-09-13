@@ -3,6 +3,9 @@ package nz.ac.auckland.se206.controllers.menus;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.utilities.Printer;
 
@@ -18,7 +21,7 @@ public class TerminalController {
   /** Initializes the terminal screen. */
   @FXML
   private void initialize() {
-    initializeInstructions();
+    initializeTerminal();
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -45,20 +48,49 @@ public class TerminalController {
     paNextOverlay.setVisible(false);
   }
 
-  /** When back is clicked, go back to previous section. */
+  /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
-    System.out.println("Back Clicked");
+    App.setUi(AppUi.CONTROL);
   }
 
   /** When next is clicked, move on to the next thing. */
   @FXML
   private void onNextPaneClicked() {
-    System.out.println("Next Clicked");
+    // if there is a printing event, just exit out of the function call
+    if (GameState.isPrinting) {
+      return;
+    }
+
+    // print the instructions if it has not been printed yet
+    if (!Instructions.isInstructionsPrinted) {
+      printToTextArea(taTerminal, Instructions.instructions, Instructions.printSpeed);
+      Instructions.isInstructionsPrinted = true;
+
+      return;
+    }
+
+    // move on to the decryption puzzle
+    App.setUi(AppUi.DECRYPTION);
   }
 
-  /** Prints the initial instruction onto the screen. */
-  private void initializeInstructions() {
-    Printer.printText(taTerminal, Instructions.instruction, Instructions.printSpeed);
+  /** Initializes the bootup message. */
+  private void initializeTerminal() {
+    printToTextArea(taTerminal, Instructions.bootup, Instructions.printSpeed);
+  }
+
+  /**
+   * Prints the message to be displayed to a text area.
+   *
+   * @param textArea the text area.
+   * @param message the message to be printed to the text area.
+   * @param speed the printing speed.
+   */
+  private void printToTextArea(TextArea textArea, String message, double speed) {
+    // clear the text area before printing to the terminal
+    textArea.clear();
+
+    // print the message to the text area
+    Printer.printText(textArea, message, speed);
   }
 }

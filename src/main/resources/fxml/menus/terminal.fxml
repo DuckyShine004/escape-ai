@@ -40,9 +40,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="423.0" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="423.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
-            <Pane fx:id="paNextOverlay" blendMode="RED" focusTraversable="true" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
+            <Pane fx:id="paNextOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
             <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
                <font>
                   <Font size="30.0" />

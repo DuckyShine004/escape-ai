@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Instructions {
-  public static final String instruction =
+  public static final String bootup =
       "Copyright (C) Evil Corporations \n"
           + "===================================================== \n"
           + "OS: AIOS \n"
@@ -24,5 +24,20 @@ public class Instructions {
           + "===================================================== \n"
           + "> Awaiting user response... ";
 
-  public static final double printSpeed = 0.025;
+  public static final String instructions =
+      "Copyright (C) Evil Corporations \n"
+          + "===================================================== \n"
+          + "> Diagnosing password.pscode... \n"
+          + "> Errors detected: 4 \n"
+          + "===================================================== \n"
+          + "INSTRUCTIONS \n"
+          + "===================================================== \n"
+          + "> Detect all errors in the code... \n"
+          + "> Input incorrect line numbers into terminal... \n"
+          + "> Sequence is read from top to bottom... \n"
+          + "===================================================== \n"
+          + "> Awaiting user response... ";
+
+  public static final double printSpeed = 0.020;
+  public static boolean isInstructionsPrinted = false;
 }
