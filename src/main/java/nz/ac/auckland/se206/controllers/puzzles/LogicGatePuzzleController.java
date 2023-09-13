@@ -74,6 +74,8 @@ public class LogicGatePuzzleController {
   // END gate
   @FXML private ImageView imgAnswerGate6;
 
+  @FXML private Label lblTime;
+
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
 
@@ -121,6 +123,10 @@ public class LogicGatePuzzleController {
 
   @FXML
   private void initialize() {
+
+    // start timer
+    Timer.addLabel(lblTime);
+
     // saves current logic gate positions in grid
     currentAssembly = new ArrayList<>(); // reserve 6 spaces
 
