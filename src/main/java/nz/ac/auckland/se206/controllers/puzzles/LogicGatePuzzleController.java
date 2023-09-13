@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -29,9 +32,6 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate1;
   @FXML private ImageView imgGate2;
   @FXML private ImageView imgGate3;
-  @FXML private ImageView imgGate4;
-  @FXML private ImageView imgGate5;
-  @FXML private ImageView imgGate6;
 
   // input logic img views
   @FXML private Pane pInput0;
@@ -98,6 +98,8 @@ public class LogicGatePuzzleController {
   // 5 - XNOR
   private List<LogicGate> logicGates;
 
+  private List<ImageView> helperGates;
+
   // logic pathway list that stores the current boolean logic in each node entering and exiting
   // store as list
   // first 8 positions are the inital given logic
@@ -148,32 +150,10 @@ public class LogicGatePuzzleController {
     setUpLogicTrail();
   }
 
-  public static void logicGateRestart() {
-    // TODO: somehow have the level reset
-    System.out.println("RESTARTING");
-  }
-
-  /** TODO: change name, currently this is dead code */
-  public void NONSTATIClogicGateRestart() {
-    currentAssembly.clear();
-    logicInSection.clear();
-
-    swapping = -1;
-
-    logicTrail.clear();
-    for (int i = 0; i < (int) (layoutSize * 3.5 + 1); i++) { // added +1 as debug, proabbly correct
-      logicTrail.add(false); // DEBBUG LOOP
-    }
-
-    setRandomInput();
-    setUpLogicGates();
-    setUpLogicTrail();
-  }
-
   /**
    * This Method sets up the logicGate array list
    *
-   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-NOR :: 4-XOR :: 5-XNOR
+   * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-NOR
    */
   private void setUpLogicGates() {
 
@@ -182,11 +162,8 @@ public class LogicGatePuzzleController {
 
     // add gates
     logicGates.add(new LogicGate(LogicGate.Logic.AND)); // AND
-    logicGates.add(new LogicGate(LogicGate.Logic.NAND)); // NAND
     logicGates.add(new LogicGate(LogicGate.Logic.OR)); // OR
     logicGates.add(new LogicGate(LogicGate.Logic.NOR)); // NOR
-    logicGates.add(new LogicGate(LogicGate.Logic.XOR)); // XOR
-    logicGates.add(new LogicGate(LogicGate.Logic.XNOR)); // XNOR
 
     currentAssemblyImages.add(imgAnswerGate0);
     currentAssemblyImages.add(imgAnswerGate1);
@@ -204,23 +181,18 @@ public class LogicGatePuzzleController {
 
   /** This method sets up the right side bar logic gate guide */
   private void setHelperGateImgs() {
-    //  loading side bar slot
-    imgGate1.setImage(logicGates.get(0).getImage());
 
-    // loading side bar slot
-    imgGate2.setImage(logicGates.get(1).getImage());
+    helperGates = new ArrayList<>();
 
-    // loading side bar slot
-    imgGate3.setImage(logicGates.get(2).getImage());
+    // add helper gates to array
+    helperGates.add(imgGate1);
+    helperGates.add(imgGate2);
+    helperGates.add(imgGate3);
 
-    // loading side bar slot
-    imgGate4.setImage(logicGates.get(3).getImage());
-
-    // loading side bar slot
-    imgGate5.setImage(logicGates.get(4).getImage());
-
-    // loading side bar slot
-    imgGate6.setImage(logicGates.get(5).getImage());
+    // sets the logic gate images
+    for (int i = 0; i < helperGates.size(); i++) {
+      helperGates.get(i).setImage(logicGates.get(i).getImage());
+    }
   }
 
   /**
@@ -233,16 +205,21 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.XNOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+
+    Collections.shuffle(currentAssembly); // randomly shuffles the current Assembly
+
+    // locked end gate
+    currentAssembly.add(
+        new LogicGate(LogicGate.Logic.OR)); // start as OR, but change to NOR if already solved
 
     // lays out current assembly
     updateGateLayout();
 
     // set current logic trail
-    updateLogicTrail();
+    updateLogicTrail(true);
   }
 
   /** This method will layout the current assembly of logic gates */
@@ -260,7 +237,7 @@ public class LogicGatePuzzleController {
    * This method will calculate the logical pathway for the current assembly This is calculations
    * based on a grid of logic gates See Rules/Guidance Doccument to understand layout calculations:
    */
-  private void updateLogicTrail() {
+  private void updateLogicTrail(boolean firstTime) {
     // for now this is of unvarying size
 
     // for each circuit in assebmly
@@ -280,6 +257,18 @@ public class LogicGatePuzzleController {
       logicTrail.set((i) * 2 + (8 - i), result);
     }
 
+    // if this is the first time after set up, and the puzzle is already solved
+    if (firstTime && logicTrail.get(logicTrail.size() - 1) == true) {
+
+      // change last gate to XNOR
+      currentAssembly.set(currentAssembly.size() - 1, new LogicGate(LogicGate.Logic.NOR));
+
+      // update visuals of gate layout
+      updateGateLayout();
+
+      // call to update once fixed
+      updateLogicTrail(false);
+    }
     updateDisplayLogicTrail();
   }
 
@@ -299,20 +288,17 @@ public class LogicGatePuzzleController {
       case AND:
         output = a && b; // bit wise and
         break;
-      case NAND:
-        output = !(a && b); // not bit wise and
-        break;
       case OR:
         output = a || b; // bit wise or
         break;
+        // case XOR:
+        //   output = ((a || b) && !(a && b)); // (a+b)!(ab)
+        //   break;
+        // case XNOR:
+        //   output = a == b; // equality gate
+        //   break;
       case NOR:
-        output = !(a || b); // not bit wise or
-        break;
-      case XOR:
-        output = ((a || b) && !(a && b)); // (a+b)!(ab)
-        break;
-      case XNOR:
-        output = a == b; // bit wise equality
+        output = !(a || b); // not or gate
         break;
     }
 
@@ -322,15 +308,26 @@ public class LogicGatePuzzleController {
   /** This method sets a random number */
   private void setRandomInput() {
 
-    // layout size*2 is number of gates inputs, so 8 inputs required
-    for (int i = 0; i < layoutSize * 2; i++) {
+    List<Boolean> tempLogic = new ArrayList<>();
 
-      // Random Input
-      if (Math.random() < 0.5) {
-        logicTrail.set(i, true);
-      } else {
-        logicTrail.set(i, false);
-      }
+    // layout size*2 is number of gates inputs, so 8 inputs required
+    for (int i = 0; i < layoutSize; i++) {
+      tempLogic.add(true);
+      tempLogic.add(false);
+    }
+
+    for (int j = 0; j < layoutSize * 2; j++) {
+      // add to actual inputs
+
+      // get random value
+      Random rand = new Random();
+      int randomValue = rand.nextInt(tempLogic.size());
+
+      // add random into actual inputs
+      logicTrail.set(j, tempLogic.get(randomValue));
+
+      // remove that value from the auxilliary array
+      tempLogic.remove(randomValue);
     }
   }
 
@@ -455,7 +452,7 @@ public class LogicGatePuzzleController {
     updateActiveBackgrounds(this.swapping);
 
     // update logic trail
-    updateLogicTrail();
+    updateLogicTrail(false);
   }
 
   /*
@@ -620,25 +617,59 @@ public class LogicGatePuzzleController {
     }
   }
 
-  @FXML
-  private void onGate6Clicked(MouseEvent event) {
-    //
-    onClickedGate(6);
-  }
+  /**
+   * This method toggles the gate and table image of the given helperGate
+   *
+   * @param helperGate
+   */
+  private void toggleHelperGate(int helperGate) {
 
-  @FXML
-  private void onGate6Enter(MouseEvent event) {
-    //
-    if (this.swapping != 6) {
-      pAnswerGate6.setStyle("-fx-background-color: #" + activeHighlight);
+    // get the current helper gate clicked
+    ImageView currentGate = helperGates.get(helperGate);
+
+    // get the current image displayed
+    Image currentImage = currentGate.getImage();
+
+    // get the gate and table images
+    Image gateImage = logicGates.get(helperGate).getImage();
+    Image tableImage = logicGates.get(helperGate).getTable();
+
+    if (currentImage == gateImage) {
+      // change to table image
+      currentGate.setImage(tableImage);
+    } else {
+      // change to gate image
+      currentGate.setImage(gateImage);
     }
   }
 
+  /**
+   * This method is the on click method for helper gate 1
+   *
+   * @param event
+   */
   @FXML
-  private void onGate6Exit(MouseEvent event) {
-    //
-    if (this.swapping != 6) {
-      pAnswerGate6.setStyle("-fx-background-color: #FFFF");
-    }
+  private void onHelper1Clicked(Event event) {
+    toggleHelperGate(0);
+  }
+
+  /**
+   * This method is the on click method for helper gate 2
+   *
+   * @param event
+   */
+  @FXML
+  private void onHelper2Clicked(Event event) {
+    toggleHelperGate(1);
+  }
+
+  /**
+   * This method is the on click method for helper gate 3
+   *
+   * @param event
+   */
+  @FXML
+  private void onHelper3Clicked(Event event) {
+    toggleHelperGate(2);
   }
 }

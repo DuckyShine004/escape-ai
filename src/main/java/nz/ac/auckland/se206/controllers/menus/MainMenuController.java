@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206.controllers.menus;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.Timer;
@@ -28,6 +30,13 @@ public class MainMenuController {
   private void onStartButton() {
 
     resetGlobalVariables();
+
+    try {
+      SceneManager.onResetLevel();
+    } catch (IOException e) {
+      // on error print stack trace
+      e.printStackTrace();
+    }
 
     // Set the timer's countdown time
     Timer.setTime(GameState.maxTime);

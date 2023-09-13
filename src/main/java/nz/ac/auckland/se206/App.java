@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.utilities.KeyEventsHandler;
@@ -46,6 +47,17 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
+  /**
+   * Loads the requested font. The method expects that the file is located in
+   * "src/main/resources/fonts".
+   *
+   * @param font the name of the font file (without extension).
+   * @param size the size of the font.
+   */
+  private static void loadFont(final String font, final int size) {
+    Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + ".ttf"), size);
+  }
+
   /*
    * This method will initalize the scenes, by storing instatnces of the loaded fxmls in SceneManager
    * @throws IOException if fxml is not found
@@ -60,12 +72,20 @@ public class App extends Application {
     // options in main menu
     SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menus/options"));
 
+    // terminal screen
+    SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
+
     // winning screen
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
 
     // losing screen
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("menus/losing"));
 
+    // remaining puzzle scenes
+    initalizePuzzleScenes();
+  }
+
+  protected static void initalizePuzzleScenes() throws IOException {
     // office room
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
 
@@ -83,6 +103,14 @@ public class App extends Application {
   }
 
   /**
+   * This method will initialize fonts. Like with the FXML files, fonts have to be loaded as well.
+   */
+  private void initializeFonts() {
+    // load the terminal font
+    loadFont("terminal", 23);
+  }
+
+  /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
    * @param stage The primary stage of the application.
@@ -92,6 +120,9 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     // add scenes to sceneManager
     initalizeScenes();
+
+    // initialize fonts
+    initializeFonts();
 
     // Create an instance of KeyEventHandler
     KeyEventsHandler keyEventsHandler = new KeyEventsHandler();

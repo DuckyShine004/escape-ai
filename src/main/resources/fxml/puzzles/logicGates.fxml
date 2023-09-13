@@ -74,7 +74,7 @@
                         </Pane>
                         <Pane fx:id="pAnswerGate6" layoutX="342.0" layoutY="131.0" prefHeight="75.0" prefWidth="85.0">
                            <children>
-                              <ImageView fx:id="imgAnswerGate6" fitHeight="70.0" fitWidth="80.0" onMouseClicked="#onGate6Clicked" onMouseEntered="#onGate6Enter" onMouseExited="#onGate6Exit" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgAnswerGate6" fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor></ImageView>
@@ -99,12 +99,9 @@
                   </Pane>
                   <HBox prefHeight="77.0" prefWidth="212.0">
                      <children>
-                        <ImageView fx:id="imgGate1" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate2" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate3" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate4" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate5" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgGate6" fitHeight="70.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate1" fitHeight="70.0" fitWidth="106.0" onMouseClicked="#onHelper1Clicked" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate2" fitHeight="70.0" fitWidth="106.0" onMouseClicked="#onHelper2Clicked" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGate3" fitHeight="70.0" fitWidth="106.0" onMouseClicked="#onHelper3Clicked" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
