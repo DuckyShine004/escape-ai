@@ -31,7 +31,7 @@ public class GeneralOfficeController {
   /** On mouse clicked, if the button is pressed, then switch to the left scene. */
   @FXML
   private void onLeftButton() {
-    App.setUi(AppUi.TERMINAL);
+    App.setUi(AppUi.CONTROL);
   }
 
   /** On mouse clicked, if the button is pressed, then switch to the right scene. */

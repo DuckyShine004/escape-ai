@@ -24,7 +24,7 @@
             </TextArea>
          </children>
       </Pane>
-      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="422.5" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
          <effect>
             <Bloom threshold="0.0" />
          </effect>
@@ -40,7 +40,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="423.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="425.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
             <Pane fx:id="paNextOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
             <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
