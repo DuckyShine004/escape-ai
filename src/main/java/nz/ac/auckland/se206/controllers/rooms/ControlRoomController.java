@@ -34,9 +34,9 @@ public class ControlRoomController {
     App.setUi(AppUi.OFFICE);
   }
 
-  /** On mouse clicked, if the button is pressed, then switch to the decryption puzzle scene. */
+  /** On mouse clicked, if the button is pressed, then switch to the terminal scene. */
   @FXML
   private void onPlayPuzzleButton() {
-    App.setUi(AppUi.DECRYPTION);
+    App.setUi(AppUi.TERMINAL);
   }
 }

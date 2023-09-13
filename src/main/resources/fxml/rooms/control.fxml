@@ -14,7 +14,7 @@
       <Text layoutX="480.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go right" wrappingWidth="100.0" />
       <Text layoutX="130.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Swipe down to open a console (GUI) which allows the player to interact with the AI- Kind of like in FNAF, this way it won't break the immersion" wrappingWidth="340.0" />
       <Text layoutX="234.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert Background Image" />
-      <Button fx:id="btnPlayPuzzle" layoutX="232.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#onPlayPuzzleButton" text="Play Decryption Puzzle" />
+      <Button fx:id="btnPlayPuzzle" layoutX="232.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#onPlayPuzzleButton" prefHeight="25.0" prefWidth="133.0" text="Enter Terminal" />
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
             <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />

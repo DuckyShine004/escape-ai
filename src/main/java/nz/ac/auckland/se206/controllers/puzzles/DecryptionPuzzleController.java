@@ -1,12 +1,8 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
@@ -17,26 +13,8 @@ import nz.ac.auckland.se206.constants.Sequence;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
-  @FXML private Label lblSequence;
-
-  @FXML private Button btn1;
-  @FXML private Button btn2;
-  @FXML private Button btn3;
-  @FXML private Button btn4;
-  @FXML private Button btn5;
-  @FXML private Button btn6;
-  @FXML private Button btn7;
-  @FXML private Button btn8;
-  @FXML private Button btn9;
-
-  @FXML private Button btnBack;
-  @FXML private Button btnClear;
-  @FXML private Button btnEnter;
-  @FXML private Button btnBackSpace;
-
-  @FXML private TextArea taAlgorithm;
-  @FXML private TextArea taDescription;
-  @FXML private TextArea taDeclaration;
+  @FXML private Pane paBack;
+  @FXML private Pane paBackOverlay;
 
   private int psuedocodeIndex;
 
@@ -51,83 +29,33 @@ public class DecryptionPuzzleController {
     initializePseudocode();
   }
 
-  /** On mouse clicked, if the button is pressed, then switch to the control room scene. */
-  @FXML
-  private void onBackButton() {
-    App.setUi(AppUi.CONTROL);
-  }
-
-  /** On mouse clicked, if the button is pressed, clear the player's current sequence input. */
-  @FXML
-  private void onClearButton() {
-    lblSequence.setText("");
-  }
-
-  /** On mouse clicked, if the button is pressed, remove the last digit from the sequence. */
-  @FXML
-  private void onBackSpaceButton() {
-    int length = lblSequence.getText().length();
-
-    // check if the input is already zero
-    if (length == 0) {
-      return;
-    }
-
-    lblSequence.setText(lblSequence.getText().substring(0, length - 1));
-  }
-
-  @FXML
-  private void onEnterButton() {
-    if (lblSequence.getText().equals(sequence)) {
-      System.out.println("CORRECT");
-    }
-  }
-
-  /** On mouse clicked, if a number button is pressed, add the number to the sequence. */
-  @FXML
-  private void onNumberButton(ActionEvent event) {
-    // check if the player's input is too long
-    if (lblSequence.getText().length() == GameState.maxSequence) {
-      return;
-    }
-
-    lblSequence.setText(lblSequence.getText() + getButtonIndex(event));
-  }
-
-  /**
-   * Initializes the pseudocode snippets. A random pseudocode index will be picked at run time, then
-   * the text areas will be set up for the corresponding code snippets.
-   *
-   * @throws Exception throw when class or field name is not found.
-   */
   private void initializePseudocode() throws Exception {
-    // get a random pseudocode index
-    psuedocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
+    // get a random pseudo code
+    psuedocodeIndex = (int) Math.random() * GameState.maxPseudocodes;
 
-    // get the sequence for the corresponding psuedocode snippet
-    sequence = getSequence();
-
-    // get the psuedocode snippets
-    algorithm = getAlgorithm();
-    description = getDescription();
-    declaration = getDeclaration();
-
-    // set up the text areas
-    taAlgorithm.appendText(algorithm);
-    taDescription.appendText(description);
-    taDeclaration.appendText(declaration);
+    // get the sequence, algorithm, desciption, and declaration of the pseudocode
+    intializeSequence();
+    initializeAlgorithm();
+    initializeDescription();
+    initializeDeclaration();
   }
 
-  /**
-   * On mouse clicked, return the index of the button pressed.
-   *
-   * @param event the event representing the type of action.
-   * @return the button index of the button pressed.
-   */
-  private String getButtonIndex(ActionEvent event) {
-    String buttonIndex = ((Control) event.getSource()).getId();
+  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  @FXML
+  private void onBackPaneEntered() {
+    paBackOverlay.setVisible(true);
+  }
 
-    return buttonIndex.substring(buttonIndex.length() - 1);
+  /** When the mouse is not hovering over the pane, the overlay disappears (back). */
+  @FXML
+  private void onBackPaneExited() {
+    paBackOverlay.setVisible(false);
+  }
+
+  /** When back is clicked, go back to previous section (control room). */
+  @FXML
+  private void onBackPaneClicked() {
+    App.setUi(AppUi.TERMINAL);
   }
 
   /**
@@ -136,7 +64,7 @@ public class DecryptionPuzzleController {
    * @return the string value of the sequence.
    * @throws Exception throw when class or field name is not found.
    */
-  private String getSequence() throws Exception {
+  private void intializeSequence() throws Exception {
     // get the field name for the corresponding random pseudocode index
     String fieldName = "sequence" + Integer.toString(psuedocodeIndex);
 
@@ -150,9 +78,7 @@ public class DecryptionPuzzleController {
     Field fld = cls.getField(fieldName);
 
     // retrieve the object value from the field and cast it to string
-    String value = (String) fld.get(sequence);
-
-    return value;
+    this.sequence = (String) fld.get(sequence);
   }
 
   /**
@@ -161,7 +87,7 @@ public class DecryptionPuzzleController {
    * @return the string value of the algorithm code snippet.
    * @throws Exception throw when class or field name is not found.
    */
-  private String getAlgorithm() throws Exception {
+  private void initializeAlgorithm() throws Exception {
     // get the field name for the corresponding random pseudocode index
     String fieldName = "algorithm" + Integer.toString(psuedocodeIndex);
 
@@ -175,9 +101,7 @@ public class DecryptionPuzzleController {
     Field fld = cls.getField(fieldName);
 
     // retrieve the object value from the field and cast it to string
-    String value = (String) fld.get(algorithm);
-
-    return value;
+    this.algorithm = (String) fld.get(algorithm);
   }
 
   /**
@@ -186,7 +110,7 @@ public class DecryptionPuzzleController {
    * @return the string value of the description.
    * @throws Exception throw when class or field name is not found.
    */
-  private String getDescription() throws Exception {
+  private void initializeDescription() throws Exception {
     // get the field name for the corresponding random pseudocode index
     String fieldName = "description" + Integer.toString(psuedocodeIndex);
 
@@ -200,9 +124,7 @@ public class DecryptionPuzzleController {
     Field fld = cls.getField(fieldName);
 
     // retrieve the object value from the field and cast it to string
-    String value = (String) fld.get(description);
-
-    return value;
+    this.description = (String) fld.get(description);
   }
 
   /**
@@ -211,7 +133,7 @@ public class DecryptionPuzzleController {
    * @return the string value of the declaration code snippet.
    * @throws Exception throw when class or field name is not found.
    */
-  private String getDeclaration() throws Exception {
+  private void initializeDeclaration() throws Exception {
     // get the field name for the corresponding random pseudocode index
     String fieldName = "declaration" + Integer.toString(psuedocodeIndex);
 
@@ -225,8 +147,6 @@ public class DecryptionPuzzleController {
     Field fld = cls.getField(fieldName);
 
     // retrieve the object value from the field and cast it to string
-    String value = (String) fld.get(declaration);
-
-    return value;
+    this.declaration = (String) fld.get(declaration);
   }
 }
