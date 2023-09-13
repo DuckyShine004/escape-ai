@@ -7,29 +7,35 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BreakerRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BreakerRoomController">
    <children>
-      <Pane layoutX="3.0" prefHeight="31.0" prefWidth="592.0">
+      <Pane layoutX="-6.0" prefHeight="50.0" prefWidth="726.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
-            <Label layoutX="14.0" layoutY="2.0" prefHeight="32.0" prefWidth="153.0" text="Breaker Room">
+            <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Breaker Room">
                <font>
-                  <Font size="22.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="lblTime" layoutX="473.0" layoutY="10.0" text="Future Timer:  00:00" />
-            <Label layoutX="225.0" layoutY="7.0" text="Very Early Layout Concept" />
+            <Label layoutX="375.0" layoutY="17.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints Left: 0/4" />
+            <Button layoutX="463.0" layoutY="12.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
       <Label layoutX="244.0" layoutY="337.0" text="Label" />
-      <Pane layoutX="14.0" layoutY="32.0" prefHeight="279.0" prefWidth="367.0">
+      <Pane layoutX="14.0" layoutY="71.0" prefHeight="237.0" prefWidth="367.0">
          <children>
             <Label layoutX="123.0" layoutY="129.0" text="Back Ground Image" />
             <Button layoutX="113.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#onOpenLogicGatePuzzle" text="Open Logic Gate Puzzle" />
          </children>
       </Pane>
-      <TextArea layoutX="408.0" layoutY="32.0" prefHeight="269.0" prefWidth="178.0" promptText="Maybe this is a side GPT interaction panel that explains what needs to be done..?" />
-      <TextField layoutX="408.0" layoutY="301.0" />
-      <Button layoutX="558.0" layoutY="301.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" />
+      <TextArea layoutX="530.0" layoutY="75.0" prefHeight="230.0" prefWidth="178.0" promptText="Maybe this is a side GPT interaction panel that explains what needs to be done..?" />
+      <TextField layoutX="529.0" layoutY="308.0" />
+      <Button layoutX="678.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" />
       <Button fx:id="btnRight" layoutX="480.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefWidth="100.0" text="Right" />
       <Button fx:id="btnLeft" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefWidth="100.0" text="Left" />
    </children>

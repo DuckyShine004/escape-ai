@@ -1,0 +1,23 @@
+.header-pane {
+  -fx-background-color: black;
+
+}
+
+.title-text {
+ -fx-text-fill: white;
+}
+
+.hints-text {
+  -fx-text-fill: white;
+}
+
+.hint-button {
+  -fx-text-fill: white;
+  -fx-background-color: rgb(100, 100, 100);
+  
+}
+
+.timer {
+  -fx-text-fill: white;
+
+}
