@@ -53,5 +53,22 @@
       </VBox>
       <Button layoutX="5.0" layoutY="450.0" mnemonicParsing="false" text="Generate Hint" />
       <Button fx:id="btnBack" layoutX="100.0" layoutY="450.0" mnemonicParsing="false" onMouseClicked="#onBackButton" prefWidth="200.0" text="Go Back (Control Room)" />
+      <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
+         <children>
+            <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Decryption Puzzle">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="375.0" layoutY="17.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints Left: 0/4" />
+            <Button layoutX="463.0" layoutY="12.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
+         </children>
+      </Pane>
    </children>
 </Pane>
