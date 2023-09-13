@@ -13,6 +13,7 @@ public class SceneManager {
     CONTROL,
     DECRYPTION,
     BREAKER,
+    TERMINAL,
     LOGIC_PUZZLE, // logic gate puzzle in Breaker Room
     OFFICE,
     WINNING,

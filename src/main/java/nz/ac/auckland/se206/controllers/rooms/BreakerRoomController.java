@@ -25,7 +25,7 @@ public class BreakerRoomController {
   /** On mouse clicked, if the button is pressed, then switch to the right scene. */
   @FXML
   private void onRightButton() {
-    App.setUi(AppUi.CONTROL);
+    App.setUi(AppUi.TERMINAL);
   }
 
   /** Change the scene to the logic puzzle */
