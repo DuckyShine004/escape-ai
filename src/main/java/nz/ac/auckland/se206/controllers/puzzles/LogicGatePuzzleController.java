@@ -96,7 +96,11 @@ public class LogicGatePuzzleController {
   // END gate
   @FXML private ImageView imgAnswerGate6;
 
+  // the label with the time
   @FXML private Label lblTime;
+
+  // the pane the logic gate puzzle is sitting on
+  @FXML private Pane pLogicGateAnchor;
 
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
@@ -134,6 +138,8 @@ public class LogicGatePuzzleController {
 
   private String onLogicColour = "00ff00"; // green
   private String offLogicColour = "ff0000"; // red
+  private String sceneBackgroundColour =
+      "rgb(200, 200, 200)"; // background colour for logic gate pane
 
   // This is the number of first column gates
   // x
@@ -176,9 +182,18 @@ public class LogicGatePuzzleController {
       logicTrail.add(false); // DEBBUG LOOP
     }
 
+    // call set up functions
     setRandomInput();
     setUpLogicGates();
     setUpLogicTrail();
+
+    // sets the styles of the scene
+    setStyles();
+  }
+
+  /** This method sets the styles for this scene */
+  private void setStyles() {
+    pLogicGateAnchor.setStyle("-fx-background-color: " + this.sceneBackgroundColour + " ;");
   }
 
   /**
@@ -480,13 +495,13 @@ public class LogicGatePuzzleController {
     // switch statement to change all gates based on int active
 
     // clears all
-    pAnswerGate0.setStyle("-fx-background-color: #FFFF"); // white collour
-    pAnswerGate1.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate2.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate3.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate4.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate5.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate6.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate6.setStyle("-fx-background-color: " + sceneBackgroundColour);
 
     // sets active gate to highlight
     switch (active) {
@@ -590,7 +605,7 @@ public class LogicGatePuzzleController {
   private void onGate0Exit(MouseEvent event) {
     //
     if (this.swapping != 0) {
-      pAnswerGate0.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -612,7 +627,7 @@ public class LogicGatePuzzleController {
   private void onGate1Exit(MouseEvent event) {
     //
     if (this.swapping != 1) {
-      pAnswerGate1.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -634,7 +649,7 @@ public class LogicGatePuzzleController {
   private void onGate2Exit(MouseEvent event) {
     //
     if (this.swapping != 2) {
-      pAnswerGate2.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -656,7 +671,7 @@ public class LogicGatePuzzleController {
   private void onGate3Exit(MouseEvent event) {
     //
     if (this.swapping != 3) {
-      pAnswerGate3.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -678,7 +693,7 @@ public class LogicGatePuzzleController {
   private void onGate4Exit(MouseEvent event) {
     //
     if (this.swapping != 4) {
-      pAnswerGate4.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -700,7 +715,7 @@ public class LogicGatePuzzleController {
   private void onGate5Exit(MouseEvent event) {
     //
     if (this.swapping != 5) {
-      pAnswerGate5.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
