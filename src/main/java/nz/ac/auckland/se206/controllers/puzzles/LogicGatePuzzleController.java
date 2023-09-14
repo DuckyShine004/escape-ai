@@ -112,10 +112,10 @@ public class LogicGatePuzzleController {
   private int swapping;
 
   // highlight colour for hover gate
-  private String activeHighlight = "1111"; // light grey
+  private String activeHighlight = "16b2c7"; // light grey
 
   // highlight colour for about to swap gate
-  private String swappingHighlight = "3333"; // darker grey
+  private String swappingHighlight = "1194a6"; // darker grey
 
   // Logic Gate list
   // 0 - AND
@@ -139,7 +139,7 @@ public class LogicGatePuzzleController {
   private String onLogicColour = "00ff00"; // green
   private String offLogicColour = "ff0000"; // red
   private String sceneBackgroundColour =
-      "rgb(200, 200, 200)"; // background colour for logic gate pane
+      "rgb(18, 157, 176)"; // background colour for logic gate pane
 
   // This is the number of first column gates
   // x

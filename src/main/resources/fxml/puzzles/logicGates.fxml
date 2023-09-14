@@ -16,11 +16,11 @@
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
-                  <Pane fx:id="pLogicGateAnchor" prefHeight="305.0" prefWidth="500.0" styleClass="logic-gate-pane" stylesheets="@../../css/puzzles/logicGates.css">
+                  <Pane fx:id="pLogicGateAnchor" prefHeight="305.0" prefWidth="500.0">
                      <children>
                         <Pane fx:id="pAnswerGate0" layoutX="18.0" layoutY="30.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
-                              <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" layoutX="5.0" layoutY="10.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor></ImageView>
@@ -36,7 +36,7 @@
                         </Pane>
                         <Pane fx:id="pAnswerGate2" layoutX="21.0" layoutY="169.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
-                              <ImageView fx:id="imgAnswerGate2" fitHeight="45.0" fitWidth="80.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgAnswerGate2" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor></ImageView>
@@ -44,7 +44,7 @@
                         </Pane>
                         <Pane fx:id="pAnswerGate3" layoutX="21.0" layoutY="233.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
-                              <ImageView fx:id="imgAnswerGate3" fitHeight="45.0" fitWidth="80.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgAnswerGate3" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor></ImageView>
@@ -66,7 +66,7 @@
                                  </cursor></ImageView>
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate6" layoutX="342.0" layoutY="137.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate6" fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
