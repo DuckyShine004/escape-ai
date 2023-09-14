@@ -64,6 +64,9 @@ public class LogicGatePuzzleController {
   @FXML private Pane pInput13_2;
 
   @FXML private Pane pInput14; // end gate
+  @FXML private Pane pInput14_2;
+
+  @FXML private ImageView imgSolvedLight;
 
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
@@ -430,7 +433,10 @@ public class LogicGatePuzzleController {
     logicInSection.add(new Wire(this.pInput13, this.pInput13_2));
 
     // fourth column
-    logicInSection.add(new Wire(this.pInput14));
+    logicInSection.add(new Wire(this.pInput14, this.pInput14_2));
+
+    // set solved light to red / off
+    imgSolvedLight.setImage(redLight);
 
     // display the logic through the wires
     updateDisplayLogicTrail();
@@ -460,6 +466,7 @@ public class LogicGatePuzzleController {
 
     if (logicTrail.get(logicTrail.size() - 1) == true) {
       // the puzzle has been solved
+      imgSolvedLight.setImage(greenLight);
       System.out.println("Logic Gate Puzzle Solved");
       GameState.isLogicGateSolved = true;
     }
