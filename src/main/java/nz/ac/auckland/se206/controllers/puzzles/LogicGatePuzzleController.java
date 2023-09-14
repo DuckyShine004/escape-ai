@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,28 +34,57 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate2;
   @FXML private ImageView imgGate3;
 
-  // input logic img views
-  @FXML private Pane pInput0;
-  @FXML private Pane pInput1;
-  @FXML private Pane pInput2;
-  @FXML private Pane pInput3;
-  @FXML private Pane pInput4;
-  @FXML private Pane pInput5;
-  @FXML private Pane pInput6;
-  @FXML private Pane pInput7;
+  // labels for helper gates
+  @FXML private Label lblHelperGate1;
+  @FXML private Label lblHelperGate2;
+  @FXML private Label lblHelperGate3;
 
+  // list to hold helper gates
+  List<Label> lblHelperGates;
+
+  // input logic img views
+  @FXML private ImageView imgInput0;
+  @FXML private ImageView imgInput1;
+  @FXML private ImageView imgInput2;
+  @FXML private ImageView imgInput3;
+  @FXML private ImageView imgInput4;
+  @FXML private ImageView imgInput5;
+  @FXML private ImageView imgInput6;
+  @FXML private ImageView imgInput7;
+
+  // remaining wires with constituent pairs for wire bending
   @FXML private Pane pInput8;
+  @FXML private Pane pInput8_2;
+
   @FXML private Pane pInput9;
+  @FXML private Pane pInput9_2;
+
   @FXML private Pane pInput10;
+  @FXML private Pane pInput10_2;
+
   @FXML private Pane pInput11;
+  @FXML private Pane pInput11_2;
 
   @FXML private Pane pInput12;
+  @FXML private Pane pInput12_2;
+
   @FXML private Pane pInput13;
+  @FXML private Pane pInput13_2;
 
   @FXML private Pane pInput14; // end gate
+  @FXML private Pane pInput14_2;
+
+  @FXML private ImageView imgSolvedLight;
 
   // list of panes to change colour based on logic in the current wire
-  List<Pane> logicInSection;
+  private List<Wire> logicInSection;
+
+  // list of the Image Views inputing true or false.  Constant values
+  private List<ImageView> logicInputs;
+
+  // input logic lights
+  private Image redLight;
+  private Image greenLight;
 
   // Grid of answer logic gates [ROW:COLUMN]
   //  00 01
@@ -74,7 +104,11 @@ public class LogicGatePuzzleController {
   // END gate
   @FXML private ImageView imgAnswerGate6;
 
+  // the label with the time
   @FXML private Label lblTime;
+
+  // the pane the logic gate puzzle is sitting on
+  @FXML private Pane pLogicGateAnchor;
 
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
@@ -86,10 +120,10 @@ public class LogicGatePuzzleController {
   private int swapping;
 
   // highlight colour for hover gate
-  private String activeHighlight = "1111"; // light grey
+  private String activeHighlight = "16b2c7"; // darker blue
 
   // highlight colour for about to swap gate
-  private String swappingHighlight = "3333"; // darker grey
+  private String swappingHighlight = "1194a6"; // lighter blue
 
   // Logic Gate list
   // 0 - AND
@@ -112,6 +146,8 @@ public class LogicGatePuzzleController {
 
   private String onLogicColour = "00ff00"; // green
   private String offLogicColour = "ff0000"; // red
+  private String sceneBackgroundColour =
+      "rgb(18, 157, 176)"; // background colour for logic gate pane
 
   // This is the number of first column gates
   // x
@@ -136,6 +172,12 @@ public class LogicGatePuzzleController {
     // stores the imgViews for each section of logic between gates
     logicInSection = new ArrayList<>();
 
+    // stores the imgViews for the input logic condition
+    logicInputs = new ArrayList<>();
+
+    // stores the helper gate labels displaying 'AND' etc
+    lblHelperGates = new ArrayList<>();
+
     // at initalize, nothing is active looking to swap
     swapping = -1;
 
@@ -151,9 +193,18 @@ public class LogicGatePuzzleController {
       logicTrail.add(false); // DEBBUG LOOP
     }
 
+    // call set up functions
     setRandomInput();
     setUpLogicGates();
     setUpLogicTrail();
+
+    // sets the styles of the scene
+    setStyles();
+  }
+
+  /** This method sets the styles for this scene */
+  private void setStyles() {
+    pLogicGateAnchor.setStyle("-fx-background-color: " + this.sceneBackgroundColour + " ;");
   }
 
   /**
@@ -199,6 +250,16 @@ public class LogicGatePuzzleController {
     for (int i = 0; i < helperGates.size(); i++) {
       helperGates.get(i).setImage(logicGates.get(i).getImage());
     }
+
+    // add labels to list
+    lblHelperGates.add(lblHelperGate1);
+    lblHelperGates.add(lblHelperGate2);
+    lblHelperGates.add(lblHelperGate3);
+
+    // initlize all labels
+    for (int i = 0; i < lblHelperGates.size(); i++) {
+      lblHelperGates.get(i).setText(logicGates.get(i).getType().toString());
+    }
   }
 
   /**
@@ -211,9 +272,9 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
 
     Collections.shuffle(currentAssembly); // randomly shuffles the current Assembly
 
@@ -337,35 +398,83 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /** This method loads the input images */
+  private void loadInputImages() throws Exception {
+    //
+    this.redLight =
+        new Image(
+            new FileInputStream(
+                "src/main/resources/images/BreakerRoom/LogicGatePuzzle/Wires/redlight.png"));
+    this.greenLight =
+        new Image(
+            new FileInputStream(
+                "src/main/resources/images/BreakerRoom/LogicGatePuzzle/Wires/greenlight.png"));
+  }
+
+  /** This method displays the loaded images */
+  private void displayInputImages() {
+
+    // loop through inputs
+    for (int i = 0; i < logicInputs.size(); i++) {
+
+      // get current image view
+      ImageView currentImageView = logicInputs.get(i);
+
+      // if it is on
+      if (logicTrail.get(i) == true) {
+        // set to green light
+        currentImageView.setImage(greenLight);
+      } else {
+        // set to red light
+        currentImageView.setImage(redLight);
+      }
+    }
+  }
+
   /**
    * This method will set up each imgView showing the player what the current logic is in each wire
    */
   private void setUpLogicTrail() {
     // adding panes to array of panes
 
-    // first column
-    logicInSection.add(this.pInput0);
-    logicInSection.add(this.pInput1);
-    logicInSection.add(this.pInput2);
-    logicInSection.add(this.pInput3);
-    logicInSection.add(this.pInput4);
-    logicInSection.add(this.pInput5);
-    logicInSection.add(this.pInput6);
-    logicInSection.add(this.pInput7);
+    // first column are constant image views
+    logicInputs.add(imgInput0);
+    logicInputs.add(imgInput1);
+    logicInputs.add(imgInput2);
+    logicInputs.add(imgInput3);
+    logicInputs.add(imgInput4);
+    logicInputs.add(imgInput5);
+    logicInputs.add(imgInput6);
+    logicInputs.add(imgInput7);
+
+    // try to load image, if can't load, throw error
+    try {
+      loadInputImages();
+    } catch (Exception e) {
+      // print error
+      e.printStackTrace();
+    }
+
+    // display the input logic images
+    displayInputImages();
 
     // second column
-    logicInSection.add(this.pInput8);
-    logicInSection.add(this.pInput9);
-    logicInSection.add(this.pInput10);
-    logicInSection.add(this.pInput11);
+    logicInSection.add(new Wire(this.pInput8, this.pInput8_2));
+    logicInSection.add(new Wire(this.pInput9, this.pInput9_2));
+    logicInSection.add(new Wire(this.pInput10, this.pInput10_2));
+    logicInSection.add(new Wire(this.pInput11, this.pInput11_2));
 
     // third column
-    logicInSection.add(this.pInput12);
-    logicInSection.add(this.pInput13);
+    logicInSection.add(new Wire(this.pInput12, this.pInput12_2));
+    logicInSection.add(new Wire(this.pInput13, this.pInput13_2));
 
     // fourth column
-    logicInSection.add(this.pInput14);
+    logicInSection.add(new Wire(this.pInput14, this.pInput14_2));
 
+    // set solved light to red / off
+    imgSolvedLight.setImage(redLight);
+
+    // display the logic through the wires
     updateDisplayLogicTrail();
   }
 
@@ -376,7 +485,7 @@ public class LogicGatePuzzleController {
 
       String colour = "";
 
-      if (logicTrail.get(i) == true) {
+      if (logicTrail.get(i + 8) == true) {
 
         // set colour to Green
         colour = onLogicColour;
@@ -387,11 +496,13 @@ public class LogicGatePuzzleController {
       }
 
       // set background of pane to colour
-      logicInSection.get(i).setStyle("-fx-background-color: #" + colour);
+      Wire currentWire = logicInSection.get(i);
+      currentWire.setBackground(colour);
     }
 
     if (logicTrail.get(logicTrail.size() - 1) == true) {
       // the puzzle has been solved
+      imgSolvedLight.setImage(greenLight);
       System.out.println("Logic Gate Puzzle Solved");
       GameState.isLogicGateSolved = true;
     }
@@ -405,13 +516,13 @@ public class LogicGatePuzzleController {
     // switch statement to change all gates based on int active
 
     // clears all
-    pAnswerGate0.setStyle("-fx-background-color: #FFFF"); // white collour
-    pAnswerGate1.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate2.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate3.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate4.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate5.setStyle("-fx-background-color: #FFFF");
-    pAnswerGate6.setStyle("-fx-background-color: #FFFF");
+    pAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate6.setStyle("-fx-background-color: " + sceneBackgroundColour);
 
     // sets active gate to highlight
     switch (active) {
@@ -476,7 +587,13 @@ public class LogicGatePuzzleController {
    * @param current
    */
   private void onClickedGate(int current) {
-    //
+
+    // lock game when win
+    if (GameState.isLogicGateSolved) {
+      return;
+    }
+
+    // else if not locked
     if (this.swapping == -1 | this.swapping == current) {
 
       // set active swaping gate
@@ -509,7 +626,7 @@ public class LogicGatePuzzleController {
   private void onGate0Exit(MouseEvent event) {
     //
     if (this.swapping != 0) {
-      pAnswerGate0.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -531,7 +648,7 @@ public class LogicGatePuzzleController {
   private void onGate1Exit(MouseEvent event) {
     //
     if (this.swapping != 1) {
-      pAnswerGate1.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -553,7 +670,7 @@ public class LogicGatePuzzleController {
   private void onGate2Exit(MouseEvent event) {
     //
     if (this.swapping != 2) {
-      pAnswerGate2.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -575,7 +692,7 @@ public class LogicGatePuzzleController {
   private void onGate3Exit(MouseEvent event) {
     //
     if (this.swapping != 3) {
-      pAnswerGate3.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -597,7 +714,7 @@ public class LogicGatePuzzleController {
   private void onGate4Exit(MouseEvent event) {
     //
     if (this.swapping != 4) {
-      pAnswerGate4.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -619,7 +736,7 @@ public class LogicGatePuzzleController {
   private void onGate5Exit(MouseEvent event) {
     //
     if (this.swapping != 5) {
-      pAnswerGate5.setStyle("-fx-background-color: #FFFF");
+      pAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
     }
   }
 
@@ -643,9 +760,15 @@ public class LogicGatePuzzleController {
     if (currentImage == gateImage) {
       // change to table image
       currentGate.setImage(tableImage);
+
+      // hide 'AND' text
+      lblHelperGates.get(helperGate).setVisible(false);
     } else {
       // change to gate image
       currentGate.setImage(gateImage);
+
+      // show 'AND' text
+      lblHelperGates.get(helperGate).setVisible(true);
     }
   }
 
