@@ -52,10 +52,16 @@ public class LogicGatePuzzleController {
   @FXML private Pane pInput9_2;
 
   @FXML private Pane pInput10;
+  @FXML private Pane pInput10_2;
+
   @FXML private Pane pInput11;
+  @FXML private Pane pInput11_2;
 
   @FXML private Pane pInput12;
+  @FXML private Pane pInput12_2;
+
   @FXML private Pane pInput13;
+  @FXML private Pane pInput13_2;
 
   @FXML private Pane pInput14; // end gate
 
@@ -227,9 +233,9 @@ public class LogicGatePuzzleController {
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
-    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
+    currentAssembly.add(new LogicGate(LogicGate.Logic.NOR));
 
     Collections.shuffle(currentAssembly); // randomly shuffles the current Assembly
 
@@ -416,12 +422,12 @@ public class LogicGatePuzzleController {
     // second column
     logicInSection.add(new Wire(this.pInput8, this.pInput8_2));
     logicInSection.add(new Wire(this.pInput9, this.pInput9_2));
-    logicInSection.add(new Wire(this.pInput10));
-    logicInSection.add(new Wire(this.pInput11));
+    logicInSection.add(new Wire(this.pInput10, this.pInput10_2));
+    logicInSection.add(new Wire(this.pInput11, this.pInput11_2));
 
     // third column
-    logicInSection.add(new Wire(this.pInput12));
-    logicInSection.add(new Wire(this.pInput13));
+    logicInSection.add(new Wire(this.pInput12, this.pInput12_2));
+    logicInSection.add(new Wire(this.pInput13, this.pInput13_2));
 
     // fourth column
     logicInSection.add(new Wire(this.pInput14));
