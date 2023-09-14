@@ -6,3 +6,7 @@
   -fx-text-fill: white;
   -fx-background-color: rgb(100, 100, 100);
 }
+
+.helper-gate-pane {
+  -fx-background-color: rgb(18, 157, 176);
+}

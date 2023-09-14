@@ -34,6 +34,14 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate2;
   @FXML private ImageView imgGate3;
 
+  // labels for helper gates
+  @FXML private Label lblHelperGate1;
+  @FXML private Label lblHelperGate2;
+  @FXML private Label lblHelperGate3;
+
+  // list to hold helper gates
+  List<Label> lblHelperGates;
+
   // input logic img views
   @FXML private ImageView imgInput0;
   @FXML private ImageView imgInput1;
@@ -167,6 +175,9 @@ public class LogicGatePuzzleController {
     // stores the imgViews for the input logic condition
     logicInputs = new ArrayList<>();
 
+    // stores the helper gate labels displaying 'AND' etc
+    lblHelperGates = new ArrayList<>();
+
     // at initalize, nothing is active looking to swap
     swapping = -1;
 
@@ -238,6 +249,16 @@ public class LogicGatePuzzleController {
     // sets the logic gate images
     for (int i = 0; i < helperGates.size(); i++) {
       helperGates.get(i).setImage(logicGates.get(i).getImage());
+    }
+
+    // add labels to list
+    lblHelperGates.add(lblHelperGate1);
+    lblHelperGates.add(lblHelperGate2);
+    lblHelperGates.add(lblHelperGate3);
+
+    // initlize all labels
+    for (int i = 0; i < lblHelperGates.size(); i++) {
+      lblHelperGates.get(i).setText(logicGates.get(i).getType().toString());
     }
   }
 
@@ -739,9 +760,15 @@ public class LogicGatePuzzleController {
     if (currentImage == gateImage) {
       // change to table image
       currentGate.setImage(tableImage);
+
+      // hide 'AND' text
+      lblHelperGates.get(helperGate).setVisible(false);
     } else {
       // change to gate image
       currentGate.setImage(gateImage);
+
+      // show 'AND' text
+      lblHelperGates.get(helperGate).setVisible(true);
     }
   }
 
