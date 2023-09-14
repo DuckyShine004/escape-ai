@@ -8,11 +8,13 @@ import javafx.scene.control.ToggleButton;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
 public class OptionsMenuController {
 
   // define comboBox which contains String type selections
   @FXML private ComboBox<String> cmbTimeSelect;
+  @FXML private ComboBox<String> cmbDifficultySelect;
 
   @FXML private Label lblCurrentSelectedTime;
 
@@ -21,6 +23,21 @@ public class OptionsMenuController {
   @FXML
   public void initialize() {
 
+    // sets up all the combo boxes
+    setUpComboBoxes();
+  }
+
+  /** This method calls the set up methods for each combo box */
+  private void setUpComboBoxes() {
+    // set up time combo box
+    setUpTimeBox();
+
+    // set up difficulty combo box
+    setUpDifficulty();
+  }
+
+  /** This method sets up the comboBox for the time limit */
+  private void setUpTimeBox() {
     // define 3 drop down selection items
     cmbTimeSelect.getItems().addAll("2 Minutes", "4 Minutes", "6 Minutes");
 
@@ -29,6 +46,18 @@ public class OptionsMenuController {
 
     // debug label to show time is properly changing
     lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
+  }
+
+  /** This method sets up the comboBox for the game difficulty */
+  private void setUpDifficulty() {
+    // define 3 drop down selection items
+    cmbDifficultySelect
+        .getItems()
+        .addAll(
+            Difficulty.EASY.toString(), Difficulty.MEDIUM.toString(), Difficulty.HARD.toString());
+
+    // defult 2 minutes
+    cmbDifficultySelect.setPromptText(GameState.gameDifficulty.toString());
   }
 
   @FXML
@@ -69,6 +98,25 @@ public class OptionsMenuController {
 
     // chaning debug label
     lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
+  }
+
+  @FXML
+  private void onDifficultySelect(ActionEvent event) {
+    // get the string from the comboBox "2 Minutes"
+    String strSelected = cmbDifficultySelect.getSelectionModel().getSelectedItem();
+
+    // changes difficulty based on difficulty selected
+    switch (strSelected) {
+      case "EASY":
+        GameState.gameDifficulty = Difficulty.EASY;
+        break;
+      case "MEDIUM":
+        GameState.gameDifficulty = Difficulty.MEDIUM;
+        break;
+      case "HARD":
+        GameState.gameDifficulty = Difficulty.HARD;
+        break;
+    }
   }
 
   /*

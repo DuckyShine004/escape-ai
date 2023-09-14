@@ -3,6 +3,15 @@ package nz.ac.auckland.se206.constants;
 /** Represents the state of the game. */
 public class GameState {
 
+  public enum Difficulty {
+    EASY,
+    MEDIUM,
+    HARD
+  }
+
+  /** Game difficulty, starts in Medium */
+  public static Difficulty gameDifficulty = Difficulty.MEDIUM;
+
   /** Indicates whether the game is in developer mode. */
   public static boolean isDeveloperMode = false;
 
