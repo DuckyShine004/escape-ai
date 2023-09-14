@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -54,7 +55,14 @@ public class LogicGatePuzzleController {
   @FXML private Pane pInput14; // end gate
 
   // list of panes to change colour based on logic in the current wire
-  List<Pane> logicInSection;
+  private List<Pane> logicInSection;
+
+  // list of the Image Views inputing true or false.  Constant values
+  private List<ImageView> logicInputs;
+
+  // input logic lights
+  private Image redLight;
+  private Image greenLight;
 
   // Grid of answer logic gates [ROW:COLUMN]
   //  00 01
@@ -135,6 +143,9 @@ public class LogicGatePuzzleController {
 
     // stores the imgViews for each section of logic between gates
     logicInSection = new ArrayList<>();
+
+    // stores the imgViews for the input logic condition
+    logicInputs = new ArrayList<>();
 
     // at initalize, nothing is active looking to swap
     swapping = -1;
@@ -337,6 +348,39 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /** This method loads the input images */
+  private void loadInputImages() throws Exception {
+    //
+    this.redLight =
+        new Image(
+            new FileInputStream(
+                "src/main/resources/images/BreakerRoom/LogicGatePuzzle/Wires/redlight.png"));
+    this.greenLight =
+        new Image(
+            new FileInputStream(
+                "src/main/resources/images/BreakerRoom/LogicGatePuzzle/Wires/greenlight.png"));
+  }
+
+  /** This method displays the loaded images */
+  private void displayInputImages() {
+
+    // loop through inputs
+    for (int i = 0; i < logicInputs.size(); i++) {
+
+      // get current image view
+      ImageView currentImageView = logicInputs.get(i);
+
+      // if it is on
+      if (logicTrail.get(i) == true) {
+        // set to green light
+        currentImageView.setImage(greenLight);
+      } else {
+        // set to red light
+        currentImageView.setImage(redLight);
+      }
+    }
+  }
+
   /**
    * This method will set up each imgView showing the player what the current logic is in each wire
    */
@@ -344,6 +388,25 @@ public class LogicGatePuzzleController {
     // adding panes to array of panes
 
     // first column are constant image views
+    logicInputs.add(imgInput0);
+    logicInputs.add(imgInput1);
+    logicInputs.add(imgInput2);
+    logicInputs.add(imgInput3);
+    logicInputs.add(imgInput4);
+    logicInputs.add(imgInput5);
+    logicInputs.add(imgInput6);
+    logicInputs.add(imgInput7);
+
+    // try to load image, if can't load, throw error
+    try {
+      loadInputImages();
+    } catch (Exception e) {
+      // print error
+      e.printStackTrace();
+    }
+
+    // display the input logic images
+    displayInputImages();
 
     // second column
     logicInSection.add(this.pInput8);
@@ -358,6 +421,7 @@ public class LogicGatePuzzleController {
     // fourth column
     logicInSection.add(this.pInput14);
 
+    // display the logic through the wires
     updateDisplayLogicTrail();
   }
 
