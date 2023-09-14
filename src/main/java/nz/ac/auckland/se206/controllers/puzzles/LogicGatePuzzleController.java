@@ -34,14 +34,14 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate3;
 
   // input logic img views
-  @FXML private Pane pInput0;
-  @FXML private Pane pInput1;
-  @FXML private Pane pInput2;
-  @FXML private Pane pInput3;
-  @FXML private Pane pInput4;
-  @FXML private Pane pInput5;
-  @FXML private Pane pInput6;
-  @FXML private Pane pInput7;
+  @FXML private ImageView imgInput0;
+  @FXML private ImageView imgInput1;
+  @FXML private ImageView imgInput2;
+  @FXML private ImageView imgInput3;
+  @FXML private ImageView imgInput4;
+  @FXML private ImageView imgInput5;
+  @FXML private ImageView imgInput6;
+  @FXML private ImageView imgInput7;
 
   @FXML private Pane pInput8;
   @FXML private Pane pInput9;
@@ -343,15 +343,7 @@ public class LogicGatePuzzleController {
   private void setUpLogicTrail() {
     // adding panes to array of panes
 
-    // first column
-    logicInSection.add(this.pInput0);
-    logicInSection.add(this.pInput1);
-    logicInSection.add(this.pInput2);
-    logicInSection.add(this.pInput3);
-    logicInSection.add(this.pInput4);
-    logicInSection.add(this.pInput5);
-    logicInSection.add(this.pInput6);
-    logicInSection.add(this.pInput7);
+    // first column are constant image views
 
     // second column
     logicInSection.add(this.pInput8);
@@ -376,7 +368,7 @@ public class LogicGatePuzzleController {
 
       String colour = "";
 
-      if (logicTrail.get(i) == true) {
+      if (logicTrail.get(i + 8) == true) {
 
         // set colour to Green
         colour = onLogicColour;
