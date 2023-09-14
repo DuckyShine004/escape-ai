@@ -20,7 +20,7 @@
 .custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: rgb(0, 230, 0);
+  -fx-text-inner-color: rgb(0, 220, 0);
   -fx-font-family: "Determination Mono Web";
   -fx-font-size: 26;
   -fx-opacity: 1;

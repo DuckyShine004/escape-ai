@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -10,11 +11,14 @@ import nz.ac.auckland.se206.constants.Declaration;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Sequence;
+import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
   @FXML private Pane paBackOverlay;
+
+  @FXML private Label lblTime;
 
   private int psuedocodeIndex;
 
@@ -26,6 +30,9 @@ public class DecryptionPuzzleController {
   /** Initializes the decryption puzzle. */
   @FXML
   private void initialize() throws Exception {
+    // add the label to list of labels to be updated.
+    Timer.addLabel(lblTime);
+
     initializePseudocode();
   }
 
