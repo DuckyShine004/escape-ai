@@ -108,6 +108,9 @@ public class App extends Application {
   private void initializeFonts() {
     // load the terminal font
     loadFont("terminal", 23);
+
+    // load the terminal font (temporary, to see which font is better)
+    loadFont("determination", 23);
   }
 
   /**

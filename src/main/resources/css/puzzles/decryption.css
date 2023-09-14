@@ -10,19 +10,35 @@
   -fx-border-width: 2px;
 }
 
+/* For a orange border style pane */
+.orange-border-pane {
+  -fx-border-color: rgb(255, 135, 0);
+  -fx-border-width: 2px;
+}
+
 /* Font styling */
 @font-face {
   font-family: Terminus (TTF);
   src: url("/../../fonts/terminal.ttf");
 }
 
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/determination.ttf");
+}
+
+/* Label with custom font */
+.custom-label {
+  -fx-font-family: "Determination Mono Web";
+}
+
 /* For the text area styling */
 .custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: rgb(0, 255, 0);
+  -fx-text-inner-color: rgb(0, 230, 0);
   -fx-font-family: "Terminus (TTF)";
-  -fx-font-size: 23;
+  -fx-font-size: 18;
   -fx-opacity: 1;
 }
 
