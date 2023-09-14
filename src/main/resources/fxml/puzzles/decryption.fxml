@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
    <children>
       <Pane layoutX="5.0" layoutY="80.0" prefHeight="340.0" prefWidth="300.0" style="-fx-background-color: transparent;" styleClass="green-border-pane" stylesheets="@../../css/puzzles/decryption.css">
@@ -38,6 +37,34 @@
          </effect>
          <children>
             <Line endX="295.0" layoutX="102.5" layoutY="210.0" startX="-100.0" stroke="#0dff00" strokeWidth="2.0" />
+            <Label layoutX="10.0" layoutY="211.0" prefHeight="50.0" prefWidth="35.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~&gt;" textFill="#00e600">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <effect>
+                  <Glow level="0.15" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="65.0" prefWidth="710.0" style="-fx-background-color: transparent;" styleClass="orange-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+         <children>
+            <Label layoutX="10.0" prefHeight="65.0" prefWidth="425.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Decryption Puzzle" textFill="#ff6400">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <effect>
+                  <Glow level="0.1" />
+               </effect>
+            </Label>
+            <Label fx:id="lblTime" layoutX="610.0" prefHeight="65.0" prefWidth="100.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="#ff6400">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <HBox layoutX="315.0" layoutY="80.0" prefHeight="70.0" prefWidth="400.0" spacing="10.0">

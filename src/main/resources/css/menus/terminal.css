@@ -12,18 +12,23 @@
 
 /* Font styling */
 @font-face {
-  font-family: Terminus (TTF);
-  src: url("/../../fonts/terminal.ttf");
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/determination.ttf");
 }
 
 /* For the text area styling */
 .custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: rgb(0, 255, 0);
-  -fx-font-family: "Terminus (TTF)";
-  -fx-font-size: 23;
+  -fx-text-inner-color: rgb(0, 220, 0);
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 26;
   -fx-opacity: 1;
+}
+
+.custom-text-area .scroll-bar:horizontal:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
 }
 
 .custom-text-area .scroll-pane {

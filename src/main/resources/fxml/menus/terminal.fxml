@@ -9,7 +9,7 @@
 
 <Pane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.TerminalController">
    <children>
-      <Pane layoutX="5.0" layoutY="5.0" prefHeight="410.0" prefWidth="710.0" style="-fx-background-color: black;" styleClass="green-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="415.0" prefWidth="710.0" style="-fx-background-color: black;" styleClass="green-border-pane" stylesheets="@../../css/menus/terminal.css">
          <effect>
             <Bloom />
          </effect>

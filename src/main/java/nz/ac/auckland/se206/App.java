@@ -54,8 +54,8 @@ public class App extends Application {
    * @param font the name of the font file (without extension).
    * @param size the size of the font.
    */
-  private static void loadFont(final String font, final int size) {
-    Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + ".ttf"), size);
+  private static void loadFont(final String font, final String extension, final int size) {
+    Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + "." + extension), size);
   }
 
   /*
@@ -107,7 +107,13 @@ public class App extends Application {
    */
   private void initializeFonts() {
     // load the terminal font
-    loadFont("terminal", 23);
+    loadFont("terminal", "ttf", 23);
+
+    // load the terminal font (temporary, to see which font is better)
+    loadFont("determination", "ttf", 23);
+
+    // load the timer font
+    loadFont("timer", "TTF", 23);
   }
 
   /**
