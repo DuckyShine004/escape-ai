@@ -44,8 +44,13 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgInput6;
   @FXML private ImageView imgInput7;
 
+  // remaining wires with constituent pairs for wire bending
   @FXML private Pane pInput8;
+  @FXML private Pane pInput8_2;
+
   @FXML private Pane pInput9;
+  @FXML private Pane pInput9_2;
+
   @FXML private Pane pInput10;
   @FXML private Pane pInput11;
 
@@ -55,7 +60,7 @@ public class LogicGatePuzzleController {
   @FXML private Pane pInput14; // end gate
 
   // list of panes to change colour based on logic in the current wire
-  private List<Pane> logicInSection;
+  private List<Wire> logicInSection;
 
   // list of the Image Views inputing true or false.  Constant values
   private List<ImageView> logicInputs;
@@ -409,17 +414,17 @@ public class LogicGatePuzzleController {
     displayInputImages();
 
     // second column
-    logicInSection.add(this.pInput8);
-    logicInSection.add(this.pInput9);
-    logicInSection.add(this.pInput10);
-    logicInSection.add(this.pInput11);
+    logicInSection.add(new Wire(this.pInput8, this.pInput8_2));
+    logicInSection.add(new Wire(this.pInput9, this.pInput9_2));
+    logicInSection.add(new Wire(this.pInput10));
+    logicInSection.add(new Wire(this.pInput11));
 
     // third column
-    logicInSection.add(this.pInput12);
-    logicInSection.add(this.pInput13);
+    logicInSection.add(new Wire(this.pInput12));
+    logicInSection.add(new Wire(this.pInput13));
 
     // fourth column
-    logicInSection.add(this.pInput14);
+    logicInSection.add(new Wire(this.pInput14));
 
     // display the logic through the wires
     updateDisplayLogicTrail();
@@ -443,7 +448,8 @@ public class LogicGatePuzzleController {
       }
 
       // set background of pane to colour
-      logicInSection.get(i).setStyle("-fx-background-color: #" + colour);
+      Wire currentWire = logicInSection.get(i);
+      currentWire.setBackground(colour);
     }
 
     if (logicTrail.get(logicTrail.size() - 1) == true) {
@@ -532,7 +538,13 @@ public class LogicGatePuzzleController {
    * @param current
    */
   private void onClickedGate(int current) {
-    //
+
+    // lock game when win
+    if (GameState.isLogicGateSolved) {
+      return;
+    }
+
+    // else if not locked
     if (this.swapping == -1 | this.swapping == current) {
 
       // set active swaping gate
