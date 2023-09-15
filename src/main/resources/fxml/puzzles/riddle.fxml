@@ -7,27 +7,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.RiddlePuzzleController">
   <children>
-    <TextArea fx:id="taChat" editable="boolean" layoutX="35.0" layoutY="67.0" prefHeight="258.0" prefWidth="538.0" wrapText="true" />
-    <HBox layoutX="35.0" layoutY="367.0" spacing="10.0">
-        <Button fx:id="btnAnswer1" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 1" />
-        <Button fx:id="btnAnswer2" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 2" />
-        <Button fx:id="btnAnswer3" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 3" />
-    </HBox>
-    <Button fx:id="btnNavigate" layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onNavigateButton" text="Go Back" />
-    <Button fx:id="btnGetHint" layoutX="380.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGetHintButton" text="Use Hint" />
+    <TextArea fx:id="taChat" editable="boolean" layoutX="400.0" layoutY="67.0" prefHeight="330.0" prefWidth="280.0" wrapText="true" styleClass="holographic-background" stylesheets="@../../css/puzzles/riddle.css" />
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
             <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
-            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Riddle Room">
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Riddle Puzzle">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <Label layoutX="375.0" layoutY="17.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints Left: 0/4" />
-            <Button layoutX="463.0" layoutY="12.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
+            <Button fx:id="btnGetHint" layoutX="463.0" layoutY="12.0" mnemonicParsing="false" onAction="#onGetHintButton" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
                <font>
                   <Font size="13.0" />
                </font>
@@ -35,5 +30,44 @@
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
+      <Pane prefHeight="60.0" prefWidth="720.0" layoutY="420.0" style="-fx-background-color: black;">
+      </Pane>
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+         <children>
+            <Pane fx:id="paBackOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
+            <Label layoutX="9.0" layoutY="2.0" text="Back" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="425.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/riddle.css">
+         <children>
+            <Pane fx:id="paNextOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
+            <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+      </Pane>
+      <HBox layoutX="130.0" layoutY="430.0" spacing="50.0"  stylesheets="@../../css/puzzles/riddle.css">
+        <Button fx:id="btnAnswer1" prefHeight="40" prefWidth="120" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 1" styleClass="button-style"/>
+        <Button fx:id="btnAnswer2" prefHeight="40" prefWidth="120" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 2" styleClass="button-style"/>
+        <Button fx:id="btnAnswer3" prefHeight="40" prefWidth="120" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 3" styleClass="button-style"/>
+      </HBox>
   </children>
 </AnchorPane>
