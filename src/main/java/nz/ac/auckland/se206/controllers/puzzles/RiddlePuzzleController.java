@@ -30,7 +30,6 @@ public class RiddlePuzzleController {
   @FXML private Button btnAnswer1;
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
-  @FXML private Button btnNavigate;
   @FXML private Button btnGetHint;
   @FXML private Label lblTime;
   @FXML private Pane paBack;
@@ -62,16 +61,15 @@ public class RiddlePuzzleController {
     btnAnswer1.textProperty().bind(answer1Property);
     btnAnswer2.textProperty().bind(answer2Property);
     btnAnswer3.textProperty().bind(answer3Property);
-    btnNavigate.textProperty().bind(navigateProperty);
     answer1Property.set("Answer 1");
     answer2Property.set("Answer 2");
     answer3Property.set("Answer 3");
-    navigateProperty.set("Go Back");
 
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
     btnGetHint.setDisable(true);
+    paNext.setDisable(true);
 
     updateScene();
     if (!GameState.isDeveloperMode) {
@@ -303,7 +301,7 @@ public class RiddlePuzzleController {
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
-    btnNavigate.setDisable(true);
+    paNext.setDisable(true);
     btnGetHint.setDisable(true);
 
     // Generate a loading message
@@ -356,7 +354,7 @@ public class RiddlePuzzleController {
                       appendChatMessage(outro);
                     }
                     // Set the navigate button to be enabled if the riddle is solved
-                    btnNavigate.setDisable(false);
+                    paNext.setDisable(false);
                   } else {
                     // If the answer is incorrect, enable the input buttons again for the other
                     // inputs
@@ -370,9 +368,9 @@ public class RiddlePuzzleController {
                       btnAnswer3.setDisable(false);
                     }
                     if (GameState.riddlesSolved != 0) {
-                      btnNavigate.setDisable(true);
+                      paNext.setDisable(true);
                     } else {
-                      btnNavigate.setDisable(false);
+                      paNext.setDisable(false);
                     }
                     btnGetHint.setDisable(false);
                   }
@@ -384,34 +382,6 @@ public class RiddlePuzzleController {
     // Start the thread
     Thread newThread = new Thread(buttonClickTask, "Button Click Thread");
     newThread.start();
-  }
-
-  /**
-   * Navigates back to the previous view.
-   *
-   * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  private void onNavigateButton(ActionEvent event) throws ApiProxyException, IOException {
-    if (GameState.riddlesSolved == 0) {
-      // If the riddle is not solved, navigate back to the office
-      App.setUi(AppUi.OFFICE);
-    } else if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
-      // If the riddle is solved, load the next riddle and disable the buttons whilst the riddle is
-      // loading
-      loadRiddle();
-      btnNavigate.setDisable(true);
-      btnAnswer1.setDisable(true);
-      btnAnswer2.setDisable(true);
-      btnAnswer3.setDisable(true);
-      btnGetHint.setDisable(true);
-    } else if (GameState.riddlesSolved == 3) {
-      // If all riddles are solved, navigate back to the office
-      App.setUi(AppUi.OFFICE);
-      GameState.isRiddleResolved = true;
-    }
   }
 
   @FXML
@@ -456,13 +426,20 @@ public class RiddlePuzzleController {
   /** When next is clicked, move on to the next thing. */
   @FXML
   private void onNextPaneClicked() {
-    // if there is a printing event, just exit out of the function call
-    if (GameState.isPrinting) {
-      return;
+    if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
+      // If the riddle is solved, load the next riddle and disable the buttons whilst the riddle is
+      // loading
+      loadRiddle();
+      paNext.setDisable(true);
+      btnAnswer1.setDisable(true);
+      btnAnswer2.setDisable(true);
+      btnAnswer3.setDisable(true);
+      btnGetHint.setDisable(true);
+    } else if (GameState.riddlesSolved == 3) {
+      // If all riddles are solved, navigate back to the office
+      App.setUi(AppUi.OFFICE);
+      GameState.isRiddleResolved = true;
     }
-
-    // move on to the decryption puzzle
-    App.setUi(AppUi.DECRYPTION);
   }
 
   /**

@@ -18,7 +18,6 @@
         <Button fx:id="btnAnswer2" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 2" />
         <Button fx:id="btnAnswer3" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 3" />
     </HBox>
-    <Button fx:id="btnNavigate" layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onNavigateButton" text="Go Back" />
     <Button fx:id="btnGetHint" layoutX="380.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGetHintButton" text="Use Hint" />
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
