@@ -21,7 +21,7 @@
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
             <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
-            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Riddle Room">
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Riddle Puzzle">
                <font>
                   <Font size="24.0" />
                </font>
