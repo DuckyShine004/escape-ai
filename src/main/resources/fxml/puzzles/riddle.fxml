@@ -18,7 +18,6 @@
         <Button fx:id="btnAnswer2" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 2" />
         <Button fx:id="btnAnswer3" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 3" />
     </HBox>
-    <Button fx:id="btnGetHint" layoutX="380.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGetHintButton" text="Use Hint" />
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
             <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
@@ -28,7 +27,7 @@
                </font>
             </Label>
             <Label layoutX="375.0" layoutY="17.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints Left: 0/4" />
-            <Button layoutX="463.0" layoutY="12.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
+            <Button fx:id="btnGetHint" layoutX="463.0" layoutY="12.0" mnemonicParsing="false" onAction="#onGetHintButton" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
                <font>
                   <Font size="13.0" />
                </font>
