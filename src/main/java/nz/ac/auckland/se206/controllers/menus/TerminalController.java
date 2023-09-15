@@ -13,8 +13,10 @@ import nz.ac.auckland.se206.utilities.Printer;
 public class TerminalController {
   @FXML private Pane paBack;
   @FXML private Pane paNext;
+  @FXML private Pane paSkip;
   @FXML private Pane paBackOverlay;
   @FXML private Pane paNextOverlay;
+  @FXML private Pane paSkipOverlay;
 
   @FXML private TextArea taTerminal;
 
@@ -48,6 +50,18 @@ public class TerminalController {
     paNextOverlay.setVisible(false);
   }
 
+  /** When the mouse is hovering over the pane, the overlay appears (skip). */
+  @FXML
+  private void onSkipPaneEntered() {
+    paSkipOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (skip). */
+  @FXML
+  private void onSkipPaneExited() {
+    paSkipOverlay.setVisible(false);
+  }
+
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
@@ -57,7 +71,7 @@ public class TerminalController {
   /** When next is clicked, move on to the next thing. */
   @FXML
   private void onNextPaneClicked() {
-    // if there is a printing event, just exit out of the function call
+    // if there is a printing event, exit out of the function call
     if (GameState.isPrinting) {
       return;
     }
@@ -72,6 +86,25 @@ public class TerminalController {
 
     // move on to the decryption puzzle
     App.setUi(AppUi.DECRYPTION);
+  }
+
+  /** When skip is clicked, skip the current dialogue. */
+  @FXML
+  private void onSkipPaneClicked() {
+    // if there is no printing event going on, exit out of the function call
+    if (!GameState.isPrinting) {
+      return;
+    }
+
+    // stop the printing
+    Printer.stop();
+
+    // retrieve the current printed letter position and message
+    int letterPosition = Printer.getCurrentLetterPosition();
+    String message = Printer.getCurrentMessage();
+
+    // print the remaining message to the text area
+    taTerminal.appendText(message.substring(letterPosition, message.length() - 1));
   }
 
   /** Initializes the bootup message. */
