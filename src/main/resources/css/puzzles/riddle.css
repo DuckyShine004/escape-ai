@@ -1,0 +1,11 @@
+/* For a red border style pane */
+.red-border-pane {
+  -fx-border-color: rgb(255, 0, 0);
+  -fx-border-width: 2px;
+}
+
+/* For a green border style pane */
+.green-border-pane {
+  -fx-border-color: rgb(0, 255, 0);
+  -fx-border-width: 2px;
+}

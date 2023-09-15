@@ -11,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -31,6 +33,10 @@ public class RiddlePuzzleController {
   @FXML private Button btnNavigate;
   @FXML private Button btnGetHint;
   @FXML private Label lblTime;
+  @FXML private Pane paBack;
+  @FXML private Pane paNext;
+  @FXML private Pane paBackOverlay;
+  @FXML private Pane paNextOverlay;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String answer1;
@@ -415,6 +421,48 @@ public class RiddlePuzzleController {
     appendChatMessage(loading);
 
     getHint = true;
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  @FXML
+  private void onBackPaneEntered() {
+    paBackOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (back). */
+  @FXML
+  private void onBackPaneExited() {
+    paBackOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (next). */
+  @FXML
+  private void onNextPaneEntered() {
+    paNextOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (next). */
+  @FXML
+  private void onNextPaneExited() {
+    paNextOverlay.setVisible(false);
+  }
+
+  /** When back is clicked, go back to previous section (control room). */
+  @FXML
+  private void onBackPaneClicked() {
+    App.setUi(AppUi.OFFICE);
+  }
+
+  /** When next is clicked, move on to the next thing. */
+  @FXML
+  private void onNextPaneClicked() {
+    // if there is a printing event, just exit out of the function call
+    if (GameState.isPrinting) {
+      return;
+    }
+
+    // move on to the decryption puzzle
+    App.setUi(AppUi.DECRYPTION);
   }
 
   /**

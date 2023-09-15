@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.RiddlePuzzleController">
   <children>
@@ -34,6 +36,40 @@
             </Button>
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
+      </Pane>
+      <Pane prefHeight="60.0" prefWidth="720.0" layoutY="420.0" style="-fx-background-color: black;">
+      </Pane>
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+         <children>
+            <Pane fx:id="paBackOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
+            <Label layoutX="9.0" layoutY="2.0" text="Back" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="425.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <children>
+            <Pane fx:id="paNextOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
+            <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
       </Pane>
   </children>
 </AnchorPane>
