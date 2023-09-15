@@ -71,7 +71,7 @@ public class TerminalController {
   /** When next is clicked, move on to the next thing. */
   @FXML
   private void onNextPaneClicked() {
-    // if there is a printing event, just exit out of the function call
+    // if there is a printing event, exit out of the function call
     if (GameState.isPrinting) {
       return;
     }
@@ -91,7 +91,20 @@ public class TerminalController {
   /** When skip is clicked, skip the current dialogue. */
   @FXML
   private void onSkipPaneClicked() {
-    // TODO
+    // if there is no printing event going on, exit out of the function call
+    if (!GameState.isPrinting) {
+      return;
+    }
+
+    // stop the printing
+    GameState.isPrinting = false;
+
+    // retrieve the current printed letter position and message
+    int letterPosition = Printer.getCurrentLetterPosition() + 1;
+    String message = Printer.getCurrentMessage();
+
+    // append the rest of the message to the text area
+    taTerminal.appendText(message.substring(letterPosition, message.length() - 1));
   }
 
   /** Initializes the bootup message. */
