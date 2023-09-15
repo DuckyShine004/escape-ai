@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.RiddlePuzzleController">
   <children>
-    <TextArea fx:id="taChat" editable="boolean" layoutX="35.0" layoutY="67.0" prefHeight="258.0" prefWidth="538.0" wrapText="true" />
+    <TextArea fx:id="taChat" editable="boolean" layoutX="400.0" layoutY="67.0" prefHeight="330.0" prefWidth="280.0" wrapText="true" styleClass="holographic-background" stylesheets="@../../css/puzzles/riddle.css" />
     <HBox layoutX="35.0" layoutY="367.0" spacing="10.0">
         <Button fx:id="btnAnswer1" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 1" />
         <Button fx:id="btnAnswer2" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 2" />
