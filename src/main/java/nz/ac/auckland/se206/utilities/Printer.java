@@ -7,6 +7,8 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.constants.GameState;
 
 public class Printer {
+  private static Timeline printTextEvent;
+
   private static int currentLetterPosition;
 
   private static String currentMessage;
@@ -22,18 +24,13 @@ public class Printer {
     currentMessage = message;
 
     // initialize a timeline for the printing event
-    Timeline printTextEvent = new Timeline();
+    printTextEvent = new Timeline();
 
     // create a keyframe for printing and add it to the timeline
     KeyFrame printTextKeyFrame =
         new KeyFrame(
             Duration.seconds(speed),
             event -> {
-              // check printing event has been cancelled
-              if (!GameState.isPrinting) {
-                printTextEvent.stop();
-              }
-
               // get the current letter of the string to be appended to the text area
               char currentCharacter = message.charAt(currentLetterPosition);
               String currentLetter = String.valueOf(currentCharacter);
@@ -56,9 +53,15 @@ public class Printer {
     // let the program know the printing event is finished and remove the key frame
     printTextEvent.setOnFinished(
         e -> {
-          printTextEvent.getKeyFrames().removeAll();
           GameState.isPrinting = false;
+          printTextEvent.getKeyFrames().removeAll();
         });
+  }
+
+  /** Stop the printing event. Most of the calls will be to cancel the printing event. */
+  public static void stop() {
+    GameState.isPrinting = false;
+    printTextEvent.stop();
   }
 
   /**

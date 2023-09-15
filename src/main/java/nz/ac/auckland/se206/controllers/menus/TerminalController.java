@@ -97,13 +97,13 @@ public class TerminalController {
     }
 
     // stop the printing
-    GameState.isPrinting = false;
+    Printer.stop();
 
     // retrieve the current printed letter position and message
-    int letterPosition = Printer.getCurrentLetterPosition() + 1;
+    int letterPosition = Printer.getCurrentLetterPosition();
     String message = Printer.getCurrentMessage();
 
-    // append the rest of the message to the text area
+    // print the remaining message to the text area
     taTerminal.appendText(message.substring(letterPosition, message.length() - 1));
   }
 
