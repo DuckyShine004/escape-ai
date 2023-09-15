@@ -56,5 +56,21 @@
             <Bloom threshold="0.0" />
          </effect>
       </Pane>
+      <Pane fx:id="paSkip" focusTraversable="true" layoutX="550.0" layoutY="425.0" onMouseClicked="#onSkipPaneClicked" onMouseEntered="#onSkipPaneEntered" onMouseExited="#onSkipPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <children>
+            <Pane fx:id="paSkipOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
+            <Label layoutX="12.0" layoutY="2.0" text="Skip" textFill="RED">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+      </Pane>
    </children>
 </Pane>

@@ -45,4 +45,14 @@ public class Printer {
           GameState.isPrinting = false;
         });
   }
+
+  /**
+   * Method is called to retrieve the last printed position of the letter when the printing event is
+   * CANCELLED.
+   *
+   * @return the letter position of the current message.
+   */
+  public static int getLetterPosition() {
+    return letterPosition;
+  }
 }

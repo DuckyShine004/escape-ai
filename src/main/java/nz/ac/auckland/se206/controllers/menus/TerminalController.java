@@ -13,8 +13,10 @@ import nz.ac.auckland.se206.utilities.Printer;
 public class TerminalController {
   @FXML private Pane paBack;
   @FXML private Pane paNext;
+  @FXML private Pane paSkip;
   @FXML private Pane paBackOverlay;
   @FXML private Pane paNextOverlay;
+  @FXML private Pane paSkipOverlay;
 
   @FXML private TextArea taTerminal;
 
@@ -48,6 +50,18 @@ public class TerminalController {
     paNextOverlay.setVisible(false);
   }
 
+  /** When the mouse is hovering over the pane, the overlay appears (skip). */
+  @FXML
+  private void onSkipPaneEntered() {
+    paSkipOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (skip). */
+  @FXML
+  private void onSkipPaneExited() {
+    paSkipOverlay.setVisible(false);
+  }
+
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
@@ -72,6 +86,12 @@ public class TerminalController {
 
     // move on to the decryption puzzle
     App.setUi(AppUi.DECRYPTION);
+  }
+
+  /** When skip is clicked, skip the current dialogue. */
+  @FXML
+  private void onSkipPaneClicked() {
+    // TODO
   }
 
   /** Initializes the bootup message. */
