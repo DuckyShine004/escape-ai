@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.GeneralOfficeController">
    <children>
@@ -16,10 +15,8 @@
             <Image url="@../../images/rooms/office.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnLeft" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefWidth="100.0" text="Left" />
-      <Text layoutX="20.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go left" wrappingWidth="100.0" />
-      <Button fx:id="btnRight" layoutX="480.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefWidth="100.0" text="Right" />
-      <Text layoutX="480.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go right" wrappingWidth="100.0" />
+      <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
+      <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
       <Rectangle fx:id="vase" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="41.0" layoutX="340.0" layoutY="193.0" onMouseClicked="#clickVase" stroke="BLACK" strokeType="INSIDE" width="38.0" />
       <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="98.0" layoutX="137.0" layoutY="205.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="65.0" />
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">

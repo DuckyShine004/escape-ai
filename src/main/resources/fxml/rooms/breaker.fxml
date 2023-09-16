@@ -43,7 +43,7 @@
       <TextArea layoutX="530.0" layoutY="75.0" prefHeight="230.0" prefWidth="178.0" promptText="Maybe this is a side GPT interaction panel that explains what needs to be done..?" />
       <TextField layoutX="529.0" layoutY="308.0" />
       <Button layoutX="678.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" />
-      <Button fx:id="btnRight" layoutX="480.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefWidth="100.0" text="Right" />
-      <Button fx:id="btnLeft" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefWidth="100.0" text="Left" />
+      <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
+      <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
    </children>
 </Pane>
