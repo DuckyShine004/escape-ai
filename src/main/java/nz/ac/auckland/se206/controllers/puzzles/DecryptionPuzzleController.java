@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers.puzzles;
 import java.lang.reflect.Field;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -19,6 +20,8 @@ public class DecryptionPuzzleController {
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
+
+  @FXML private TextArea taPseudocode;
 
   private int psuedocodeIndex;
 
@@ -40,11 +43,16 @@ public class DecryptionPuzzleController {
     // get a random pseudo code
     psuedocodeIndex = (int) Math.random() * GameState.maxPseudocodes;
 
-    // get the sequence, algorithm, desciption, and declaration of the pseudocode
+    // get the sequence, declaration, desciption, and algorithm of the pseudocode
     intializeSequence();
-    initializeAlgorithm();
     initializeDescription();
     initializeDeclaration();
+    initializeAlgorithm();
+
+    // append the description, declaration, and algorithm to the text area
+    taPseudocode.appendText(description);
+    taPseudocode.appendText(declaration);
+    taPseudocode.appendText(algorithm);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */

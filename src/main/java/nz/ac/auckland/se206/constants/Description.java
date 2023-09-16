@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.constants;
 
 public class Description {
   public static final String description0 =
-      "The following algorithm calculates the area of a rectangle and the area of a triangle. If"
-          + " the area of the rectangle is strictly greater than the area of the triangle, the"
-          + " program will output YES, otherwise, NO.";
+      "Algorithm calculates the area of rectangle. If the area is greater than the height, print"
+          + " 'YES', otherwise, print 'NO'. \n\n";
 }
