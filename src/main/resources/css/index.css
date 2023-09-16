@@ -1,0 +1,30 @@
+/* Style for navigation buttons */
+.navigation-button {
+  -fx-background-color: white;
+  -fx-border-color: transparent;
+  -fx-text-fill: grey;
+  -fx-font-weight: bold;
+  -fx-font-size: 40px; 
+  -fx-padding: 0px 12px; 
+  -fx-background-insets: 0; 
+  -fx-opacity: 0.4; 
+  -fx-cursor: hand;
+}
+
+/* Hover effect for navigation buttons */
+.navigation-button:hover {
+  -fx-opacity: 0.8;
+}
+
+/* Style for item buttons */
+.item-button {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-cursor: hand;
+}
+
+/* Hover effect for item buttons */
+.item-button:hover {
+  -fx-background-color: grey;
+  -fx-opacity: 0.3;
+}
