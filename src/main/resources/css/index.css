@@ -11,7 +11,20 @@
   -fx-cursor: hand;
 }
 
-/* Hover effect */
+/* Hover effect for navigation buttons */
 .navigation-button:hover {
   -fx-opacity: 0.8;
+}
+
+/* Style for item buttons */
+.item-button {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-cursor: hand;
+}
+
+/* Hover effect for item buttons */
+.item-button:hover {
+  -fx-background-color: grey;
+  -fx-opacity: 0.3;
 }

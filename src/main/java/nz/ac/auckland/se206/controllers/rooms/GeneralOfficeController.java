@@ -18,7 +18,7 @@ public class GeneralOfficeController {
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
-  @FXML private Rectangle door;
+  @FXML private Button door;
   @FXML private Rectangle vase;
 
   /** Initializes the general office. */
@@ -47,7 +47,7 @@ public class GeneralOfficeController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickDoor(MouseEvent event) throws IOException {
+  public void onDoorClicked(MouseEvent event) throws IOException {
     System.out.println("door clicked");
 
     if (!GameState.isRiddleResolved) {
