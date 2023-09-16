@@ -5,9 +5,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
+      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="20.0" layoutY="65.0">
+         <image>
+            <Image url="@../../images/rooms/control.png" />
+         </image>
+      </ImageView>
       <Button fx:id="btnLeft" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefWidth="100.0" text="Left" />
       <Text layoutX="20.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go left" wrappingWidth="100.0" />
       <Button fx:id="btnRight" layoutX="480.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefWidth="100.0" text="Right" />
