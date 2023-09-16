@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.HBox?>
@@ -14,6 +15,9 @@
          <effect>
             <Bloom />
          </effect>
+         <children>
+            <TextArea fx:id="taPseudocode" disable="true" editable="false" focusTraversable="false" prefHeight="340.0" prefWidth="305.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
+         </children>
       </Pane>
       <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <effect>
