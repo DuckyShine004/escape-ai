@@ -56,7 +56,7 @@
             <Bloom threshold="0.0" />
          </effect>
          <children>
-            <Label layoutX="10.0" prefHeight="65.0" prefWidth="425.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Decryption Puzzle" textFill="#ff6400">
+            <Label layoutX="90.0" prefHeight="65.0" prefWidth="425.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Decryption Puzzle" textFill="#ff6400">
                <font>
                   <Font size="40.0" />
                </font>
@@ -65,6 +65,11 @@
                </effect>
             </Label>
             <Label fx:id="lblTime" layoutX="610.0" prefHeight="65.0" prefWidth="100.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="#ff6400">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="&gt;_" textFill="#ff6400">
                <font>
                   <Font size="40.0" />
                </font>
@@ -95,5 +100,10 @@
             </Pane>
          </children>
       </HBox>
+      <Line endY="65.0" layoutX="80.0" layoutY="2.0" startY="5.0" stroke="#ff8700" strokeWidth="2.0">
+         <effect>
+            <Bloom />
+         </effect>
+      </Line>
    </children>
 </Pane>
