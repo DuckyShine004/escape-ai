@@ -15,10 +15,8 @@
             <Image url="@../../images/rooms/office.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
-      <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
-      <Rectangle fx:id="vase" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="41.0" layoutX="340.0" layoutY="193.0" onMouseClicked="#clickVase" stroke="BLACK" strokeType="INSIDE" width="38.0" />
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="98.0" layoutX="137.0" layoutY="205.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Rectangle fx:id="vase" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="26.0" layoutX="172.0" layoutY="287.0" onMouseClicked="#clickVase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#2f03ff" focusTraversable="true" height="95.0" layoutX="295.0" layoutY="201.0" onMouseClicked="#clickDoor" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
          <children>
             <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
@@ -36,5 +34,7 @@
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
+      <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
+      <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
    </children>
 </Pane>
