@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers.puzzles;
+package nz.ac.auckland.se206.utilities;
 
 import javafx.scene.layout.Pane;
 
