@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.HBox?>
@@ -40,10 +41,20 @@
             <Bloom />
          </effect>
          <children>
-            <Line endX="295.0" layoutX="102.5" layoutY="210.0" startX="-100.0" stroke="#0dff00" strokeWidth="2.0" />
-            <Label layoutX="10.0" layoutY="211.0" prefHeight="50.0" prefWidth="35.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~&gt;" textFill="#00e600">
+            <TextArea fx:id="taChat" editable="false" prefHeight="215.0" prefWidth="405.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
+            <TextField layoutX="40.0" layoutY="220.0" prefHeight="40.0" prefWidth="360.0" promptText="Enter sequence or chat [ENTER]" styleClass="custom-text-field" stylesheets="@../../css/puzzles/decryption.css">
+               <effect>
+                  <Glow level="0.1" />
+               </effect>
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Line endX="295.0" layoutX="102.5" layoutY="220.0" startX="-100.0" stroke="#0dff00" strokeWidth="2.0" />
+            <Line endX="-99.99996948242188" endY="80.0" layoutX="140.0" layoutY="177.0" startX="-99.99996948242188" startY="44.0" stroke="#0aff00" strokeWidth="2.0" />
+            <Label layoutX="10.0" layoutY="220.0" prefHeight="40.0" prefWidth="40.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~&gt;" textFill="#00e600">
+               <font>
+                  <Font name="System Bold" size="22.0" />
                </font>
                <effect>
                   <Glow level="0.15" />
