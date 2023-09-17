@@ -58,6 +58,30 @@ public class App extends Application {
     Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + "." + extension), size);
   }
 
+  /**
+   * This method initialises the breaker scene
+   * @throws IOException
+   */
+  public static void initializeBreakerScene() throws IOException {
+    SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
+  }
+
+  /**
+   * This method will initialize the control scene
+   * @throws IOException
+   */
+  public static void initializeControlScene() throws IOException {
+    SceneManager.addAppUi(AppUi.CONTROL, loadFxml("rooms/control"));
+  }
+
+  /**
+   * This method will initialize the office scene
+   * @throws IOException
+   */
+  public static void initializeOfficeScene() throws IOException {
+    SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
+  }
+
   /*
    * This method will initalize the scenes, by storing instatnces of the loaded fxmls in SceneManager
    * @throws IOException if fxml is not found
