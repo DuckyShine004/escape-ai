@@ -41,7 +41,7 @@
             <Bloom />
          </effect>
          <children>
-            <TextArea fx:id="taChat" editable="false" prefHeight="230.0" prefWidth="405.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
+            <TextArea fx:id="taChat" editable="false" prefHeight="220.0" prefWidth="405.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
             <TextField fx:id="tfChat" layoutX="40.0" layoutY="220.0" prefHeight="40.0" prefWidth="360.0" promptText="Enter sequence or chat [ENTER]" styleClass="custom-text-field" stylesheets="@../../css/puzzles/decryption.css">
                <effect>
                   <Glow level="0.1" />

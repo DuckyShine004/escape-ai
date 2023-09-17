@@ -39,5 +39,6 @@ public class Instructions {
           + "> Awaiting user response... ";
 
   public static final double printSpeed = 0.010;
+
   public static boolean isInstructionsPrinted = false;
 }
