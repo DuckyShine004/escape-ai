@@ -7,8 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatManager;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.utilities.ChatArea;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
@@ -21,22 +24,42 @@ public class GeneralOfficeController {
   @FXML private Button door;
   @FXML private Rectangle vase;
 
+  @FXML private ChatArea chatArea;
+
+  private SceneManager sceneManager;
+
   /** Initializes the general office. */
   @FXML
   private void initialize() {
     // add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
+
+    sceneManager = SceneManager.getInstance();
+    String chatContent = ChatManager.getChatContent();
+    chatArea.setChatContent(chatContent);
   }
 
-  /** On mouse clicked, if the button is pressed, then switch to the left scene. */
+  /**
+   * On mouse clicked, if the button is pressed, then switch to the left scene.
+   *
+   * @throws IOException
+   */
   @FXML
-  private void onLeftButton() {
+  private void onLeftButton() throws IOException {
+    sceneManager.setChatContent(chatArea.getChatContent());
+    App.initializeControlScene();
     App.setUi(AppUi.CONTROL);
   }
 
-  /** On mouse clicked, if the button is pressed, then switch to the right scene. */
+  /**
+   * On mouse clicked, if the button is pressed, then switch to the right scene.
+   *
+   * @throws IOException
+   */
   @FXML
-  private void onRightButton() {
+  private void onRightButton() throws IOException {
+    sceneManager.setChatContent(chatArea.getChatContent());
+    App.initializeBreakerScene();
     App.setUi(AppUi.BREAKER);
   }
 

@@ -1,0 +1,19 @@
+/* chatArea.css */
+
+/* Style the TextArea for chat messages */
+.text-area {
+  -fx-font-size: 14px;
+  -fx-pref-height: 200px;
+}
+
+/* Style the input TextField */
+.text-field {
+  -fx-font-size: 14px;
+  -fx-pref-width: 200px;
+}
+
+/* Style the Send Button */
+.button {
+  -fx-font-size: 14px;
+  -fx-pref-width: 80px;
+}
