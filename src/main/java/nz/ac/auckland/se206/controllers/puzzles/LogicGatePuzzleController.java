@@ -13,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
@@ -290,6 +292,31 @@ public class LogicGatePuzzleController {
 
     // append the result to the text area
     taGptText.appendText("ai> " + gptOutput + "\n\n");
+  }
+
+  @FXML
+  private void onEnterInput(KeyEvent event) {
+    // get input from text field
+    String input = tfTextInput.getText();
+
+    // was enter pressed, and is input valid
+    if (event.getCode() == KeyCode.ENTER && input.length() > 0 && input.length() < 200) {
+      if (input.trim().isEmpty()) {
+        return;
+      }
+
+      // initialize input chat message object
+      ChatMessage inputMessage;
+
+      // create a new instance of input chat message object
+      inputMessage = new ChatMessage("user", input);
+
+      // appent input to text area
+      taGptText.appendText("user> " + input + "\n\n");
+
+      // get the gpt response
+      getChatResponse(inputMessage);
+    }
   }
 
   /** This method sets the styles for this scene */

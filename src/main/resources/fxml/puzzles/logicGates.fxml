@@ -160,6 +160,6 @@
          </children>
       </Pane>
       <TextArea fx:id="taGptText" editable="false" layoutX="532.0" layoutY="98.0" prefHeight="226.0" prefWidth="176.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" wrapText="true" />
-      <TextField fx:id="tfTextInput" layoutX="532.0" layoutY="324.0" prefHeight="25.0" prefWidth="176.0" promptText="Enter To Submit" />
+      <TextField fx:id="tfTextInput" layoutX="532.0" layoutY="324.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="176.0" promptText="Enter To Submit" />
    </children>
 </Pane>

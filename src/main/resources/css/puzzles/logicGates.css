@@ -27,3 +27,12 @@
 .gpt-text-area .content {
   -fx-background-color: black; 
 }
+
+.gpt-text-area  .scroll-bar:vertical {
+  -fx-pref-width: 1;
+  -fx-opacity: 0;
+}
+.gpt-text-area  .scroll-bar:horizontal {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
