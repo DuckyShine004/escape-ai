@@ -254,10 +254,16 @@ public class DecryptionPuzzleController {
     this.declaration = (String) fld.get(declaration);
   }
 
+  /**
+   * Generate a response from GPT.
+   *
+   * @param entityMessage the chat message to be sent to GPT.
+   */
   private void getChatResponse(ChatMessage entityMessage) {
     // add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
+    // create a concurrent task for handling GPT response
     Task<Void> gptTask =
         new Task<Void>() {
           @Override
@@ -273,10 +279,13 @@ public class DecryptionPuzzleController {
 
     // start the thread
     gptThread.start();
-
-    System.out.println("sdfhjksdfhjk");
   }
 
+  /**
+   * Set the chat response from GPT. This includes printing the response to the text area.
+   *
+   * @throws Exception thrown when we fail to retrieve a response from GPT.
+   */
   private void setChatResponse() throws Exception {
     // get GPT's response
     ChatCompletionResult gptResult = gptRequest.execute();
