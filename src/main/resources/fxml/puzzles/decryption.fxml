@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
+<Pane fx:id="paDecryption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
    <children>
       <Pane layoutX="5.0" layoutY="80.0" prefHeight="340.0" prefWidth="300.0" style="-fx-background-color: transparent;" styleClass="green-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <effect>
@@ -41,8 +41,8 @@
             <Bloom />
          </effect>
          <children>
-            <TextArea fx:id="taChat" editable="false" prefHeight="215.0" prefWidth="405.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
-            <TextField layoutX="40.0" layoutY="220.0" prefHeight="40.0" prefWidth="360.0" promptText="Enter sequence or chat [ENTER]" styleClass="custom-text-field" stylesheets="@../../css/puzzles/decryption.css">
+            <TextArea fx:id="taChat" editable="false" prefHeight="230.0" prefWidth="405.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
+            <TextField fx:id="tfChat" layoutX="40.0" layoutY="220.0" prefHeight="40.0" prefWidth="360.0" promptText="Enter sequence or chat [ENTER]" styleClass="custom-text-field" stylesheets="@../../css/puzzles/decryption.css">
                <effect>
                   <Glow level="0.1" />
                </effect>

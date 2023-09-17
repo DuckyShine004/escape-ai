@@ -4,6 +4,9 @@ import java.lang.reflect.Field;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -17,11 +20,15 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
+  @FXML private Pane paDecryption;
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
 
+  @FXML private TextArea taChat;
   @FXML private TextArea taPseudocode;
+
+  @FXML private TextField tfChat;
 
   private int psuedocodeIndex;
 
@@ -71,6 +78,25 @@ public class DecryptionPuzzleController {
   @FXML
   private void onBackPaneClicked() {
     App.setUi(AppUi.TERMINAL);
+  }
+
+  @FXML
+  private void onKeyPressed(KeyEvent keyEvent) {
+    String userInput = "";
+
+    // get the user input from the chat text field
+    if (keyEvent.getCode() == KeyCode.ENTER) {
+      userInput = tfChat.getText();
+    }
+
+    // check if the user input is empty
+    if (userInput == null || userInput.trim().isEmpty()) {
+      return;
+    }
+
+    // append the text to the chat text area
+    taChat.appendText(userInput + "\n\n");
+    tfChat.clear();
   }
 
   /**
