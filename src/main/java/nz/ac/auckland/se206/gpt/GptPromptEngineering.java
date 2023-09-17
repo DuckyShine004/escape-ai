@@ -43,4 +43,9 @@ public class GptPromptEngineering {
         + concept
         + ".";
   }
+
+  public static String initializeDecryptionResponse() {
+    return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
+        + " response should never exceed 20 words.";
+  }
 }
