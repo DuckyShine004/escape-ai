@@ -251,6 +251,12 @@ public class LogicGatePuzzleController {
     // add user input to GPT's user input history
     gptRequest.addMessage(gptMessage);
 
+    // disable input
+    tfTextInput.setDisable(true);
+
+    // clear input
+    tfTextInput.setText("");
+
     // create a concurrent task for handling GPT response
     Task<Void> gptTask =
         new Task<Void>() {
@@ -264,6 +270,18 @@ public class LogicGatePuzzleController {
 
     // create a thread to handle GPT concurrency
     Thread gptThread = new Thread(gptTask);
+
+    // set text field to enabled on failed
+    gptTask.setOnFailed(
+        event -> {
+          tfTextInput.setDisable(false);
+        });
+
+    // set text field to enabled on succeeded
+    gptTask.setOnSucceeded(
+        event -> {
+          tfTextInput.setDisable(false);
+        });
 
     // start the thread
     gptThread.start();
