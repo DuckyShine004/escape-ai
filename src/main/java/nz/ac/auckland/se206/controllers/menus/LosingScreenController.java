@@ -23,6 +23,7 @@ public class LosingScreenController {
     //
     GameState.isKeyFound = false;
     GameState.isRiddleResolved = false;
+    GameState.isLogicGateSolved = false;
     GameState.riddlesSolved = 0;
   }
 

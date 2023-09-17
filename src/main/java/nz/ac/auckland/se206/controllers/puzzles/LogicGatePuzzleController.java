@@ -5,16 +5,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.utilities.*;
 
 public class LogicGatePuzzleController {
@@ -75,6 +85,10 @@ public class LogicGatePuzzleController {
   @FXML private Pane pInput14_2;
 
   @FXML private ImageView imgSolvedLight;
+
+  // text area and field for gpt interaction
+  @FXML private TextArea taGptText;
+  @FXML private TextField tfTextInput;
 
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
@@ -157,6 +171,8 @@ public class LogicGatePuzzleController {
   // => 4
   private int layoutSize = 4;
 
+  private ChatCompletionRequest gptRequest;
+
   @FXML
   private void initialize() {
 
@@ -200,6 +216,125 @@ public class LogicGatePuzzleController {
 
     // sets the styles of the scene
     setStyles();
+
+    // initalize the chat with a greeting message
+    initiailizeChat();
+  }
+
+  private void initiailizeChat() {
+    // initialize the chat message field
+    ChatMessage gptMessage;
+
+    // initialize GPT chat message object
+    gptMessage = new ChatMessage("assistant", GptPromptEngineering.initializeLogicGateResponse());
+
+    // initialize an instance of GPT request
+    gptRequest = new ChatCompletionRequest();
+
+    // set the 'n' parameter for the request -> has to be '1'
+    gptRequest.setN(1);
+
+    // set the temperature for the request -> [0,2]
+    gptRequest.setTemperature(1.4);
+
+    // set the 'top p' value for the request -> [0,1]
+    gptRequest.setTopP(0.5);
+
+    // set the max tokens -> has to be at least '1'
+    gptRequest.setMaxTokens(100);
+
+    // get a response from GPT to setup the chat
+    getChatResponse(gptMessage);
+  }
+
+  private void getChatResponse(ChatMessage gptMessage) {
+    // add user input to GPT's user input history
+    gptRequest.addMessage(gptMessage);
+
+    // disable input
+    tfTextInput.setDisable(true);
+
+    // clear input
+    tfTextInput.setText("");
+
+    // create a concurrent task for handling GPT response
+    Task<Void> gptTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            // set GPT's response
+            setChatResponse();
+            return null;
+          }
+        };
+
+    // create a thread to handle GPT concurrency
+    Thread gptThread = new Thread(gptTask);
+
+    // set text field to enabled on failed
+    gptTask.setOnFailed(
+        event -> {
+          tfTextInput.setDisable(false);
+        });
+
+    // set text field to enabled on succeeded
+    gptTask.setOnSucceeded(
+        event -> {
+          tfTextInput.setDisable(false);
+        });
+
+    // start the thread
+    gptThread.start();
+  }
+
+  /**
+   * Set the chat response from GPT. This includes printing the response to the text area.
+   *
+   * @throws Exception thrown when we fail to retrieve a response from GPT.
+   */
+  private void setChatResponse() throws Exception {
+    // get GPT's response
+    ChatCompletionResult gptResult = gptRequest.execute();
+
+    // get GPT's choice
+    Choice gptChoice = gptResult.getChoices().iterator().next();
+
+    // get GPT's chat message
+    ChatMessage gptMessage = gptChoice.getChatMessage();
+
+    // get the content of gpt's message in the form of a string
+    String gptOutput = gptMessage.getContent();
+
+    // add GPT's response to its history
+    gptRequest.addMessage(gptMessage);
+
+    // append the result to the text area
+    taGptText.appendText("ai> " + gptOutput + "\n\n");
+  }
+
+  @FXML
+  private void onEnterInput(KeyEvent event) {
+    // get input from text field
+    String input = tfTextInput.getText();
+
+    // was enter pressed, and is input valid
+    if (event.getCode() == KeyCode.ENTER && input.length() > 0 && input.length() < 200) {
+      if (input.trim().isEmpty()) {
+        return;
+      }
+
+      // initialize input chat message object
+      ChatMessage inputMessage;
+
+      // create a new instance of input chat message object
+      inputMessage = new ChatMessage("user", input);
+
+      // appent input to text area
+      taGptText.appendText("user> " + input + "\n\n");
+
+      // get the gpt response
+      getChatResponse(inputMessage);
+    }
   }
 
   /** This method sets the styles for this scene */

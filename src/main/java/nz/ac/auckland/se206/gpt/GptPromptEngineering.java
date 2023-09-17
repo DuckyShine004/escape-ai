@@ -48,4 +48,9 @@ public class GptPromptEngineering {
     return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
         + " response should never exceed 20 words.";
   }
+
+  public static String initializeLogicGateResponse() {
+    return "You are the AI of a logic gate puzzle game,  Greet the user. Your respnse "
+        + " should never exceed 20 words";
+  }
 }
