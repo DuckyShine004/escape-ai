@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers.puzzles;
 import java.lang.reflect.Field;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -299,6 +300,8 @@ public class DecryptionPuzzleController {
    * @return the user's sequence.
    */
   private String getUserSequence(String userInput) {
+    // Initialize fields
+    String userSequence;
     int position;
 
     // Stop at the first digit
@@ -309,7 +312,7 @@ public class DecryptionPuzzleController {
     }
 
     // Get the next four characters from the user's input
-    String userSequence = userInput.substring(position, position + 4);
+    userSequence = userInput.substring(position, position + GameState.maxSequence);
 
     return userSequence;
   }
@@ -339,6 +342,17 @@ public class DecryptionPuzzleController {
     taChat.appendText("ai> " + gptOutput + "\n\n");
   }
 
+  private void setDigit(String userSequence, int index) {
+    // Get the current scene
+    Scene currentScene = paDecryption.getScene();
+
+    // Get the digit label associated with the index
+    Label lblDigit = (Label) currentScene.lookup("#lblDigit" + String.valueOf(index));
+
+    // Update the previous digit to the current one
+    lblDigit.setText(String.valueOf(userSequence.charAt(index)));
+  }
+
   /**
    * Set the user's response. The user's response will be appended to the chat.
    *
@@ -354,6 +368,8 @@ public class DecryptionPuzzleController {
 
   private void setUserSequence(String userInput) {
     String userSequence = getUserSequence(userInput);
+
+    System.out.println(userSequence);
 
     // Check if the user sequence is correct or not
     if (userSequence.equals(sequence)) {
@@ -377,7 +393,11 @@ public class DecryptionPuzzleController {
     System.out.println("SEQUENCE IS INCORRECT");
   }
 
-  private void updateUserSequence(String userSequence) {}
+  private void updateUserSequence(String userSequence) {
+    for (int index = 0; index < userSequence.length(); index++) {
+      setDigit(userSequence, index);
+    }
+  }
 
   /**
    * Check if the user's input has contains a four digit number. If it does, then handle it in
@@ -387,11 +407,6 @@ public class DecryptionPuzzleController {
    * @return a boolean based on whether the user's input is a sequence.
    */
   private Boolean isUserInputSequence(String userInput) {
-    // Check if the sequence is contained within the user input
-    if (!userInput.contains(sequence)) {
-      return false;
-    }
-
     // Check if there are only four digits in the user's input
     if (!isUserSequenceFourDigits(userInput)) {
       return false;
@@ -421,7 +436,7 @@ public class DecryptionPuzzleController {
       }
     }
 
-    return (count == 4 ? true : false);
+    return (count == GameState.maxSequence ? true : false);
   }
 
   /**
@@ -431,6 +446,8 @@ public class DecryptionPuzzleController {
    * @return a boolean value based on whether there are four contiguous digits.
    */
   private Boolean isUserSequenceContiguous(String userInput) {
+    // Initialize fields
+    String userSequence;
     int position;
 
     // Stop at the first digit
@@ -441,7 +458,7 @@ public class DecryptionPuzzleController {
     }
 
     // Get the next four characters from the user's input
-    String userSequence = userInput.substring(position, position + 4);
+    userSequence = userInput.substring(position, position + GameState.maxSequence);
 
     return isUserSequenceNumeric(userSequence);
   }
