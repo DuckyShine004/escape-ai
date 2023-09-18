@@ -68,7 +68,7 @@ public class SceneManager {
   }
 
   /** iniialise the gpt thread */
-  private void initGptThread() {
+  public void initGptThread() {
     // Create and start the GPT thread if it doesn't exist
     if (gptThread == null || !gptThread.isAlive()) {
       gptThread = new Thread(() -> {
@@ -97,5 +97,6 @@ public class SceneManager {
 
     // reinitalizes the puzzle scenes
     App.initalizePuzzleScenes();
+
   }
 }
