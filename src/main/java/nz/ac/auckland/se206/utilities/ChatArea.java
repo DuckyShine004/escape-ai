@@ -134,7 +134,7 @@ public class ChatArea extends VBox {
     ChatMessage gptMessage;
 
     // initialize GPT chat message object
-    gptMessage = new ChatMessage("assistant", GptPromptEngineering.initializeLogicGateResponse());
+    gptMessage = new ChatMessage("assistant", GptPromptEngineering.initializeBackStory());
 
     // initialize GPT request object
     gptRequest = new ChatCompletionRequest();
