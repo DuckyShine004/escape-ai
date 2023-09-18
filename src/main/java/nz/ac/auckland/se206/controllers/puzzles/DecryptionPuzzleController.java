@@ -30,6 +30,10 @@ public class DecryptionPuzzleController {
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
+  @FXML private Label lblDigit0;
+  @FXML private Label lblDigit1;
+  @FXML private Label lblDigit2;
+  @FXML private Label lblDigit3;
 
   @FXML private TextArea taChat;
   @FXML private TextArea taPseudocode;
@@ -101,7 +105,7 @@ public class DecryptionPuzzleController {
 
     // check whether the user has entered a sequence or not
     if (isUserInputSequence(userInput)) {
-      System.out.println("DHFJDHFJ");
+      setUserSequence(userInput);
       return;
     }
 
@@ -290,6 +294,10 @@ public class DecryptionPuzzleController {
     gptThread.start();
   }
 
+  /**
+   * @param userInput the user's input from the text field.
+   * @return the user's sequence.
+   */
   private String getUserSequence(String userInput) {
     int position;
 
@@ -344,9 +352,32 @@ public class DecryptionPuzzleController {
     tfChat.clear();
   }
 
-  private void setUserSequence(String userSequence) {
-    return;
+  private void setUserSequence(String userInput) {
+    String userSequence = getUserSequence(userInput);
+
+    // Check if the user sequence is correct or not
+    if (userSequence.equals(sequence)) {
+      handleCorrectSequence(userSequence);
+    } else {
+      handleIncorrectSequence(userSequence);
+    }
+
+    // Update the user's sequence on the red boxes
+    updateUserSequence(userSequence);
+
+    // Set the user's sequence
+    setUserResponse(userSequence);
   }
+
+  private void handleCorrectSequence(String userSequence) {
+    System.out.println("SEQUENCE IS CORRECT");
+  }
+
+  private void handleIncorrectSequence(String userSequence) {
+    System.out.println("SEQUENCE IS INCORRECT");
+  }
+
+  private void updateUserSequence(String userSequence) {}
 
   /**
    * Check if the user's input has contains a four digit number. If it does, then handle it in
@@ -374,6 +405,12 @@ public class DecryptionPuzzleController {
     return true;
   }
 
+  /**
+   * Check whether the user's input contains four digits or not.
+   *
+   * @param userInput
+   * @return a boolean value based on whether the user's input contains four digits.
+   */
   private Boolean isUserSequenceFourDigits(String userInput) {
     int count = 0;
 
@@ -387,6 +424,12 @@ public class DecryptionPuzzleController {
     return (count == 4 ? true : false);
   }
 
+  /**
+   * Check whether there exists four contiguous digits in the user's input.
+   *
+   * @param userInput the user's input from the text field.
+   * @return a boolean value based on whether there are four contiguous digits.
+   */
   private Boolean isUserSequenceContiguous(String userInput) {
     int position;
 
@@ -400,10 +443,16 @@ public class DecryptionPuzzleController {
     // Get the next four characters from the user's input
     String userSequence = userInput.substring(position, position + 4);
 
-    return isNumeric(userSequence);
+    return isUserSequenceNumeric(userSequence);
   }
 
-  private Boolean isNumeric(String userSequence) {
+  /**
+   * Check if the user's sequence is numeric.
+   *
+   * @param userSequence the user's sequence.
+   * @return a boolean value whether the user's sequence is a valid four digit number.
+   */
+  private Boolean isUserSequenceNumeric(String userSequence) {
     return userSequence.matches("-?\\d+(\\.\\d+)?");
   }
 }
