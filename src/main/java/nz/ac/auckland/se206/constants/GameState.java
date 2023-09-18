@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.constants;
 
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+
 /** Represents the state of the game. */
 public class GameState {
 
@@ -23,6 +25,9 @@ public class GameState {
 
   /** Indicates whether the logic gate puzzle has been solved */
   public static boolean isLogicGateSolved = false;
+
+  /** Stores the gpt request */
+  public static ChatCompletionRequest gptRequest;
 
   /** Indicates whether the program has a printing event going on */
   public static boolean isPrinting = false;

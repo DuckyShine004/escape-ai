@@ -9,9 +9,11 @@ public class SceneManager {
 
   private static SceneManager instance;
   private static ChatArea chatArea;
+  private static Thread gptThread;
 
   public SceneManager() {
     chatArea = new ChatArea();
+    initGptThread();
   }
 
 
@@ -63,6 +65,18 @@ public class SceneManager {
   // set chat area
   public void setChatContent(String content) {
     chatArea.setChatContent(content);
+  }
+
+  /** iniialise the gpt thread */
+  private void initGptThread() {
+    // Create and start the GPT thread if it doesn't exist
+    if (gptThread == null || !gptThread.isAlive()) {
+      gptThread = new Thread(() -> {
+        chatArea.initiailizeChat();
+      });
+      gptThread.setDaemon(true); 
+      gptThread.start();
+    }
   }
 
   /**
