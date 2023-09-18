@@ -91,8 +91,17 @@ public class DecryptionPuzzleController {
       userInput = tfChat.getText();
     }
 
+    // trim the user input
+    userInput = userInput.trim();
+
     // check if the user input is empty
-    if (userInput == null || userInput.trim().isEmpty()) {
+    if (userInput == null || userInput.isEmpty()) {
+      return;
+    }
+
+    // check whether the user has entered a sequence or not
+    if (isUserInputSequence(userInput)) {
+      System.out.println("DHFJDHFJ");
       return;
     }
 
@@ -281,6 +290,22 @@ public class DecryptionPuzzleController {
     gptThread.start();
   }
 
+  private String getUserSequence(String userInput) {
+    int position;
+
+    // Stop at the first digit
+    for (position = 0; position < userInput.length(); position++) {
+      if (Character.isDigit(userInput.charAt(position))) {
+        break;
+      }
+    }
+
+    // Get the next four characters from the user's input
+    String userSequence = userInput.substring(position, position + 4);
+
+    return userSequence;
+  }
+
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
    *
@@ -317,5 +342,68 @@ public class DecryptionPuzzleController {
 
     // clear the text field user input
     tfChat.clear();
+  }
+
+  private void setUserSequence(String userSequence) {
+    return;
+  }
+
+  /**
+   * Check if the user's input has contains a four digit number. If it does, then handle it in
+   * another function call.
+   *
+   * @param userInput the user's input from the text field.
+   * @return a boolean based on whether the user's input is a sequence.
+   */
+  private Boolean isUserInputSequence(String userInput) {
+    // Check if the sequence is contained within the user input
+    if (!userInput.contains(sequence)) {
+      return false;
+    }
+
+    // Check if there are only four digits in the user's input
+    if (!isUserSequenceFourDigits(userInput)) {
+      return false;
+    }
+
+    // Check if the digits are contiguous in the user's input
+    if (!isUserSequenceContiguous(userInput)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  private Boolean isUserSequenceFourDigits(String userInput) {
+    int count = 0;
+
+    // Go through the user's input and check if there are only four digits
+    for (int i = 0; i < userInput.length(); i++) {
+      if (Character.isDigit(userInput.charAt(i))) {
+        count++;
+      }
+    }
+
+    return (count == 4 ? true : false);
+  }
+
+  private Boolean isUserSequenceContiguous(String userInput) {
+    int position;
+
+    // Stop at the first digit
+    for (position = 0; position < userInput.length(); position++) {
+      if (Character.isDigit(userInput.charAt(position))) {
+        break;
+      }
+    }
+
+    // Get the next four characters from the user's input
+    String userSequence = userInput.substring(position, position + 4);
+
+    return isNumeric(userSequence);
+  }
+
+  private Boolean isNumeric(String userSequence) {
+    return userSequence.matches("-?\\d+(\\.\\d+)?");
   }
 }

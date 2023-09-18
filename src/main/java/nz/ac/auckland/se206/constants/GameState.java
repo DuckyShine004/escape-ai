@@ -24,6 +24,9 @@ public class GameState {
   /** Indicates whether the logic gate puzzle has been solved */
   public static boolean isLogicGateSolved = false;
 
+  /** Indicates whether the decryption puzzle has been solved */
+  public static boolean isDecryptionSolved = false;
+
   /** Indicates whether the program has a printing event going on */
   public static boolean isPrinting = false;
 
