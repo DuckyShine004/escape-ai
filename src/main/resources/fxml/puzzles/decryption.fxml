@@ -166,7 +166,7 @@
             </Pane>
          </children>
       </HBox>
-      <Pane fx:id="paHint" layoutX="440.0" layoutY="12.5" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: transparent;" styleClass="orange-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paHint" layoutX="440.0" layoutY="12.5" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: transparent;" styleClass="orange-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Pane fx:id="paHintOverlay" opacity="0.15" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: orange;" visible="false" />
             <Label layoutX="8.0" layoutY="-8.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Hint" textFill="#ff6400">
