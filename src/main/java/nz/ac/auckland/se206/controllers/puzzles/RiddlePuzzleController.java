@@ -87,6 +87,11 @@ public class RiddlePuzzleController {
    */
   private void appendChatMessage(ChatMessage msg) {
     taChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+
+    GameState.isSpeaking = true;
+    // doesn't need to check if it is currently speaking because it naturally flows given you cannot
+    // click buttons at any time
+    tts.speak(msg.getContent());
   }
 
   /**
@@ -423,12 +428,17 @@ public class RiddlePuzzleController {
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
+    tts.stop();
+
     App.setUi(AppUi.OFFICE);
   }
 
   /** When next is clicked, move on to the next thing. */
   @FXML
   private void onNextPaneClicked() {
+
+    tts.stop();
+
     if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
       // If the riddle is solved, load the next riddle and disable the buttons whilst the riddle is
       // loading
@@ -438,6 +448,7 @@ public class RiddlePuzzleController {
       btnAnswer2.setDisable(true);
       btnAnswer3.setDisable(true);
       btnGetHint.setDisable(true);
+
     } else if (GameState.riddlesSolved == 3) {
       // If all riddles are solved, navigate back to the office
       App.setUi(AppUi.OFFICE);

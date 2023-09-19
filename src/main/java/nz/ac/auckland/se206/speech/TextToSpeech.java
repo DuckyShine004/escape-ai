@@ -5,6 +5,7 @@ import javax.speech.Central;
 import javax.speech.EngineException;
 import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
+import nz.ac.auckland.se206.constants.GameState;
 
 /** Text-to-speech API using the JavaX speech library. */
 public class TextToSpeech {
@@ -14,6 +15,9 @@ public class TextToSpeech {
       super(message);
     }
   }
+
+  private Thread speechThread;
+  private Task<Void> speechTask;
 
   /**
    * Main function to speak the given list of sentences.
@@ -30,6 +34,18 @@ public class TextToSpeech {
 
     textToSpeech.speak(args);
     textToSpeech.terminate();
+  }
+
+  /** Stops the TTS partway through speaking. */
+  public void stop() {
+    if (speechThread != null && speechThread.isAlive()) {
+      // Stop the TTS thread
+
+      System.out.println("cancel tts");
+
+      synthesizer.cancelAll();
+      speechThread.interrupt();
+    }
   }
 
   private final Synthesizer synthesizer;
@@ -83,7 +99,7 @@ public class TextToSpeech {
       throw new IllegalArgumentException("Text cannot be null.");
     }
 
-    Task<Void> speachTask =
+    speechTask =
         new Task<>() {
           @Override
           protected Void call() throws Exception {
@@ -96,19 +112,21 @@ public class TextToSpeech {
           }
         };
 
-    Thread speachThread = new Thread(speachTask, "SpeachThread");
+    speechThread = new Thread(speechTask, "speechThread");
 
-    speachTask.setOnFailed(
+    speechTask.setOnFailed(
         e -> {
+          GameState.isSpeaking = false;
           System.out.println("failed in talking");
         });
 
-    speachTask.setOnSucceeded(
+    speechTask.setOnSucceeded(
         e -> {
+          GameState.isSpeaking = false;
           System.out.println("succeeded in talking");
         });
 
-    speachThread.start();
+    speechThread.start();
   }
 
   /** Sleeps a while to add some pause between sentences. */

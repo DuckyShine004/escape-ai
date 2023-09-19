@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import java.util.HashMap;
 import javafx.scene.Parent;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.ChatArea;
 
 public class SceneManager {
@@ -15,7 +16,6 @@ public class SceneManager {
     chatArea = new ChatArea();
     initGptThread();
   }
-
 
   // UI fxml files the app can switch between
   public enum AppUi {
@@ -71,10 +71,12 @@ public class SceneManager {
   public void initGptThread() {
     // Create and start the GPT thread if it doesn't exist
     if (gptThread == null || !gptThread.isAlive()) {
-      gptThread = new Thread(() -> {
-        chatArea.initiailizeChat();
-      });
-      gptThread.setDaemon(true); 
+      gptThread =
+          new Thread(
+              () -> {
+                chatArea.initiailizeChat();
+              });
+      gptThread.setDaemon(true);
       gptThread.start();
     }
   }
@@ -87,6 +89,8 @@ public class SceneManager {
 
     System.out.println("RESETTING PUZZLE ROOMS");
 
+    GameState.currentRoom = AppUi.MENU;
+
     sceneMap.remove(AppUi.OFFICE);
 
     sceneMap.remove(AppUi.BREAKER);
@@ -97,6 +101,5 @@ public class SceneManager {
 
     // reinitalizes the puzzle scenes
     App.initalizePuzzleScenes();
-
   }
 }

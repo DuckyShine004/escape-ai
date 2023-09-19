@@ -36,6 +36,7 @@ public class App extends Application {
     // scene.setRoot
     // get the Parent for that Ui
     scene.setRoot(SceneManager.getUi(newUi));
+    GameState.currentRoom = newUi;
   }
 
   /**
