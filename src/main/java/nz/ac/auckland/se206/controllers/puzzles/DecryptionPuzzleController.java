@@ -14,7 +14,6 @@ import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
-import nz.ac.auckland.se206.constants.Declaration;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Sequence;
@@ -51,7 +50,6 @@ public class DecryptionPuzzleController {
   private String sequence;
   private String algorithm;
   private String description;
-  private String declaration;
 
   private ChatCompletionRequest gptRequest;
 
@@ -166,18 +164,18 @@ public class DecryptionPuzzleController {
    * @throws Exception thrown when there is an error initializing pseudocode instances.
    */
   private void initializePseudocode() throws Exception {
-    // get a random pseudo code
+    // Get a random pseudo code
     psuedocodeIndex = (int) Math.random() * GameState.maxPseudocodes;
 
-    // get the sequence, declaration, desciption, and algorithm of the pseudocode
+    // Initialize the sequence
     intializeSequence();
+
+    // Initialize the description and algorithm
     initializeDescription();
-    initializeDeclaration();
     initializeAlgorithm();
 
-    // append the description, declaration, and algorithm to the text area
+    // Append the description and algorithm to the text area
     taPseudocode.appendText(description);
-    taPseudocode.appendText(declaration);
     taPseudocode.appendText(algorithm);
   }
 
@@ -248,29 +246,6 @@ public class DecryptionPuzzleController {
 
     // retrieve the object value from the field and cast it to string
     this.description = (String) fld.get(description);
-  }
-
-  /**
-   * Get the string declaration code snippet for the corresponding random pseudocode index.
-   *
-   * @return the string value of the declaration code snippet.
-   * @throws Exception throw when class or field name is not found.
-   */
-  private void initializeDeclaration() throws Exception {
-    // get the field name for the corresponding random pseudocode index
-    String fieldName = "declaration" + Integer.toString(psuedocodeIndex);
-
-    // create an object of 'Declaration'
-    Declaration declaration = new Declaration();
-
-    // create a runtime reference to the class, 'Declaration'
-    Class<?> cls = declaration.getClass();
-
-    // get the field for the corresponding field name
-    Field fld = cls.getField(fieldName);
-
-    // retrieve the object value from the field and cast it to string
-    this.declaration = (String) fld.get(declaration);
   }
 
   /**
