@@ -1115,7 +1115,11 @@ public class LogicGatePuzzleController {
               + desiredLogic
               + " leading from a "
               + nextGate.getType();
-      System.out.println(hintPrompt);
+
+      firstGatesHinted++;
+      if (firstGatesHinted == 4) {
+        firstGatesHinted = 0;
+      }
     }
 
     return hintPrompt;
