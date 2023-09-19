@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -145,7 +146,7 @@ public class DecryptionPuzzleController {
     setUserResponse(userInput);
 
     // get chatGPT's response and append it to the chatting text area
-    getChatResponse(userMessage);
+    getChatResponse(userMessage, false);
   }
 
   /**
@@ -177,7 +178,7 @@ public class DecryptionPuzzleController {
     gptRequest.setMaxTokens(100);
 
     // get a response from GPT to setup the chat
-    getChatResponse(gptMessage);
+    getChatResponse(gptMessage, false);
   }
 
   /**
@@ -281,7 +282,7 @@ public class DecryptionPuzzleController {
    *
    * @param entityMessage the chat message to be sent to GPT.
    */
-  private void getChatResponse(ChatMessage entityMessage) {
+  private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
     // add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
@@ -306,6 +307,11 @@ public class DecryptionPuzzleController {
     gptTask.setOnSucceeded(
         event -> {
           enableComponents();
+
+          // Remove previous message if it is a hint
+          if (isHint) {
+            removePreviousMessage();
+          }
         });
 
     // create a thread to handle GPT concurrency
@@ -337,6 +343,7 @@ public class DecryptionPuzzleController {
     return userSequence;
   }
 
+  /** Generate a GPT response. GPT should give a hint for the current pseudocode. */
   private void getUserHint() {
     // Get the incorrect line number for the following pseudocode and hint index
     int lineNumber = Integer.valueOf(sequence.charAt(hintIndex));
@@ -348,7 +355,7 @@ public class DecryptionPuzzleController {
     ChatMessage userHintMessage = new ChatMessage("assistant", hint);
 
     // Get GPT's response
-    getChatResponse(userHintMessage);
+    getChatResponse(userHintMessage, true);
 
     // Update the hint index
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
@@ -373,7 +380,7 @@ public class DecryptionPuzzleController {
     String gptOutput = gptMessage.getContent();
 
     // add GPT's response to its history
-    gptRequest.addMessage(gptMessage);
+    // gptRequest.addMessage(gptMessage);
 
     // append the result to the text area
     taChat.appendText("ai> " + gptOutput + "\n\n");
@@ -521,6 +528,18 @@ public class DecryptionPuzzleController {
 
     // Disable the hint pane
     paHint.setDisable(true);
+  }
+
+  /**
+   * Remove the previous message in GPT's history. This is to ensure that the users won't be able to
+   * abuse the hint system.
+   */
+  private void removePreviousMessage() {
+    // Get the current GPT messages
+    List<ChatMessage> gptMessages = gptRequest.getMessages();
+
+    // Remove last message sent
+    gptMessages.remove(gptMessages.size() - 1);
   }
 
   /**
