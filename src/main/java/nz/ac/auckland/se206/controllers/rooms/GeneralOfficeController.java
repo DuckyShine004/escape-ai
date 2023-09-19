@@ -74,6 +74,7 @@ public class GeneralOfficeController {
     System.out.println("door clicked");
 
     if (!GameState.isRiddleResolved) {
+      GameState.currentRoom = AppUi.RIDDLE;
       App.setRoot("puzzles/riddle");
       return;
     }

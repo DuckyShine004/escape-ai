@@ -28,7 +28,8 @@ public class SceneManager {
     LOGIC_PUZZLE, // logic gate puzzle in Breaker Room
     OFFICE,
     WINNING,
-    LOSING
+    LOSING,
+    RIDDLE // riddle room is not in sceneMap
   }
 
   // stores the scenes

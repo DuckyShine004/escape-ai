@@ -91,7 +91,12 @@ public class RiddlePuzzleController {
     GameState.isSpeaking = true;
     // doesn't need to check if it is currently speaking because it naturally flows given you cannot
     // click buttons at any time
-    tts.speak(msg.getContent());
+
+    // ensure the tts only starts if the player is still in the room
+    // as the gpt response may come back after the player has backed out of room
+    if (GameState.currentRoom == AppUi.RIDDLE) {
+      tts.speak(msg.getContent());
+    }
   }
 
   /**
