@@ -85,6 +85,11 @@
                   <Font size="40.0" />
                </font>
             </Label>
+            <Label layoutX="535.0" prefHeight="65.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="0/4" textFill="#ff6400">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
             <Line endY="63.5" layoutX="70.0" startY="2.0" stroke="#ff8700" strokeWidth="2.0">
                <effect>
                   <Bloom />

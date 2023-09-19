@@ -48,10 +48,10 @@ public class GptPromptEngineering {
     return "Why is line "
         + lineNumber
         + " incorrect for the following pseudocode? '--' lines are correct, so do not worry about"
-        + " them. Give a short hint: \n\n"
+        + " them. Give a short hint and do not include line numbers: \n\n"
         + pseudocode
         + "\n\n"
-        + "Your hint should not contain the line number and it should not exceed 15 words. Give"
+        + "You must not include line numbers, and it should not exceed 15 words. Give"
         + " your answer in the form: \"Hint:\"";
   }
 

@@ -37,6 +37,10 @@
   -fx-font-family: "Determination Mono Web";
 }
 
+.custom-label:disabled {
+  -fx-font-size: 40;
+}
+
 /* Timer label */
 .timer-label {
   -fx-font-family: "DS-Digital";

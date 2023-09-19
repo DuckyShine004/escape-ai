@@ -60,6 +60,7 @@ public class App extends Application {
 
   /**
    * This method initialises the breaker scene
+   *
    * @throws IOException
    */
   public static void initializeBreakerScene() throws IOException {
@@ -68,6 +69,7 @@ public class App extends Application {
 
   /**
    * This method will initialize the control scene
+   *
    * @throws IOException
    */
   public static void initializeControlScene() throws IOException {
@@ -76,6 +78,7 @@ public class App extends Application {
 
   /**
    * This method will initialize the office scene
+   *
    * @throws IOException
    */
   public static void initializeOfficeScene() throws IOException {
