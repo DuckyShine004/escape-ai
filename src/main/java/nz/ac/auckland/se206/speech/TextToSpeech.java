@@ -5,6 +5,7 @@ import javax.speech.Central;
 import javax.speech.EngineException;
 import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.constants.GameState;
 
 /** Text-to-speech API using the JavaX speech library. */
@@ -93,7 +94,11 @@ public class TextToSpeech {
    *
    * @param sentence A string to speak.
    */
-  public void speak(final String sentence) {
+  public void speak(final String sentence, SceneManager.AppUi roomThatCalled) {
+
+    if (roomThatCalled != GameState.currentRoom) {
+      return; // just return, nothing happens
+    }
 
     if (sentence == null) {
       throw new IllegalArgumentException("Text cannot be null.");

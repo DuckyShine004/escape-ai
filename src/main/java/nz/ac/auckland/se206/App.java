@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -191,6 +192,9 @@ public class App extends Application {
           // grab an instance of text to speach
           // terminate the text to speach instance because its weird and buggy
           GameState.tts.terminate();
+
+          // close anything else
+          Platform.exit();
         });
   }
 }
