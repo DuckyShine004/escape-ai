@@ -46,6 +46,12 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgGate2;
   @FXML private ImageView imgGate3;
 
+  // information bubbles to show clickability
+  @FXML private ImageView imgHelperBubble1;
+  @FXML private ImageView imgHelperBubble2;
+  @FXML private ImageView imgHelperBubble3;
+  @FXML private ImageView imgHelpToDo;
+
   // labels for helper gates
   @FXML private Label lblHelperGate1;
   @FXML private Label lblHelperGate2;
@@ -184,6 +190,9 @@ public class LogicGatePuzzleController {
 
   // this is the single gpt context messages
   private ChatCompletionRequest gptRequest;
+
+  private Image clickableImage;
+  private Image getInformationImage;
 
   @FXML
   private void initialize() {
@@ -452,6 +461,27 @@ public class LogicGatePuzzleController {
     lblHelperGates.add(lblHelperGate1);
     lblHelperGates.add(lblHelperGate2);
     lblHelperGates.add(lblHelperGate3);
+
+    try {
+      // try to load clickable image icon
+      this.clickableImage =
+          new Image(
+              new FileInputStream(
+                  "src/main/resources/images/BreakerRoom/LogicGatePuzzle/clickable.png"));
+
+      this.getInformationImage =
+          new Image(
+              new FileInputStream(
+                  "src/main/resources/images/BreakerRoom/LogicGatePuzzle/getInformation.png"));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    // set bubble icon
+    imgHelperBubble1.setImage(this.clickableImage);
+    imgHelperBubble2.setImage(this.clickableImage);
+    imgHelperBubble3.setImage(this.clickableImage);
+    imgHelpToDo.setImage(this.getInformationImage);
 
     // initlize all labels
     for (int i = 0; i < lblHelperGates.size(); i++) {
@@ -1123,5 +1153,21 @@ public class LogicGatePuzzleController {
     }
 
     return hintPrompt;
+  }
+
+  /**
+   * This method is called when the player clicks the get help icon because they don't know what
+   * they should be doing
+   *
+   * @param event
+   */
+  @FXML
+  private void onGetToDoHelp(MouseEvent event) {
+    // define the help message
+    String helpMessage =
+        "Swap the logic gates by clicking them.  \nYour Goal is to turn the end light on (green)";
+
+    // append help message to text area
+    taGptText.appendText("System> " + helpMessage + "\n\n");
   }
 }
