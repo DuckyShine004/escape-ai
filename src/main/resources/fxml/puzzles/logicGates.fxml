@@ -102,11 +102,12 @@
                         <Pane fx:id="pInput14" layoutX="415.0" layoutY="152.0" prefHeight="10.0" prefWidth="46.0" />
                         <Pane fx:id="pInput14_2" layoutX="449.0" layoutY="160.0" prefHeight="50.0" prefWidth="12.0" />
                         <ImageView fx:id="imgSolvedLight" fitHeight="78.0" fitWidth="84.0" layoutX="417.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgHelpToDo" fitHeight="50.0" fitWidth="55.0" layoutX="342.0" layoutY="10.0" onMouseClicked="#onGetToDoHelp" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
                   <Pane prefHeight="115.0" prefWidth="500.0">
                      <children>
-                        <Pane layoutX="4.0" layoutY="4.0" prefHeight="105.0" prefWidth="120.0" styleClass="helper-gate-pane" stylesheets="@../../css/puzzles/logicGates.css">
+                        <Pane layoutY="4.0" prefHeight="105.0" prefWidth="120.0" styleClass="helper-gate-pane" stylesheets="@../../css/puzzles/logicGates.css">
                            <children>
                               <ImageView fx:id="imgGate1" fitHeight="90.0" fitWidth="100.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#onHelper1Clicked" pickOnBounds="true" preserveRatio="true" />
                               <Label fx:id="lblHelperGate1" layoutX="35.0" layoutY="77.0" text="AND">
@@ -114,6 +115,7 @@
                                     <Font name="Calibri Bold" size="22.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="imgHelperBubble1" fitHeight="35.0" fitWidth="30.0" layoutX="80.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
                         <Pane layoutX="133.0" layoutY="4.0" prefHeight="105.0" prefWidth="120.0" styleClass="helper-gate-pane" stylesheets="@../../css/puzzles/logicGates.css">
@@ -124,9 +126,10 @@
                                     <Font name="Calibri Bold" size="22.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="imgHelperBubble2" fitHeight="35.0" fitWidth="30.0" layoutX="80.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
-                        <Pane layoutX="262.0" layoutY="4.0" prefHeight="105.0" prefWidth="120.0" styleClass="helper-gate-pane" stylesheets="@../../css/puzzles/logicGates.css">
+                        <Pane layoutX="265.0" layoutY="4.0" prefHeight="105.0" prefWidth="120.0" styleClass="helper-gate-pane" stylesheets="@../../css/puzzles/logicGates.css">
                            <children>
                               <ImageView fx:id="imgGate3" fitHeight="90.0" fitWidth="100.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#onHelper3Clicked" pickOnBounds="true" preserveRatio="true" />
                               <Label fx:id="lblHelperGate3" layoutX="35.0" layoutY="77.0" text="AND">
@@ -134,6 +137,7 @@
                                     <Font name="Calibri Bold" size="22.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="imgHelperBubble3" fitHeight="35.0" fitWidth="30.0" layoutX="80.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
                      </children>
