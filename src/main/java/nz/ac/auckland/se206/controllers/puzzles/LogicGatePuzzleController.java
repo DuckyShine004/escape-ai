@@ -1068,8 +1068,9 @@ public class LogicGatePuzzleController {
       // end gate hint
       currentGate = currentAssembly.get(currentAssembly.size() - 1);
 
-      logicInputA = logicTrail.get(12);
-      logicInputB = logicTrail.get(13);
+      // the inputs to the last gate
+      logicInputA = logicTrail.get(12); // top side input
+      logicInputB = logicTrail.get(13); // bottom side input
 
       hintPrompt =
           "what logic do i need as input to change for the logic gate: "
@@ -1086,9 +1087,12 @@ public class LogicGatePuzzleController {
       currentGate = currentAssembly.get(firstGatesHinted);
       // hint for firstGateHint
 
+      // get the inputs for the current gate
       logicInputA = logicTrail.get(firstGatesHinted * 2);
       logicInputB = logicTrail.get(firstGatesHinted * 2 + 1);
 
+      // get the top or bottom side input to the final gate depending on what the current gate side
+      // is
       boolean desiredLogic = firstGatesHinted <= 2 ? logicTrail.get(12) : logicTrail.get(13);
       LogicGate nextGate;
 
