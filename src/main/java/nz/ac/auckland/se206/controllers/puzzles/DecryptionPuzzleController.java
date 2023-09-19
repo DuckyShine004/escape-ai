@@ -106,7 +106,7 @@ public class DecryptionPuzzleController {
 
     // check whether the user has entered a sequence or not
     if (isUserInputSequence(userInput)) {
-      setUserSequence(userInput);
+      handleUserSequence(userInput);
       return;
     }
 
@@ -342,6 +342,12 @@ public class DecryptionPuzzleController {
     taChat.appendText("ai> " + gptOutput + "\n\n");
   }
 
+  /**
+   * Set the digit for the given user sequence; for the corresponding index.
+   *
+   * @param userSequence the user's sequence.
+   * @param index the index of the digit to be updated.
+   */
   private void setDigit(String userSequence, int index) {
     // Get the current scene
     Scene currentScene = paDecryption.getScene();
@@ -366,10 +372,16 @@ public class DecryptionPuzzleController {
     tfChat.clear();
   }
 
-  private void setUserSequence(String userInput) {
+  /**
+   * Handle the user's sequence. This should handle both cases where the user either correctly
+   * determines the sequence or they incorrectly identify the sequence. Updating the sequence labels
+   * are also done through this method.
+   *
+   * @param userInput the user's input from the text field.
+   */
+  private void handleUserSequence(String userInput) {
+    // Get the user's sequence
     String userSequence = getUserSequence(userInput);
-
-    System.out.println(userSequence);
 
     // Check if the user sequence is correct or not
     if (userSequence.equals(sequence)) {
@@ -385,14 +397,29 @@ public class DecryptionPuzzleController {
     setUserResponse(userSequence);
   }
 
+  /**
+   * Handle the case where the user correctly identifies the sequence.
+   *
+   * @param userSequence the user's sequence.
+   */
   private void handleCorrectSequence(String userSequence) {
     System.out.println("SEQUENCE IS CORRECT");
   }
 
+  /**
+   * Handle the case where the user incorrectly identifies the sequence.
+   *
+   * @param userSequence the user's sequence.
+   */
   private void handleIncorrectSequence(String userSequence) {
     System.out.println("SEQUENCE IS INCORRECT");
   }
 
+  /**
+   * Update the user's sequence. This should update the previous displayed user sequence.
+   *
+   * @param userSequence the user's sequence.
+   */
   private void updateUserSequence(String userSequence) {
     for (int index = 0; index < userSequence.length(); index++) {
       setDigit(userSequence, index);
