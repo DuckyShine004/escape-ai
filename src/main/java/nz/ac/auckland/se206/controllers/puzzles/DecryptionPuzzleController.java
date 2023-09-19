@@ -26,12 +26,14 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
+  @FXML private Pane paHint;
   @FXML private Pane paBack;
   @FXML private Pane paDigit0;
   @FXML private Pane paDigit1;
   @FXML private Pane paDigit2;
   @FXML private Pane paDigit3;
   @FXML private Pane paDecryption;
+  @FXML private Pane paHintOverlay;
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
@@ -64,6 +66,18 @@ public class DecryptionPuzzleController {
 
     // initialize the pseudocode puzzle
     initializePseudocode();
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (hint). */
+  @FXML
+  private void onHintPaneEntered() {
+    paHintOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (hint). */
+  @FXML
+  private void onHintPaneExited() {
+    paHintOverlay.setVisible(false);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
