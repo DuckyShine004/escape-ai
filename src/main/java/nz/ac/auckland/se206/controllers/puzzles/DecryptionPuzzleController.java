@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
@@ -53,9 +54,15 @@ public class DecryptionPuzzleController {
 
   private ChatCompletionRequest gptRequest;
 
+  private TextToSpeech tts;
+
   /** Initializes the decryption puzzle. */
   @FXML
   private void initialize() throws Exception {
+
+    // get the game state instance of tts
+    this.tts = GameState.tts;
+
     // add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
@@ -82,6 +89,7 @@ public class DecryptionPuzzleController {
   @FXML
   private void onBackPaneClicked() {
     App.setUi(AppUi.TERMINAL);
+    tts.stop();
   }
 
   /**
@@ -332,6 +340,7 @@ public class DecryptionPuzzleController {
 
     // append the result to the text area
     taChat.appendText("ai> " + gptOutput + "\n\n");
+    tts.speak(gptOutput, AppUi.DECRYPTION);
   }
 
   /**
