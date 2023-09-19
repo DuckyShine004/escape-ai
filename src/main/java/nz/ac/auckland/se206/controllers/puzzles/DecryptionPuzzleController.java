@@ -109,8 +109,8 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // check whether the user has entered a sequence or not
-    if (isUserInputSequence(userInput)) {
+    // the user has entered a sequence and the puzzle is not solved
+    if (isUserInputSequence(userInput) && !GameState.isDecryptionSolved) {
       handleUserSequence(userInput);
       return;
     }
@@ -287,11 +287,23 @@ public class DecryptionPuzzleController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            // set GPT's response
+            // Set GPT's response
             setChatResponse();
             return null;
           }
         };
+
+    // If the task is running, disable certain components
+    gptTask.setOnRunning(
+        event -> {
+          disableComponents();
+        });
+
+    // If the task succeeds, then enable components
+    gptTask.setOnSucceeded(
+        event -> {
+          enableComponents();
+        });
 
     // create a thread to handle GPT concurrency
     Thread gptThread = new Thread(gptTask);
@@ -431,7 +443,7 @@ public class DecryptionPuzzleController {
     // Update the user's sequence on the red boxes
     updateUserSequence(userSequence);
 
-    // Set the user's sequence
+    // Set the user's response - sequence to the text area
     setUserResponse(userSequence);
   }
 
@@ -471,6 +483,16 @@ public class DecryptionPuzzleController {
     for (int index = 0; index < GameState.maxSequence; index++) {
       setDigit(userSequence, index);
     }
+  }
+
+  /** Enable components when a task is finished. */
+  private void enableComponents() {
+    tfChat.setDisable(false);
+  }
+
+  /** disable components when a task is running. */
+  private void disableComponents() {
+    tfChat.setDisable(true);
   }
 
   /**
