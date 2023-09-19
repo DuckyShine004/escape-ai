@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the chat view. */
@@ -48,6 +49,8 @@ public class RiddlePuzzleController {
   private boolean btn3Pressed = false;
   private boolean getHint = false;
 
+  TextToSpeech tts;
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -68,6 +71,8 @@ public class RiddlePuzzleController {
     btnAnswer3.setDisable(true);
     btnGetHint.setDisable(true);
     paNext.setDisable(true);
+
+    this.tts = GameState.tts;
 
     updateScene();
     if (!GameState.isDeveloperMode) {

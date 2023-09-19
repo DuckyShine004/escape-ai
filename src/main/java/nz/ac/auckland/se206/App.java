@@ -8,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -60,6 +63,7 @@ public class App extends Application {
 
   /**
    * This method initialises the breaker scene
+   *
    * @throws IOException
    */
   public static void initializeBreakerScene() throws IOException {
@@ -68,6 +72,7 @@ public class App extends Application {
 
   /**
    * This method will initialize the control scene
+   *
    * @throws IOException
    */
   public static void initializeControlScene() throws IOException {
@@ -76,6 +81,7 @@ public class App extends Application {
 
   /**
    * This method will initialize the office scene
+   *
    * @throws IOException
    */
   public static void initializeOfficeScene() throws IOException {
@@ -148,6 +154,10 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+
+    // initialize new Text To Speach Instance
+    GameState.tts = new TextToSpeech();
+
     // add scenes to sceneManager
     initalizeScenes();
 
@@ -171,5 +181,15 @@ public class App extends Application {
 
     // Add the KeyEventHandler to the primary scene
     scene.addEventHandler(KeyEvent.KEY_PRESSED, keyEventsHandler);
+
+    // on stage closeing
+    // I am sure I heard Gallon say there was a much better solution
+    stage.setOnCloseRequest(
+        (WindowEvent event) -> {
+          System.out.println("Application is closing.");
+          // grab an instance of text to speach
+          // terminate the text to speach instance because its weird and buggy
+          GameState.tts.terminate();
+        });
   }
 }
