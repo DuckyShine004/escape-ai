@@ -3,16 +3,17 @@ package nz.ac.auckland.se206.controllers.puzzles;
 import java.lang.reflect.Field;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
-import nz.ac.auckland.se206.constants.Declaration;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Sequence;
@@ -26,10 +27,18 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
+  @FXML private Pane paDigit0;
+  @FXML private Pane paDigit1;
+  @FXML private Pane paDigit2;
+  @FXML private Pane paDigit3;
   @FXML private Pane paDecryption;
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
+  @FXML private Label lblDigit0;
+  @FXML private Label lblDigit1;
+  @FXML private Label lblDigit2;
+  @FXML private Label lblDigit3;
 
   @FXML private TextArea taChat;
   @FXML private TextArea taPseudocode;
@@ -41,7 +50,6 @@ public class DecryptionPuzzleController {
   private String sequence;
   private String algorithm;
   private String description;
-  private String declaration;
 
   private ChatCompletionRequest gptRequest;
 
@@ -91,8 +99,17 @@ public class DecryptionPuzzleController {
       userInput = tfChat.getText();
     }
 
+    // trim the user input
+    userInput = userInput.trim();
+
     // check if the user input is empty
-    if (userInput == null || userInput.trim().isEmpty()) {
+    if (userInput == null || userInput.isEmpty()) {
+      return;
+    }
+
+    // the user has entered a sequence and the puzzle is not solved
+    if (isUserInputSequence(userInput) && !GameState.isDecryptionSolved) {
+      handleUserSequence(userInput);
       return;
     }
 
@@ -147,18 +164,18 @@ public class DecryptionPuzzleController {
    * @throws Exception thrown when there is an error initializing pseudocode instances.
    */
   private void initializePseudocode() throws Exception {
-    // get a random pseudo code
+    // Get a random pseudo code
     psuedocodeIndex = (int) Math.random() * GameState.maxPseudocodes;
 
-    // get the sequence, declaration, desciption, and algorithm of the pseudocode
+    // Initialize the sequence
     intializeSequence();
+
+    // Initialize the description and algorithm
     initializeDescription();
-    initializeDeclaration();
     initializeAlgorithm();
 
-    // append the description, declaration, and algorithm to the text area
+    // Append the description and algorithm to the text area
     taPseudocode.appendText(description);
-    taPseudocode.appendText(declaration);
     taPseudocode.appendText(algorithm);
   }
 
@@ -232,29 +249,6 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Get the string declaration code snippet for the corresponding random pseudocode index.
-   *
-   * @return the string value of the declaration code snippet.
-   * @throws Exception throw when class or field name is not found.
-   */
-  private void initializeDeclaration() throws Exception {
-    // get the field name for the corresponding random pseudocode index
-    String fieldName = "declaration" + Integer.toString(psuedocodeIndex);
-
-    // create an object of 'Declaration'
-    Declaration declaration = new Declaration();
-
-    // create a runtime reference to the class, 'Declaration'
-    Class<?> cls = declaration.getClass();
-
-    // get the field for the corresponding field name
-    Field fld = cls.getField(fieldName);
-
-    // retrieve the object value from the field and cast it to string
-    this.declaration = (String) fld.get(declaration);
-  }
-
-  /**
    * Generate a response from GPT.
    *
    * @param entityMessage the chat message to be sent to GPT.
@@ -268,17 +262,51 @@ public class DecryptionPuzzleController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            // set GPT's response
+            // Set GPT's response
             setChatResponse();
             return null;
           }
         };
+
+    // If the task is running, disable certain components
+    gptTask.setOnRunning(
+        event -> {
+          disableComponents();
+        });
+
+    // If the task succeeds, then enable components
+    gptTask.setOnSucceeded(
+        event -> {
+          enableComponents();
+        });
 
     // create a thread to handle GPT concurrency
     Thread gptThread = new Thread(gptTask);
 
     // start the thread
     gptThread.start();
+  }
+
+  /**
+   * @param userInput the user's input from the text field.
+   * @return the user's sequence.
+   */
+  private String getUserSequence(String userInput) {
+    // Initialize fields
+    String userSequence;
+    int position;
+
+    // Stop at the first digit
+    for (position = 0; position < userInput.length(); position++) {
+      if (Character.isDigit(userInput.charAt(position))) {
+        break;
+      }
+    }
+
+    // Get the next four characters from the user's input
+    userSequence = userInput.substring(position, position + GameState.maxSequence);
+
+    return userSequence;
   }
 
   /**
@@ -317,5 +345,202 @@ public class DecryptionPuzzleController {
 
     // clear the text field user input
     tfChat.clear();
+  }
+
+  /**
+   * Set the digit for the given user sequence; for the corresponding index.
+   *
+   * @param userSequence the user's sequence.
+   * @param index the index of the digit to be updated.
+   */
+  private void setDigit(String userSequence, int index) {
+    // Get the current scene
+    Scene currentScene = paDecryption.getScene();
+
+    // Get the digit label associated with the index
+    Label lblDigit = (Label) currentScene.lookup("#lblDigit" + String.valueOf(index));
+
+    // Update the previous digit to the current one
+    lblDigit.setText(String.valueOf(userSequence.charAt(index)));
+  }
+
+  /**
+   * Set the pane color to green if the user correctly identifies the sequence.
+   *
+   * @param index the index of the pane to be updated.
+   */
+  private void setDigitPaneColor(int index) {
+    // Get the current scene
+    Scene currentScene = paDecryption.getScene();
+
+    // Get the digit label associated with the index
+    Pane paDigit = (Pane) currentScene.lookup("#paDigit" + String.valueOf(index));
+
+    // Set the style class to green
+    paDigit.getStyleClass().add("green-border-pane");
+  }
+
+  /**
+   * Set the label color to green if the user correctly identifies the sequence.
+   *
+   * @param index the index of the digit to be updated.
+   * @param color the color to be set for the label.
+   */
+  private void setDigitLabelColor(int index, Color color) {
+    // Get the current scene
+    Scene currentScene = paDecryption.getScene();
+
+    // Get the digit label associated with the index
+    Label lblDigit = (Label) currentScene.lookup("#lblDigit" + String.valueOf(index));
+
+    // Update the digit to the input color
+    lblDigit.setTextFill(color);
+  }
+
+  /**
+   * Handle the user's sequence. This should handle both cases where the user either correctly
+   * determines the sequence or they incorrectly identify the sequence. Updating the sequence labels
+   * are also done through this method.
+   *
+   * @param userInput the user's input from the text field.
+   */
+  private void handleUserSequence(String userInput) {
+    // Get the user's sequence
+    String userSequence = getUserSequence(userInput);
+
+    // Check if the user sequence is correct or not
+    if (userSequence.equals(sequence)) {
+      handleCorrectSequence(userSequence);
+    } else {
+      handleIncorrectSequence(userSequence);
+    }
+
+    // Update the user's sequence on the red boxes
+    updateUserSequence(userSequence);
+
+    // Set the user's response - sequence to the text area
+    setUserResponse(userSequence);
+  }
+
+  /**
+   * Handle the case where the user correctly identifies the sequence.
+   *
+   * @param userSequence the user's sequence.
+   */
+  private void handleCorrectSequence(String userSequence) {
+    System.out.println("SEQUENCE IS CORRECT");
+
+    // Update the labels and panes to green color
+    for (int index = 0; index < GameState.maxSequence; index++) {
+      setDigitPaneColor(index);
+      setDigitLabelColor(index, Color.GREEN);
+    }
+
+    // The user has solved the puzzle
+    GameState.isDecryptionSolved = true;
+  }
+
+  /**
+   * Handle the case where the user incorrectly identifies the sequence.
+   *
+   * @param userSequence the user's sequence.
+   */
+  private void handleIncorrectSequence(String userSequence) {
+    System.out.println("SEQUENCE IS INCORRECT");
+  }
+
+  /**
+   * Update the user's sequence. This should update the previous displayed user sequence.
+   *
+   * @param userSequence the user's sequence.
+   */
+  private void updateUserSequence(String userSequence) {
+    for (int index = 0; index < GameState.maxSequence; index++) {
+      setDigit(userSequence, index);
+    }
+  }
+
+  /** Enable components when a task is finished. */
+  private void enableComponents() {
+    tfChat.setDisable(false);
+  }
+
+  /** disable components when a task is running. */
+  private void disableComponents() {
+    tfChat.setDisable(true);
+  }
+
+  /**
+   * Check if the user's input has contains a four digit number. If it does, then handle it in
+   * another function call.
+   *
+   * @param userInput the user's input from the text field.
+   * @return a boolean based on whether the user's input is a sequence.
+   */
+  private Boolean isUserInputSequence(String userInput) {
+    // Check if there are only four digits in the user's input
+    if (!isUserSequenceFourDigits(userInput)) {
+      return false;
+    }
+
+    // Check if the digits are contiguous in the user's input
+    if (!isUserSequenceContiguous(userInput)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Check whether the user's input contains four digits or not.
+   *
+   * @param userInput
+   * @return a boolean value based on whether the user's input contains four digits.
+   */
+  private Boolean isUserSequenceFourDigits(String userInput) {
+    int count = 0;
+
+    // Go through the user's input and check if there are only four digits
+    for (int i = 0; i < userInput.length(); i++) {
+      if (Character.isDigit(userInput.charAt(i))) {
+        count++;
+      }
+    }
+
+    return (count == GameState.maxSequence ? true : false);
+  }
+
+  /**
+   * Check whether there exists four contiguous digits in the user's input.
+   *
+   * @param userInput the user's input from the text field.
+   * @return a boolean value based on whether there are four contiguous digits.
+   */
+  private Boolean isUserSequenceContiguous(String userInput) {
+    // Initialize fields
+    String userSequence;
+    int position;
+
+    // Stop at the first digit
+    for (position = 0; position < userInput.length(); position++) {
+      if (Character.isDigit(userInput.charAt(position))) {
+        break;
+      }
+    }
+
+    // Get the next four characters from the user's input
+    userSequence = userInput.substring(position, position + GameState.maxSequence);
+
+    return isUserSequenceNumeric(userSequence);
+  }
+
+  /**
+   * Check if the user's sequence is numeric.
+   *
+   * @param userSequence the user's sequence.
+   * @return a boolean value whether the user's sequence is a valid four digit number.
+   */
+  private Boolean isUserSequenceNumeric(String userSequence) {
+    return userSequence.matches("-?\\d+(\\.\\d+)?");
   }
 }
