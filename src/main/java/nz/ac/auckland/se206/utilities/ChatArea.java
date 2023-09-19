@@ -218,6 +218,7 @@ public class ChatArea extends VBox {
 
     // get the content of gpt's message in the form of a string
     String gptOutput = gptMessage.getContent();
+    System.out.println(gptOutput);
 
     // Update the chat content in the chat manager
     String currentChatContent = ChatManager.getChatContent();
