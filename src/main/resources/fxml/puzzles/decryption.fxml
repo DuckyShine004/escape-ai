@@ -89,7 +89,7 @@
       </Pane>
       <HBox layoutX="315.0" layoutY="80.0" prefHeight="70.0" prefWidth="400.0" spacing="10.0">
          <children>
-            <Pane prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+            <Pane fx:id="paDigit0" prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
                <effect>
                   <Bloom threshold="0.0" />
                </effect>
@@ -98,10 +98,13 @@
                      <font>
                         <Font size="60.0" />
                      </font>
+                     <effect>
+                        <Glow level="0.2" />
+                     </effect>
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+            <Pane fx:id="paDigit1" prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
                <effect>
                   <Bloom threshold="0.0" />
                </effect>
@@ -110,10 +113,13 @@
                      <font>
                         <Font size="60.0" />
                      </font>
+                     <effect>
+                        <Glow level="0.2" />
+                     </effect>
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+            <Pane fx:id="paDigit2" prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
                <effect>
                   <Bloom threshold="0.0" />
                </effect>
@@ -122,10 +128,13 @@
                      <font>
                         <Font size="60.0" />
                      </font>
+                     <effect>
+                        <Glow level="0.2" />
+                     </effect>
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+            <Pane fx:id="paDigit3" prefHeight="70.0" prefWidth="92.5" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/decryption.css">
                <effect>
                   <Bloom threshold="0.0" />
                </effect>
@@ -134,6 +143,9 @@
                      <font>
                         <Font size="60.0" />
                      </font>
+                     <effect>
+                        <Glow level="0.2" />
+                     </effect>
                   </Label>
                </children>
             </Pane>

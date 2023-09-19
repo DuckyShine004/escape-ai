@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
@@ -27,6 +28,10 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
+  @FXML private Pane paDigit0;
+  @FXML private Pane paDigit1;
+  @FXML private Pane paDigit2;
+  @FXML private Pane paDigit3;
   @FXML private Pane paDecryption;
   @FXML private Pane paBackOverlay;
 
@@ -343,6 +348,19 @@ public class DecryptionPuzzleController {
   }
 
   /**
+   * Set the user's response. The user's response will be appended to the chat.
+   *
+   * @param userInput the user input from the text field.
+   */
+  private void setUserResponse(String userInput) {
+    // append the text to the chat text area
+    taChat.appendText("user> " + userInput + "\n\n");
+
+    // clear the text field user input
+    tfChat.clear();
+  }
+
+  /**
    * Set the digit for the given user sequence; for the corresponding index.
    *
    * @param userSequence the user's sequence.
@@ -360,16 +378,36 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Set the user's response. The user's response will be appended to the chat.
+   * Set the pane color to green if the user correctly identifies the sequence.
    *
-   * @param userInput the user input from the text field.
+   * @param index the index of the pane to be updated.
    */
-  private void setUserResponse(String userInput) {
-    // append the text to the chat text area
-    taChat.appendText("user> " + userInput + "\n\n");
+  private void setDigitPaneColor(int index) {
+    // Get the current scene
+    Scene currentScene = paDecryption.getScene();
 
-    // clear the text field user input
-    tfChat.clear();
+    // Get the digit label associated with the index
+    Pane paDigit = (Pane) currentScene.lookup("#paDigit" + String.valueOf(index));
+
+    // Set the style class to green
+    paDigit.getStyleClass().add("green-border-pane");
+  }
+
+  /**
+   * Set the label color to green if the user correctly identifies the sequence.
+   *
+   * @param index the index of the digit to be updated.
+   * @param color the color to be set for the label.
+   */
+  private void setDigitLabelColor(int index, Color color) {
+    // Get the current scene
+    Scene currentScene = paDecryption.getScene();
+
+    // Get the digit label associated with the index
+    Label lblDigit = (Label) currentScene.lookup("#lblDigit" + String.valueOf(index));
+
+    // Update the digit to the input color
+    lblDigit.setTextFill(color);
   }
 
   /**
@@ -404,6 +442,15 @@ public class DecryptionPuzzleController {
    */
   private void handleCorrectSequence(String userSequence) {
     System.out.println("SEQUENCE IS CORRECT");
+
+    // Update the labels and panes to green color
+    for (int index = 0; index < GameState.maxSequence; index++) {
+      setDigitPaneColor(index);
+      setDigitLabelColor(index, Color.GREEN);
+    }
+
+    // The user has solved the puzzle
+    GameState.isDecryptionSolved = true;
   }
 
   /**
@@ -421,7 +468,7 @@ public class DecryptionPuzzleController {
    * @param userSequence the user's sequence.
    */
   private void updateUserSequence(String userSequence) {
-    for (int index = 0; index < userSequence.length(); index++) {
+    for (int index = 0; index < GameState.maxSequence; index++) {
       setDigit(userSequence, index);
     }
   }
