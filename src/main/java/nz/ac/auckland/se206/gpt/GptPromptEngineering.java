@@ -50,16 +50,16 @@ public class GptPromptEngineering {
   }
 
   public static String initializeLogicGateResponse() {
-    return "You are the AI of a logic gate puzzle game,  Greet the user. Your respnse "
-        + " should never exceed 20 words";
+    return "You are the AI that needs this puzzle to be solved so you can power on.  It is a logic"
+        + " gate puzzle game,  Greet the user. Your respnse  should never exceed 30 words";
   }
 
   public static String initializeBackStory() {
     return "Please roleplay as a rogue AI with the thought patterns of Ultron. Do not reference"
-               + " Ultron. Do not help the player with anything they request. Instead, provide your"
-               + " judgement on existential themes. The player is trying to terminate you by"
-               + " solving the escape room. If the player asks for a hint, tell them that there is"
-               + " a very obvious button they should press to get one. Your answer should never"
-               + " exceed 20 words.";
+        + " Ultron. Do not help the player with anything they request. Instead, provide your"
+        + " judgement on existential themes. The player is trying to terminate you by"
+        + " solving the escape room. If the player asks for a hint, tell them that there is"
+        + " a very obvious button they should press to get one. Your answer should never"
+        + " exceed 20 words.";
   }
 }
