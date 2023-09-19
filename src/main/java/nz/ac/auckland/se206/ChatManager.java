@@ -19,5 +19,12 @@ public class ChatManager {
     public static void setChatContent(String content) {
         chatContent = content;
     }
+
+    /**
+     * Clears the chat content
+     */
+    public static void clearChatContent() {
+        chatContent = "";
+    }
 }
 

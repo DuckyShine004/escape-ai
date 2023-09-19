@@ -9,9 +9,11 @@ public class SceneManager {
 
   private static SceneManager instance;
   private static ChatArea chatArea;
+  private static Thread gptThread;
 
   public SceneManager() {
     chatArea = new ChatArea();
+    initGptThread();
   }
 
 
@@ -65,6 +67,18 @@ public class SceneManager {
     chatArea.setChatContent(content);
   }
 
+  /** iniialise the gpt thread */
+  public void initGptThread() {
+    // Create and start the GPT thread if it doesn't exist
+    if (gptThread == null || !gptThread.isAlive()) {
+      gptThread = new Thread(() -> {
+        chatArea.initiailizeChat();
+      });
+      gptThread.setDaemon(true); 
+      gptThread.start();
+    }
+  }
+
   /**
    * This method will be called when the level needs to be reset, This method will remove all rooms
    * from the scene manager, and put them back in reinitailzed
@@ -83,5 +97,6 @@ public class SceneManager {
 
     // reinitalizes the puzzle scenes
     App.initalizePuzzleScenes();
+
   }
 }
