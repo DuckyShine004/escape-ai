@@ -431,8 +431,6 @@ public class RiddlePuzzleController {
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
-    tts.stop();
-
     App.setUi(AppUi.OFFICE);
   }
 

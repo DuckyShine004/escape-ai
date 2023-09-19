@@ -89,7 +89,6 @@ public class DecryptionPuzzleController {
   @FXML
   private void onBackPaneClicked() {
     App.setUi(AppUi.TERMINAL);
-    tts.stop();
   }
 
   /**

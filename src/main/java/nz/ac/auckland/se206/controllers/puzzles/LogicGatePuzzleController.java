@@ -807,7 +807,6 @@ public class LogicGatePuzzleController {
    */
   @FXML
   private void onBackToBreaker() {
-    tts.stop();
     App.setUi(AppUi.BREAKER);
   }
 

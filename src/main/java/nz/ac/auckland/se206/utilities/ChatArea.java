@@ -10,12 +10,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import nz.ac.auckland.se206.ChatManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * The chat area class is a custom component that contains a text area, a text field, and a send
@@ -26,10 +28,13 @@ public class ChatArea extends VBox {
   private TextField tfInput;
   private Button btnSend;
   private ChatCompletionRequest gptRequest;
+  private TextToSpeech tts;
 
   /** Constructor for the chat area */
   public ChatArea() {
     super();
+
+    this.tts = GameState.tts;
 
     gptRequest = GameState.gptRequest;
 
@@ -229,5 +234,6 @@ public class ChatArea extends VBox {
 
     // append the result to the text area
     taChat.appendText("AI: " + gptOutput + "\n\n");
+    tts.speak(gptOutput, AppUi.OFFICE);
   }
 }

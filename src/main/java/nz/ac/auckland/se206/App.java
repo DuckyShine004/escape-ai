@@ -36,6 +36,14 @@ public class App extends Application {
   public static void setUi(AppUi newUi) {
     // scene.setRoot
     // get the Parent for that Ui
+
+    // if not in one of the main rooms
+    if (GameState.currentRoom != AppUi.OFFICE
+        && GameState.currentRoom != AppUi.BREAKER
+        && GameState.currentRoom != AppUi.CONTROL) {
+      GameState.tts.stop();
+    }
+
     scene.setRoot(SceneManager.getUi(newUi));
     GameState.currentRoom = newUi;
   }

@@ -6,6 +6,7 @@ import javax.speech.EngineException;
 import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 
 /** Text-to-speech API using the JavaX speech library. */
@@ -96,7 +97,8 @@ public class TextToSpeech {
    */
   public void speak(final String sentence, SceneManager.AppUi roomThatCalled) {
 
-    if (roomThatCalled != GameState.currentRoom) {
+    // if the roomThatCalled is office, then it counts for all the 3 main rooms
+    if (roomThatCalled != AppUi.OFFICE && roomThatCalled != GameState.currentRoom) {
       return; // just return, nothing happens
     }
 
