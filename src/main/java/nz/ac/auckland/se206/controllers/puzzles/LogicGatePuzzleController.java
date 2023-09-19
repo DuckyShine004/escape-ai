@@ -8,6 +8,7 @@ import java.util.Random;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -20,6 +21,7 @@ import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -124,6 +126,9 @@ public class LogicGatePuzzleController {
   // the pane the logic gate puzzle is sitting on
   @FXML private Pane pLogicGateAnchor;
 
+  // hint button
+  @FXML private Button btnHint;
+
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
 
@@ -171,6 +176,13 @@ public class LogicGatePuzzleController {
   // => 4
   private int layoutSize = 4;
 
+  // boolean state for if the hint has been given for the last gate
+  private boolean hasHintedAtEndGate = false;
+
+  // integer value for the last gate that was swapped which the hint will generate for
+  private int firstGatesHinted = 0; // 0, 1, 2, 3
+
+  // this is the single gpt context messages
   private ChatCompletionRequest gptRequest;
 
   @FXML
@@ -244,18 +256,54 @@ public class LogicGatePuzzleController {
     gptRequest.setMaxTokens(100);
 
     // get a response from GPT to setup the chat
-    getChatResponse(gptMessage);
+    getChatResponse(gptMessage, tfTextInput);
   }
 
-  private void getChatResponse(ChatMessage gptMessage) {
+  /**
+   * this method toggles the disabled state of a given button input
+   *
+   * @param btn
+   */
+  private void toggleButton(Button btn) {
+    // toogle disabled
+    btn.setDisable(btn.isDisable() == false);
+  }
+
+  /**
+   * This method clears the text from a given text field It also toggles the disabled state of the
+   * text field
+   *
+   * @param tf
+   */
+  private void toggleTextField(TextField tf) {
+    // clear input
+    tf.setText("");
+
+    // toggle disabled
+    tf.setDisable(tf.isDisable() == false);
+  }
+
+  /**
+   * This method initalizes a gpt message
+   *
+   * @param gptMessage
+   * @param item
+   */
+  private void getChatResponse(ChatMessage gptMessage, Object item) {
     // add user input to GPT's user input history
     gptRequest.addMessage(gptMessage);
 
     // disable input
-    tfTextInput.setDisable(true);
+    if (item != null) {
 
-    // clear input
-    tfTextInput.setText("");
+      if (item instanceof TextField) {
+        TextField tf = (TextField) item;
+        toggleTextField(tf);
+      } else {
+        Button btn = (Button) item;
+        toggleButton(btn);
+      }
+    }
 
     // create a concurrent task for handling GPT response
     Task<Void> gptTask =
@@ -274,13 +322,27 @@ public class LogicGatePuzzleController {
     // set text field to enabled on failed
     gptTask.setOnFailed(
         event -> {
-          tfTextInput.setDisable(false);
+          if (item != null) {
+
+            if (item instanceof TextField) {
+              toggleTextField((TextField) item);
+            } else {
+              toggleButton((Button) item);
+            }
+          }
         });
 
     // set text field to enabled on succeeded
     gptTask.setOnSucceeded(
         event -> {
-          tfTextInput.setDisable(false);
+          if (item != null) {
+
+            if (item instanceof TextField) {
+              toggleTextField((TextField) item);
+            } else {
+              toggleButton((Button) item);
+            }
+          }
         });
 
     // start the thread
@@ -333,7 +395,7 @@ public class LogicGatePuzzleController {
       taGptText.appendText("user> " + input + "\n\n");
 
       // get the gpt response
-      getChatResponse(inputMessage);
+      getChatResponse(inputMessage, tfTextInput);
     }
   }
 
@@ -636,10 +698,28 @@ public class LogicGatePuzzleController {
     }
 
     if (logicTrail.get(logicTrail.size() - 1) == true) {
+
       // the puzzle has been solved
       imgSolvedLight.setImage(greenLight);
+
+      String solvedPrompt =
+          "Congratulate me on solving the logic gate puzzle, I now have learned what an "
+              + currentAssembly.get(currentAssembly.size() - 1).getType()
+              + " does,  but I might like to ask more questions about logic gates";
+
+      ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
+
+      // get the gpt response
+      getChatResponse(inputMessage, null);
+
+      // debug message in console
       System.out.println("Logic Gate Puzzle Solved");
+
+      // set to solved
       GameState.isLogicGateSolved = true;
+
+      // disable hint button
+      btnHint.setDisable(true);
     }
   }
 
@@ -693,6 +773,13 @@ public class LogicGatePuzzleController {
     LogicGate temp = currentAssembly.get(a);
     currentAssembly.set(a, currentAssembly.get(b));
     currentAssembly.set(b, temp);
+
+    // update last gate, in the first column, to be swapped
+    if (a < 4) {
+      firstGatesHinted = a;
+    } else if (b < 4) {
+      firstGatesHinted = b;
+    }
 
     // no current swapping gates
     this.swapping = -1;
@@ -935,5 +1022,98 @@ public class LogicGatePuzzleController {
   @FXML
   private void onHelper3Clicked(Event event) {
     toggleHelperGate(2);
+  }
+
+  /**
+   * on click method for the hint button
+   *
+   * @param event
+   */
+  @FXML
+  private void onClickHint(Event event) {
+    // TODO: check if user has hints available
+
+    // no hints for hard mode
+    if (GameState.gameDifficulty == Difficulty.HARD) {
+      taGptText.appendText("System> " + "Hard Mode has Disabled Hints" + "\n\n");
+      btnHint.setDisable(true);
+      return;
+    }
+
+    // create a new instance of input chat message object
+    ChatMessage inputMessage = new ChatMessage("user", getHintPrompt());
+
+    // appent input to text area
+    taGptText.appendText("user> " + "Please give me a hint" + "\n\n");
+
+    // get the gpt response
+    getChatResponse(inputMessage, btnHint);
+
+    // get gpt to talk about the last gate
+
+    // get gpt to talk about the first gates
+
+  }
+
+  private String getHintPrompt() {
+    //
+    String hintPrompt;
+    LogicGate currentGate;
+
+    // logic inputs to current gate
+    boolean logicInputA;
+    boolean logicInputB;
+
+    if (!hasHintedAtEndGate) {
+      // end gate hint
+      currentGate = currentAssembly.get(currentAssembly.size() - 1);
+
+      logicInputA = logicTrail.get(12);
+      logicInputB = logicTrail.get(13);
+
+      hintPrompt =
+          "what logic do i need as input to change for the logic gate: "
+              + currentGate.getType()
+              + " so that its output is true"
+              + ", currently the inputs are: "
+              + logicInputA
+              + " and "
+              + logicInputB;
+      hasHintedAtEndGate = true;
+
+    } else {
+      // first gates hint
+      currentGate = currentAssembly.get(firstGatesHinted);
+      // hint for firstGateHint
+
+      logicInputA = logicTrail.get(firstGatesHinted * 2);
+      logicInputB = logicTrail.get(firstGatesHinted * 2 + 1);
+
+      boolean desiredLogic = firstGatesHinted <= 2 ? logicTrail.get(12) : logicTrail.get(13);
+      LogicGate nextGate;
+
+      // get the next gate
+      if (firstGatesHinted < 2) {
+        nextGate = currentAssembly.get(4);
+      } else {
+        nextGate = currentAssembly.get(5);
+      }
+
+      hintPrompt =
+          "Given the inputs for the logic gate are: "
+              + logicInputA
+              + " and "
+              + logicInputB
+              + " , and the gate is '"
+              + currentGate.getType()
+              + "' what is the output and how does it relate to wanting to then have another gate"
+              + " after it that leads to a "
+              + desiredLogic
+              + " leading from a "
+              + nextGate.getType();
+      System.out.println(hintPrompt);
+    }
+
+    return hintPrompt;
   }
 }
