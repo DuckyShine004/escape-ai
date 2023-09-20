@@ -4,19 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import javafx.scene.Parent;
 import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.utilities.ChatArea;
 
 public class SceneManager {
-
-  private static SceneManager instance;
-  private static ChatArea chatArea;
-  private static Thread gptThread;
-
-  public SceneManager() {
-    chatArea = new ChatArea();
-    initGptThread();
-  }
-
   // UI fxml files the app can switch between
   public enum AppUi {
     MENU,
@@ -43,43 +32,6 @@ public class SceneManager {
   // get root from ui key
   public static Parent getUi(AppUi ui) {
     return sceneMap.get(ui);
-  }
-
-  // get instance of scene manager
-  public static SceneManager getInstance() {
-    if (instance == null) {
-      instance = new SceneManager();
-    }
-    return instance;
-  }
-
-  // get chat area
-  public ChatArea getChatArea() {
-    return chatArea;
-  }
-
-  // set chat area
-  public String getChatContent() {
-    return chatArea.getChatContent();
-  }
-
-  // set chat area
-  public void setChatContent(String content) {
-    chatArea.setChatContent(content);
-  }
-
-  /** iniialise the gpt thread */
-  public void initGptThread() {
-    // Create and start the GPT thread if it doesn't exist
-    if (gptThread == null || !gptThread.isAlive()) {
-      gptThread =
-          new Thread(
-              () -> {
-                chatArea.initiailizeChat();
-              });
-      gptThread.setDaemon(true);
-      gptThread.start();
-    }
   }
 
   /**

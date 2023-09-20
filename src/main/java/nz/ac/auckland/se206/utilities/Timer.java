@@ -7,8 +7,9 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 
 /** The timer class keeps track of the time left for the player. */
 public class Timer {
@@ -113,13 +114,15 @@ public class Timer {
       label.setText(getTime());
     }
 
-    if (checkTime()) {
+    // Check if the timer has timed out
+    if (isTimedOut()) {
       stop();
       App.setUi(AppUi.LOSING);
     }
 
-    if (time == 30) {
-      SceneManager.getInstance().initGptThread();
+    // At 30 seconds remaining, GPT will switch personas
+    if (time == GameState.criticalTime) {
+      ChatManager.updateChatPersona();
     }
   }
 
@@ -128,7 +131,7 @@ public class Timer {
    *
    * @return boolean
    */
-  public static boolean checkTime() {
+  public static boolean isTimedOut() {
     return time == 0;
   }
 

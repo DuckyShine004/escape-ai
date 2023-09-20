@@ -68,12 +68,11 @@ public class DecryptionPuzzleController {
     // get the game state instance of tts
     this.tts = GameState.tts;
 
-    // add the label to list of labels to be updated
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
     // Initialize GPT
-    initiailizeChat();
+    initializeChat();
 
     // Initialize the pseudocode puzzle
     initializePseudocode();
@@ -163,7 +162,7 @@ public class DecryptionPuzzleController {
    * <p>Note: I would love to be able to name this method 'initializeGPT'. Unfortunately, we are not
    * allowed to have acronyms as method names as per the naming convention.
    */
-  private void initiailizeChat() {
+  private void initializeChat() {
     // initialize the chat message field
     ChatMessage gptMessage;
 
@@ -322,10 +321,10 @@ public class DecryptionPuzzleController {
           }
         });
 
-    // create a thread to handle GPT concurrency
+    // Create a thread to handle GPT concurrency
     Thread gptThread = new Thread(gptTask);
 
-    // start the thread
+    // Start the thread
     gptThread.start();
   }
 
@@ -375,23 +374,22 @@ public class DecryptionPuzzleController {
    * @throws Exception thrown when we fail to retrieve a response from GPT.
    */
   private void setChatResponse() throws Exception {
-    // get GPT's response
+    // Get GPT's response
     ChatCompletionResult gptResult = gptRequest.execute();
 
-    // get GPT's choice
+    // Get GPT's choice
     Choice gptChoice = gptResult.getChoices().iterator().next();
 
-    // get GPT's chat message
+    // Get GPT's chat message
     ChatMessage gptMessage = gptChoice.getChatMessage();
 
-    // get the content of gpt's message in the form of a string
+    // Get the content of gpt's message in the form of a string
     String gptOutput = gptMessage.getContent();
 
-    // add GPT's response to its history
-    // gptRequest.addMessage(gptMessage);
-
-    // append the result to the text area
+    // Append the result to the text area
     taChat.appendText("ai> " + gptOutput + "\n\n");
+
+    // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
 

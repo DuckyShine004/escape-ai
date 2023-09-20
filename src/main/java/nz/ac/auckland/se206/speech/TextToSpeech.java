@@ -102,6 +102,8 @@ public class TextToSpeech {
       return;
     }
 
+    System.out.println(sentence + " : " + roomThatCalled);
+
     // if the roomThatCalled is office, then it counts for all the 3 main rooms
     if (roomThatCalled != AppUi.OFFICE && roomThatCalled != GameState.currentRoom) {
       return; // just return, nothing happens

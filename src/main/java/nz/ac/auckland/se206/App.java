@@ -108,6 +108,9 @@ public class App extends Application {
     // initialize the timer
     Timer.initialize();
 
+    // initialize the chat manager
+    ChatManager.initialize();
+
     // main menue
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menus/menu"));
 
