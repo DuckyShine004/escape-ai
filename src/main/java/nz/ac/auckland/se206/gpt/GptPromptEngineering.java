@@ -61,10 +61,9 @@ public class GptPromptEngineering {
   }
 
   public static String initializeLogicGateResponse() {
-    return "You are a AI that needs power from a correct logic gate puzzle arangment.  The logic"
-               + " gate puzzle case has been smashed open, so the player can swap gates around, not"
-               + " they can't reach the last one because glass is covering it.  You should never"
-               + " exceed 30 words";
+    return "You are roleplaying an AI in a game that needs the correct logic gate puzzle output to"
+        + " work properly.  The last gate is never accessable but should return"
+        + " true.    Your response should never exceed 20 words.";
   }
 
   public static String initializeBackStory() {

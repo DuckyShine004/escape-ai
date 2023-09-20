@@ -18,7 +18,7 @@
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
-                  <Pane id="broken-glass-pane" prefHeight="305.0" prefWidth="500.0" stylesheets="@../../css/puzzles/logicGates.css">
+                  <Pane id="broken-glass-pane" prefHeight="290.0" prefWidth="500.0" stylesheets="@../../css/puzzles/logicGates.css">
                      <children>
                         <Pane fx:id="pAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
@@ -31,7 +31,8 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Pane>
-                        <ImageView fx:id="imgGlassScreen" fitHeight="295.0" fitWidth="500.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgBlueCircuits" fitHeight="325.0" fitWidth="500.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGlassScreen" fitHeight="280.0" fitWidth="500.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                         <Pane fx:id="pAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">

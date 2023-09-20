@@ -135,6 +135,9 @@ public class LogicGatePuzzleController {
   // hint button
   @FXML private Button btnHint;
 
+  // background blue circuit image
+  @FXML private ImageView imgBlueCircuits;
+
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
 
@@ -422,6 +425,18 @@ public class LogicGatePuzzleController {
                       + ".png"));
       imgGlassScreen.setImage(glassScreen);
 
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+
+      Image circuits =
+          new Image(
+              new FileInputStream(
+                  "src/main/resources/images/BreakerRoom/LogicGatePuzzle/" + "circuits" + ".jpg"));
+
+      imgBlueCircuits.setImage(circuits);
     } catch (Exception e) {
       e.printStackTrace();
     }
