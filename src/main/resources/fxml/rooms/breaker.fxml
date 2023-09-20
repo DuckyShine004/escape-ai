@@ -47,5 +47,10 @@
       <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
       <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
       <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" />
+      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0">
+         <image>
+            <Image url="@../../images/avataroutline.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
