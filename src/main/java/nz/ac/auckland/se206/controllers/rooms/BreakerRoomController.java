@@ -21,6 +21,7 @@ public class BreakerRoomController {
   /** Initialize the breaker room. */
   @FXML
   private void initialize() {
+
     // add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
 

@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the chat view. */
@@ -48,6 +49,8 @@ public class RiddlePuzzleController {
   private boolean btn3Pressed = false;
   private boolean getHint = false;
 
+  TextToSpeech tts;
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -69,6 +72,8 @@ public class RiddlePuzzleController {
     btnGetHint.setDisable(true);
     paNext.setDisable(true);
 
+    this.tts = GameState.tts;
+
     updateScene();
     if (!GameState.isDeveloperMode) {
       loadRiddle();
@@ -82,6 +87,14 @@ public class RiddlePuzzleController {
    */
   private void appendChatMessage(ChatMessage msg) {
     taChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+
+    GameState.isSpeaking = true;
+    // doesn't need to check if it is currently speaking because it naturally flows given you cannot
+    // click buttons at any time
+
+    // ensure the tts only starts if the player is still in the room
+    // as the gpt response may come back after the player has backed out of room
+    tts.speak(msg.getContent(), AppUi.RIDDLE);
   }
 
   /**
@@ -424,6 +437,9 @@ public class RiddlePuzzleController {
   /** When next is clicked, move on to the next thing. */
   @FXML
   private void onNextPaneClicked() {
+
+    tts.stop();
+
     if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
       // If the riddle is solved, load the next riddle and disable the buttons whilst the riddle is
       // loading
@@ -433,6 +449,7 @@ public class RiddlePuzzleController {
       btnAnswer2.setDisable(true);
       btnAnswer3.setDisable(true);
       btnGetHint.setDisable(true);
+
     } else if (GameState.riddlesSolved == 3) {
       // If all riddles are solved, navigate back to the office
       App.setUi(AppUi.OFFICE);

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.gpt;
 
+
 /** Represents a chat message in the conversation. */
 public class ChatMessage {
 

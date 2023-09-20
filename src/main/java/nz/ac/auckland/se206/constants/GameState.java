@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.constants;
 
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -10,6 +12,13 @@ public class GameState {
     MEDIUM,
     HARD
   }
+
+  /** Text to speach instance that must be closed by the end of the program */
+  public static TextToSpeech tts;
+
+  public static boolean isSpeaking = false;
+
+  public static AppUi currentRoom = AppUi.MENU;
 
   /** Game difficulty, starts in Medium */
   public static Difficulty gameDifficulty = Difficulty.MEDIUM;

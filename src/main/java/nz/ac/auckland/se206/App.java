@@ -2,13 +2,17 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -32,7 +36,16 @@ public class App extends Application {
   public static void setUi(AppUi newUi) {
     // scene.setRoot
     // get the Parent for that Ui
+
+    // if not in one of the main rooms
+    if (GameState.currentRoom != AppUi.OFFICE
+        && GameState.currentRoom != AppUi.BREAKER
+        && GameState.currentRoom != AppUi.CONTROL) {
+      GameState.tts.stop();
+    }
+
     scene.setRoot(SceneManager.getUi(newUi));
+    GameState.currentRoom = newUi;
   }
 
   /**
@@ -151,6 +164,10 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+
+    // initialize new Text To Speach Instance
+    GameState.tts = new TextToSpeech();
+
     // add scenes to sceneManager
     initalizeScenes();
 
@@ -174,5 +191,13 @@ public class App extends Application {
 
     // Add the KeyEventHandler to the primary scene
     scene.addEventHandler(KeyEvent.KEY_PRESSED, keyEventsHandler);
+
+    // on stage closeing
+    stage.setOnCloseRequest(
+        (WindowEvent event) -> {
+          System.out.println("Application is closing.");
+          // close anything else
+          System.exit(0);
+        });
   }
 }
