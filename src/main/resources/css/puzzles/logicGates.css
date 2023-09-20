@@ -3,8 +3,29 @@
 }
 
 .back-button {
-  -fx-text-fill: white;
-  -fx-background-color: rgb(100, 100, 100);
+  -fx-background-color: black;
+  -fx-text-fill: #00FFFF; 
+  -fx-font-size: 16px;
+  -fx-font-family: "Arial", sans-serif;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);
+
+  -fx-pref-height: 40px; 
+  -fx-pref-width: 120px; 
+  -fx-border-width: 2px; 
+  -fx-border-color: #1194a6; 
+
+  -fx-font-size: 16px;
+  -fx-font-family: "Arial", sans-serif;
+}
+
+.back-button:pressed {
+  -fx-effect: null; 
+}
+
+
+.back-button:hover {
+  -fx-background-color: rgb(34, 34, 34);
+  -fx-text-fill: WHITE; 
 }
 
 .helper-gate-pane {
@@ -46,6 +67,13 @@
   -fx-min-width: 100%; 
   -fx-box-sizing: border-box;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);
-  -fx-background-color: black; 
+  -fx-background-color: black;
+}
+
+#broken-glass-pane {
+  -fx-border-color: black; 
+  -fx-border-width: 5px;
+  -fx-background-color: rgb(18, 157, 176);
+
 
 }

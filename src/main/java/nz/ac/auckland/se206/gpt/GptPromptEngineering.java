@@ -61,8 +61,9 @@ public class GptPromptEngineering {
   }
 
   public static String initializeLogicGateResponse() {
-    return "You are the AI that needs this puzzle to be solved so you can power on.  It is a logic"
-        + " gate puzzle game,  Greet the user. Your respnse  should never exceed 30 words";
+    return "You are roleplaying an AI in a game that needs the correct logic gate puzzle output to"
+        + " work properly.  The last gate is never accessable but should return"
+        + " true.    Your response should never exceed 20 words.";
   }
 
   public static String initializeBackStory() {
