@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -27,12 +28,14 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
+  @FXML private Pane paHint;
   @FXML private Pane paBack;
   @FXML private Pane paDigit0;
   @FXML private Pane paDigit1;
   @FXML private Pane paDigit2;
   @FXML private Pane paDigit3;
   @FXML private Pane paDecryption;
+  @FXML private Pane paHintOverlay;
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
@@ -46,10 +49,12 @@ public class DecryptionPuzzleController {
 
   @FXML private TextField tfChat;
 
+  private int hintIndex;
   private int psuedocodeIndex;
 
   private String sequence;
   private String algorithm;
+  private String pseudocode;
   private String description;
 
   private ChatCompletionRequest gptRequest;
@@ -64,13 +69,26 @@ public class DecryptionPuzzleController {
     this.tts = GameState.tts;
 
     // add the label to list of labels to be updated
+    // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
-    // initialize GPT
+    // Initialize GPT
     initiailizeChat();
 
-    // initialize the pseudocode puzzle
+    // Initialize the pseudocode puzzle
     initializePseudocode();
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (hint). */
+  @FXML
+  private void onHintPaneEntered() {
+    paHintOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (hint). */
+  @FXML
+  private void onHintPaneExited() {
+    paHintOverlay.setVisible(false);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -83,6 +101,12 @@ public class DecryptionPuzzleController {
   @FXML
   private void onBackPaneExited() {
     paBackOverlay.setVisible(false);
+  }
+
+  /** When hint is clicked, give the user a hint. */
+  @FXML
+  private void onHintPaneClicked() {
+    getUserHint();
   }
 
   /** When back is clicked, go back to previous section (control room). */
@@ -130,7 +154,7 @@ public class DecryptionPuzzleController {
     setUserResponse(userInput);
 
     // get chatGPT's response and append it to the chatting text area
-    getChatResponse(userMessage);
+    getChatResponse(userMessage, false);
   }
 
   /**
@@ -162,7 +186,7 @@ public class DecryptionPuzzleController {
     gptRequest.setMaxTokens(100);
 
     // get a response from GPT to setup the chat
-    getChatResponse(gptMessage);
+    getChatResponse(gptMessage, false);
   }
 
   /**
@@ -174,6 +198,9 @@ public class DecryptionPuzzleController {
     // Get a random pseudo code
     psuedocodeIndex = (int) Math.random() * GameState.maxPseudocodes;
 
+    // Hint index is initially zero
+    hintIndex = 0;
+
     // Initialize the sequence
     intializeSequence();
 
@@ -184,6 +211,9 @@ public class DecryptionPuzzleController {
     // Append the description and algorithm to the text area
     taPseudocode.appendText(description);
     taPseudocode.appendText(algorithm);
+
+    // Get the pseudocode in string form
+    pseudocode = description + algorithm;
   }
 
   /**
@@ -260,7 +290,7 @@ public class DecryptionPuzzleController {
    *
    * @param entityMessage the chat message to be sent to GPT.
    */
-  private void getChatResponse(ChatMessage entityMessage) {
+  private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
     // add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
@@ -285,6 +315,11 @@ public class DecryptionPuzzleController {
     gptTask.setOnSucceeded(
         event -> {
           enableComponents();
+
+          // Remove previous message if it is a hint
+          if (isHint) {
+            removePreviousMessage();
+          }
         });
 
     // create a thread to handle GPT concurrency
@@ -316,6 +351,24 @@ public class DecryptionPuzzleController {
     return userSequence;
   }
 
+  /** Generate a GPT response. GPT should give a hint for the current pseudocode. */
+  private void getUserHint() {
+    // Get the incorrect line number for the following pseudocode and hint index
+    int lineNumber = Integer.valueOf(sequence.charAt(hintIndex));
+
+    // Get the hint prompt for GPT to analyze and generate a response
+    String hint = GptPromptEngineering.getDecryptionHint(pseudocode, lineNumber);
+
+    // Initialize a user hint message compatible for GPT to analyze
+    ChatMessage userHintMessage = new ChatMessage("assistant", hint);
+
+    // Get GPT's response
+    getChatResponse(userHintMessage, true);
+
+    // Update the hint index
+    hintIndex = (hintIndex + 1) % GameState.maxSequence;
+  }
+
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
    *
@@ -335,7 +388,7 @@ public class DecryptionPuzzleController {
     String gptOutput = gptMessage.getContent();
 
     // add GPT's response to its history
-    gptRequest.addMessage(gptMessage);
+    // gptRequest.addMessage(gptMessage);
 
     // append the result to the text area
     taChat.appendText("ai> " + gptOutput + "\n\n");
@@ -470,12 +523,32 @@ public class DecryptionPuzzleController {
 
   /** Enable components when a task is finished. */
   private void enableComponents() {
+    // Enable the user input field
     tfChat.setDisable(false);
+
+    // Enable the hint pane
+    paHint.setDisable(false);
   }
 
   /** disable components when a task is running. */
   private void disableComponents() {
+    // Disable the user input field
     tfChat.setDisable(true);
+
+    // Disable the hint pane
+    paHint.setDisable(true);
+  }
+
+  /**
+   * Remove the previous message in GPT's history. This is to ensure that the users won't be able to
+   * abuse the hint system.
+   */
+  private void removePreviousMessage() {
+    // Get the current GPT messages
+    List<ChatMessage> gptMessages = gptRequest.getMessages();
+
+    // Remove last message sent
+    gptMessages.remove(gptMessages.size() - 1);
   }
 
   /**

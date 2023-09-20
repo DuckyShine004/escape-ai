@@ -44,6 +44,17 @@ public class GptPromptEngineering {
         + ".";
   }
 
+  public static String getDecryptionHint(String pseudocode, int lineNumber) {
+    return "Why is line "
+        + lineNumber
+        + " incorrect for the following pseudocode? '--' lines are correct, so do not worry about"
+        + " them. Give a short hint and do not include line numbers: \n\n"
+        + pseudocode
+        + "\n\n"
+        + "You must not include line numbers, and it should not exceed 15 words. Give"
+        + " your answer in the form: \"Hint:\"";
+  }
+
   public static String initializeDecryptionResponse() {
     return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
         + " response should never exceed 20 words.";
