@@ -23,8 +23,8 @@ public class GameState {
 
   public static AppUi currentRoom = AppUi.MENU;
 
-  /** Game difficulty, starts in Medium */
-  public static Difficulty gameDifficulty = Difficulty.MEDIUM;
+  /** Game difficulty, starts in easy */
+  public static Difficulty gameDifficulty = Difficulty.EASY;
 
   /** Indicates whether the game is in developer mode. */
   public static boolean isDeveloperMode = false;
