@@ -28,6 +28,7 @@ public class MainMenuController {
 
   @FXML private Label lblConfirm;
 
+  /** Initializes the main menu scene. */
   @FXML
   private void initialize() {}
 
@@ -106,6 +107,10 @@ public class MainMenuController {
   /** When play is clicked, start the game. */
   @FXML
   private void onPlayPaneClicked() {
+    // Disable the exit components
+    disableExitComponents();
+
+    // Start the game
     startGame();
   }
 
@@ -118,6 +123,10 @@ public class MainMenuController {
   /** When settings is clicked, switch the scene to options scene. */
   @FXML
   private void onSettingsPaneClicked() {
+    // Disable the exit components
+    disableExitComponents();
+
+    // Switch to the options scene
     App.setUi(AppUi.OPTIONS);
   }
 
@@ -128,6 +137,7 @@ public class MainMenuController {
     GameState.riddlesSolved = 0;
   }
 
+  /** Starts the game. */
   private void startGame() {
     resetGlobalVariables();
 
@@ -153,6 +163,7 @@ public class MainMenuController {
     App.setUi(AppUi.OFFICE);
   }
 
+  /** Enables the exit components of the menu. */
   private void enableExitComponents() {
     // Set the underline visible
     lineConfirm.setVisible(true);
@@ -173,6 +184,7 @@ public class MainMenuController {
     paYes.setDisable(false);
   }
 
+  /** Disables the exit components of the menu. */
   private void disableExitComponents() {
     // Set the underline invisible
     lineConfirm.setVisible(false);
