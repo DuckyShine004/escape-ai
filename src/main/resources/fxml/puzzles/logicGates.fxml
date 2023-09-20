@@ -18,7 +18,7 @@
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
-                  <Pane id="broken-glass-pane" fx:id="pLogicGateAnchor" prefHeight="305.0" prefWidth="500.0" stylesheets="@../../css/puzzles/logicGates.css">
+                  <Pane id="broken-glass-pane" prefHeight="305.0" prefWidth="500.0" stylesheets="@../../css/puzzles/logicGates.css">
                      <children>
                         <Pane fx:id="pAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
@@ -31,7 +31,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Pane>
-                        <ImageView fx:id="imgGlassScreen" fitHeight="291.0" fitWidth="476.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgGlassScreen" fitHeight="295.0" fitWidth="500.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                         <Pane fx:id="pAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
@@ -164,11 +164,11 @@
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
-      <TextArea fx:id="taGptText" editable="false" layoutX="504.0" layoutY="60.0" prefHeight="280.0" prefWidth="202.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" wrapText="true">
+      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="202.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
       </TextArea>
-      <TextField fx:id="tfTextInput" layoutX="504.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
+      <TextField fx:id="tfTextInput" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
    </children>
 </Pane>

@@ -70,7 +70,10 @@
   -fx-background-color: black;
 }
 
-.broken-glass-pane {
+#broken-glass-pane {
   -fx-border-color: black; 
   -fx-border-width: 5px;
+  -fx-background-color: rgb(18, 157, 176);
+
+
 }

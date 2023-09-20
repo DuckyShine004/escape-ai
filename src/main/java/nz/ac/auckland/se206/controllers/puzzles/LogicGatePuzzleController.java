@@ -132,9 +132,6 @@ public class LogicGatePuzzleController {
   // the label with the time
   @FXML private Label lblTime;
 
-  // the pane the logic gate puzzle is sitting on
-  @FXML private Pane pLogicGateAnchor;
-
   // hint button
   @FXML private Button btnHint;
 
@@ -415,8 +412,6 @@ public class LogicGatePuzzleController {
 
   /** This method sets the styles for this scene */
   private void setStyles() {
-    pLogicGateAnchor.setStyle("-fx-background-color: " + this.sceneBackgroundColour + " ;");
-
     try {
       // load glass image
       Image glassScreen =
