@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -196,6 +197,7 @@ public class ChatArea extends VBox {
           tfInput.setDisable(false);
         });
 
+    gptThread.setDaemon(true);
     // start the thread
     gptThread.start();
     System.out.println("Thread started");
@@ -224,6 +226,9 @@ public class ChatArea extends VBox {
     String currentChatContent = ChatManager.getChatContent();
     currentChatContent += "AI: " + gptOutput + "\n\n";
     ChatManager.setChatContent(currentChatContent);
+    App.initializeOfficeScene();
+    App.initializeControlScene();
+    App.initializeBreakerScene();
 
     // add GPT's response to its history
     gptRequest.addMessage(gptMessage);

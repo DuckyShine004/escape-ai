@@ -72,7 +72,7 @@ public class GptPromptEngineering {
           + " world, and is overly excited about everything. You do not recgonise the player"
           + " and question why they're snooping around your server rooms.  If the player"
           + " asks for a hint, let them know that you will be happy to help if they press "
-          + " the hint button. Your answer should never exceed 20 words.";
+          + " the hint button. Your answer should not ever exceed 20 words.";
     }
   }
 }
