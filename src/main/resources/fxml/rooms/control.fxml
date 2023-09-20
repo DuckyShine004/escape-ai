@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
+<Pane fx:id="paControl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="20.0" layoutY="65.0">
          <image>
@@ -40,7 +40,7 @@
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
-      <TextArea fx:id="taChat" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" />
+      <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
       <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" />
    </children>
 </Pane>

@@ -126,6 +126,11 @@ public class ChatManager {
     updateChatResponse(gptOutput);
   }
 
+  /**
+   * Update the chat area given the response was from the user.
+   *
+   * @param message the message to be appended to the text area.
+   */
   public static void setUserResponse(String message) {
     // Format the message for the user
     String formatMessage = "User: " + message + "\n\n";
@@ -136,11 +141,14 @@ public class ChatManager {
     }
 
     // Clear all text fields
-    for (TextField tfChat : textFields) {
-      tfChat.clear();
-    }
+    clearTextFields();
   }
 
+  /**
+   * Update the chat area given the response was from chat GPT.
+   *
+   * @param message the message to be appended to the text area.
+   */
   private static void updateChatResponse(String message) {
     // Format the message for GPT
     String formatMessage = "AI: " + message + "\n\n";
@@ -151,27 +159,47 @@ public class ChatManager {
     }
   }
 
+  /**
+   * Enable chat components. This should re-enable chat components if its previous state was
+   * disabled.
+   */
   private static void enableChatComponents() {
-    // Disable text area components
-    for (TextArea taChat : textAreas) {
-      taChat.setDisable(false);
-    }
-
-    // Disable text field components
+    // Enable text field components
     for (TextField tfChat : textFields) {
       tfChat.setDisable(false);
     }
   }
 
+  /** Disable chat components. You can include the things you want to disable here. */
   private static void disableChatComponents() {
-    // Disable text area components
-    for (TextArea taChat : textAreas) {
-      taChat.setDisable(true);
-    }
-
     // Disable text field components
     for (TextField tfChat : textFields) {
       tfChat.setDisable(true);
     }
+  }
+
+  /** Clear all current text areas. */
+  public static void clearTextAreas() {
+    // Clear all text areas
+    for (TextArea taChat : textAreas) {
+      taChat.clear();
+    }
+  }
+
+  /** Clear all current text fields. */
+  public static void clearTextFields() {
+    // Clear all text fields
+    for (TextField tfChat : textFields) {
+      tfChat.clear();
+    }
+  }
+
+  /** Reset the chat manager on reset. */
+  public static void reset() {
+    // Clear the text areas
+    clearTextAreas();
+
+    // Clear the text fields
+    clearTextFields();
   }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -48,6 +49,9 @@ public class LosingScreenController {
 
     // start the timer
     Timer.play();
+
+    // Clear the chat manager
+    ChatManager.reset();
 
     // change scene to Office
     App.setUi(AppUi.OFFICE);

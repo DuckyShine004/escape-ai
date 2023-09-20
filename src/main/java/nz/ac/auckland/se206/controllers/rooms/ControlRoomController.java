@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -16,6 +17,8 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class ControlRoomController {
+  @FXML private Pane paControl;
+
   @FXML private Label lblTime;
 
   @FXML private Button btnLeft;
