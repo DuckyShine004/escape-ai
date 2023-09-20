@@ -2,7 +2,6 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,15 +36,18 @@ public class App extends Application {
     // scene.setRoot
     // get the Parent for that Ui
 
+    System.out.println("changing from " + GameState.currentRoom + " to " + newUi);
+
     // if not in one of the main rooms
     if (GameState.currentRoom != AppUi.OFFICE
         && GameState.currentRoom != AppUi.BREAKER
         && GameState.currentRoom != AppUi.CONTROL) {
+      System.out.println("stopping current TTS");
       GameState.tts.stop();
     }
 
-    scene.setRoot(SceneManager.getUi(newUi));
     GameState.currentRoom = newUi;
+    scene.setRoot(SceneManager.getUi(newUi));
   }
 
   /**

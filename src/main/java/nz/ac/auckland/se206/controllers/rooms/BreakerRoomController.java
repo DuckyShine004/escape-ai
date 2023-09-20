@@ -7,6 +7,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.ChatArea;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -58,5 +59,10 @@ public class BreakerRoomController {
   @FXML
   private void onOpenLogicGatePuzzle() {
     App.setUi(AppUi.LOGIC_PUZZLE);
+  }
+
+  @FXML
+  private void onAiClicked() {
+    GameState.muted = GameState.muted == false;
   }
 }

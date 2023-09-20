@@ -13,6 +13,9 @@ public class GameState {
     HARD
   }
 
+  /** tts starts muted */
+  public static boolean muted = true;
+
   /** Text to speach instance that must be closed by the end of the program */
   public static TextToSpeech tts;
 

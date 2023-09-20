@@ -8,6 +8,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.utilities.ChatArea;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -28,7 +29,7 @@ public class ControlRoomController {
   private void initialize() {
     // add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
-    
+
     sceneManager = SceneManager.getInstance();
     String chatContent = ChatManager.getChatContent();
     chatArea.setChatContent(chatContent);
@@ -62,5 +63,10 @@ public class ControlRoomController {
   @FXML
   private void onPlayPuzzleButton() {
     App.setUi(AppUi.TERMINAL);
+  }
+
+    @FXML
+  private void onAiClicked() {
+    GameState.muted = GameState.muted == false;
   }
 }

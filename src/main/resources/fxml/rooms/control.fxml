@@ -43,7 +43,7 @@
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
-      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0">
+      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>

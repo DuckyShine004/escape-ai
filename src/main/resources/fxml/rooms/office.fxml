@@ -43,7 +43,7 @@
       </Pane>
       <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
       <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
-      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0">
+      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>

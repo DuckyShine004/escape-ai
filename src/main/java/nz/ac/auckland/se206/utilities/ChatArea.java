@@ -240,6 +240,7 @@ public class ChatArea extends VBox {
 
     // append the result to the text area
     taChat.appendText("AI: " + gptOutput + "\n\n");
+
     tts.speak(gptOutput, AppUi.OFFICE);
   }
 }
