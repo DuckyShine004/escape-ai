@@ -8,7 +8,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.Bloom?>
 
 <Pane fx:id="paControl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
@@ -42,12 +44,38 @@
       </Pane>
       <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
       <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" />
+      <Button fx:id="btnWin" layoutX="119.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#onCheckWinButton" opacity="0.0" prefHeight="7.0" prefWidth="131.0" styleClass="item-button" stylesheets="@../../css/index.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Rectangle fx:id="recBlur" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="400.0" layoutX="19.0" layoutY="65.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="400.0" visible="false"/>
+      <Label fx:id="lblQuestion1" layoutX="109.0" layoutY="122.0" prefHeight="46.0" prefWidth="240.0" text="Will you press" visible="false">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
       <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" styleClass="imageView">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnWin" layoutX="119.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#onCheckWinButton" opacity="0.0" prefHeight="7.0" prefWidth="131.0" styleClass="item-button" stylesheets="@../../css/index.css">
+      <Label fx:id="lblQuestion2" layoutX="130.0" layoutY="168.0" prefHeight="46.0" prefWidth="240.0" text="the button?" visible="false">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgButton" fitHeight="150.0" fitWidth="150.0" layoutX="145.0" layoutY="214.0" onMouseClicked="#onAiClicked" styleClass="imageView" visible="false">
+         <image>
+            <Image url="@../../images/redubutton.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnYes" layoutX="100.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onYesButton" prefHeight="30.0" prefWidth="50.0" styleClass="item-button" stylesheets="@../../css/index.css" text="Yes" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnNo" layoutX="225.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onNoButton" prefHeight="30.0" prefWidth="50.0" styleClass="item-button" stylesheets="@../../css/index.css" text="No" visible="false">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

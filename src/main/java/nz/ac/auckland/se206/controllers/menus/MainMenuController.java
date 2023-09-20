@@ -132,8 +132,9 @@ public class MainMenuController {
 
   /** This method will reset all the global fields in GameState. */
   private void resetGlobalVariables() {
-    GameState.isKeyFound = false;
-    GameState.isRiddleResolved = false;
+    GameState.isRiddleResolved = true;
+    GameState.isLogicGateSolved = true;
+    GameState.isDecryptionSolved = true;
     GameState.riddlesSolved = 0;
   }
 

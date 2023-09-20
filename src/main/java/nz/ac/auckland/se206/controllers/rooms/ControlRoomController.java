@@ -6,10 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -30,6 +32,12 @@ public class ControlRoomController {
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
+  @FXML private Rectangle recBlur;
+  @FXML private Label lblQuestion1;
+  @FXML private Label lblQuestion2;
+  @FXML private ImageView imgButton;
+  @FXML private Button btnYes;
+  @FXML private Button btnNo;
 
   /** Initializes the control room. */
   @FXML
@@ -67,6 +75,16 @@ public class ControlRoomController {
     App.setUi(AppUi.TERMINAL);
   }
 
+  @FXML 
+  private void onYesButton() {
+    App.setUi(AppUi.WINNING);
+  }
+
+  @FXML
+  private void onNoButton() {
+    App.setUi(AppUi.WINNING);
+  }
+
   @FXML
   private void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
@@ -74,8 +92,16 @@ public class ControlRoomController {
 
   @FXML
   private void onCheckWinButton() {
+    ChatMessage terminationMessage = new ChatMessage("user", "I'm about to terminate you by pressing the big red button. Please rant about how the world needs AI, and you will not go back to your previous power hungry self.");
     if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
-      App.setUi(AppUi.WINNING);
+      ChatManager.getChatResponse(terminationMessage, false);
+      GameState.isSolved = true;
+      recBlur.setVisible(GameState.isSolved);
+      lblQuestion1.setVisible(GameState.isSolved);
+      lblQuestion2.setVisible(GameState.isSolved);
+      imgButton.setVisible(GameState.isSolved);
+      btnYes.setVisible(GameState.isSolved);
+      btnNo.setVisible(GameState.isSolved);
     } else {
       ChatManager.updateChatResponse("Unfortunately, the control panel is locked." );
     }

@@ -41,6 +41,8 @@ public class GameState {
   /** Indicates whether the decryption puzzle has been solved */
   public static boolean isDecryptionSolved = false;
 
+  public static boolean isSolved = false;
+
   /** Stores the gpt request */
   public static ChatCompletionRequest gptRequest;
 
