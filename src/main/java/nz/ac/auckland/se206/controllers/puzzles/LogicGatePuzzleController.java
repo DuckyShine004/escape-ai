@@ -174,8 +174,6 @@ public class LogicGatePuzzleController {
 
   private String onLogicColour = "00ff00"; // green
   private String offLogicColour = "ff0000"; // red
-  private String sceneBackgroundColour =
-      "rgb(18, 157, 176)"; // background colour for logic gate pane
 
   // This is the number of first column gates
   // x
@@ -323,6 +321,7 @@ public class LogicGatePuzzleController {
           @Override
           protected Void call() throws Exception {
             // set GPT's response
+            System.out.println(this.toString());
             setChatResponse();
             return null;
           }
@@ -385,6 +384,7 @@ public class LogicGatePuzzleController {
     // append the result to the text area
     taGptText.appendText("ai> " + gptOutput + "\n\n");
 
+    System.out.println("call talk");
     GameState.tts.speak(gptOutput, AppUi.LOGIC_PUZZLE);
   }
 
@@ -799,13 +799,13 @@ public class LogicGatePuzzleController {
     // switch statement to change all gates based on int active
 
     // clears all
-    pAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pAnswerGate6.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pAnswerGate0.setStyle("-fx-background-color: " + "transparent");
+    pAnswerGate1.setStyle("-fx-background-color: " + "transparent");
+    pAnswerGate2.setStyle("-fx-background-color: " + "transparent");
+    pAnswerGate3.setStyle("-fx-background-color: " + "transparent");
+    pAnswerGate4.setStyle("-fx-background-color: " + "transparent");
+    pAnswerGate5.setStyle("-fx-background-color: " + "transparent");
+    pAnswerGate6.setStyle("-fx-background-color: " + "transparent");
 
     // sets active gate to highlight
     switch (active) {
@@ -916,7 +916,7 @@ public class LogicGatePuzzleController {
   private void onGate0Exit(MouseEvent event) {
     //
     if (this.swapping != 0) {
-      pAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pAnswerGate0.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -938,7 +938,7 @@ public class LogicGatePuzzleController {
   private void onGate1Exit(MouseEvent event) {
     //
     if (this.swapping != 1) {
-      pAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pAnswerGate1.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -960,7 +960,7 @@ public class LogicGatePuzzleController {
   private void onGate2Exit(MouseEvent event) {
     //
     if (this.swapping != 2) {
-      pAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pAnswerGate2.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -982,7 +982,7 @@ public class LogicGatePuzzleController {
   private void onGate3Exit(MouseEvent event) {
     //
     if (this.swapping != 3) {
-      pAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pAnswerGate3.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -1004,7 +1004,7 @@ public class LogicGatePuzzleController {
   private void onGate4Exit(MouseEvent event) {
     //
     if (this.swapping != 4) {
-      pAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pAnswerGate4.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -1026,7 +1026,7 @@ public class LogicGatePuzzleController {
   private void onGate5Exit(MouseEvent event) {
     //
     if (this.swapping != 5) {
-      pAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pAnswerGate5.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -1203,7 +1203,9 @@ public class LogicGatePuzzleController {
   private void onGetToDoHelp(MouseEvent event) {
     // define the help message
     String helpMessage =
-        "Swap the logic gates by clicking them.  \nYour Goal is to turn the end light on (green)";
+        "Swap the logic gates by clicking them.  \n"
+            + "Your Goal is to turn the end light on (green) \n"
+            + " Last Gate is covered by glass";
 
     // append help message to text area
     taGptText.appendText("System> " + helpMessage + "\n\n");

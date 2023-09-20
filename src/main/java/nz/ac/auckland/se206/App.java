@@ -124,7 +124,8 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("menus/losing"));
 
     // remaining puzzle scenes
-    initalizePuzzleScenes();
+    // initalizePuzzleScenes();
+    // this causes double initaliizing
   }
 
   protected static void initalizePuzzleScenes() throws IOException {

@@ -44,12 +44,16 @@ public class SceneManager {
 
     GameState.currentRoom = AppUi.MENU;
 
-    sceneMap.remove(AppUi.OFFICE);
+    // will trigger exception on first time through each time
+    try {
+      sceneMap.remove(AppUi.OFFICE);
+      sceneMap.remove(AppUi.BREAKER);
+      sceneMap.remove(AppUi.CONTROL);
+    } catch (Exception e) {
+      System.out.println("scenes don't exist yet");
+    }
 
-    sceneMap.remove(AppUi.BREAKER);
     sceneMap.remove(AppUi.LOGIC_PUZZLE);
-
-    sceneMap.remove(AppUi.CONTROL);
     sceneMap.remove(AppUi.DECRYPTION);
 
     // reinitalizes the puzzle scenes
