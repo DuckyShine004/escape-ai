@@ -27,7 +27,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.*;
 
 public class LogicGatePuzzleController {
@@ -195,15 +194,11 @@ public class LogicGatePuzzleController {
   // this is the single gpt context messages
   private ChatCompletionRequest gptRequest;
 
-  private TextToSpeech tts;
   private Image clickableImage;
   private Image getInformationImage;
 
   @FXML
   private void initialize() {
-
-    // get the GameState tts instance
-    this.tts = GameState.tts;
 
     // start timer
     Timer.addLabel(lblTime);
@@ -390,7 +385,7 @@ public class LogicGatePuzzleController {
     // append the result to the text area
     taGptText.appendText("ai> " + gptOutput + "\n\n");
 
-    tts.speak(gptOutput, AppUi.LOGIC_PUZZLE);
+    GameState.tts.speak(gptOutput, AppUi.LOGIC_PUZZLE);
   }
 
   @FXML
