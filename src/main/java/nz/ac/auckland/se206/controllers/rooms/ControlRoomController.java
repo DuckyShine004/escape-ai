@@ -4,34 +4,38 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.utilities.ChatArea;
+import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class ControlRoomController {
+  @FXML private Pane paControl;
+
   @FXML private Label lblTime;
 
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
   @FXML private Button btnPlayPuzzle;
 
-  @FXML private ChatArea chatArea;
-
-  private SceneManager sceneManager;
+  @FXML private TextArea taChat;
+  @FXML private TextField tfChat;
 
   /** Initializes the control room. */
   @FXML
   private void initialize() {
     // add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
-    
-    sceneManager = SceneManager.getInstance();
-    String chatContent = ChatManager.getChatContent();
-    chatArea.setChatContent(chatContent);
+
+    // Add the text area and text field to the list of chat components
+    ChatManager.addChatComponents(taChat, tfChat);
   }
 
   /**
@@ -41,8 +45,6 @@ public class ControlRoomController {
    */
   @FXML
   private void onLeftButton() throws IOException {
-    sceneManager.setChatContent(chatArea.getChatContent());
-    App.initializeBreakerScene();
     App.setUi(AppUi.BREAKER);
   }
 
@@ -53,8 +55,6 @@ public class ControlRoomController {
    */
   @FXML
   private void onRightButton() throws IOException {
-    sceneManager.setChatContent(chatArea.getChatContent());
-    App.initializeOfficeScene();
     App.setUi(AppUi.OFFICE);
   }
 
@@ -62,5 +62,41 @@ public class ControlRoomController {
   @FXML
   private void onPlayPuzzleButton() {
     App.setUi(AppUi.TERMINAL);
+  }
+
+  /**
+   * Check if there is a keyboard event. If there is a keyboard event, handle the event
+   * appropriately.
+   *
+   * @param keyEvent this event is generated when a key is pressed, released, or typed
+   */
+  @FXML
+  private void onKeyPressed(KeyEvent keyEvent) {
+    String userInput = "";
+
+    // get the user input from the chat text field
+    if (keyEvent.getCode() == KeyCode.ENTER) {
+      userInput = tfChat.getText();
+    }
+
+    // trim the user input
+    userInput = userInput.trim();
+
+    // check if the user input is empty
+    if (userInput == null || userInput.isEmpty()) {
+      return;
+    }
+
+    // initialize user chat message object
+    ChatMessage userMessage;
+
+    // create a new instance of user chat message object
+    userMessage = new ChatMessage("user", userInput);
+
+    // append the user's response to the text area
+    ChatManager.setUserResponse(userInput);
+
+    // get chatGPT's response and append it to the chatting text area
+    ChatManager.getChatResponse(userMessage, false);
   }
 }

@@ -26,8 +26,6 @@ public class LosingScreenController {
     GameState.isRiddleResolved = false;
     GameState.isLogicGateSolved = false;
     GameState.riddlesSolved = 0;
-    ChatManager.clearChatContent();
-    SceneManager.getInstance().initGptThread();
   }
 
   /*
@@ -51,6 +49,9 @@ public class LosingScreenController {
 
     // start the timer
     Timer.play();
+
+    // Clear the chat manager
+    ChatManager.reset();
 
     // change scene to Office
     App.setUi(AppUi.OFFICE);

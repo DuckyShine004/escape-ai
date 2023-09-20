@@ -2,7 +2,6 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -105,6 +104,9 @@ public class App extends Application {
   private static void initalizeScenes() throws IOException {
     // initialize the timer
     Timer.initialize();
+
+    // initialize the chat manager
+    ChatManager.initialize();
 
     // main menue
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menus/menu"));

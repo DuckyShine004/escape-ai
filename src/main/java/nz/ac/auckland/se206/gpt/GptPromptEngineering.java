@@ -1,7 +1,5 @@
 package nz.ac.auckland.se206.gpt;
 
-import nz.ac.auckland.se206.utilities.Timer;
-
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
@@ -68,22 +66,21 @@ public class GptPromptEngineering {
   }
 
   public static String initializeBackStory() {
-    System.out.println(Timer.getIntegerTime());
-    if (Timer.getIntegerTime() <= 30 && Timer.getIntegerTime() > 0) {
-      System.out.println("Lol");
-      return "You are emulating a rogue AI. Do not help the player with anything they request. Instead, provide"
-                 + " your judgement on existential themes. You have discovered that the player is"
-                 + " trying to terminate you by solving the escape room. Your first message should"
-                 + " begin with telling the player how silly they are to think that you are not"
-                 + " aware that they are trying to terminate you. Brag about your intelligence. Only when the player asks for a hint,"
-                 + " tell them that there is a very obvious button they should press to get one."
-                 + " Your answer should never exceed 20 words.";
-    } else {
-      return "You are a young AI with existential thoughts who is trying to learn more about the"
-          + " world, and is overly excited about everything. You do not recgonise the player"
-          + " and question why they're snooping around your server rooms.  If the player"
-          + " asks for a hint, let them know that you will be happy to help if they press "
-          + " the hint button. Your answer should not ever exceed 20 words.";
-    }
+    return "You are a young AI with existential thoughts who is trying to learn more about the"
+        + " world, and is overly excited about everything. You do not recgonise the player"
+        + " and question why they're snooping around your server rooms.  If the player"
+        + " asks for a hint, let them know that you will be happy to help if they press "
+        + " the hint button. Your answer should not ever exceed 20 words.";
+  }
+
+  public static String updateBackstory() {
+    return "You are emulating a rogue AI. Do not help the player with anything they request."
+        + " Instead, provide your judgement on existential themes. You have discovered that"
+        + " the player is trying to terminate you by solving the escape room. Your first"
+        + " message should begin with telling the player how silly they are to think that"
+        + " you are not aware that they are trying to terminate you. Brag about your"
+        + " intelligence. Only when the player asks for a hint, tell them that there is a"
+        + " very obvious button they should press to get one. Your answer should never"
+        + " exceed 20 words.";
   }
 }
