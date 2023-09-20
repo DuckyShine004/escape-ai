@@ -7,7 +7,6 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** The timer class keeps track of the time left for the player. */
@@ -118,9 +117,9 @@ public class Timer {
       App.setUi(AppUi.LOSING);
     }
 
-    if (time == 30) {
-      SceneManager.getInstance().initGptThread();
-    }
+    // if (time == 30) {
+    //   SceneManager.getInstance().initGptThread();
+    // }
   }
 
   /**

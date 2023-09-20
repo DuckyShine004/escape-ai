@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -29,8 +28,6 @@ public class WinningScreenController {
     GameState.isRiddleResolved = false;
     GameState.isLogicGateSolved = false;
     GameState.riddlesSolved = 0;
-    ChatManager.clearChatContent();
-    SceneManager.getInstance().initGptThread();
   }
 
   /*
