@@ -67,7 +67,12 @@
             <Bloom threshold="0.0" />
          </effect>
          <children>
-            <Label layoutX="90.0" prefHeight="65.0" prefWidth="425.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Decryption Puzzle" textFill="#ff6400">
+            <Label layoutX="15.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="&gt;_" textFill="#ff6400">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" prefHeight="65.0" prefWidth="425.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Decryption Puzzle" textFill="#ff6400">
                <font>
                   <Font size="40.0" />
                </font>
@@ -80,11 +85,26 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="&gt;_" textFill="#ff6400">
+            <Label layoutX="535.0" prefHeight="65.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="0/4" textFill="#ff6400">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
+            <Line endY="63.5" layoutX="70.0" startY="2.0" stroke="#ff8700" strokeWidth="2.0">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Line>
+            <Line endY="63.5" layoutX="430.0" startY="2.0" stroke="#ff8700" strokeWidth="2.0">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Line>
+            <Line endY="63.5" layoutX="600.0" startY="2.0" stroke="#ff8700" strokeWidth="2.0">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Line>
          </children>
       </Pane>
       <HBox layoutX="315.0" layoutY="80.0" prefHeight="70.0" prefWidth="400.0" spacing="10.0">
@@ -151,10 +171,18 @@
             </Pane>
          </children>
       </HBox>
-      <Line endY="65.0" layoutX="80.0" layoutY="2.0" startY="5.0" stroke="#ff8700" strokeWidth="2.0">
+      <Pane fx:id="paHint" layoutX="440.0" layoutY="12.5" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: transparent;" styleClass="orange-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+         <children>
+            <Pane fx:id="paHintOverlay" opacity="0.15" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: orange;" visible="false" />
+            <Label layoutX="8.0" layoutY="-8.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Hint" textFill="#ff6400">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children>
          <effect>
-            <Bloom />
+            <Bloom threshold="0.0" />
          </effect>
-      </Line>
+      </Pane>
    </children>
 </Pane>
