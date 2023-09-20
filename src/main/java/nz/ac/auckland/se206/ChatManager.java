@@ -5,6 +5,8 @@ import java.util.List;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -175,6 +177,9 @@ public class ChatManager {
   private static void updateChatResponse(String message) {
     // Format the message for GPT
     String formatMessage = "AI: " + message + "\n\n";
+
+    // call tts
+    GameState.tts.speak(message, AppUi.OFFICE);
 
     // Append the message to all chat areas
     for (TextArea taChat : textAreas) {

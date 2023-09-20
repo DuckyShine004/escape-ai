@@ -7,10 +7,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -57,6 +59,11 @@ public class BreakerRoomController {
   @FXML
   private void onOpenLogicGatePuzzle() {
     App.setUi(AppUi.LOGIC_PUZZLE);
+  }
+
+  @FXML
+  private void onAiClicked(MouseEvent event) {
+    GameState.muted = GameState.muted == false;
   }
 
   /**

@@ -97,6 +97,13 @@ public class TextToSpeech {
    */
   public void speak(final String sentence, SceneManager.AppUi roomThatCalled) {
 
+    if (GameState.muted) {
+      System.out.println("tts is muted");
+      return;
+    }
+
+    System.out.println(sentence + " : " + roomThatCalled);
+
     // if the roomThatCalled is office, then it counts for all the 3 main rooms
     if (roomThatCalled != AppUi.OFFICE && roomThatCalled != GameState.currentRoom) {
       return; // just return, nothing happens

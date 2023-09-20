@@ -75,6 +75,7 @@ public class GeneralOfficeController {
 
     if (!GameState.isRiddleResolved) {
       GameState.currentRoom = AppUi.RIDDLE;
+      GameState.tts.stop(); // mute current tts message
       App.setRoot("puzzles/riddle");
       return;
     }
@@ -97,6 +98,11 @@ public class GeneralOfficeController {
     if (GameState.isRiddleResolved && !GameState.isKeyFound) {
       GameState.isKeyFound = true;
     }
+  }
+
+  @FXML
+  private void onAiClicked(MouseEvent event) {
+    GameState.muted = GameState.muted == false;
   }
 
   /**

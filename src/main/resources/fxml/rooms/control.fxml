@@ -42,7 +42,7 @@
       </Pane>
       <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
       <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" />
-      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0">
+      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>

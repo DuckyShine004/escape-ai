@@ -12,9 +12,7 @@ public class KeyEventsHandler implements EventHandler<KeyEvent> {
   public void handle(KeyEvent event) {
     if (event.getCode() == KeyCode.ESCAPE && GameState.isDeveloperMode) {
       // Handle the Escape key press
-       App.setUi(AppUi.MENU);
+      App.setUi(AppUi.MENU);
     }
   }
-
-
 }
