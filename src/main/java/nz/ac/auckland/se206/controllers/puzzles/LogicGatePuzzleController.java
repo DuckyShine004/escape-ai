@@ -897,7 +897,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate0Enter(MouseEvent event) {
     //
-    if (this.swapping != 0) {
+    if (this.swapping != 0 && GameState.isLogicGateSolved != true) {
       pAnswerGate0.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -919,7 +919,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate1Enter(MouseEvent event) {
     //
-    if (this.swapping != 1) {
+    if (this.swapping != 1 && GameState.isLogicGateSolved != true) {
       pAnswerGate1.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -941,7 +941,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate2Enter(MouseEvent event) {
     //
-    if (this.swapping != 2) {
+    if (this.swapping != 2 && GameState.isLogicGateSolved != true) {
       pAnswerGate2.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -963,7 +963,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate3Enter(MouseEvent event) {
     //
-    if (this.swapping != 3) {
+    if (this.swapping != 3 && GameState.isLogicGateSolved != true) {
       pAnswerGate3.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -985,7 +985,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate4Enter(MouseEvent event) {
     //
-    if (this.swapping != 4) {
+    if (this.swapping != 4 && GameState.isLogicGateSolved != true) {
       pAnswerGate4.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -1007,7 +1007,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate5Enter(MouseEvent event) {
     //
-    if (this.swapping != 5) {
+    if (this.swapping != 5 && GameState.isLogicGateSolved != true) {
       pAnswerGate5.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
