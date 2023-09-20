@@ -31,7 +31,7 @@ public class ChatManager {
    * <p>Note: I would love to be able to name this method 'initializeGPT'. Unfortunately, we are not
    * allowed to have acronyms as method names as per the naming convention.
    */
-  private static void initializeChat() {
+  public static void initializeChat() {
     // initialize the chat message field
     ChatMessage gptMessage;
 
@@ -97,6 +97,12 @@ public class ChatManager {
           enableChatComponents();
         });
 
+    // If the task fails
+    gptTask.setOnFailed(
+        event -> {
+          System.out.println("FAILED TO GENERATE RESPONSE");
+        });
+
     // Create a thread to handle GPT concurrency
     Thread gptThread = new Thread(gptTask);
 
@@ -122,6 +128,9 @@ public class ChatManager {
     // Get the content of gpt's message in the form of a string
     String gptOutput = gptMessage.getContent();
 
+    // Add the message to GPT's context
+    gptRequest.addMessage(gptMessage);
+
     // Update all the chat areas
     updateChatResponse(gptOutput);
   }
@@ -142,6 +151,20 @@ public class ChatManager {
 
     // Clear all text fields
     clearTextFields();
+  }
+
+  /**
+   * Updates chat GPT's persona when called. This should influence the GPT's response to the user.
+   */
+  public static void updateChatPersona() {
+    // initialize the chat message field
+    ChatMessage gptMessage;
+
+    // initialize GPT chat message object
+    gptMessage = new ChatMessage("assistant", GptPromptEngineering.updateBackstory());
+
+    // get a response from GPT to setup the chat
+    getChatResponse(gptMessage, false);
   }
 
   /**
@@ -194,6 +217,15 @@ public class ChatManager {
     }
   }
 
+  /** Clear the current chat history */
+  public static void clearChatHistory() {
+    // Get the current GPT messages
+    List<ChatMessage> gptMessages = gptRequest.getMessages();
+
+    // Remove last message sent
+    gptMessages.clear();
+  }
+
   /** Reset the chat manager on reset. */
   public static void reset() {
     // Clear the text areas
@@ -201,5 +233,11 @@ public class ChatManager {
 
     // Clear the text fields
     clearTextFields();
+
+    // Clear all the chat history
+    clearChatHistory();
+
+    // Initialize the initial message again
+    ChatManager.initializeChat();
   }
 }
