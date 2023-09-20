@@ -747,29 +747,38 @@ public class LogicGatePuzzleController {
     }
 
     if (logicTrail.get(logicTrail.size() - 1) == true) {
-
-      // the puzzle has been solved
-      imgSolvedLight.setImage(greenLight);
-
-      String solvedPrompt =
-          "Congratulate me on solving the logic gate puzzle, I now have learned what an "
-              + currentAssembly.get(currentAssembly.size() - 1).getType()
-              + " does,  but I might like to ask more questions about logic gates";
-
-      ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
-
-      // get the gpt response
-      getChatResponse(inputMessage, null);
-
-      // debug message in console
-      System.out.println("Logic Gate Puzzle Solved");
-
-      // set to solved
-      GameState.isLogicGateSolved = true;
-
-      // disable hint button
-      btnHint.setDisable(true);
+      setSolved();
     }
+  }
+
+  /** Solved method that changes aspects of UI and GameState */
+  private void setSolved() {
+    // the puzzle has been solved
+    imgSolvedLight.setImage(greenLight);
+
+    String solvedPrompt =
+        "Congratulate me on solving the logic gate puzzle, I now have learned what an "
+            + currentAssembly.get(currentAssembly.size() - 1).getType()
+            + " does,  but I might like to ask more questions about logic gates";
+
+    ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
+
+    // get the gpt response
+    getChatResponse(inputMessage, null);
+
+    // debug message in console
+    System.out.println("Logic Gate Puzzle Solved");
+
+    // set to solved
+    GameState.isLogicGateSolved = true;
+
+    // shows player this is un clickable
+    for (ImageView logicGate : currentAssemblyImages) {
+      logicGate.setCursor(javafx.scene.Cursor.DEFAULT);
+    }
+
+    // disable hint button
+    btnHint.setDisable(true);
   }
 
   /**
