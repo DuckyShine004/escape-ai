@@ -28,3 +28,26 @@
   -fx-background-color: grey;
   -fx-opacity: 0.3;
 }
+
+/* Style for choice buttons */
+.choice-button {
+  -fx-background-color: #000000; 
+  -fx-text-fill: #ffd700; 
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 20px; 
+  -fx-background-radius: 5px; 
+  -fx-border-radius: 5px; 
+  -fx-border-color: #ffd700; 
+  -fx-border-width: 2px; 
+}
+
+/* Hover effect */
+.choice-button:hover {
+  -fx-background-color: #222222; 
+}
+
+/* Pressed effect */
+.choice-button:pressed {
+  -fx-background-color: #111111; 
+}
