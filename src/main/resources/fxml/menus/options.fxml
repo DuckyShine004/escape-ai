@@ -158,19 +158,6 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="40.0" layoutY="170.0" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="216.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/options.css" visible="false" />
-            <Label layoutX="14.0" layoutY="4.0" text="Other" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
       <Pane fx:id="paReturn" layoutX="40.0" layoutY="360.0" onMouseClicked="#onReturnPaneClicked" onMouseEntered="#onReturnPaneEntered" onMouseExited="#onReturnPaneExited" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
          <effect>
             <Bloom />
@@ -214,6 +201,14 @@
             <Bloom />
          </effect>
       </Pane>
+      <Label layoutX="300.0" layoutY="97.0" style="-fx-text-fill: grey;" text="Easy - unlimited hints | Medium - 5 hints | Hard - NO hints" textFill="WHITE">
+         <effect>
+            <Bloom threshold="0.0" />
+         </effect>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
       <Line endY="30.0" layoutX="33.0" layoutY="378.0" stroke="#7e5700">
          <effect>
             <Bloom />
@@ -224,12 +219,12 @@
             <Bloom />
          </effect>
       </Line>
-      <Line endY="30.0" layoutX="33.0" layoutY="189.0" stroke="#7e5700">
+      <Line endY="30.0" layoutX="34.0" layoutY="138.0" stroke="#7e5700">
          <effect>
             <Bloom />
          </effect>
       </Line>
-      <Line endX="30.0" layoutX="34.0" layoutY="219.0" stroke="#7e5700">
+      <Line endX="30.0" layoutX="35.0" layoutY="168.0" stroke="#7e5700">
          <effect>
             <Bloom />
          </effect>
