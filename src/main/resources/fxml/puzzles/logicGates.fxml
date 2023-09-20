@@ -20,6 +20,18 @@
                <children>
                   <Pane fx:id="pLogicGateAnchor" prefHeight="305.0" prefWidth="500.0">
                      <children>
+                        <Pane fx:id="pAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate6" fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor></ImageView>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Pane>
+                        <ImageView fx:id="imgGlassScreen" fitHeight="291.0" fitWidth="476.0" pickOnBounds="true" preserveRatio="true" />
                         <Pane fx:id="pAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
@@ -75,17 +87,6 @@
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor></ImageView>
                            </children>
-                        </Pane>
-                        <Pane fx:id="pAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate6" fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor></ImageView>
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
                         </Pane>
                         <Pane fx:id="pInput8" layoutX="96.0" layoutY="51.0" prefHeight="10.0" prefWidth="111.0" />
                         <Pane fx:id="pInput8_2" layoutX="195.0" layoutY="57.0" prefHeight="26.0" prefWidth="12.0" />

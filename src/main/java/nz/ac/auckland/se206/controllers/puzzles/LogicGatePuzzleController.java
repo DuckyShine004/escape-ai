@@ -99,6 +99,9 @@ public class LogicGatePuzzleController {
   @FXML private TextArea taGptText;
   @FXML private TextField tfTextInput;
 
+  // glass screen covereing end gate
+  @FXML private ImageView imgGlassScreen;
+
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
 
@@ -418,6 +421,20 @@ public class LogicGatePuzzleController {
   /** This method sets the styles for this scene */
   private void setStyles() {
     pLogicGateAnchor.setStyle("-fx-background-color: " + this.sceneBackgroundColour + " ;");
+
+    try {
+      // load glass image
+      Image glassScreen =
+          new Image(
+              new FileInputStream(
+                  "src/main/resources/images/BreakerRoom/LogicGatePuzzle/"
+                      + "glassScreen2"
+                      + ".png"));
+      imgGlassScreen.setImage(glassScreen);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
