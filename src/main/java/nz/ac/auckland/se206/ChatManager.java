@@ -174,7 +174,7 @@ public class ChatManager {
    *
    * @param message the message to be appended to the text area.
    */
-  private static void updateChatResponse(String message) {
+  public static void updateChatResponse(String message) {
     // Format the message for GPT
     String formatMessage = "AI: " + message + "\n\n";
 

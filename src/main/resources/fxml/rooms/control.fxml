@@ -42,10 +42,15 @@
       </Pane>
       <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
       <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" />
-      <ImageView styleClass="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked">
+      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" styleClass="imageView">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnWin" layoutX="119.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#onCheckWinButton" opacity="0.0" prefHeight="7.0" prefWidth="131.0" styleClass="item-button" stylesheets="@../../css/index.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

@@ -26,6 +26,7 @@ public class ControlRoomController {
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
   @FXML private Button btnPlayPuzzle;
+  @FXML private Button btnWin;
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
@@ -69,6 +70,15 @@ public class ControlRoomController {
   @FXML
   private void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
+  }
+
+  @FXML
+  private void onCheckWinButton() {
+    if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
+      App.setUi(AppUi.WINNING);
+    } else {
+      ChatManager.updateChatResponse("Unfortunately, the control panel is locked." );
+    }
   }
 
   /**
