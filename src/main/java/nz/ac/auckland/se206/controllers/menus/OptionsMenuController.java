@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers.menus;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
@@ -20,10 +19,19 @@ public class OptionsMenuController {
   @FXML private Pane paEasyTransparent;
   @FXML private Pane paHardTransparent;
   @FXML private Pane paMediumTransparent;
+  @FXML private Pane paTwoMinutesOverlay;
+  @FXML private Pane paSixMinutesOverlay;
+  @FXML private Pane paFourMinutesOverlay;
+  @FXML private Pane paTwoMinutesTransparent;
+  @FXML private Pane paSixMinutesTransparent;
+  @FXML private Pane paFourMinutesTransparent;
 
   @FXML private Line lineEasy;
   @FXML private Line lineHard;
   @FXML private Line lineMedium;
+  @FXML private Line lineTwoMinutes;
+  @FXML private Line lineSixMinutes;
+  @FXML private Line lineFourMinutes;
 
   @FXML private ToggleButton tbtnDeveloperMode;
 
@@ -32,37 +40,37 @@ public class OptionsMenuController {
 
   /** When the mouse is hovering over the pane, the overlay appears (easy). */
   @FXML
-  private void onEasyPaneEntered(MouseEvent mouseEvent) {
+  private void onEasyPaneEntered() {
     paEasyOverlay.setVisible(true);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (easy). */
   @FXML
-  private void onEasyPaneExited(MouseEvent mouseEvent) {
+  private void onEasyPaneExited() {
     paEasyOverlay.setVisible(false);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (hard). */
   @FXML
-  private void onHardPaneExited(MouseEvent mouseEvent) {
+  private void onHardPaneExited() {
     paHardOverlay.setVisible(false);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (hard). */
   @FXML
-  private void onHardPaneEntered(MouseEvent mouseEvent) {
+  private void onHardPaneEntered() {
     paHardOverlay.setVisible(true);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (medium). */
   @FXML
-  private void onMediumPaneExited(MouseEvent mouseEvent) {
+  private void onMediumPaneExited() {
     paMediumOverlay.setVisible(false);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (medium). */
   @FXML
-  private void onMediumPaneEntered(MouseEvent mouseEvent) {
+  private void onMediumPaneEntered() {
     paMediumOverlay.setVisible(true);
   }
 
@@ -76,6 +84,42 @@ public class OptionsMenuController {
   @FXML
   private void onReturnPaneExited() {
     paReturnOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (two minutes). */
+  @FXML
+  private void onTwoMinutesPaneEntered() {
+    paTwoMinutesOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (two minutes). */
+  @FXML
+  private void onTwoMinutesPaneExited() {
+    paTwoMinutesOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (six minutes). */
+  @FXML
+  private void onSixMinutesPaneEntered() {
+    paSixMinutesOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (six minutes). */
+  @FXML
+  private void onSixMinutesPaneExited() {
+    paSixMinutesOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (four minutes). */
+  @FXML
+  private void onFourMinutesPaneEntered() {
+    paFourMinutesOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (four minutes). */
+  @FXML
+  private void onFourMinutesPaneExited() {
+    paFourMinutesOverlay.setVisible(false);
   }
 
   /** When easy is clicked, set the difficulty to easy. */
@@ -100,6 +144,24 @@ public class OptionsMenuController {
   @FXML
   private void onReturnPaneClicked() {
     App.setUi(AppUi.MENU);
+  }
+
+  /** When two minutes is clicked, set the time limit to two minutes. */
+  @FXML
+  private void onTwoMinutesPaneClicked() {
+    setTimeTwoMinutes();
+  }
+
+  /** When six minutes is clicked, set the time limit to six minutes. */
+  @FXML
+  private void onSixMinutesPaneClicked() {
+    setTimeSixMinutes();
+  }
+
+  /** When four minutes is clicked, set the time limit to four minutes. */
+  @FXML
+  private void onFourMinutesPaneClicked() {
+    setTimeFourMinutes();
   }
 
   /** When the switch to developer button is pressed, toggle the developer mode. */
@@ -140,7 +202,7 @@ public class OptionsMenuController {
     lineHard.setVisible(true);
 
     // Set the medium underline invisible
-    lineMedium.setVisible(true);
+    lineMedium.setVisible(false);
   }
 
   /** Set the game's difficulty to medium. */
@@ -156,5 +218,47 @@ public class OptionsMenuController {
 
     // Set the medium underline invisible
     lineMedium.setVisible(true);
+  }
+
+  private void setTimeTwoMinutes() {
+    // Set the time limit to two minutes
+    GameState.maxTime = 120;
+
+    // Set the two minutes underline visible
+    lineTwoMinutes.setVisible(true);
+
+    // Set the six minutes underline invisible
+    lineSixMinutes.setVisible(false);
+
+    // Set the four minutes underline invisible
+    lineFourMinutes.setVisible(false);
+  }
+
+  private void setTimeSixMinutes() {
+    // Set the time limit to two minutes
+    GameState.maxTime = 360;
+
+    // Set the two minutes underline invisible
+    lineTwoMinutes.setVisible(false);
+
+    // Set the six minutes underline visible
+    lineSixMinutes.setVisible(true);
+
+    // Set the four minutes underline invisible
+    lineFourMinutes.setVisible(false);
+  }
+
+  private void setTimeFourMinutes() {
+    // Set the time limit to two minutes
+    GameState.maxTime = 240;
+
+    // Set the two minutes underline invisible
+    lineTwoMinutes.setVisible(false);
+
+    // Set the six minutes underline invisible
+    lineSixMinutes.setVisible(false);
+
+    // Set the four minutes underline visible
+    lineFourMinutes.setVisible(true);
   }
 }

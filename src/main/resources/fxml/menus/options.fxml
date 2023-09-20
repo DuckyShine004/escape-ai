@@ -22,32 +22,47 @@
       <ToggleButton fx:id="tbtnDeveloperMode" layoutX="549.0" layoutY="447.0" mnemonicParsing="false" onAction="#onDeveloperMode" text="Switch to Developer Mode" />
       <Pane layoutX="300.0" layoutY="120.0" prefHeight="280.0" prefWidth="400.0" style="-fx-background-color: #160D02;" styleClass="background-border-pane" stylesheets="@../../css/menus/options.css">
          <children>
-            <Pane fx:id="paEasyOverlay" layoutX="160.0" layoutY="53.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
+            <Pane fx:id="paEasyOverlay" layoutX="165.0" layoutY="53.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
                <effect>
                   <Bloom />
                </effect>
             </Pane>
-            <Pane fx:id="paMediumOverlay" layoutX="225.0" layoutY="53.0" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
+            <Pane fx:id="paMediumOverlay" layoutX="230.0" layoutY="53.0" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
                <effect>
                   <Bloom />
                </effect>
             </Pane>
-            <Pane fx:id="paHardOverlay" layoutX="325.0" layoutY="53.0" prefHeight="30.0" prefWidth="57.5" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
+            <Pane fx:id="paHardOverlay" layoutX="330.0" layoutY="53.0" prefHeight="30.0" prefWidth="57.5" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
                <effect>
                   <Bloom />
                </effect>
             </Pane>
-            <Label layoutX="166.0" layoutY="50.0" text="Easy" textFill="WHITE">
+            <Pane fx:id="paTwoMinutesOverlay" layoutX="186.0" layoutY="88.0" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Pane>
+            <Pane fx:id="paFourMinutesOverlay" layoutX="287.0" layoutY="88.0" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Pane>
+            <Pane fx:id="paSixMinutesOverlay" layoutX="352.0" layoutY="88.0" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Pane>
+            <Label layoutX="171.0" layoutY="50.0" text="Easy" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="230.0" layoutY="50.0" text="Medium" textFill="WHITE">
+            <Label layoutX="235.0" layoutY="50.0" text="Medium" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="330.0" layoutY="50.0" text="Hard" textFill="WHITE">
+            <Label layoutX="335.0" layoutY="50.0" text="Hard" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -57,12 +72,27 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="30.0" layoutY="50.0" text="Difficulty" textFill="WHITE">
+            <Label layoutX="10.0" layoutY="50.0" text="Difficulty" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="30.0" layoutY="85.0" text="Time" textFill="WHITE">
+            <Label layoutX="10.0" layoutY="85.0" text="Time (minutes)" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="193.0" layoutY="85.0" text="x2" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="294.0" layoutY="85.0" text="x4" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="359.0" layoutY="85.0" text="x6" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -77,17 +107,32 @@
                   <Bloom />
                </effect>
             </Line>
-            <Line fx:id="lineEasy" endX="45.0" layoutX="165.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0">
+            <Line fx:id="lineEasy" endX="45.0" layoutX="170.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0">
                <effect>
                   <Bloom />
                </effect>
             </Line>
-            <Line fx:id="lineMedium" endX="80.0" layoutX="230.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
+            <Line fx:id="lineMedium" endX="80.0" layoutX="235.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
                <effect>
                   <Bloom />
                </effect>
             </Line>
-            <Line fx:id="lineHard" endX="47.5" layoutX="330.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
+            <Line fx:id="lineHard" endX="47.5" layoutX="335.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Line>
+            <Line fx:id="lineTwoMinutes" endX="37.0" layoutX="178.0" layoutY="115.0" startX="15.0" stroke="#7e5700" strokeWidth="2.0">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Line>
+            <Line fx:id="lineFourMinutes" endX="37.0" layoutX="279.0" layoutY="115.0" startX="15.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Line>
+            <Line fx:id="lineSixMinutes" endX="37.0" layoutX="344.0" layoutY="115.0" startX="15.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
                <effect>
                   <Bloom />
                </effect>
@@ -139,17 +184,32 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="paEasyTransparent" layoutX="460.0" layoutY="175.0" onMouseClicked="#onEasyPaneClicked" onMouseEntered="#onEasyPaneEntered" onMouseExited="#onEasyPaneExited" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: transparent;">
+      <Pane fx:id="paEasyTransparent" layoutX="465.0" layoutY="175.0" onMouseClicked="#onEasyPaneClicked" onMouseEntered="#onEasyPaneEntered" onMouseExited="#onEasyPaneExited" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: transparent;">
          <effect>
             <Bloom />
          </effect>
       </Pane>
-      <Pane fx:id="paMediumTransparent" layoutX="530.0" layoutY="175.0" onMouseEntered="#onMediumPaneEntered" onMouseExited="#onMediumPaneExited" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: transparent;">
+      <Pane fx:id="paMediumTransparent" layoutX="535.0" layoutY="175.0" onMouseClicked="#onMediumPaneClicked" onMouseEntered="#onMediumPaneEntered" onMouseExited="#onMediumPaneExited" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: transparent;">
          <effect>
             <Bloom />
          </effect>
       </Pane>
-      <Pane fx:id="paMediumTransparent1" layoutX="625.0" layoutY="175.0" onMouseEntered="#onHardPaneEntered" onMouseExited="#onHardPaneExited" prefHeight="30.0" prefWidth="57.5" style="-fx-background-color: transparent;">
+      <Pane fx:id="paMediumTransparent1" layoutX="630.0" layoutY="175.0" onMouseClicked="#onHardPaneClicked" onMouseEntered="#onHardPaneEntered" onMouseExited="#onHardPaneExited" prefHeight="30.0" prefWidth="57.5" style="-fx-background-color: transparent;">
+         <effect>
+            <Bloom />
+         </effect>
+      </Pane>
+      <Pane fx:id="paTwoMinutesTransparent" layoutX="486.0" layoutY="208.0" onMouseClicked="#onTwoMinutesPaneClicked" onMouseEntered="#onTwoMinutesPaneEntered" onMouseExited="#onTwoMinutesPaneExited" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: transparent;">
+         <effect>
+            <Bloom />
+         </effect>
+      </Pane>
+      <Pane fx:id="paFourMinutesTransparent" layoutX="587.0" layoutY="208.0" onMouseClicked="#onFourMinutesPaneClicked" onMouseEntered="#onFourMinutesPaneEntered" onMouseExited="#onFourMinutesPaneExited" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: transparent;">
+         <effect>
+            <Bloom />
+         </effect>
+      </Pane>
+      <Pane fx:id="paSixMinutesTransparent" layoutX="652.0" layoutY="208.0" onMouseClicked="#onSixMinutesPaneClicked" onMouseEntered="#onSixMinutesPaneEntered" onMouseExited="#onSixMinutesPaneExited" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: transparent;">
          <effect>
             <Bloom />
          </effect>
