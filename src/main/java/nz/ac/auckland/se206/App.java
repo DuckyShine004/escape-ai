@@ -193,16 +193,11 @@ public class App extends Application {
     scene.addEventHandler(KeyEvent.KEY_PRESSED, keyEventsHandler);
 
     // on stage closeing
-    // I am sure I heard Gallon say there was a much better solution
     stage.setOnCloseRequest(
         (WindowEvent event) -> {
           System.out.println("Application is closing.");
-          // grab an instance of text to speach
-          // terminate the text to speach instance because its weird and buggy
-          GameState.tts.terminate();
-
           // close anything else
-          Platform.exit();
+          System.exit(0);
         });
   }
 }
