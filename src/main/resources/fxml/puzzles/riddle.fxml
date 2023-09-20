@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.effect.Glow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.RiddlePuzzleController">
@@ -69,5 +71,10 @@
         <Button fx:id="btnAnswer2" prefHeight="40" prefWidth="120" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 2" styleClass="button-style"/>
         <Button fx:id="btnAnswer3" prefHeight="40" prefWidth="120" mnemonicParsing="false" onAction="#onButtonClicked" text="Answer 3" styleClass="button-style"/>
       </HBox>
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="50.0" layoutY="100.0">
+         <image>
+            <Image url="@../../images/avatar.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

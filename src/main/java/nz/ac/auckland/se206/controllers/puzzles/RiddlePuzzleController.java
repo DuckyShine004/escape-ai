@@ -94,7 +94,6 @@ public class RiddlePuzzleController {
 
     // ensure the tts only starts if the player is still in the room
     // as the gpt response may come back after the player has backed out of room
-    tts.speak(msg.getContent(), AppUi.RIDDLE);
   }
 
   /**
