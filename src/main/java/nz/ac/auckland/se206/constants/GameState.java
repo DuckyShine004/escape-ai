@@ -45,7 +45,7 @@ public class GameState {
   public static boolean isSolved = false;
 
   /** Inidcates whether the final button pressed was yes */
-  public static boolean isYesPressed = false; 
+  public static boolean isYesPressed = false;
 
   /** Stores the gpt request */
   public static ChatCompletionRequest gptRequest;
@@ -67,4 +67,7 @@ public class GameState {
 
   /** The critical time at which GPT switches persona */
   public static int criticalTime = 30;
+
+  /** Overlay opacity for the room interactions. */
+  public static float overlayCapacity = 0.4f;
 }

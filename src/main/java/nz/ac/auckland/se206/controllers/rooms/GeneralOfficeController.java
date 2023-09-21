@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
@@ -24,11 +25,11 @@ public class GeneralOfficeController {
 
   @FXML private Label lblTime;
 
-  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
-  @FXML private Button door;
+  @FXML private Polygon pgDesktop;
+
   @FXML private Rectangle vase;
 
   @FXML private TextArea taChat;
@@ -65,8 +66,13 @@ public class GeneralOfficeController {
   }
 
   @FXML
-  private void onHintButtonClicked() {
-    ChatManager.getUserHint();
+  private void onDesktopEntered() {
+    pgDesktop.setOpacity(GameState.overlayCapacity);
+  }
+
+  @FXML
+  private void onDesktopExited() {
+    pgDesktop.setOpacity(0);
   }
 
   /**
@@ -76,7 +82,7 @@ public class GeneralOfficeController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void onDoorClicked(MouseEvent event) throws IOException {
+  public void onDesktopClicked(MouseEvent event) throws IOException {
     System.out.println("door clicked");
 
     if (!GameState.isRiddleResolved) {
