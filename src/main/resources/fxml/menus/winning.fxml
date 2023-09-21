@@ -41,12 +41,12 @@
             <Bloom />
          </effect>
       </Line>
-      <Pane fx:id="paPlayAgain" layoutX="40.0" layoutY="300.0" onMouseClicked="#onPlayAgainPaneClicked" onMouseEntered="#onPlayAgainPaneEntered" onMouseExited="#onPlayAgainPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+      <Pane fx:id="paPlay" layoutX="40.0" layoutY="300.0" onMouseClicked="#onPlayPaneClicked" onMouseEntered="#onPlayPaneEntered" onMouseExited="#onPlayPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
          <effect>
             <Bloom />
          </effect>
          <children>
-            <Pane fx:id="paPlayAgainOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
+            <Pane fx:id="paPlayOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
             <Label layoutX="14.0" layoutY="4.0" text="Play Again" textFill="WHITE">
                <font>
                   <Font size="22.0" />
@@ -54,12 +54,12 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="paMainMenu" layoutX="40.0" layoutY="350.0" onMouseClicked="#onMainMenuPaneClicked" onMouseEntered="#onMainMenuPaneEntered" onMouseExited="#onMainMenuPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+      <Pane fx:id="paNavigation" layoutX="40.0" layoutY="350.0" onMouseClicked="#onNavigationPaneClicked" onMouseEntered="#onNavigationPaneEntered" onMouseExited="#onNavigationPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
          <effect>
             <Bloom />
          </effect>
          <children>
-            <Pane fx:id="paMainMenuOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
+            <Pane fx:id="paNavigationOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
             <Label layoutX="14.0" layoutY="4.0" text="Return to Main Menu" textFill="WHITE">
                <font>
                   <Font size="22.0" />
@@ -149,6 +149,6 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <TextArea fx:id="taFinalMessage" disable="true" editable="false" focusTraversable="false" layoutX="360.0" layoutY="140.0" prefHeight="273.0" prefWidth="300.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" text="{}" wrapText="true" />
+      <TextArea fx:id="taMessage" disable="true" editable="false" focusTraversable="false" layoutX="360.0" layoutY="140.0" prefHeight="273.0" prefWidth="300.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" text="{}" wrapText="true" />
    </children>
 </Pane>

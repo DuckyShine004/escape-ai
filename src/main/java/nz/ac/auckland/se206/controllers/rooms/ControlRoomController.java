@@ -104,7 +104,7 @@ public class ControlRoomController {
 
   @FXML
   private void onCheckWinButton() {
-    if (GameState.isSolved == false) {
+    if (GameState.isRiddleResolved && GameState.isLogicGateSolved && GameState.isDecryptionSolved) {
       ChatMessage terminationMessage =
           new ChatMessage(
               "user",
