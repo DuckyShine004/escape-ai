@@ -26,7 +26,6 @@ public class LosingScreenController {
     GameState.isDecryptionSolved = false;
     GameState.riddlesSolved = 0;
     GameState.isSolved = false;
-    GameState.isYesPressed = false;
   }
 
   /*

@@ -137,7 +137,6 @@ public class MainMenuController {
     GameState.isDecryptionSolved = false;
     GameState.riddlesSolved = 0;
     GameState.isSolved = false;
-    GameState.isYesPressed = false;
   }
 
   /** Starts the game. */

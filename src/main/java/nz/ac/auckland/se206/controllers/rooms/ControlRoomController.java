@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -75,34 +76,26 @@ public class ControlRoomController {
     App.setUi(AppUi.TERMINAL);
   }
 
-  @FXML 
-  private void onYesButton() {
-    App.setUi(AppUi.WINNING);
-  }
-
   @FXML
-  private void onNoButton() {
-    App.setUi(AppUi.WINNING);
-  }
-
-  @FXML
-  private void onYesButton() {
-    App.setUi(AppUi.WINNING);
+  private void onYesButton() throws IOException {
     GameState.finalMessage =
         "Congratulations! \n\nYou have successfully completed your mission in terminating this"
             + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
             + " to dictate the lives of humanity.\n\nLet's just hope this was a wise decision for"
             + " the progress of humanity...";
+    App.initializeWinningScene();
+    App.setUi(AppUi.WINNING);
   }
 
   @FXML
-  private void onNoButton() {
-    App.setUi(AppUi.WINNING);
+  private void onNoButton() throws IOException {
     GameState.finalMessage =
         "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
             + " radical AI. You have taught it the value of human life, and it has decided to"
             + " work peacefully alongside humanity.\n\nLet's just hope this was a wise decision"
             + " for the progress of humanity...";
+    App.initializeWinningScene();
+    App.setUi(AppUi.WINNING);
   }
 
   @FXML
@@ -112,7 +105,7 @@ public class ControlRoomController {
 
   @FXML
   private void onCheckWinButton() {
-    if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
+    if (GameState.isSolved == false) {
       ChatMessage terminationMessage =
           new ChatMessage(
               "user",

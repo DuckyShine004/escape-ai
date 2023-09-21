@@ -45,7 +45,7 @@ public class GameState {
   public static boolean isSolved = false;
   
   /** Stores the final message */
-  public static String finalMessage = "";
+  public static String finalMessage = "fdfgd";
 
   /** Stores the gpt request */
   public static ChatCompletionRequest gptRequest;
