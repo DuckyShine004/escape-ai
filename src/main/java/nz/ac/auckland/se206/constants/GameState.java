@@ -43,7 +43,7 @@ public class GameState {
 
   /** Indicates whether all puzzles have been solved */
   public static boolean isSolved = false;
-
+  
   /** Stores the final message */
   public static String finalMessage = "";
 

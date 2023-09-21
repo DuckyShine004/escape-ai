@@ -75,6 +75,16 @@ public class ControlRoomController {
     App.setUi(AppUi.TERMINAL);
   }
 
+  @FXML 
+  private void onYesButton() {
+    App.setUi(AppUi.WINNING);
+  }
+
+  @FXML
+  private void onNoButton() {
+    App.setUi(AppUi.WINNING);
+  }
+
   @FXML
   private void onYesButton() {
     App.setUi(AppUi.WINNING);

@@ -21,11 +21,12 @@ public class LosingScreenController {
    *
    */
   private void resetGlobalVariables() {
-    //
-    GameState.isKeyFound = false;
     GameState.isRiddleResolved = false;
     GameState.isLogicGateSolved = false;
+    GameState.isDecryptionSolved = false;
     GameState.riddlesSolved = 0;
+    GameState.isSolved = false;
+    GameState.isYesPressed = false;
   }
 
   /*
