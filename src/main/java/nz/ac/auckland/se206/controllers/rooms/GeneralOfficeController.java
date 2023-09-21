@@ -24,6 +24,7 @@ public class GeneralOfficeController {
 
   @FXML private Label lblTime;
 
+  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
@@ -61,6 +62,11 @@ public class GeneralOfficeController {
   @FXML
   private void onRightButton() throws IOException {
     App.setUi(AppUi.BREAKER);
+  }
+
+  @FXML
+  private void onHintButtonClicked() {
+    ChatManager.getUserHint();
   }
 
   /**

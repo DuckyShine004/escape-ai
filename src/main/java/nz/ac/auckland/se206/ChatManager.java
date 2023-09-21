@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.concurrent.Task;
@@ -20,10 +21,13 @@ public class ChatManager {
 
   private static ChatCompletionRequest gptRequest;
 
+  /** Initialize the chat manager. */
   public static void initialize() {
+    // Initialize fields
     textAreas = new ArrayList<TextArea>();
     textFields = new ArrayList<TextField>();
 
+    // Initialize GPT response.
     initializeChat();
   }
 
@@ -97,6 +101,11 @@ public class ChatManager {
     gptTask.setOnSucceeded(
         event -> {
           enableChatComponents();
+
+          // Remove the previous message if it was a hint
+          if (isHint) {
+            removePreviousMessage();
+          }
         });
 
     // If the task fails
@@ -111,6 +120,68 @@ public class ChatManager {
     // Start the thread
     gptThread.start();
   }
+
+  public static void getUserHint() {
+    // Get the hint based on the current room
+    String hint = getRoomHint();
+
+    // Initialize a user hint message compatible for GPT to analyze
+    ChatMessage userHintMessage = new ChatMessage("assistant", hint);
+
+    // // Get GPT's response
+    // getChatResponse(userHintMessage, true);
+  }
+
+  private static String getRoomHint() {
+    // Initialize method field
+    Method roomHintMethod = null;
+
+    // Initialize a room hint field
+    String roomHint = "";
+
+    // Get the method name for the current room
+    String roomMethodName = getRoomMethodName();
+
+    // Get the method given the name of the method and handle the exception (if any)
+    try {
+      roomHintMethod = ChatManager.class.getDeclaredMethod(roomMethodName);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+
+    // Get the hint, this should be a prompt
+    try {
+      roomHint = (String) roomHintMethod.invoke(null);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+
+    return roomHint;
+  }
+
+  private static String getRoomMethodName() {
+    // Initialize the prefix of the method
+    String prefix = "get";
+
+    // Initialize the suffix of the method
+    String suffix = "RoomHint";
+
+    // Get the string for the current room
+    String roomName = GameState.currentRoom.toString();
+
+    // Format the room name correctly
+    roomName = roomName.substring(0, 1) + roomName.substring(1).toLowerCase();
+
+    return prefix + roomName + suffix;
+  }
+
+  protected static void getOfficeRoomHint() {
+    System.out.println("CTONROLER");
+  }
+
+  protected static void getBreakerRoomHint() {}
+
+  protected static void getControlRoomHint() {}
 
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
@@ -244,5 +315,17 @@ public class ChatManager {
 
     // Initialize the initial message again
     ChatManager.initializeChat();
+  }
+
+  /**
+   * Remove the previous message in GPT's history. This is to ensure that the users won't be able to
+   * abuse the hint system.
+   */
+  private static void removePreviousMessage() {
+    // Get the current GPT messages
+    List<ChatMessage> gptMessages = gptRequest.getMessages();
+
+    // Remove last message sent
+    gptMessages.remove(gptMessages.size() - 1);
   }
 }
