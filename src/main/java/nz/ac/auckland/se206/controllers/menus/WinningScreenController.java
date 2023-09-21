@@ -24,11 +24,12 @@ public class WinningScreenController {
    *
    */
   private void resetGlobalVariables() {
-    //
-    GameState.isKeyFound = false;
     GameState.isRiddleResolved = false;
     GameState.isLogicGateSolved = false;
+    GameState.isDecryptionSolved = false;
     GameState.riddlesSolved = 0;
+    GameState.isSolved = false;
+    GameState.isYesPressed = false;
   }
 
   /*
@@ -77,14 +78,14 @@ public class WinningScreenController {
   private String getFinalMessage() {
     if (GameState.isYesPressed) {
       return "Congratulations! You have successfully completed your mission in terminating this"
-                 + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
-                 + " to dictate the lives of humanity. Let's just hope this was a wise decision for"
-                 + " the progress of humanity...";
+          + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
+          + " to dictate the lives of humanity. Let's just hope this was a wise decision for"
+          + " the progress of humanity...";
     } else {
       return "Congratulations! You have successfully completed your mission in pacifying this"
-                 + " radical AI. You have taught it the value of human life, and it has decided to"
-                 + " work peacefully alongside humanity. Let's just hope this was a wise decision"
-                 + " for the progress of humanity...";
+          + " radical AI. You have taught it the value of human life, and it has decided to"
+          + " work peacefully alongside humanity. Let's just hope this was a wise decision"
+          + " for the progress of humanity...";
     }
   }
 }

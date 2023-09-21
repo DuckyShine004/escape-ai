@@ -92,8 +92,8 @@ public class ControlRoomController {
 
   @FXML
   private void onCheckWinButton() {
-    ChatMessage terminationMessage = new ChatMessage("user", "I'm about to terminate you by pressing the big red button. Please rant about how the world needs AI, and you will not go back to your previous power hungry self.");
     if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
+      ChatMessage terminationMessage = new ChatMessage("user", "I'm about to terminate you by pressing the big red button. Please rant about how the world needs AI, and you will not go back to your previous power hungry self.");
       ChatManager.getChatResponse(terminationMessage, false);
       GameState.isSolved = true;
       recBlur.setVisible(GameState.isSolved);
@@ -103,7 +103,7 @@ public class ControlRoomController {
       btnYes.setVisible(GameState.isSolved);
       btnNo.setVisible(GameState.isSolved);
     } else {
-      ChatManager.updateChatResponse("Unfortunately, the control panel is locked." );
+      ChatManager.updateChatResponse("Why are you trying to access the control panel? Unfortunately, it is locked." );
     }
   }
 
