@@ -121,6 +121,7 @@ public class ChatManager {
     gptThread.start();
   }
 
+  /** Generate a GPT hint response. GPT should give a hint for the current room the user is in. */
   public static void getUserHint() {
     // Get the hint based on the current room
     String hint = getRoomHint();
@@ -132,6 +133,12 @@ public class ChatManager {
     // getChatResponse(userHintMessage, true);
   }
 
+  /**
+   * Using the Java reflection API, we can get the hint prompt for GPT. The prompt should be related
+   * to the current user's room.
+   *
+   * @return the return value from the invoked method.
+   */
   private static String getRoomHint() {
     // Initialize method field
     Method roomHintMethod = null;
@@ -159,11 +166,17 @@ public class ChatManager {
     return roomHint;
   }
 
+  /**
+   * Return a string value for the method name according to the room the user is in. This is useful
+   * for determining which prompt to give to GPT.
+   *
+   * @return the method name according to the current room.
+   */
   private static String getRoomMethodName() {
-    // Initialize the prefix of the method
+    // Initialize the prefix of the method name
     String prefix = "get";
 
-    // Initialize the suffix of the method
+    // Initialize the suffix of the method name
     String suffix = "RoomHint";
 
     // Get the string for the current room
@@ -175,13 +188,40 @@ public class ChatManager {
     return prefix + roomName + suffix;
   }
 
-  protected static void getOfficeRoomHint() {
-    System.out.println("CTONROLER");
+  /**
+   * Get the GPT prompt for the office room. This method should also handle valid and invalid cases.
+   *
+   * @return a GPT prompt for the office room.
+   */
+  protected static String getOfficeRoomHint() {
+    System.out.println("OFFICE ROOM HINT");
+
+    return "";
   }
 
-  protected static void getBreakerRoomHint() {}
+  /**
+   * Get the GPT prompt for the breaker room. This method should also handle valid and invalid
+   * cases.
+   *
+   * @return a GPT prompt for the breaker room.
+   */
+  protected static String getBreakerRoomHint() {
+    System.out.println("BREAKER ROOM HINT");
 
-  protected static void getControlRoomHint() {}
+    return "";
+  }
+
+  /**
+   * Get the GPT prompt for the control room. This method should also handle valid and invalid
+   * cases.
+   *
+   * @return a GPT prompt for the control room.
+   */
+  protected static String getControlRoomHint() {
+    System.out.println("CONTROL ROOM HINT");
+
+    return "";
+  }
 
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
@@ -249,13 +289,13 @@ public class ChatManager {
     // Format the message for GPT
     String formatMessage = "AI: " + message + "\n\n";
 
-    // call tts
-    GameState.tts.speak(message, AppUi.OFFICE);
-
     // Append the message to all chat areas
     for (TextArea taChat : textAreas) {
       taChat.appendText(formatMessage);
     }
+
+    // Make text-to-speech voiceover the current message
+    GameState.tts.speak(message, AppUi.OFFICE);
   }
 
   /**
