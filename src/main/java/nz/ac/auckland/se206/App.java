@@ -193,7 +193,7 @@ public class App extends Application {
     KeyEventsHandler keyEventsHandler = new KeyEventsHandler();
 
     // set first scene to display
-    scene = new Scene(SceneManager.getUi(AppUi.MENU), 720, 480);
+    scene = new Scene(SceneManager.getUi(AppUi.LOSING), 720, 480);
 
     // place scene onto stage
     stage.setScene(scene);
