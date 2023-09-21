@@ -23,8 +23,8 @@ public class GameState {
 
   public static AppUi currentRoom = AppUi.MENU;
 
-  /** Game difficulty, starts in Medium */
-  public static Difficulty gameDifficulty = Difficulty.MEDIUM;
+  /** Game difficulty, starts in easy */
+  public static Difficulty gameDifficulty = Difficulty.EASY;
 
   /** Indicates whether the game is in developer mode. */
   public static boolean isDeveloperMode = false;
@@ -47,8 +47,8 @@ public class GameState {
   /** Indicates whether the program has a printing event going on */
   public static boolean isPrinting = false;
 
-  /** maximum time for the round, will change in options, default is 60 seconds */
-  public static int maxTime = 60; // if think of better variable, please mention in PR review :)
+  /** maximum time for the round, will change in options, default is 120 seconds */
+  public static int maxTime = 120;
 
   /** number of riddles solved */
   public static int riddlesSolved = 0;

@@ -1,71 +1,170 @@
 package nz.ac.auckland.se206.controllers.menus;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
 public class OptionsMenuController {
+  @FXML private Pane paReturn;
+  @FXML private Pane paMainMenu;
+  @FXML private Pane paEasyOverlay;
+  @FXML private Pane paHardOverlay;
+  @FXML private Pane paMediumOverlay;
+  @FXML private Pane paReturnOverlay;
+  @FXML private Pane paEasyTransparent;
+  @FXML private Pane paHardTransparent;
+  @FXML private Pane paMediumTransparent;
+  @FXML private Pane paTwoMinutesOverlay;
+  @FXML private Pane paSixMinutesOverlay;
+  @FXML private Pane paFourMinutesOverlay;
+  @FXML private Pane paTwoMinutesTransparent;
+  @FXML private Pane paSixMinutesTransparent;
+  @FXML private Pane paFourMinutesTransparent;
 
-  // define comboBox which contains String type selections
-  @FXML private ComboBox<String> cmbTimeSelect;
-  @FXML private ComboBox<String> cmbDifficultySelect;
-
-  @FXML private Label lblCurrentSelectedTime;
+  @FXML private Line lineEasy;
+  @FXML private Line lineHard;
+  @FXML private Line lineMedium;
+  @FXML private Line lineTwoMinutes;
+  @FXML private Line lineSixMinutes;
+  @FXML private Line lineFourMinutes;
 
   @FXML private ToggleButton tbtnDeveloperMode;
 
   @FXML
-  public void initialize() {
+  public void initialize() {}
 
-    // sets up all the combo boxes
-    setUpComboBoxes();
-  }
-
-  /** This method calls the set up methods for each combo box */
-  private void setUpComboBoxes() {
-    // set up time combo box
-    setUpTimeBox();
-
-    // set up difficulty combo box
-    setUpDifficulty();
-  }
-
-  /** This method sets up the comboBox for the time limit */
-  private void setUpTimeBox() {
-    // define 3 drop down selection items
-    cmbTimeSelect.getItems().addAll("2 Minutes", "4 Minutes", "6 Minutes");
-
-    // defult 2 minutes
-    cmbTimeSelect.setPromptText("2 Minutes");
-
-    // debug label to show time is properly changing
-    lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
-  }
-
-  /** This method sets up the comboBox for the game difficulty */
-  private void setUpDifficulty() {
-    // define 3 drop down selection items
-    cmbDifficultySelect
-        .getItems()
-        .addAll(
-            Difficulty.EASY.toString(), Difficulty.MEDIUM.toString(), Difficulty.HARD.toString());
-
-    // defult 2 minutes
-    cmbDifficultySelect.setPromptText(GameState.gameDifficulty.toString());
-  }
-
+  /** When the mouse is hovering over the pane, the overlay appears (easy). */
   @FXML
-  private void onBackToMenu() {
-    // change back to main menu
+  private void onEasyPaneEntered() {
+    paEasyOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (easy). */
+  @FXML
+  private void onEasyPaneExited() {
+    paEasyOverlay.setVisible(false);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (hard). */
+  @FXML
+  private void onHardPaneExited() {
+    paHardOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (hard). */
+  @FXML
+  private void onHardPaneEntered() {
+    paHardOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (medium). */
+  @FXML
+  private void onMediumPaneExited() {
+    paMediumOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (medium). */
+  @FXML
+  private void onMediumPaneEntered() {
+    paMediumOverlay.setVisible(true);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (return). */
+  @FXML
+  private void onReturnPaneEntered() {
+    paReturnOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (return). */
+  @FXML
+  private void onReturnPaneExited() {
+    paReturnOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (two minutes). */
+  @FXML
+  private void onTwoMinutesPaneEntered() {
+    paTwoMinutesOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (two minutes). */
+  @FXML
+  private void onTwoMinutesPaneExited() {
+    paTwoMinutesOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (six minutes). */
+  @FXML
+  private void onSixMinutesPaneEntered() {
+    paSixMinutesOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (six minutes). */
+  @FXML
+  private void onSixMinutesPaneExited() {
+    paSixMinutesOverlay.setVisible(false);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (four minutes). */
+  @FXML
+  private void onFourMinutesPaneEntered() {
+    paFourMinutesOverlay.setVisible(true);
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (four minutes). */
+  @FXML
+  private void onFourMinutesPaneExited() {
+    paFourMinutesOverlay.setVisible(false);
+  }
+
+  /** When easy is clicked, set the difficulty to easy. */
+  @FXML
+  private void onEasyPaneClicked() {
+    setDifficultyEasy();
+  }
+
+  /** When hard is clicked, set the difficulty to hard. */
+  @FXML
+  private void onHardPaneClicked() {
+    setDifficultyHard();
+  }
+
+  /** When medium is clicked, set the difficulty to medium. */
+  @FXML
+  private void onMediumPaneClicked() {
+    setDifficultyMedium();
+  }
+
+  /** When return is clicked, go back to the main menu. */
+  @FXML
+  private void onReturnPaneClicked() {
     App.setUi(AppUi.MENU);
   }
 
+  /** When two minutes is clicked, set the time limit to two minutes. */
+  @FXML
+  private void onTwoMinutesPaneClicked() {
+    setTimeTwoMinutes();
+  }
+
+  /** When six minutes is clicked, set the time limit to six minutes. */
+  @FXML
+  private void onSixMinutesPaneClicked() {
+    setTimeSixMinutes();
+  }
+
+  /** When four minutes is clicked, set the time limit to four minutes. */
+  @FXML
+  private void onFourMinutesPaneClicked() {
+    setTimeFourMinutes();
+  }
+
+  /** When the switch to developer button is pressed, toggle the developer mode. */
   @FXML
   private void onDeveloperMode() {
     // Toggle the developer mode state
@@ -76,71 +175,90 @@ public class OptionsMenuController {
         GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
   }
 
-  /*
-   * This is the on select item in comboBox method
-   * This method will change the Game State variable for max Time in round
-   * @params takes input event, which is the source and values associated with changing comboBox value
-   *
-   * This method asumes the time per round will ONLY be 1 character long
-   */
-  @FXML
-  private void onTimeSelect(ActionEvent event) {
+  /** Set the game's difficulty to easy. */
+  private void setDifficultyEasy() {
+    // Set the difficulty to easy
+    GameState.gameDifficulty = Difficulty.EASY;
 
-    // get the string from the comboBox "2 Minutes"
-    String strSelected = cmbTimeSelect.getSelectionModel().getSelectedItem();
+    // Set the easy underline visible
+    lineEasy.setVisible(true);
 
-    // get the number from the char in position 1
-    // int maxTime = strSelected.charAt(0) - 48; // -48 shifts char of '1' to int value 1
-    int maxTime = firstNumberFromString(strSelected);
+    // Set the hard underline invisible
+    lineHard.setVisible(false);
 
-    // set Game State time per round in seconds
-    GameState.maxTime = maxTime * 60;
-
-    // chaning debug label
-    lblCurrentSelectedTime.setText("Time: " + GameState.maxTime + " Seconds");
+    // Set the medium underline invisible
+    lineMedium.setVisible(false);
   }
 
-  @FXML
-  private void onDifficultySelect(ActionEvent event) {
-    // get the string from the comboBox "2 Minutes"
-    String strSelected = cmbDifficultySelect.getSelectionModel().getSelectedItem();
+  /** Set the game's difficulty to hard. */
+  private void setDifficultyHard() {
+    // Set the difficulty to hard
+    GameState.gameDifficulty = Difficulty.HARD;
 
-    // changes difficulty based on difficulty selected
-    switch (strSelected) {
-      case "EASY":
-        GameState.gameDifficulty = Difficulty.EASY;
-        break;
-      case "MEDIUM":
-        GameState.gameDifficulty = Difficulty.MEDIUM;
-        break;
-      case "HARD":
-        GameState.gameDifficulty = Difficulty.HARD;
-        break;
-    }
+    // Set the easy underline invisible
+    lineEasy.setVisible(false);
+
+    // Set the hard underline visible
+    lineHard.setVisible(true);
+
+    // Set the medium underline invisible
+    lineMedium.setVisible(false);
   }
 
-  /*
-   * This method takes in a string, and returns the entire first number as a int
-   */
-  private static int firstNumberFromString(String input) {
-    StringBuilder number = new StringBuilder();
+  /** Set the game's difficulty to medium. */
+  private void setDifficultyMedium() {
+    // Set the difficulty to medium
+    GameState.gameDifficulty = Difficulty.MEDIUM;
 
-    // loop through the string
-    for (char c : input.toCharArray()) {
+    // Set the easy underline invisible
+    lineEasy.setVisible(false);
 
-      // if the character is a digit
-      if (Character.isDigit(c)) {
+    // Set the hard underline invisible
+    lineHard.setVisible(false);
 
-        // add digit to number
-        number.append(c);
-      } else {
+    // Set the medium underline invisible
+    lineMedium.setVisible(true);
+  }
 
-        // when no more digits
-        break;
-      }
-    }
+  private void setTimeTwoMinutes() {
+    // Set the time limit to two minutes
+    GameState.maxTime = 120;
 
-    // if number is found, return the number, else return null
-    return number.length() > 0 ? Integer.parseInt(number.toString()) : null;
+    // Set the two minutes underline visible
+    lineTwoMinutes.setVisible(true);
+
+    // Set the six minutes underline invisible
+    lineSixMinutes.setVisible(false);
+
+    // Set the four minutes underline invisible
+    lineFourMinutes.setVisible(false);
+  }
+
+  private void setTimeSixMinutes() {
+    // Set the time limit to two minutes
+    GameState.maxTime = 360;
+
+    // Set the two minutes underline invisible
+    lineTwoMinutes.setVisible(false);
+
+    // Set the six minutes underline visible
+    lineSixMinutes.setVisible(true);
+
+    // Set the four minutes underline invisible
+    lineFourMinutes.setVisible(false);
+  }
+
+  private void setTimeFourMinutes() {
+    // Set the time limit to two minutes
+    GameState.maxTime = 240;
+
+    // Set the two minutes underline invisible
+    lineTwoMinutes.setVisible(false);
+
+    // Set the six minutes underline invisible
+    lineSixMinutes.setVisible(false);
+
+    // Set the four minutes underline visible
+    lineFourMinutes.setVisible(true);
   }
 }
