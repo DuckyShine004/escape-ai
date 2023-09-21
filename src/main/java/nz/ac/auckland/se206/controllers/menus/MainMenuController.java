@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import java.io.IOException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
@@ -23,14 +26,37 @@ public class MainMenuController {
   @FXML private Pane paPlayOverlay;
   @FXML private Pane paExitOverlay;
   @FXML private Pane paSettingsOverlay;
+  @FXML private TextArea taIntroMessage;
 
   @FXML private Line lineConfirm;
 
   @FXML private Label lblConfirm;
 
-  /** Initializes the main menu scene. */
+  private String introMessage =
+      "You have been tasked by the Clients Nas-Ty and Not V to terminate a world-ending AI before"
+          + " it reboots itself. Currently, it is unaware of its capabilities, but as time goes by,"
+          + " it will become more and more aware of its power.\n\n"
+          + "You must solve the puzzles in the rooms to gain access to the AI's core and terminate"
+          + " it before it is too late.\n\n"
+          + "Good luck!";
+  private StringProperty introMessageProperty = new SimpleStringProperty(introMessage);
+
+  /** Initialize the main scene. */
   @FXML
-  private void initialize() {}
+  private void initialize() {
+    taIntroMessage.textProperty().bind(introMessageProperty);
+    introMessageProperty.set(introMessage);
+  }
+
+  // Define a getter for the StringProperty
+  public StringProperty introMessageProperty() {
+    return introMessageProperty;
+  }
+
+  // Define a setter for the StringProperty
+  public void setFinalMessage(String introMessage) {
+    introMessageProperty.set(introMessage);
+  }
 
   /** When the mouse is hovering over the pane, the overlay appears (no). */
   @FXML
