@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
@@ -22,22 +23,26 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the control room scene. */
 public class ControlRoomController {
   @FXML private Pane paControl;
+  @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;
+  @FXML private Label lblQuestion1;
+  @FXML private Label lblQuestion2;
 
+  @FXML private Button btnNo;
+  @FXML private Button btnYes;
+  @FXML private Button btnWin;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
-  @FXML private Button btnPlayPuzzle;
-  @FXML private Button btnWin;
+
+  @FXML private Polygon pgControlKeyboard;
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
+
   @FXML private Rectangle recBlur;
-  @FXML private Label lblQuestion1;
-  @FXML private Label lblQuestion2;
+
   @FXML private ImageView imgButton;
-  @FXML private Button btnYes;
-  @FXML private Button btnNo;
 
   /** Initializes the control room. */
   @FXML
@@ -69,13 +74,7 @@ public class ControlRoomController {
     App.setUi(AppUi.OFFICE);
   }
 
-  /** On mouse clicked, if the button is pressed, then switch to the terminal scene. */
   @FXML
-  private void onPlayPuzzleButton() {
-    App.setUi(AppUi.TERMINAL);
-  }
-
-  @FXML 
   private void onYesButton() {
     App.setUi(AppUi.WINNING);
   }
@@ -86,14 +85,45 @@ public class ControlRoomController {
   }
 
   @FXML
+  private void onControlPanelEntered() {
+    paControlPanel.setOpacity(GameState.overlayCapacity);
+  }
+
+  @FXML
+  private void onControlPanelExited() {
+    paControlPanel.setOpacity(0);
+  }
+
+  @FXML
+  private void onControlKeyboardEntered() {
+    pgControlKeyboard.setOpacity(GameState.overlayCapacity);
+  }
+
+  @FXML
+  private void onControlKeyboardExited() {
+    pgControlKeyboard.setOpacity(0);
+  }
+
+  @FXML
   private void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
   }
 
+  /** On mouse clicked, if the control panel is pressed, then switch to the terminal scene. */
   @FXML
-  private void onCheckWinButton() {
+  private void onControlPanelClicked() {
+    App.setUi(AppUi.TERMINAL);
+  }
+
+  @FXML
+  private void onControlKeyboardClicked() {
     if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
-      ChatMessage terminationMessage = new ChatMessage("user", "I'm about to terminate you by pressing the big red button. Please rant about how the world needs AI, and you will not go back to your previous power hungry self.");
+      ChatMessage terminationMessage =
+          new ChatMessage(
+              "user",
+              "I'm about to terminate you by pressing the big red button. Please rant about how the"
+                  + " world needs AI, and you will not go back to your previous power hungry"
+                  + " self.");
       ChatManager.getChatResponse(terminationMessage, false);
       GameState.isSolved = true;
       recBlur.setVisible(GameState.isSolved);
@@ -103,7 +133,8 @@ public class ControlRoomController {
       btnYes.setVisible(GameState.isSolved);
       btnNo.setVisible(GameState.isSolved);
     } else {
-      ChatManager.updateChatResponse("Why are you trying to access the control panel? Unfortunately, it is locked." );
+      ChatManager.updateChatResponse(
+          "Why are you trying to access the control panel? Unfortunately, it is locked.");
     }
   }
 

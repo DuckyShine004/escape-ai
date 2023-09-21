@@ -1,8 +1,0 @@
-.overlay-polygon {
-  -fx-fill: rgb(255, 255, 0);
-  -fx-opacity: 0.4;
-}
-
-.transparent-polygon {
-  -fx-fill: transparent;
-}
