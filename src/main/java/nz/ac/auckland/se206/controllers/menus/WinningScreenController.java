@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import java.io.IOException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
@@ -23,14 +26,26 @@ public class WinningScreenController {
   @FXML private Pane paPlayAgainOverlay;
   @FXML private Pane paExitOverlay;
   @FXML private Pane paMainMenuOverlay;
+  @FXML private TextArea taFinalMessage;
 
   @FXML private Line lineConfirm;
 
   @FXML private Label lblConfirm;
 
+  private StringProperty finalMessageProperty = new SimpleStringProperty("");
+
   /** Initialize the controller. */
   @FXML
-  private void initialize() {}
+  private void initialize() {
+    taFinalMessage.textProperty().bind(finalMessageProperty);
+
+    finalMessageProperty.set(getFinalMessage());
+  }
+
+  // Define a getter for the StringProperty
+  public StringProperty finalMessageProperty() {
+    return finalMessageProperty;
+  }
 
   /** When the mouse is hovering over the pane, the overlay appears (no). */
   @FXML
@@ -129,6 +144,7 @@ public class WinningScreenController {
     // Switch to the options scene
     App.setUi(AppUi.MENU);
   }
+
   /*
    * This method will reset all the global fields in GameState
    *
@@ -207,5 +223,19 @@ public class WinningScreenController {
 
     // Disable the yes pane
     paYes.setDisable(true);
+  }
+
+  private String getFinalMessage() {
+    if (GameState.isYesPressed) {
+      return "Congratulations! \n\nYou have successfully completed your mission in terminating this"
+          + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
+          + " to dictate the lives of humanity.\n\nLet's just hope this was a wise decision for"
+          + " the progress of humanity...";
+    } else {
+      return "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
+          + " radical AI. You have taught it the value of human life, and it has decided to"
+          + " work peacefully alongside humanity.\n\nLet's just hope this was a wise decision"
+          + " for the progress of humanity...";
+    }
   }
 }
