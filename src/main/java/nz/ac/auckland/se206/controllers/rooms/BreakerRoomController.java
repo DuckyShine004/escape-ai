@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the breaker room. */
 public class BreakerRoomController {
   @FXML private Pane paBreaker;
+  @FXML private Pane paCircuitBox;
 
   @FXML private Label lblTime;
 
@@ -55,9 +56,19 @@ public class BreakerRoomController {
     App.setUi(AppUi.CONTROL);
   }
 
+  @FXML
+  private void onCircuitBoxEntered() {
+    paCircuitBox.setOpacity(GameState.overlayCapacity);
+  }
+
+  @FXML
+  private void onCircuitBoxExited() {
+    paCircuitBox.setOpacity(0);
+  }
+
   /** Change the scene to the logic puzzle */
   @FXML
-  private void onOpenLogicGatePuzzle() {
+  private void onCircuitBoxClicked() {
     App.setUi(AppUi.LOGIC_PUZZLE);
   }
 
