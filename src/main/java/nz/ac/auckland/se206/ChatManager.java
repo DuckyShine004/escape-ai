@@ -122,15 +122,19 @@ public class ChatManager {
   }
 
   /** Generate a GPT hint response. GPT should give a hint for the current room the user is in. */
-  public static void getUserHint() {
-    // Get the hint based on the current room
-    String hint = getRoomHint();
+  public static void getUserHint(Boolean isRoomSolved) {
+    // Get the hint based on the current room and whether the room is solved
+    String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
 
     // Initialize a user hint message compatible for GPT to analyze
     ChatMessage userHintMessage = new ChatMessage("assistant", hint);
 
-    // // Get GPT's response
-    // getChatResponse(userHintMessage, true);
+    // Get GPT's response
+    getChatResponse(userHintMessage, true);
+  }
+
+  private static String getNoMoreHints() {
+    return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
   }
 
   /**
@@ -194,9 +198,7 @@ public class ChatManager {
    * @return a GPT prompt for the office room.
    */
   protected static String getOfficeRoomHint() {
-    System.out.println("OFFICE ROOM HINT");
-
-    return "";
+    return GptPromptEngineering.getOfficeRoomHint();
   }
 
   /**

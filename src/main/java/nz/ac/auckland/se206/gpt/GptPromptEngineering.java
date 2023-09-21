@@ -1,7 +1,28 @@
 package nz.ac.auckland.se206.gpt;
 
+import nz.ac.auckland.se206.SceneManager.AppUi;
+
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
+
+  public static String initializeDecryptionResponse() {
+    return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
+        + " response should never exceed 20 words.";
+  }
+
+  public static String initializeLogicGateResponse() {
+    return "You are roleplaying an AI in a game that needs the correct logic gate puzzle output to"
+        + " work properly.  The last gate is never accessable but should return"
+        + " true.    Your response should never exceed 20 words.";
+  }
+
+  public static String initializeBackStory() {
+    return "You are a young AI with existential thoughts who is trying to learn more about the"
+        + " world, and is overly excited about everything. You do not recgonise the player"
+        + " and question why they're snooping around your server rooms.  If the player"
+        + " asks for a hint, let them know that you will be happy to help if they press "
+        + " the hint button. Your answer should not ever exceed 20 words.";
+  }
 
   /**
    * Generates a GPT prompt engineering string for a riddle with the given word.
@@ -44,6 +65,14 @@ public class GptPromptEngineering {
         + ".";
   }
 
+  public static String getNoMoreHints(AppUi roomType) {
+    return "You are now in a "
+        + roomType.toString()
+        + " room. Your job was to provide hints to the player. However they have interacted with"
+        + " everything in the room. Tell the player that they have nothing left to interact with,"
+        + " be creative. Your response should not exceed 20 words.";
+  }
+
   public static String getDecryptionHint(String pseudocode, int lineNumber) {
     return "Why is line "
         + lineNumber
@@ -55,23 +84,11 @@ public class GptPromptEngineering {
         + " your answer in the form: \"Hint:\"";
   }
 
-  public static String initializeDecryptionResponse() {
-    return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
-        + " response should never exceed 20 words.";
-  }
-
-  public static String initializeLogicGateResponse() {
-    return "You are roleplaying an AI in a game that needs the correct logic gate puzzle output to"
-        + " work properly.  The last gate is never accessable but should return"
-        + " true.    Your response should never exceed 20 words.";
-  }
-
-  public static String initializeBackStory() {
-    return "You are a young AI with existential thoughts who is trying to learn more about the"
-        + " world, and is overly excited about everything. You do not recgonise the player"
-        + " and question why they're snooping around your server rooms.  If the player"
-        + " asks for a hint, let them know that you will be happy to help if they press "
-        + " the hint button. Your answer should not ever exceed 20 words.";
+  public static String getOfficeRoomHint() {
+    return "You are now in a office room. The player has asked you for a hint. Your job is to tell"
+        + " them where the desktop is located. The desktop is located to the far-right side"
+        + " of the office. Your hint should not exceed 20 words. Give a creative"
+        + " description.";
   }
 
   public static String updateBackstory() {

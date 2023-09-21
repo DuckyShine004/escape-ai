@@ -25,6 +25,7 @@ public class GeneralOfficeController {
 
   @FXML private Label lblTime;
 
+  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
@@ -35,11 +36,16 @@ public class GeneralOfficeController {
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
 
+  private Boolean isDesktopClicked;
+
   /** Initializes the general office. */
   @FXML
   private void initialize() {
-    // add the label to list of labels to be updated.
+    // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
+
+    // Initialize desktop clicked boolean value
+    isDesktopClicked = false;
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -83,7 +89,8 @@ public class GeneralOfficeController {
    */
   @FXML
   public void onDesktopClicked(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
+    // We should not give anymore hints for clicking on the desktop
+    isDesktopClicked = true;
 
     if (!GameState.isRiddleResolved) {
       GameState.currentRoom = AppUi.RIDDLE;
@@ -110,6 +117,21 @@ public class GeneralOfficeController {
     if (GameState.isRiddleResolved && !GameState.isKeyFound) {
       GameState.isKeyFound = true;
     }
+  }
+
+  @FXML
+  public void onHintClicked(MouseEvent mouseEvent) {
+    // If the desktop has not been clicked on yet
+    if (!isDesktopClicked) {
+      ChatManager.getUserHint(false);
+      return;
+    }
+
+    // Disable the hints button
+    btnHint.setDisable(true);
+
+    // Tell the player that the room has been completed.
+    ChatManager.getUserHint(true);
   }
 
   @FXML
