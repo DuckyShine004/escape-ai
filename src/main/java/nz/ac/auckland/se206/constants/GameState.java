@@ -43,7 +43,7 @@ public class GameState {
 
   /** Indicates whether all puzzles have been solved */
   public static boolean isSolved = false;
-  
+
   /** Stores the final message */
   public static String finalMessage = "";
 
@@ -67,4 +67,7 @@ public class GameState {
 
   /** The critical time at which GPT switches persona */
   public static int criticalTime = 30;
+
+  /** Overlay opacity for the room interactions. */
+  public static float overlayCapacity = 0.4f;
 }

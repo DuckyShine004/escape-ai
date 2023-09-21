@@ -10,11 +10,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -24,10 +26,12 @@ public class GeneralOfficeController {
 
   @FXML private Label lblTime;
 
+  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
-  @FXML private Button door;
+  @FXML private Polygon pgDesktop;
+
   @FXML private Rectangle vase;
 
   @FXML private TextArea taChat;
@@ -36,7 +40,7 @@ public class GeneralOfficeController {
   /** Initializes the general office. */
   @FXML
   private void initialize() {
-    // add the label to list of labels to be updated.
+    // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
     // Add the text area and text field to the list of chat components
@@ -63,6 +67,16 @@ public class GeneralOfficeController {
     App.setUi(AppUi.BREAKER);
   }
 
+  @FXML
+  private void onDesktopEntered() {
+    pgDesktop.setOpacity(GameState.overlayCapacity);
+  }
+
+  @FXML
+  private void onDesktopExited() {
+    pgDesktop.setOpacity(0);
+  }
+
   /**
    * Handles the click event on the door.
    *
@@ -70,8 +84,9 @@ public class GeneralOfficeController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void onDoorClicked(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
+  public void onDesktopClicked(MouseEvent event) throws IOException {
+    // We should not give anymore hints for clicking on the desktop
+    Interactions.isDesktopClicked = true;
 
     if (!GameState.isRiddleResolved) {
       GameState.currentRoom = AppUi.RIDDLE;
@@ -98,6 +113,21 @@ public class GeneralOfficeController {
     if (GameState.isRiddleResolved && !GameState.isKeyFound) {
       GameState.isKeyFound = true;
     }
+  }
+
+  @FXML
+  public void onHintClicked(MouseEvent mouseEvent) {
+    // If the desktop has not been clicked on yet
+    if (!Interactions.isDesktopClicked) {
+      ChatManager.getUserHint(false);
+      return;
+    }
+
+    // Disable the hints button
+    btnHint.setDisable(true);
+
+    // Tell the player that the room has been completed
+    ChatManager.getUserHint(true);
   }
 
   @FXML
