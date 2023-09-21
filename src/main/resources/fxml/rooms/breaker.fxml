@@ -21,10 +21,13 @@
                </font>
             </Label>
             <Label layoutX="375.0" layoutY="17.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints Left: 0/4" />
-            <Button layoutX="463.0" layoutY="12.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
+            <Button fx:id="btnHint" layoutX="463.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#onHintClicked" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
                <font>
                   <Font size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>

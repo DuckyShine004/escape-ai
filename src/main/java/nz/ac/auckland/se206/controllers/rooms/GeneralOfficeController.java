@@ -130,7 +130,7 @@ public class GeneralOfficeController {
     // Disable the hints button
     btnHint.setDisable(true);
 
-    // Tell the player that the room has been completed.
+    // Tell the player that the room has been completed
     ChatManager.getUserHint(true);
   }
 

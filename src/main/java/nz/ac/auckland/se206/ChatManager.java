@@ -208,9 +208,7 @@ public class ChatManager {
    * @return a GPT prompt for the breaker room.
    */
   protected static String getBreakerRoomHint() {
-    System.out.println("BREAKER ROOM HINT");
-
-    return "";
+    return GptPromptEngineering.getBreakerRoomHint();
   }
 
   /**

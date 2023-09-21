@@ -85,9 +85,16 @@ public class GptPromptEngineering {
   }
 
   public static String getOfficeRoomHint() {
-    return "You are now in a office room. The player has asked you for a hint. Your job is to tell"
-        + " them where the desktop is located. The desktop is located to the far-right side"
-        + " of the office. Your hint should not exceed 20 words. Give a creative"
+    return "You are now in a office. The player has asked you for a hint. Tell"
+        + " them where the desktop is located. The desktop is to the far-right side"
+        + " of the room. Your hint should not exceed 20 words. Give a creative"
+        + " description.";
+  }
+
+  public static String getBreakerRoomHint() {
+    return "You are now in a breaker room. The player has asked you for a hint. Tell"
+        + " them where the circuit box is located. The circuit box is in the middle of the"
+        + " room. Your hint should not exceed 20 words. Give a creative"
         + " description.";
   }
 
