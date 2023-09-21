@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -29,16 +30,11 @@ public class BreakerRoomController {
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
 
-  private Boolean isCircuitBoxClicked;
-
   /** Initialize the breaker room. */
   @FXML
   private void initialize() {
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
-
-    // Initialize circuit box clicked boolean value
-    isCircuitBoxClicked = false;
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -78,7 +74,7 @@ public class BreakerRoomController {
   @FXML
   private void onCircuitBoxClicked() {
     // We should not give anymore hints for clicking on the circuit box
-    isCircuitBoxClicked = true;
+    Interactions.isCircuitBoxClicked = true;
 
     // Switch to the logic gate puzzle
     App.setUi(AppUi.LOGIC_PUZZLE);
@@ -87,7 +83,7 @@ public class BreakerRoomController {
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
     // If the circuit box has not been clicked on yet
-    if (!isCircuitBoxClicked) {
+    if (!Interactions.isCircuitBoxClicked) {
       ChatManager.getUserHint(false);
       return;
     }

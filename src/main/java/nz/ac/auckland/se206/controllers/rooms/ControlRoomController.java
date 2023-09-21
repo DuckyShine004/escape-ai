@@ -17,6 +17,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -32,6 +33,7 @@ public class ControlRoomController {
   @FXML private Button btnNo;
   @FXML private Button btnYes;
   @FXML private Button btnWin;
+  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
@@ -109,14 +111,42 @@ public class ControlRoomController {
     GameState.muted = GameState.muted == false;
   }
 
+  @FXML
+  private void onHintClicked() {
+    // If the control panel has not been clicked on yet
+    if (!Interactions.isControlPanelClicked) {
+      ChatManager.getUserHint(false);
+      return;
+    }
+
+    // If the control keyboard has not been clicked on yet
+    if (!Interactions.isControlKeyboardClicked) {
+      ChatManager.getUserHint(false);
+      return;
+    }
+
+    // Disable the hints button
+    btnHint.setDisable(true);
+
+    // Tell the player that the room has been completed
+    ChatManager.getUserHint(true);
+  }
+
   /** On mouse clicked, if the control panel is pressed, then switch to the terminal scene. */
   @FXML
   private void onControlPanelClicked() {
+    // We should not give anymore hints for clicking on the control panel
+    Interactions.isControlPanelClicked = true;
+
+    // Switch to terminal puzzle scene
     App.setUi(AppUi.TERMINAL);
   }
 
   @FXML
   private void onControlKeyboardClicked() {
+    // We should not give anymore hints for clicking on the control keyboard
+    Interactions.isControlKeyboardClicked = true;
+
     if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
       ChatMessage terminationMessage =
           new ChatMessage(

@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -36,16 +37,11 @@ public class GeneralOfficeController {
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
 
-  private Boolean isDesktopClicked;
-
   /** Initializes the general office. */
   @FXML
   private void initialize() {
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
-
-    // Initialize desktop clicked boolean value
-    isDesktopClicked = false;
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -90,7 +86,7 @@ public class GeneralOfficeController {
   @FXML
   public void onDesktopClicked(MouseEvent event) throws IOException {
     // We should not give anymore hints for clicking on the desktop
-    isDesktopClicked = true;
+    Interactions.isDesktopClicked = true;
 
     if (!GameState.isRiddleResolved) {
       GameState.currentRoom = AppUi.RIDDLE;
@@ -122,7 +118,7 @@ public class GeneralOfficeController {
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
     // If the desktop has not been clicked on yet
-    if (!isDesktopClicked) {
+    if (!Interactions.isDesktopClicked) {
       ChatManager.getUserHint(false);
       return;
     }

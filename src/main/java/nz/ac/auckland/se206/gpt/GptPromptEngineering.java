@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.gpt;
 
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.Interactions;
 
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
@@ -85,16 +86,27 @@ public class GptPromptEngineering {
   }
 
   public static String getOfficeRoomHint() {
-    return "You are now in a office. The player has asked you for a hint. Tell"
-        + " them where the desktop is located. The desktop is to the far-right side"
-        + " of the room. Your hint should not exceed 20 words. Give a creative"
-        + " description.";
+    return "You are now in a office and giving hints. Tell the player there is a desktop to the"
+        + " far-right side of the room. Your hint should not exceed 20 words. Give a"
+        + " creative description.";
   }
 
   public static String getBreakerRoomHint() {
-    return "You are now in a breaker room. The player has asked you for a hint. Tell"
-        + " them where the circuit box is located. The circuit box is in the middle of the"
-        + " room. Your hint should not exceed 20 words. Give a creative"
+    return "You are now in a breaker room and giving hints. Tell the player there is a circuit box"
+        + " in the middle of the room. Your hint should not exceed 20 words. Give a creative"
+        + " description.";
+  }
+
+  public static String getControlRoomHint() {
+    // The control panel has not been clicked on yet
+    if (!Interactions.isControlPanelClicked) {
+      return "You are now in a control room and giving hints. Tell the player there is a large"
+          + " screen in the middle of the room. Your hint should not exceed 20 words. Give a"
+          + " creative description.";
+    }
+
+    return "You are now in a control room and giving hints. Tell the player there is a keyboard"
+        + " in the middle of the room. Your hint should not exceed 20 words. Give a creative"
         + " description.";
   }
 

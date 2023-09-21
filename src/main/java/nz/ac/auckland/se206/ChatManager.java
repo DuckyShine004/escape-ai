@@ -218,9 +218,7 @@ public class ChatManager {
    * @return a GPT prompt for the control room.
    */
   protected static String getControlRoomHint() {
-    System.out.println("CONTROL ROOM HINT");
-
-    return "";
+    return GptPromptEngineering.getControlRoomHint();
   }
 
   /**
