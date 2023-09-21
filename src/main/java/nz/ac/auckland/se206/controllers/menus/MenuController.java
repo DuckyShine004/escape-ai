@@ -200,6 +200,10 @@ public abstract class MenuController {
 
     // Enable the yes pane
     paYes.setDisable(false);
+
+    // Remove visibility of the text area
+    taMessage.setVisible(false);
+
   }
 
   /** Disables the exit components of the menu. */
@@ -221,5 +225,8 @@ public abstract class MenuController {
 
     // Disable the yes pane
     paYes.setDisable(true);
+
+    // Enable visibility of the text area
+    taMessage.setVisible(true);
   }
 }
