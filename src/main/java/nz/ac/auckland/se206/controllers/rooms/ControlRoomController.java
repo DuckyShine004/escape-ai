@@ -86,6 +86,26 @@ public class ControlRoomController {
   }
 
   @FXML
+  private void onYesButton() {
+    App.setUi(AppUi.WINNING);
+    GameState.finalMessage =
+        "Congratulations! \n\nYou have successfully completed your mission in terminating this"
+            + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
+            + " to dictate the lives of humanity.\n\nLet's just hope this was a wise decision for"
+            + " the progress of humanity...";
+  }
+
+  @FXML
+  private void onNoButton() {
+    App.setUi(AppUi.WINNING);
+    GameState.finalMessage =
+        "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
+            + " radical AI. You have taught it the value of human life, and it has decided to"
+            + " work peacefully alongside humanity.\n\nLet's just hope this was a wise decision"
+            + " for the progress of humanity...";
+  }
+
+  @FXML
   private void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
   }
@@ -93,7 +113,12 @@ public class ControlRoomController {
   @FXML
   private void onCheckWinButton() {
     if (GameState.isDecryptionSolved && GameState.isRiddleResolved && GameState.isLogicGateSolved) {
-      ChatMessage terminationMessage = new ChatMessage("user", "I'm about to terminate you by pressing the big red button. Please rant about how the world needs AI, and you will not go back to your previous power hungry self.");
+      ChatMessage terminationMessage =
+          new ChatMessage(
+              "user",
+              "I'm about to terminate you by pressing the big red button. Please rant about how the"
+                  + " world needs AI, and you will not go back to your previous power hungry"
+                  + " self.");
       ChatManager.getChatResponse(terminationMessage, false);
       GameState.isSolved = true;
       recBlur.setVisible(GameState.isSolved);
@@ -103,7 +128,8 @@ public class ControlRoomController {
       btnYes.setVisible(GameState.isSolved);
       btnNo.setVisible(GameState.isSolved);
     } else {
-      ChatManager.updateChatResponse("Why are you trying to access the control panel? Unfortunately, it is locked." );
+      ChatManager.updateChatResponse(
+          "Why are you trying to access the control panel? Unfortunately, it is locked.");
     }
   }
 
