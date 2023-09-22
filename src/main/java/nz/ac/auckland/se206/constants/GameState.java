@@ -32,9 +32,6 @@ public class GameState {
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
 
-  /** Indicates whether the key has been found. */
-  public static boolean isKeyFound = false;
-
   /** Indicates whether the logic gate puzzle has been solved */
   public static boolean isLogicGateSolved = false;
 

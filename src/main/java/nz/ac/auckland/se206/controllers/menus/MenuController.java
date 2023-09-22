@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import java.io.IOException;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;

@@ -183,10 +183,8 @@ public class App extends Application {
     // initialize new Text To Speach Instance
     GameState.tts = new TextToSpeech();
 
-    // add scenes to sceneManager
+    // add scenes to sceneManager, along with the fonts to be used
     initalizeScenes();
-
-    // initialize fonts
     initializeFonts();
 
     // Create an instance of KeyEventHandler
