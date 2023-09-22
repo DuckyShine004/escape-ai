@@ -164,7 +164,7 @@ public class ControlRoomController {
     // We should not give anymore hints for clicking on the control keyboard
     Interactions.isControlKeyboardClicked = true;
 
-    if (GameState.isSolved) {
+    if (GameState.isRiddleResolved && GameState.isLogicGateSolved && GameState.isDecryptionSolved) {
       ChatMessage terminationMessage =
           new ChatMessage(
               "user",
