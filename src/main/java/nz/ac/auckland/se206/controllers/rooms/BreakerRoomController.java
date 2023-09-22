@@ -17,14 +17,15 @@ import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the breaker room. */
-public class BreakerRoomController extends RoomController{
+public class BreakerRoomController extends RoomController {
+  @FXML private Pane paHint;
   @FXML private Pane paBreaker;
   @FXML private Pane paCircuitBox;
 
+  @FXML private Button btnHint;
+
   @FXML private Label lblTime;
   @FXML private Label lblHintCounter;
-
-  @FXML private Button btnHint;
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
@@ -71,6 +72,7 @@ public class BreakerRoomController extends RoomController{
   private void onCircuitBoxExited() {
     paCircuitBox.setOpacity(0);
   }
+
 
   /** Change the scene to the logic puzzle */
   @FXML

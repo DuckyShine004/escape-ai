@@ -42,6 +42,16 @@
   -fx-border-width: 2px;
 }
 
+/* Styling for the grid pane */
+.custom-grid-pane Line {
+  -fx-stroke: white;
+}
+
+/* Styling for the text field */
+.custom-text-field:disabled {
+  -fx-opacity: 1;
+}
+
 /* Hover effect */
 .choice-button:hover {
   -fx-background-color: #222222;
