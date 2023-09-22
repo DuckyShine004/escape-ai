@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -14,8 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -33,12 +35,15 @@ public class RiddlePuzzleController {
   @FXML private Button btnAnswer1;
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
-  @FXML private Button btnGetHint;
+
   @FXML private Label lblTime;
+  @FXML private Label lblHintCounter;
   @FXML private Pane paBack;
   @FXML private Pane paNext;
   @FXML private Pane paBackOverlay;
   @FXML private Pane paNextOverlay;
+
+  @FXML private Polygon pgHint;
 
   @FXML private ImageView imgEmotion;
   @FXML private Image questioningImage;
@@ -67,6 +72,11 @@ public class RiddlePuzzleController {
    */
   @FXML
   private void initialize() throws ApiProxyException {
+    // Add the label to list of labels to be updated
+    Timer.addLabel(lblTime);
+
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, pgHint);
 
     try {
       questioningImage =
@@ -89,14 +99,11 @@ public class RiddlePuzzleController {
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
-    btnGetHint.setDisable(true);
+    pgHint.setDisable(true);
     paNext.setDisable(true);
 
     // instantiate the tts
     this.tts = GameState.tts;
-
-    // update the scene to get the timer time
-    updateScene();
 
     // only load the riddle when not in developer mode
     if (!GameState.isDeveloperMode) {
@@ -223,7 +230,7 @@ public class RiddlePuzzleController {
                   btnAnswer1.setDisable(false);
                   btnAnswer2.setDisable(false);
                   btnAnswer3.setDisable(false);
-                  btnGetHint.setDisable(false);
+                  pgHint.setDisable(false);
                 });
             return null;
           }
@@ -390,7 +397,7 @@ public class RiddlePuzzleController {
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
     paNext.setDisable(true);
-    btnGetHint.setDisable(true);
+    pgHint.setDisable(true);
 
     // Generate a loading message
     if (getHint) {
@@ -462,7 +469,7 @@ public class RiddlePuzzleController {
                     } else {
                       paNext.setDisable(false);
                     }
-                    btnGetHint.setDisable(false);
+                    pgHint.setDisable(false);
                   }
                 });
             return null;
@@ -475,12 +482,25 @@ public class RiddlePuzzleController {
   }
 
   @FXML
-  private void onGetHintButton(ActionEvent event) throws ApiProxyException {
+  private void onHintClicked(MouseEvent event) throws ApiProxyException {
+    // Update the hint counter
+    HintManager.updateHintCounter();
+
     // Generate a loading message
     ChatMessage loading = new ChatMessage("assistant", "Select a word to get a hint for...");
     appendChatMessage(loading);
 
     getHint = true;
+  }
+
+  @FXML
+  private void onHintEntered() {
+    pgHint.setOpacity(0.25);
+  }
+
+  @FXML
+  private void onHintExited() {
+    pgHint.setOpacity(0);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -527,7 +547,7 @@ public class RiddlePuzzleController {
       btnAnswer1.setDisable(true);
       btnAnswer2.setDisable(true);
       btnAnswer3.setDisable(true);
-      btnGetHint.setDisable(true);
+      pgHint.setDisable(true);
 
     } else if (GameState.riddlesSolved == 3) {
       // If all riddles are solved, navigate back to the office
@@ -540,18 +560,18 @@ public class RiddlePuzzleController {
    * Update all things related to timing here. Such an example is using animation timer to update
    * the timer text on each frame.
    */
-  private void updateScene() {
-    AnimationTimer animationTimer =
-        new AnimationTimer() {
-          // This method is called every frame (~60 times per second)
-          @Override
-          public void handle(long time) {
-            // Update the timer text
-            lblTime.setText(Timer.getTime());
-          }
-        };
+  // private void updateScene() {
+  //   AnimationTimer animationTimer =
+  //       new AnimationTimer() {
+  //         // This method is called every frame (~60 times per second)
+  //         @Override
+  //         public void handle(long time) {
+  //           // Update the timer text
+  //           lblTime.setText(Timer.getTime());
+  //         }
+  //       };
 
-    // Start the animation timer
-    animationTimer.start();
-  }
+  //   // Start the animation timer
+  //   animationTimer.start();
+  // }
 }
