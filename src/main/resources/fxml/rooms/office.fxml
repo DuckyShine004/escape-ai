@@ -5,42 +5,147 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="paOffice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.GeneralOfficeController">
+<Pane fx:id="paOffice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.GeneralOfficeController">
    <children>
-      <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
-         <children>
-            <Label fx:id="lblTime" layoutX="651.0" layoutY="17.0" prefHeight="17.0" prefWidth="43.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" />
-            <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="Main Office">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="360.0" layoutY="16.0" styleClass="hints-text" stylesheets="@../../css/menus/topBar.css" text="Hints:" />
-            <Button fx:id="btnHint" layoutX="463.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#onHintClicked" prefHeight="3.0" prefWidth="43.0" styleClass="hint-button" stylesheets="@../../css/menus/topBar.css" text="Hint">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
-            <Label fx:id="lblHintCounter" layoutX="395.0" layoutY="16.0" text="0/0" textFill="WHITE" />
-         </children>
+      <Pane layoutX="8.0" layoutY="61.0" prefHeight="408.0" prefWidth="408.0" style="-fx-background-color: #4F4F4F;">
+         <effect>
+            <InnerShadow />
+         </effect>
       </Pane>
+      <GridPane gridLinesVisible="true" layoutX="-15.0" layoutY="-15.0" opacity="0.1" styleClass="custom-grid-pane" stylesheets="@../../css/index.css">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Line endX="120.0" fill="WHITE" layoutX="308.0" layoutY="10.0" stroke="#0093d7" strokeWidth="2.0">
+         <effect>
+            <Glow />
+         </effect>
+      </Line>
+      <Line endY="25.0" fill="WHITE" layoutX="10.0" layoutY="15.0" stroke="#0093d7" strokeWidth="6.0">
+         <effect>
+            <Glow />
+         </effect>
+      </Line>
+      <Line endX="690.0" fill="WHITE" layoutX="8.0" layoutY="43.0" stroke="#0093d7" strokeWidth="2.0">
+         <effect>
+            <Glow />
+         </effect>
+      </Line>
+      <Line endX="410.0" endY="420.0" fill="WHITE" layoutX="18.0" layoutY="45.0" startX="410.0" stroke="WHITE" strokeWidth="2.0">
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Line>
+      <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="OFFICE ROOM">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label layoutX="313.0" layoutY="8.0" text="HINT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label fx:id="lblHintCounter" layoutX="380.0" layoutY="8.0" text="0/0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label layoutX="505.0" layoutY="8.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="TIME LEFT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label fx:id="lblTime" layoutX="630.0" layoutY="8.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
       <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
-      <TextField fx:id="tfChat" layoutX="480.0" layoutY="440.0" prefHeight="25.0" prefWidth="210.0" promptText="Enter Question" />
-      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="20.0" layoutY="65.0">
+      <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" styleClass="custom-text-field" stylesheets="@../../css/index.css" />
+      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="12.0" layoutY="65.0">
          <image>
             <Image url="@../../images/rooms/office.png" />
          </image>
+         <effect>
+            <InnerShadow />
+         </effect>
       </ImageView>
       <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="302.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
          <image>
@@ -55,12 +160,17 @@
             <Image url="@../../images/mutedavatar.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="pgDesktop" fill="YELLOW" layoutX="348.0" layoutY="260.0" onMouseClicked="#onDesktopClicked" onMouseEntered="#onDesktopEntered" onMouseExited="#onDesktopExited" opacity="0.0" points="-52.000030517578125, 37.999969482421875, 65.333343505859375, 43.999969482421875, 61.333343505859375, -59.99998474121094, -54.000030517578125, -33.99998474121094, -52.000030517578125, 3.33331298828125" stroke="#ffffff00" strokeType="INSIDE">
+      <Polygon fx:id="pgDesktop" fill="YELLOW" layoutX="340.0" layoutY="260.0" onMouseClicked="#onDesktopClicked" onMouseEntered="#onDesktopEntered" onMouseExited="#onDesktopExited" opacity="0.0" points="-52.000030517578125, 37.999969482421875, 65.333343505859375, 43.999969482421875, 61.333343505859375, -59.99998474121094, -54.000030517578125, -33.99998474121094, -52.000030517578125, 3.33331298828125" stroke="#ffffff00" strokeType="INSIDE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Polygon>
-      <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
-      <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
+      <Polygon fx:id="pgHint" fill="WHITE" layoutX="364.0" layoutY="102.0" onMouseClicked="#onHintClicked" onMouseEntered="#onHintEntered" onMouseExited="#onHintExited" opacity="0.0" points="-57.0, -59.4999885559082, 65.0, -59.4999885559082, 65.0, -93.00000762939453, -57.0, -93.00000762939453" stroke="#ffffff00" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Polygon>
+      <Button fx:id="btnLeft" layoutX="12.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
+      <Button fx:id="btnRight" layoutX="357.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
       <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="413.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

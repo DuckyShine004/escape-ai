@@ -26,10 +26,10 @@ public class GeneralOfficeController extends RoomController {
   @FXML private Label lblTime;
   @FXML private Label lblHintCounter;
 
-  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
+  @FXML private Polygon pgHint;
   @FXML private Polygon pgDesktop;
 
   @FXML private TextArea taChat;
@@ -46,7 +46,7 @@ public class GeneralOfficeController extends RoomController {
     Timer.addLabel(lblTime);
 
     // Add the hint counter components
-    HintManager.addHintComponents(lblHintCounter, btnHint);
+    HintManager.addHintComponents(lblHintCounter, pgHint);
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -94,6 +94,16 @@ public class GeneralOfficeController extends RoomController {
   }
 
   @FXML
+  private void onHintEntered() {
+    pgHint.setOpacity(0.25);
+  }
+
+  @FXML
+  private void onHintExited() {
+    pgHint.setOpacity(0);
+  }
+
+  @FXML
   private void onDesktopEntered() {
     pgDesktop.setOpacity(GameState.overlayCapacity);
   }
@@ -134,7 +144,7 @@ public class GeneralOfficeController extends RoomController {
     }
 
     // Disable the hints button
-    btnHint.setDisable(true);
+    pgHint.setDisable(true);
 
     // Tell the player that the room has been completed
     ChatManager.getUserHint(true);

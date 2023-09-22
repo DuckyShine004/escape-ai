@@ -47,7 +47,6 @@ public class ChatManager {
   private static void initializeImages() {
     //
     try {
-
       AiFigure =
           new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
       mutedAiFigure =

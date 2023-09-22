@@ -34,10 +34,10 @@ public class ControlRoomController extends RoomController {
   @FXML private Button btnNo;
   @FXML private Button btnYes;
   @FXML private Button btnWin;
-  @FXML private Button btnHint;
   @FXML private Button btnLeft;
   @FXML private Button btnRight;
 
+  @FXML private Polygon pgHint;
   @FXML private Polygon pgControlKeyboard;
 
   @FXML private TextArea taChat;
@@ -58,7 +58,7 @@ public class ControlRoomController extends RoomController {
     Timer.addLabel(lblTime);
 
     // Add the hint counter components
-    HintManager.addHintComponents(lblHintCounter, btnHint);
+    HintManager.addHintComponents(lblHintCounter, pgHint);
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -142,6 +142,16 @@ public class ControlRoomController extends RoomController {
   }
 
   @FXML
+  private void onHintEntered() {
+    pgHint.setOpacity(0.25);
+  }
+
+  @FXML
+  private void onHintExited() {
+    pgHint.setOpacity(0);
+  }
+
+  @FXML
   private void onControlPanelEntered() {
     paControlPanel.setOpacity(GameState.overlayCapacity);
   }
@@ -186,7 +196,7 @@ public class ControlRoomController extends RoomController {
     }
 
     // Disable the hints button
-    btnHint.setDisable(true);
+    pgHint.setDisable(true);
 
     // Tell the player that the room has been completed
     ChatManager.getUserHint(true);
