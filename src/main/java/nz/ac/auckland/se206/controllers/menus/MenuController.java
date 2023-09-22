@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import java.io.IOException;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -11,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
+import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -174,6 +174,9 @@ public abstract class MenuController {
       Timer.play();
     }
 
+    // Initialize the hint counter components
+    HintManager.initializeHintCounter();
+
     // Clear the chat manager
     ChatManager.reset();
 
@@ -203,7 +206,6 @@ public abstract class MenuController {
 
     // Remove visibility of the text area
     taMessage.setVisible(false);
-
   }
 
   /** Disables the exit components of the menu. */

@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
+import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
@@ -24,6 +25,7 @@ public class BreakerRoomController {
   @FXML private Pane paCircuitBox;
 
   @FXML private Label lblTime;
+  @FXML private Label lblHintCounter;
 
   @FXML private Button btnHint;
 
@@ -35,6 +37,9 @@ public class BreakerRoomController {
   private void initialize() {
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
+
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, btnHint);
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -82,6 +87,9 @@ public class BreakerRoomController {
 
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
+    // Update the hint counter
+    HintManager.updateHintCounter();
+
     // If the circuit box has not been clicked on yet
     if (!Interactions.isCircuitBoxClicked) {
       ChatManager.getUserHint(false);
