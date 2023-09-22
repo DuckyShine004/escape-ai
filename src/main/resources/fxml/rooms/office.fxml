@@ -147,7 +147,7 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="302.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
+      <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="287.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>
@@ -155,7 +155,7 @@
             <ColorAdjust brightness="0.56" contrast="0.21" hue="0.26" saturation="0.89" />
          </effect>
       </ImageView>
-      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
+      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="300.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
          <image>
             <Image url="@../../images/mutedavatar.png" />
          </image>
