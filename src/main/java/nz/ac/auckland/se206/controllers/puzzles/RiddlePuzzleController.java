@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -36,6 +40,9 @@ public class RiddlePuzzleController {
   @FXML private Pane paBackOverlay;
   @FXML private Pane paNextOverlay;
 
+  @FXML private ImageView imgEmotion;
+  @FXML private Image questioningImage;
+
   private ChatCompletionRequest chatCompletionRequest;
   private String answer1;
   private String answer2;
@@ -58,6 +65,13 @@ public class RiddlePuzzleController {
    */
   @FXML
   private void initialize() throws ApiProxyException {
+
+    try {
+      questioningImage =
+          new Image(new FileInputStream("src/main/resources/images/" + "questionmark" + ".png"));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
 
     // bind text properties to their buttons
     btnAnswer1.textProperty().bind(answer1Property);
@@ -210,9 +224,37 @@ public class RiddlePuzzleController {
           }
         };
 
+    generateRiddle.setOnRunning(
+        event -> {
+          startThinking();
+        });
+
+    generateRiddle.setOnSucceeded(
+        event -> {
+          stopThinking();
+        });
+
+    generateRiddle.setOnFailed(
+        event -> {
+          stopThinking();
+        });
+
     // Start the thread
     Thread newThread = new Thread(generateRiddle, "New Thread");
     newThread.start();
+  }
+
+  /** set a question mark and thinking indicator */
+  private void startThinking() {
+    //
+    imgEmotion.setVisible(true);
+    imgEmotion.setImage(questioningImage);
+  }
+
+  /** remove question mark and thinking indicator */
+  private void stopThinking() {
+    //
+    imgEmotion.setVisible(false);
   }
 
   /**

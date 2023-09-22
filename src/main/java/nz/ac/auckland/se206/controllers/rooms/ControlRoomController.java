@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -46,6 +47,10 @@ public class ControlRoomController extends RoomController {
 
   @FXML private ImageView imgButton;
 
+  @FXML private ImageView imgAvatar;
+  @FXML private ImageView imgAvatarShaddow;
+  @FXML private ImageView imgEmotion;
+
   /** Initializes the control room. */
   @FXML
   private void initialize() {
@@ -57,6 +62,20 @@ public class ControlRoomController extends RoomController {
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
+
+    ChatManager.addAiInstance(imgAvatar, imgEmotion);
+  }
+
+  @FXML
+  private void onMouseEnterAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(true);
+  }
+
+  @FXML
+  private void onMouseExitAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(false);
   }
 
   /**
@@ -155,6 +174,8 @@ public class ControlRoomController extends RoomController {
   @FXML
   private void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
+    GameState.tts.stop();
+    ChatManager.toggleAiMuted();
   }
 
   @FXML

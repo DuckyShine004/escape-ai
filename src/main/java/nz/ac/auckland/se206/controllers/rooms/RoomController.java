@@ -7,10 +7,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.ChatManager;
-import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public abstract class RoomController {
@@ -24,11 +22,6 @@ public abstract class RoomController {
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
-
-  @FXML
-  private void onAiClicked(MouseEvent event) {
-    GameState.muted = GameState.muted == false;
-  }
 
   /**
    * Check if there is a keyboard event. If there is a keyboard event, handle the event

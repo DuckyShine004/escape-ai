@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206;
 
+import java.io.FileInputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -19,6 +22,13 @@ public class ChatManager {
   private static List<TextArea> textAreas;
   private static List<TextField> textFields;
 
+  private static List<ImageView> imgAiFigures;
+  private static Image AiFigure;
+  private static Image mutedAiFigure;
+
+  private static List<ImageView> imgEmotions;
+  private static Image questioningImage;
+
   private static ChatCompletionRequest gptRequest;
 
   /** Initialize the chat manager. */
@@ -26,6 +36,49 @@ public class ChatManager {
     // Initialize fields
     textAreas = new ArrayList<TextArea>();
     textFields = new ArrayList<TextField>();
+
+    imgAiFigures = new ArrayList<ImageView>();
+    imgEmotions = new ArrayList<ImageView>();
+
+    initializeImages();
+  }
+
+  /** loads ImageView and Images into class */
+  private static void initializeImages() {
+    //
+    try {
+      AiFigure =
+          new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
+      mutedAiFigure =
+          new Image(new FileInputStream("src/main/resources/images/" + "mutedavatar" + ".png"));
+      questioningImage =
+          new Image(new FileInputStream("src/main/resources/images/" + "questionmark" + ".png"));
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /** add instances of ImageView into list */
+  public static void addAiInstance(ImageView AiFigure, ImageView AiEmotion) {
+    imgAiFigures.add(AiFigure);
+    imgEmotions.add(AiEmotion);
+  }
+
+  /** toggles image of scene AIs */
+  public static void toggleAiMuted() {
+    //
+
+    for (ImageView imageView : imgAiFigures) {
+      if (GameState.muted) {
+
+        // change to muted figure
+        imageView.setImage(mutedAiFigure);
+      } else {
+        // change to un-muted figure
+        imageView.setImage(AiFigure);
+      }
+    }
   }
 
   /**
@@ -98,6 +151,7 @@ public class ChatManager {
     // If the task is running, disable certain components
     gptTask.setOnRunning(
         event -> {
+          startThinking();
           disableChatComponents();
         });
 
@@ -105,6 +159,7 @@ public class ChatManager {
     gptTask.setOnSucceeded(
         event -> {
           enableChatComponents();
+          stopThinking();
 
           // Remove the previous message if it was a hint
           if (isHint) {
@@ -115,6 +170,7 @@ public class ChatManager {
     // If the task fails
     gptTask.setOnFailed(
         event -> {
+          stopThinking();
           System.out.println("FAILED TO GENERATE RESPONSE");
         });
 
@@ -308,6 +364,31 @@ public class ChatManager {
     // Enable text field components
     for (TextField tfChat : textFields) {
       tfChat.setDisable(false);
+    }
+  }
+
+  /** set a question mark and thinking indicator */
+  private static void startThinking() {
+    //
+    for (ImageView imageView : imgEmotions) {
+      imageView.setImage(questioningImage);
+      imageView.setVisible(true);
+    }
+
+    for (TextField tfChat : textFields) {
+      tfChat.setText("Hmmm. Let me think about that");
+    }
+  }
+
+  /** remove question mark and thinking indicator */
+  private static void stopThinking() {
+    //
+    for (ImageView imageView : imgEmotions) {
+      imageView.setVisible(false);
+    }
+
+    for (TextField tfChat : textFields) {
+      tfChat.setText("");
     }
   }
 

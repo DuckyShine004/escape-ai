@@ -166,6 +166,8 @@ public class LogicGatePuzzleController {
 
   private List<ImageView> helperGates;
 
+  private boolean firstMessage = true;
+
   // logic pathway list that stores the current boolean logic in each node entering and exiting
   // store as list
   // first 8 positions are the inital given logic
@@ -332,10 +334,18 @@ public class LogicGatePuzzleController {
     // create a thread to handle GPT concurrency
     Thread gptThread = new Thread(gptTask);
 
+    gptTask.setOnRunning(
+        event -> {
+          if (!firstMessage) {
+            taGptText.appendText("Hmm... Let me think...\n\n");
+          }
+        });
+
     // set text field to enabled on failed
     gptTask.setOnFailed(
         event -> {
           if (item != null) {
+            firstMessage = false;
 
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
@@ -349,6 +359,7 @@ public class LogicGatePuzzleController {
     gptTask.setOnSucceeded(
         event -> {
           if (item != null) {
+            firstMessage = false;
 
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
