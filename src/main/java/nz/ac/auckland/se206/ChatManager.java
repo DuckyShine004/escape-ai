@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.concurrent.Task;
@@ -20,7 +21,9 @@ public class ChatManager {
 
   private static ChatCompletionRequest gptRequest;
 
+  /** Initialize the chat manager. */
   public static void initialize() {
+    // Initialize fields
     textAreas = new ArrayList<TextArea>();
     textFields = new ArrayList<TextField>();
   }
@@ -31,7 +34,7 @@ public class ChatManager {
    * <p>Note: I would love to be able to name this method 'initializeGPT'. Unfortunately, we are not
    * allowed to have acronyms as method names as per the naming convention.
    */
-  public static void start() {
+  public static void initializeChat() {
     // initialize the chat message field
     ChatMessage gptMessage;
 
@@ -74,7 +77,6 @@ public class ChatManager {
     // add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
-
     // create a concurrent task for handling GPT response
     Task<Void> gptTask =
         new Task<Void>() {
@@ -96,6 +98,11 @@ public class ChatManager {
     gptTask.setOnSucceeded(
         event -> {
           enableChatComponents();
+
+          // Remove the previous message if it was a hint
+          if (isHint) {
+            removePreviousMessage();
+          }
         });
 
     // If the task fails
@@ -109,6 +116,106 @@ public class ChatManager {
 
     // Start the thread
     gptThread.start();
+  }
+
+  /** Generate a GPT hint response. GPT should give a hint for the current room the user is in. */
+  public static void getUserHint(Boolean isRoomSolved) {
+    // Get the hint based on the current room and whether the room is solved
+    String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
+
+    // Initialize a user hint message compatible for GPT to analyze
+    ChatMessage userHintMessage = new ChatMessage("assistant", hint);
+
+    // Get GPT's response
+    getChatResponse(userHintMessage, true);
+  }
+
+  private static String getNoMoreHints() {
+    return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
+  }
+
+  /**
+   * Using the Java reflection API, we can get the hint prompt for GPT. The prompt should be related
+   * to the current user's room.
+   *
+   * @return the return value from the invoked method.
+   */
+  private static String getRoomHint() {
+    // Initialize method field
+    Method roomHintMethod = null;
+
+    // Initialize a room hint field
+    String roomHint = "";
+
+    // Get the method name for the current room
+    String roomMethodName = getRoomMethodName();
+
+    // Get the method given the name of the method and handle the exception (if any)
+    try {
+      roomHintMethod = ChatManager.class.getDeclaredMethod(roomMethodName);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+
+    // Get the hint, this should be a prompt
+    try {
+      roomHint = (String) roomHintMethod.invoke(null);
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+
+    return roomHint;
+  }
+
+  /**
+   * Return a string value for the method name according to the room the user is in. This is useful
+   * for determining which prompt to give to GPT.
+   *
+   * @return the method name according to the current room.
+   */
+  private static String getRoomMethodName() {
+    // Initialize the prefix of the method name
+    String prefix = "get";
+
+    // Initialize the suffix of the method name
+    String suffix = "RoomHint";
+
+    // Get the string for the current room
+    String roomName = GameState.currentRoom.toString();
+
+    // Format the room name correctly
+    roomName = roomName.substring(0, 1) + roomName.substring(1).toLowerCase();
+
+    return prefix + roomName + suffix;
+  }
+
+  /**
+   * Get the GPT prompt for the office room. This method should also handle valid and invalid cases.
+   *
+   * @return a GPT prompt for the office room.
+   */
+  protected static String getOfficeRoomHint() {
+    return GptPromptEngineering.getOfficeRoomHint();
+  }
+
+  /**
+   * Get the GPT prompt for the breaker room. This method should also handle valid and invalid
+   * cases.
+   *
+   * @return a GPT prompt for the breaker room.
+   */
+  protected static String getBreakerRoomHint() {
+    return GptPromptEngineering.getBreakerRoomHint();
+  }
+
+  /**
+   * Get the GPT prompt for the control room. This method should also handle valid and invalid
+   * cases.
+   *
+   * @return a GPT prompt for the control room.
+   */
+  protected static String getControlRoomHint() {
+    return GptPromptEngineering.getControlRoomHint();
   }
 
   /**
@@ -131,7 +238,6 @@ public class ChatManager {
 
     // Add the message to GPT's context
     gptRequest.addMessage(gptMessage);
-
 
     // Update all the chat areas
     updateChatResponse(gptOutput);
@@ -174,17 +280,17 @@ public class ChatManager {
    *
    * @param message the message to be appended to the text area.
    */
-  private static void updateChatResponse(String message) {
+  public static void updateChatResponse(String message) {
     // Format the message for GPT
     String formatMessage = "AI: " + message + "\n\n";
-
-    // call tts
-    GameState.tts.speak(message, AppUi.OFFICE);
 
     // Append the message to all chat areas
     for (TextArea taChat : textAreas) {
       taChat.appendText(formatMessage);
     }
+
+    // Make text-to-speech voiceover the current message
+    GameState.tts.speak(message, AppUi.OFFICE);
   }
 
   /**
@@ -224,6 +330,11 @@ public class ChatManager {
 
   /** Clear the current chat history */
   public static void clearChatHistory() {
+
+    if (gptRequest == null) {
+      return;
+    }
+
     // Get the current GPT messages
     List<ChatMessage> gptMessages = gptRequest.getMessages();
 
@@ -243,6 +354,18 @@ public class ChatManager {
     clearChatHistory();
 
     // Initialize the initial message again
-    ChatManager.start();
+    ChatManager.initializeChat();
+  }
+
+  /**
+   * Remove the previous message in GPT's history. This is to ensure that the users won't be able to
+   * abuse the hint system.
+   */
+  private static void removePreviousMessage() {
+    // Get the current GPT messages
+    List<ChatMessage> gptMessages = gptRequest.getMessages();
+
+    // Remove last message sent
+    gptMessages.remove(gptMessages.size() - 1);
   }
 }

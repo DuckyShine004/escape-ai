@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" styleClass="anchor-pane" stylesheets="@../../css/puzzles/logicGates.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.LogicGatePuzzleController">
    <children>
-      <Button layoutX="536.0" layoutY="441.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" styleClass="back-button" stylesheets="@../../css/puzzles/logicGates.css" text="Back To Breaker" />
+      <Button layoutX="600.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" prefHeight="78.0" prefWidth="111.0" styleClass="back-button" stylesheets="@../../css/puzzles/logicGates.css" text="Back" />
       <HBox layoutX="8.0" layoutY="60.0" prefHeight="450.0" prefWidth="547.0">
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
@@ -144,6 +144,7 @@
                   </Pane>
                </children>
             </VBox>
+            <ImageView fx:id="imgBlueCircuits" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
@@ -163,11 +164,12 @@
             <Label layoutX="577.0" layoutY="17.0" prefHeight="17.0" prefWidth="74.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="Time Left:" />
          </children>
       </Pane>
-      <TextArea fx:id="taGptText" editable="false" layoutX="504.0" layoutY="60.0" prefHeight="280.0" prefWidth="202.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" wrapText="true">
+      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="202.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
       </TextArea>
-      <TextField fx:id="tfTextInput" layoutX="504.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
+      <TextField fx:id="tfTextInput" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
+      <ImageView fx:id="imgGlassScreen" fitHeight="150.0" fitWidth="200.0" layoutX="481.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

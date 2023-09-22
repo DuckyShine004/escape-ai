@@ -1,76 +1,43 @@
 package nz.ac.auckland.se206.controllers.menus;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.utilities.Timer;
 
-public class WinningScreenController {
-  @FXML private Button btnPlayAgain;
-  @FXML private Button btnMainMenu;
-  @FXML private Button btnViewGameStats;
+public class WinningScreenController extends MenuController {
+  @FXML private Pane paNo;
+  @FXML private Pane paYes;
+  @FXML private Pane paPlayAgain;
+  @FXML private Pane paExit;
+  @FXML private Pane paNavigation;
+  @FXML private Pane paNoOverlay;
+  @FXML private Pane paYesOverlay;
+  @FXML private Pane paPlayAgainOverlay;
+  @FXML private Pane paExitOverlay;
+  @FXML private Pane paNavigationOverlay;
+  @FXML private TextArea taMessage;
 
-  /** Initialize the controller. */
-  @FXML
-  private void initialize() {}
+  @FXML private Line lineConfirm;
 
-  /*
-   * This method will reset all the global fields in GameState
-   *
-   */
-  private void resetGlobalVariables() {
-    //
-    GameState.isKeyFound = false;
-    GameState.isRiddleResolved = false;
-    GameState.isLogicGateSolved = false;
-    GameState.riddlesSolved = 0;
+  @FXML private Label lblConfirm;
+
+  @Override
+  public String getMessage() {
+    return GameState.finalMessage;
   }
 
-  /*
-   * This method will restart the game
-   */
+  @Override
   @FXML
-  private void onPlayAgain() {
+  protected void onNavigationPaneClicked() {
+    // Disable the exit components
+    disableExitComponents();
 
-    resetGlobalVariables();
-
-    // try to reset the levels
-    try {
-      SceneManager.onResetLevel();
-    } catch (IOException e) {
-      // on error print stack trace
-      e.printStackTrace();
-    }
-
-    // set the timer's countdown time
-    Timer.setTime(GameState.maxTime);
-
-    // start the timer
-    Timer.play();
-
-    // Clear the chat manager
-    ChatManager.reset();
-
-    // change scene to Office
-    App.setUi(AppUi.OFFICE);
-  }
-
-  /*
-   * This method will show the game stats
-   */
-  @FXML
-  private void onViewGameStats() {}
-
-  /*
-   * This method will set the scene to the main menu
-   */
-  @FXML
-  private void onBackToMenu() {
+    // Switch to the options scene
     App.setUi(AppUi.MENU);
   }
 }

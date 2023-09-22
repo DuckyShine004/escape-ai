@@ -23,8 +23,8 @@ public class GameState {
 
   public static AppUi currentRoom = AppUi.MENU;
 
-  /** Game difficulty, starts in Medium */
-  public static Difficulty gameDifficulty = Difficulty.MEDIUM;
+  /** Game difficulty, starts in easy */
+  public static Difficulty gameDifficulty = Difficulty.EASY;
 
   /** Indicates whether the game is in developer mode. */
   public static boolean isDeveloperMode = false;
@@ -41,14 +41,20 @@ public class GameState {
   /** Indicates whether the decryption puzzle has been solved */
   public static boolean isDecryptionSolved = false;
 
+  /** Indicates whether all puzzles have been solved */
+  public static boolean isSolved = false;
+
+  /** Stores the final message */
+  public static String finalMessage = "";
+
   /** Stores the gpt request */
   public static ChatCompletionRequest gptRequest;
 
   /** Indicates whether the program has a printing event going on */
   public static boolean isPrinting = false;
 
-  /** maximum time for the round, will change in options, default is 60 seconds */
-  public static int maxTime = 10; // if think of better variable, please mention in PR review :)
+  /** maximum time for the round, will change in options, default is 120 seconds */
+  public static int maxTime = 120;
 
   /** number of riddles solved */
   public static int riddlesSolved = 0;
@@ -57,8 +63,11 @@ public class GameState {
   public static int maxSequence = 4;
 
   /** the number of pseudocodes in decrpytion puzzle. */
-  public static int maxPseudocodes = 1;
+  public static int maxPseudocodes = 6;
 
   /** The critical time at which GPT switches persona */
   public static int criticalTime = 30;
+
+  /** Overlay opacity for the room interactions. */
+  public static float overlayCapacity = 0.4f;
 }

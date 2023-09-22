@@ -27,7 +27,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.LogicGate;
 import nz.ac.auckland.se206.utilities.Timer;
 import nz.ac.auckland.se206.utilities.Wire;
@@ -101,6 +100,9 @@ public class LogicGatePuzzleController {
   @FXML private TextArea taGptText;
   @FXML private TextField tfTextInput;
 
+  // glass screen covereing end gate
+  @FXML private ImageView imgGlassScreen;
+
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
 
@@ -132,11 +134,11 @@ public class LogicGatePuzzleController {
   // the label with the time
   @FXML private Label lblTime;
 
-  // the pane the logic gate puzzle is sitting on
-  @FXML private Pane pneLogicGateAnchor;
-
   // hint button
   @FXML private Button btnHint;
+
+  // background blue circuit image
+  @FXML private ImageView imgBlueCircuits;
 
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
@@ -174,8 +176,6 @@ public class LogicGatePuzzleController {
 
   private String onLogicColour = "00ff00"; // green
   private String offLogicColour = "ff0000"; // red
-  private String sceneBackgroundColour =
-      "rgb(18, 157, 176)"; // background colour for logic gate pane
 
   // This is the number of first column gates
   // x
@@ -194,15 +194,11 @@ public class LogicGatePuzzleController {
   // this is the single gpt context messages
   private ChatCompletionRequest gptRequest;
 
-  private TextToSpeech tts;
   private Image clickableImage;
   private Image getInformationImage;
 
   @FXML
   private void initialize() {
-
-    // get the GameState tts instance
-    this.tts = GameState.tts;
 
     // start timer
     Timer.addLabel(lblTime);
@@ -327,6 +323,7 @@ public class LogicGatePuzzleController {
           @Override
           protected Void call() throws Exception {
             // set GPT's response
+            System.out.println(this.toString());
             setChatResponse();
             return null;
           }
@@ -389,7 +386,8 @@ public class LogicGatePuzzleController {
     // append the result to the text area
     taGptText.appendText("ai> " + gptOutput + "\n\n");
 
-    tts.speak(gptOutput, AppUi.LOGIC_PUZZLE);
+    System.out.println("call talk");
+    GameState.tts.speak(gptOutput, AppUi.LOGIC_PUZZLE);
   }
 
   @FXML
@@ -419,7 +417,29 @@ public class LogicGatePuzzleController {
 
   /** This method sets the styles for this scene */
   private void setStyles() {
-    pneLogicGateAnchor.setStyle("-fx-background-color: " + this.sceneBackgroundColour + " ;");
+    try {
+      // load glass image
+      Image glassScreen =
+          new Image(
+              new FileInputStream(
+                  "src/main/resources/images/BreakerRoom/LogicGatePuzzle/" + "glassScreen2.png"));
+      imgGlassScreen.setImage(glassScreen);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+
+      Image circuits =
+          new Image(
+              new FileInputStream(
+                  "src/main/resources/images/BreakerRoom/LogicGatePuzzle/" + "circuits" + ".jpg"));
+
+      imgBlueCircuits.setImage(circuits);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -737,29 +757,38 @@ public class LogicGatePuzzleController {
     }
 
     if (logicTrail.get(logicTrail.size() - 1) == true) {
-
-      // the puzzle has been solved
-      imgSolvedLight.setImage(greenLight);
-
-      String solvedPrompt =
-          "Congratulate me on solving the logic gate puzzle, I now have learned what an "
-              + currentAssembly.get(currentAssembly.size() - 1).getType()
-              + " does,  but I might like to ask more questions about logic gates";
-
-      ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
-
-      // get the gpt response
-      getChatResponse(inputMessage, null);
-
-      // debug message in console
-      System.out.println("Logic Gate Puzzle Solved");
-
-      // set to solved
-      GameState.isLogicGateSolved = true;
-
-      // disable hint button
-      btnHint.setDisable(true);
+      setSolved();
     }
+  }
+
+  /** Solved method that changes aspects of UI and GameState */
+  private void setSolved() {
+    // the puzzle has been solved
+    imgSolvedLight.setImage(greenLight);
+
+    String solvedPrompt =
+        "Congratulate me on solving the logic gate puzzle, I now have learned what an "
+            + currentAssembly.get(currentAssembly.size() - 1).getType()
+            + " does,  but I might like to ask more questions about logic gates";
+
+    ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
+
+    // get the gpt response
+    getChatResponse(inputMessage, null);
+
+    // debug message in console
+    System.out.println("Logic Gate Puzzle Solved");
+
+    // set to solved
+    GameState.isLogicGateSolved = true;
+
+    // shows player this is un clickable
+    for (ImageView logicGate : currentAssemblyImages) {
+      logicGate.setCursor(javafx.scene.Cursor.DEFAULT);
+    }
+
+    // disable hint button
+    btnHint.setDisable(true);
   }
 
   /**
@@ -770,13 +799,13 @@ public class LogicGatePuzzleController {
     // switch statement to change all gates based on int active
 
     // clears all
-    pneAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pneAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pneAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pneAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pneAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pneAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
-    pneAnswerGate6.setStyle("-fx-background-color: " + sceneBackgroundColour);
+    pneAnswerGate0.setStyle("-fx-background-color: " + "transparent");
+    pneAnswerGate1.setStyle("-fx-background-color: " + "transparent");
+    pneAnswerGate2.setStyle("-fx-background-color: " + "transparent");
+    pneAnswerGate3.setStyle("-fx-background-color: " + "transparent");
+    pneAnswerGate4.setStyle("-fx-background-color: " + "transparent");
+    pneAnswerGate5.setStyle("-fx-background-color: " + "transparent");
+    pneAnswerGate6.setStyle("-fx-background-color: " + "transparent");
 
     // sets active gate to highlight
     switch (active) {
@@ -878,7 +907,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate0Enter(MouseEvent event) {
     //
-    if (this.swapping != 0) {
+    if (this.swapping != 0 && GameState.isLogicGateSolved != true) {
       pneAnswerGate0.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -887,7 +916,7 @@ public class LogicGatePuzzleController {
   private void onGate0Exit(MouseEvent event) {
     //
     if (this.swapping != 0) {
-      pneAnswerGate0.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pneAnswerGate0.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -900,7 +929,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate1Enter(MouseEvent event) {
     //
-    if (this.swapping != 1) {
+    if (this.swapping != 1 && GameState.isLogicGateSolved != true) {
       pneAnswerGate1.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -909,7 +938,7 @@ public class LogicGatePuzzleController {
   private void onGate1Exit(MouseEvent event) {
     //
     if (this.swapping != 1) {
-      pneAnswerGate1.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pneAnswerGate1.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -922,7 +951,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate2Enter(MouseEvent event) {
     //
-    if (this.swapping != 2) {
+    if (this.swapping != 2 && GameState.isLogicGateSolved != true) {
       pneAnswerGate2.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -931,7 +960,7 @@ public class LogicGatePuzzleController {
   private void onGate2Exit(MouseEvent event) {
     //
     if (this.swapping != 2) {
-      pneAnswerGate2.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pneAnswerGate2.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -944,7 +973,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate3Enter(MouseEvent event) {
     //
-    if (this.swapping != 3) {
+    if (this.swapping != 3 && GameState.isLogicGateSolved != true) {
       pneAnswerGate3.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -953,7 +982,7 @@ public class LogicGatePuzzleController {
   private void onGate3Exit(MouseEvent event) {
     //
     if (this.swapping != 3) {
-      pneAnswerGate3.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pneAnswerGate3.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -966,7 +995,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate4Enter(MouseEvent event) {
     //
-    if (this.swapping != 4) {
+    if (this.swapping != 4 && GameState.isLogicGateSolved != true) {
       pneAnswerGate4.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -975,7 +1004,7 @@ public class LogicGatePuzzleController {
   private void onGate4Exit(MouseEvent event) {
     //
     if (this.swapping != 4) {
-      pneAnswerGate4.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pneAnswerGate4.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -988,7 +1017,7 @@ public class LogicGatePuzzleController {
   @FXML
   private void onGate5Enter(MouseEvent event) {
     //
-    if (this.swapping != 5) {
+    if (this.swapping != 5 && GameState.isLogicGateSolved != true) {
       pneAnswerGate5.setStyle("-fx-background-color: #" + activeHighlight);
     }
   }
@@ -997,7 +1026,7 @@ public class LogicGatePuzzleController {
   private void onGate5Exit(MouseEvent event) {
     //
     if (this.swapping != 5) {
-      pneAnswerGate5.setStyle("-fx-background-color: " + sceneBackgroundColour);
+      pneAnswerGate5.setStyle("-fx-background-color: " + "transparent");
     }
   }
 
@@ -1174,7 +1203,9 @@ public class LogicGatePuzzleController {
   private void onGetToDoHelp(MouseEvent event) {
     // define the help message
     String helpMessage =
-        "Swap the logic gates by clicking them.  \nYour Goal is to turn the end light on (green)";
+        "Swap the logic gates by clicking them.  \n"
+            + "Your Goal is to turn the end light on (green) \n"
+            + " Last Gate is covered by glass";
 
     // append help message to text area
     taGptText.appendText("System> " + helpMessage + "\n\n");

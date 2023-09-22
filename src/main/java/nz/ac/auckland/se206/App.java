@@ -100,6 +100,15 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
   }
 
+  /**
+   * This method will initialize the winning screen scene
+   *
+   * @throws IOException
+   */
+  public static void initializeWinningScene() throws IOException {
+    SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
+  }
+
   /*
    * This method will initalize the scenes, by storing instatnces of the loaded fxmls in SceneManager
    * @throws IOException if fxml is not found
@@ -127,7 +136,8 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.LOSING, loadFxml("menus/losing"));
 
     // remaining puzzle scenes
-    initalizePuzzleScenes();
+    // initalizePuzzleScenes();
+    // this causes double initaliizing
   }
 
   protected static void initalizePuzzleScenes() throws IOException {
