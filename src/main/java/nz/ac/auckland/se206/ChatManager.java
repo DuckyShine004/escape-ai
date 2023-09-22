@@ -365,6 +365,9 @@ public class ChatManager {
     for (TextField tfChat : textFields) {
       tfChat.setDisable(false);
     }
+
+    // Enable all hint buttons
+    HintManager.enableHintButtons();
   }
 
   /** set a question mark and thinking indicator */
@@ -398,6 +401,9 @@ public class ChatManager {
     for (TextField tfChat : textFields) {
       tfChat.setDisable(true);
     }
+
+    // Disable all hint buttonss
+    HintManager.disableHintButtons();
   }
 
   /** Clear all current text areas. */

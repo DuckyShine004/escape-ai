@@ -8,7 +8,6 @@ import java.util.Random;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -18,7 +17,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
@@ -33,6 +34,7 @@ import nz.ac.auckland.se206.utilities.Wire;
 
 public class LogicGatePuzzleController {
   @FXML private Label lblTimer;
+  @FXML private Label lblHintCounter;
 
   // Panes that sit under Answer Gates
   @FXML private Pane pneAnswerGate0;
@@ -118,6 +120,9 @@ public class LogicGatePuzzleController {
   //  10 11 END
   //  20 21
 
+  // Hint button
+  @FXML private Polygon pgHint;
+
   // First Row
   @FXML private ImageView imgAnswerGate0;
   @FXML private ImageView imgAnswerGate1;
@@ -133,9 +138,6 @@ public class LogicGatePuzzleController {
 
   // the label with the time
   @FXML private Label lblTime;
-
-  // hint button
-  @FXML private Button btnHint;
 
   // background blue circuit image
   @FXML private ImageView imgBlueCircuits;
@@ -201,9 +203,11 @@ public class LogicGatePuzzleController {
 
   @FXML
   private void initialize() {
-
     // start timer
     Timer.addLabel(lblTime);
+
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, pgHint);
 
     // saves current logic gate positions in grid
     currentAssembly = new ArrayList<>(); // reserve 6 spaces
@@ -278,7 +282,7 @@ public class LogicGatePuzzleController {
    *
    * @param btn
    */
-  private void toggleButton(Button btn) {
+  private void toggleButton(Polygon btn) {
     // toogle disabled
     btn.setDisable(btn.isDisable() == false);
   }
@@ -314,7 +318,7 @@ public class LogicGatePuzzleController {
         TextField tf = (TextField) item;
         toggleTextField(tf);
       } else {
-        Button btn = (Button) item;
+        Polygon btn = (Polygon) item;
         toggleButton(btn);
       }
     }
@@ -350,7 +354,7 @@ public class LogicGatePuzzleController {
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
-              toggleButton((Button) item);
+              toggleButton((Polygon) item);
             }
           }
         });
@@ -364,7 +368,7 @@ public class LogicGatePuzzleController {
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
-              toggleButton((Button) item);
+              toggleButton((Polygon) item);
             }
           }
         });
@@ -799,7 +803,7 @@ public class LogicGatePuzzleController {
     }
 
     // disable hint button
-    btnHint.setDisable(true);
+    pgHint.setDisable(true);
   }
 
   /**
@@ -871,6 +875,16 @@ public class LogicGatePuzzleController {
 
     // update logic trail
     updateLogicTrail(false);
+  }
+
+  @FXML
+  private void onHintEntered() {
+    pgHint.setOpacity(0.25);
+  }
+
+  @FXML
+  private void onHintExited() {
+    pgHint.setOpacity(0);
   }
 
   /*
@@ -1109,13 +1123,14 @@ public class LogicGatePuzzleController {
    * @param event
    */
   @FXML
-  private void onClickHint(Event event) {
-    // TODO: check if user has hints available
+  private void onHintClicked(MouseEvent mouseEvent) {
+    // Update the hint counter
+    HintManager.updateHintCounter();
 
     // no hints for hard mode
     if (GameState.gameDifficulty == Difficulty.HARD) {
       taGptText.appendText("System> " + "Hard Mode has Disabled Hints" + "\n\n");
-      btnHint.setDisable(true);
+      pgHint.setDisable(true);
       return;
     }
 
@@ -1126,7 +1141,7 @@ public class LogicGatePuzzleController {
     taGptText.appendText("user> " + "Please give me a hint" + "\n\n");
 
     // get the gpt response
-    getChatResponse(inputMessage, btnHint);
+    getChatResponse(inputMessage, pgHint);
 
     // get gpt to talk about the last gate
 
