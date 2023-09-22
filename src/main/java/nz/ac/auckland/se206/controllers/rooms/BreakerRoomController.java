@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
@@ -18,7 +19,6 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the breaker room. */
 public class BreakerRoomController extends RoomController {
-  @FXML private Pane paHint;
   @FXML private Pane paBreaker;
   @FXML private Pane paCircuitBox;
 
@@ -26,6 +26,8 @@ public class BreakerRoomController extends RoomController {
 
   @FXML private Label lblTime;
   @FXML private Label lblHintCounter;
+
+  @FXML private Polygon pgHint;
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
@@ -37,7 +39,7 @@ public class BreakerRoomController extends RoomController {
     Timer.addLabel(lblTime);
 
     // Add the hint counter components
-    HintManager.addHintComponents(lblHintCounter, btnHint);
+    // HintManager.addHintComponents(lblHintCounter, pgHint);
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -64,6 +66,16 @@ public class BreakerRoomController extends RoomController {
   }
 
   @FXML
+  private void onHintEntered() {
+    pgHint.setOpacity(0.25);
+  }
+
+  @FXML
+  private void onHintExited() {
+    pgHint.setOpacity(0);
+  }
+
+  @FXML
   private void onCircuitBoxEntered() {
     paCircuitBox.setOpacity(GameState.overlayCapacity);
   }
@@ -72,7 +84,6 @@ public class BreakerRoomController extends RoomController {
   private void onCircuitBoxExited() {
     paCircuitBox.setOpacity(0);
   }
-
 
   /** Change the scene to the logic puzzle */
   @FXML
@@ -96,7 +107,7 @@ public class BreakerRoomController extends RoomController {
     }
 
     // Disable the hints button
-    btnHint.setDisable(true);
+    pgHint.setDisable(true);
 
     // Tell the player that the room has been completed
     ChatManager.getUserHint(true);

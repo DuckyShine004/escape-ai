@@ -96,14 +96,6 @@
             <Glow level="1.0" />
          </effect>
       </Line>
-      <Label fx:id="lblTime" layoutX="630.0" layoutY="8.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <effect>
-            <Glow level="0.65" />
-         </effect>
-      </Label>
       <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="OFFICE ROOM">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -112,7 +104,7 @@
             <Glow level="0.65" />
          </effect>
       </Label>
-      <Label layoutX="500.0" layoutY="8.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="TIME LEFT:" textFill="WHITE">
+      <Label layoutX="313.0" layoutY="8.0" text="HINT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -128,7 +120,15 @@
             <Glow level="0.65" />
          </effect>
       </Label>
-      <Label layoutX="313.0" layoutY="8.0" text="HINT" textFill="WHITE">
+      <Label layoutX="505.0" layoutY="8.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="TIME LEFT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label fx:id="lblTime" layoutX="630.0" layoutY="8.0" styleClass="timer" stylesheets="@../../css/menus/topBar.css" text="00:00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
