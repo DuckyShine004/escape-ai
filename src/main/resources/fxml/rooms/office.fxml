@@ -41,9 +41,9 @@
             <Image url="@../../images/rooms/office.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" styleClass="imageView">
+      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" styleClass="imageView">
          <image>
-            <Image url="@../../images/avataroutline.png" />
+            <Image url="@../../images/mutedavatar.png" />
          </image>
       </ImageView>
       <Polygon fx:id="pgDesktop" fill="YELLOW" layoutX="348.0" layoutY="260.0" onMouseClicked="#onDesktopClicked" onMouseEntered="#onDesktopEntered" onMouseExited="#onDesktopExited" opacity="0.0" points="-52.000030517578125, 37.999969482421875, 65.333343505859375, 43.999969482421875, 61.333343505859375, -59.99998474121094, -54.000030517578125, -33.99998474121094, -52.000030517578125, 3.33331298828125" stroke="#ffffff00" strokeType="INSIDE">

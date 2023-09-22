@@ -40,9 +40,9 @@
             <Image url="@../../images/rooms/breaker.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" styleClass="imageView">
+      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="340.0" onMouseClicked="#onAiClicked" styleClass="imageView">
          <image>
-            <Image url="@../../images/avataroutline.png" />
+            <Image url="@../../images/mutedavatar.png" />
          </image>
       </ImageView>
       <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
