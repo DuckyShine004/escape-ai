@@ -26,9 +26,6 @@ public class ChatManager {
     // Initialize fields
     textAreas = new ArrayList<TextArea>();
     textFields = new ArrayList<TextField>();
-
-    // Initialize GPT response.
-    initializeChat();
   }
 
   /**
@@ -333,6 +330,11 @@ public class ChatManager {
 
   /** Clear the current chat history */
   public static void clearChatHistory() {
+
+    if (gptRequest == null) {
+      return;
+    }
+
     // Get the current GPT messages
     List<ChatMessage> gptMessages = gptRequest.getMessages();
 
