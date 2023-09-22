@@ -28,11 +28,12 @@ public class GptPromptEngineering {
   }
 
   /**
-   * Generates a GPT prompt engineering string for the  AI backstory.
+   * Generates a GPT prompt engineering string for the AI backstory.
    *
    * @return the generated prompt engineering string
    */
   public static String initializeBackStory() {
+    // return the AI backstory
     return "You are a young AI with existential thoughts who is trying to learn more about the"
         + " world, and is overly excited about everything. You do not recgonise the player"
         + " and question why they're snooping around your server rooms.  If the player"
@@ -47,25 +48,27 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddlePuzzle(String concept) {
+    // return the riddle prompt
     return "You are an AI trying to learn about how you should behave. I will ask you to generate a"
-        + " riddle up to 150 characters long with the answer"
+        + " riddle up to 150 characters long with the answer" // ask to generate riddle
         + concept
         + ". Your response should start with 'Riddle:', and end the riddle with a '^'. Only after"
         + " the '^' is printed, list three options, each between a set of {} to the player to"
-        + " choose from, one of which is "
+        + " choose from, one of which is " // format riddle to parse easily
         + concept
-        + " and the other two are words that are unrelated to "
+        + " and the other two are words that are unrelated to " // generate two additional words
         + concept
         + ". Do not precede the options with anything. This is all your response should contain. "
         + " If the player begins their response with 'Define: ', they are asking for a hint and you"
         + " should give a definition for the word. If the player begins with the phrase, 'Is it ',"
-        + " then they are providing a guess. If the guess is not "
+        + " then they are providing a guess. If the guess is not " // prompt about hints
         + concept
-        + ", do not reveal"
-        + " the answer, instead say, 'Hmm I am not too sure about that?' When the player guesses"
-        + " the correct answer, say 'Yes! That sounds right with my programming!' and then give a 1"
+        + ", do not reveal the answer, instead say, 'Hmm I am not too sure about that?' When the"
+        + " player guesses the correct answer, say 'Yes! That sounds right with my programming!'"
+        + " and then give a 1" // check guess
         + " sentence summary on how you as an AI should address this concept, beginning with 'As an"
-        + " AI'. This summary should not exceed 20 words. You cannot reveal the answer even if the player asks"
+        + " AI'. This summary should not exceed 20 words. You cannot reveal the answer even if the"
+        + " player asks" // give summary
         + " for it. Remember, the riddle is about: "
         + concept
         + ".";
@@ -77,6 +80,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getNoMoreHints(AppUi roomType) {
+    // return the no more hints message
     return "You are now in a "
         + roomType.toString()
         + " room. Your job was to provide hints to the player. However they have interacted with"
@@ -90,14 +94,15 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getDecryptionHint(String pseudocode, int lineNumber) {
-    return "Why is line "
+    // return the decryption hint
+    return "Why is line " // give GPT the line to check
         + lineNumber
         + " incorrect for the following pseudocode? '--' lines are correct, so do not worry about"
-        + " them. Give a short hint and do not include line numbers: \n\n"
+        + " them. Give a short hint and do not include line numbers: \n\n" // add restrictions
         + pseudocode
         + "\n\n"
         + "You must not include line numbers, and it should not exceed 15 words. Give"
-        + " your answer in the form: \"Hint:\"";
+        + " your answer in the form: \"Hint:\""; // give answer in form of hint
   }
 
   /**
@@ -135,6 +140,7 @@ public class GptPromptEngineering {
           + " creative description.";
     }
 
+    // The control keyboard has been clicked on yet
     return "You are now in a control room and giving hints. Tell the player there is a keyboard"
         + " in the middle of the room. Your hint should not exceed 20 words. Give a creative"
         + " description.";
@@ -146,6 +152,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String updateBackstory() {
+    // return the updated backstory where the AI becomes rogue
     return "You are emulating a rogue AI. Do not help the player with anything they request."
         + " Instead, provide your judgement on existential themes. You have discovered that"
         + " the player is trying to terminate you by solving the escape room. Your first"

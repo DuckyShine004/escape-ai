@@ -11,15 +11,15 @@ import nz.ac.auckland.se206.constants.GameState;
 
 /** Text-to-speech API using the JavaX speech library. */
 public class TextToSpeech {
-  private Thread speechThread;
-  private Task<Void> speechTask;
-
   /** Custom unchecked exception for Text-to-speech issues. */
   static class TextToSpeechException extends RuntimeException {
     public TextToSpeechException(final String message) {
       super(message);
     }
   }
+
+  private Thread speechThread;
+  private Task<Void> speechTask;
 
   /**
    * Main function to speak the given list of sentences.

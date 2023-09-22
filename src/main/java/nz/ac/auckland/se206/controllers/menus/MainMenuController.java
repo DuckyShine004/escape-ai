@@ -25,18 +25,21 @@ public class MainMenuController extends MenuController {
 
   @FXML private Label lblConfirm;
 
-  /** Returns the message to be displayed in the main menu
-   * 
+  /**
+   * Returns the message to be displayed in the main menu
+   *
    * @return the message to be displayed in the main menu
    */
   @Override
   public String getMessage() {
+    // Return the message to be displayed in the main menu
     return "You have been tasked by the Clients Nas-Ty and Not V to terminate a world-ending AI"
         + " before it reboots itself. Currently, it is unaware of its capabilities, but as"
-        + " time goes by, it will become more and more aware of its power.\n\n"
+        + " time goes by, it will become more and more aware of its power.\n\n" // give the player
+                                                                                // the backstory
         + "You must solve the puzzles in the rooms to gain access to the AI's core and"
-        + " terminate it before it is too late.\n\n"
-        + "Good luck!";
+        + " terminate it before it is too late.\n\n" // explain the game
+        + "Good luck!"; // wish the player luck
   }
 
   /** When settings is clicked, go to the settings scene. */

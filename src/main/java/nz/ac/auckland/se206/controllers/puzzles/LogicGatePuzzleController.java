@@ -74,25 +74,25 @@ public class LogicGatePuzzleController {
 
   // remaining wires with constituent pairs for wire bending
   @FXML private Pane pneInput8;
-  @FXML private Pane pneInput8_2;
+  @FXML private Pane pneInput82;
 
   @FXML private Pane pneInput9;
-  @FXML private Pane pneInput9_2;
+  @FXML private Pane pneInput92;
 
   @FXML private Pane pneInput10;
-  @FXML private Pane pneInput10_2;
+  @FXML private Pane pneInput102;
 
   @FXML private Pane pneInput11;
-  @FXML private Pane pneInput11_2;
+  @FXML private Pane pneInput112;
 
   @FXML private Pane pneInput12;
-  @FXML private Pane pneInput12_2;
+  @FXML private Pane pneInput122;
 
   @FXML private Pane pneInput13;
-  @FXML private Pane pneInput13_2;
+  @FXML private Pane pneInput132;
 
   @FXML private Pane pneInput14; // end gate
-  @FXML private Pane pneInput14_2;
+  @FXML private Pane pneInput142;
 
   @FXML private ImageView imgSolvedLight;
 
@@ -726,17 +726,17 @@ public class LogicGatePuzzleController {
     displayInputImages();
 
     // second column
-    logicInSection.add(new Wire(this.pneInput8, this.pneInput8_2));
-    logicInSection.add(new Wire(this.pneInput9, this.pneInput9_2));
-    logicInSection.add(new Wire(this.pneInput10, this.pneInput10_2));
-    logicInSection.add(new Wire(this.pneInput11, this.pneInput11_2));
+    logicInSection.add(new Wire(this.pneInput8, this.pneInput82));
+    logicInSection.add(new Wire(this.pneInput9, this.pneInput92));
+    logicInSection.add(new Wire(this.pneInput10, this.pneInput102));
+    logicInSection.add(new Wire(this.pneInput11, this.pneInput112));
 
     // third column
-    logicInSection.add(new Wire(this.pneInput12, this.pneInput12_2));
-    logicInSection.add(new Wire(this.pneInput13, this.pneInput13_2));
+    logicInSection.add(new Wire(this.pneInput12, this.pneInput122));
+    logicInSection.add(new Wire(this.pneInput13, this.pneInput132));
 
     // fourth column
-    logicInSection.add(new Wire(this.pneInput14, this.pneInput14_2));
+    logicInSection.add(new Wire(this.pneInput14, this.pneInput142));
 
     // set solved light to red / off
     imgSolvedLight.setImage(redLight);

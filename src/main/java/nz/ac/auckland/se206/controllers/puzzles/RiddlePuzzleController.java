@@ -58,7 +58,7 @@ public class RiddlePuzzleController {
   private int number1;
   private int number2;
 
-  TextToSpeech tts;
+  private TextToSpeech tts;
 
   /**
    * Initializes the chat view, loading the riddle.
