@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ public class GeneralOfficeController extends RoomController {
   @FXML private TextField tfChat;
 
   @FXML private ImageView imgAvatar;
+  @FXML private ImageView imgAvatarShaddow;
 
   /** Initializes the general office. */
   @FXML
@@ -56,6 +58,18 @@ public class GeneralOfficeController extends RoomController {
     GameState.muted = GameState.muted == false;
     GameState.tts.stop();
     ChatManager.toggleAiMuted();
+  }
+
+  @FXML
+  private void onMouseEnterAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(true);
+  }
+
+  @FXML
+  private void onMouseExitAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(false);
   }
 
   /**

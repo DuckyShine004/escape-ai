@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,6 +32,7 @@ public class BreakerRoomController extends RoomController {
   @FXML private TextField tfChat;
 
   @FXML private ImageView imgAvatar;
+  @FXML private ImageView imgAvatarShaddow;
 
   /** Initialize the breaker room. */
   @FXML
@@ -55,6 +57,18 @@ public class BreakerRoomController extends RoomController {
   @FXML
   private void onLeftButton() throws IOException {
     App.setUi(AppUi.OFFICE);
+  }
+
+  @FXML
+  private void onMouseEnterAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(true);
+  }
+
+  @FXML
+  private void onMouseExitAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(false);
   }
 
   /**

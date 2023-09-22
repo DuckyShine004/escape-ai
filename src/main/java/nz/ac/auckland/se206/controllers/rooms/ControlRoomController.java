@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -47,6 +48,7 @@ public class ControlRoomController extends RoomController {
   @FXML private ImageView imgButton;
 
   @FXML private ImageView imgAvatar;
+  @FXML private ImageView imgAvatarShaddow;
 
   /** Initializes the control room. */
   @FXML
@@ -61,6 +63,18 @@ public class ControlRoomController extends RoomController {
     ChatManager.addChatComponents(taChat, tfChat);
 
     ChatManager.addAiInstance(imgAvatar);
+  }
+
+  @FXML
+  private void onMouseEnterAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(true);
+  }
+
+  @FXML
+  private void onMouseExitAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(false);
   }
 
   /**
