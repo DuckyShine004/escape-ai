@@ -65,7 +65,7 @@ public class GptPromptEngineering {
         + " the answer, instead say, 'Hmm I am not too sure about that?' When the player guesses"
         + " the correct answer, say 'Yes! That sounds right with my programming!' and then give a 1"
         + " sentence summary on how you as an AI should address this concept, beginning with 'As an"
-        + " AI'. You cannot reveal the answer even if the player asks"
+        + " AI'. This summary should not exceed 20 words. You cannot reveal the answer even if the player asks"
         + " for it. Remember, the riddle is about: "
         + concept
         + ".";

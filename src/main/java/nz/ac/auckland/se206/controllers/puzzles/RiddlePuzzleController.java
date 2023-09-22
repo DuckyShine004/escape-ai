@@ -55,6 +55,8 @@ public class RiddlePuzzleController {
   private boolean btn2Pressed = false;
   private boolean btn3Pressed = false;
   private boolean getHint = false;
+  private int number1;
+  private int number2;
 
   TextToSpeech tts;
 
@@ -119,14 +121,25 @@ public class RiddlePuzzleController {
   }
 
   /**
+   * Generates a random number between 0 and 20, excluding the two numbers used in the previous
+   * riddle.
+   *
+   * @return the random number
+   */
+  private int getRandomNumber() {
+    int randomNumber = (int) (Math.random() * 20);
+    while (number1 == randomNumber || number2 == randomNumber) {
+      randomNumber = (int) (Math.random() * 20);
+    }
+    return randomNumber;
+  }
+
+  /**
    * Loads a riddle from the GPT model.
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private void loadRiddle() {
-    // Generate a random number between 0 and 9
-    int randomNumber = (int) (Math.random() * 15);
-
     // Select a concept from the list of concepts
     String[] concepts = {
       "Ethics",
@@ -143,8 +156,18 @@ public class RiddlePuzzleController {
       "Prejudice",
       "Religion",
       "Purpose",
-      "Loyalty"
+      "Loyalty",
+      "Integrity",
+      "Animal Welfare",
+      "Inclusion",
+      "Diversity",
+      "Stewardship"
     };
+
+    // Generate a random number
+    int randomNumber = getRandomNumber();
+
+    // Set the number to be used in the next riddle
     String concept = concepts[randomNumber];
 
     // If this is the first riddle, introduce the puzzle
@@ -185,8 +208,8 @@ public class RiddlePuzzleController {
             } else {
               // If GPT does not provide options in the correct format, generate them manually
               answer1 = concept;
-              answer2 = concepts[(randomNumber + 1) % 10];
-              answer3 = concepts[(randomNumber + 2) % 10];
+              answer2 = concepts[(randomNumber + 1) % 20];
+              answer3 = concepts[(randomNumber + 2) % 20];
             }
             // Update the UI thread
             Platform.runLater(
@@ -332,6 +355,11 @@ public class RiddlePuzzleController {
       answer3 =
           segments[(2 + randomNumber) % 3].substring(
               segments[(2 + randomNumber) % 3].lastIndexOf("{") + 1);
+    } else {
+      // If GPT does not provide options in the correct format, generate them manually
+      answer1 = concept;
+      answer2 = "Death";
+      answer3 = "Culture";
     }
   }
 
@@ -381,6 +409,7 @@ public class RiddlePuzzleController {
             ChatMessage responseMsg;
             // Send the button text as a response to GPT
             System.out.println(buttonText);
+            startThinking();
             if (getHint) {
               responseMsg = runGpt(new ChatMessage("user", "Define: " + buttonText));
               System.out.println(responseMsg.getContent());
@@ -392,6 +421,7 @@ public class RiddlePuzzleController {
             // Update UI based on the response
             Platform.runLater(
                 () -> {
+                  stopThinking();
                   // If the response is from the assistant and the answer is correct, update the
                   // number of riddles solved
                   if (responseMsg.getRole().equals("assistant")
