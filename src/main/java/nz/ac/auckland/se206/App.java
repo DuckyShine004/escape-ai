@@ -117,6 +117,9 @@ public class App extends Application {
     // initialize the timer
     Timer.initialize();
 
+    // initialize the hint manager
+    HintManager.initialize();
+
     // initialize the chat manager
     ChatManager.initialize();
 

@@ -62,6 +62,12 @@ public class GameState {
   /** the number of pseudocodes in decrpytion puzzle. */
   public static int maxPseudocodes = 6;
 
+  /** The number of hints the user can have. Default is infinity (easy). */
+  public static int maxHints = Integer.MAX_VALUE;
+
+  /** The number of hints the player currently has. Default is infinity (easy). */
+  public static int hintCounter = Integer.MAX_VALUE;
+
   /** The critical time at which GPT switches persona */
   public static int criticalTime = 30;
 

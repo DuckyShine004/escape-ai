@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
-/** The chat manager class helps sync all chat messages across all scenes */
+/** The chat manager class helps sync all chat messages across all scenes. */
 public class ChatManager {
   private static List<TextArea> textAreas;
   private static List<TextField> textFields;
@@ -60,6 +60,13 @@ public class ChatManager {
     getChatResponse(gptMessage, false);
   }
 
+  /**
+   * Adds chat components to be updated globally when something occurs and chat window needs to be
+   * updated.
+   *
+   * @param textArea the text area to be added to list of text areas.
+   * @param textField the text field to be added to list of text fields.
+   */
   public static void addChatComponents(TextArea textArea, TextField textField) {
     // Add the text area to the list of text areas
     textAreas.add(textArea);

@@ -13,6 +13,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
+import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
@@ -27,6 +28,7 @@ public class ControlRoomController extends RoomController {
   @FXML private Label lblTime;
   @FXML private Label lblQuestion1;
   @FXML private Label lblQuestion2;
+  @FXML private Label lblHintCounter;
 
   @FXML private Button btnNo;
   @FXML private Button btnYes;
@@ -47,8 +49,11 @@ public class ControlRoomController extends RoomController {
   /** Initializes the control room. */
   @FXML
   private void initialize() {
-    // add the label to list of labels to be updated.
+    // Add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
+
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, btnHint);
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
@@ -144,6 +149,9 @@ public class ControlRoomController extends RoomController {
 
   @FXML
   private void onHintClicked() {
+    // Update the hint counter
+    HintManager.updateHintCounter();
+
     // If the control panel has not been clicked on yet
     if (!Interactions.isControlPanelClicked) {
       ChatManager.getUserHint(false);

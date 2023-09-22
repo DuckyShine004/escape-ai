@@ -180,6 +180,12 @@ public class OptionsMenuController {
     // Set the difficulty to easy
     GameState.gameDifficulty = Difficulty.EASY;
 
+    // Set max hints to infinity
+    GameState.maxHints = Integer.MAX_VALUE;
+
+    // Set the amount of hints to infinity
+    GameState.hintCounter = Integer.MAX_VALUE;
+
     // Set the easy underline visible
     lineEasy.setVisible(true);
 
@@ -195,6 +201,12 @@ public class OptionsMenuController {
     // Set the difficulty to hard
     GameState.gameDifficulty = Difficulty.HARD;
 
+    // Set max hints to zero
+    GameState.maxHints = 0;
+
+    // Set the amount of hints to zero
+    GameState.hintCounter = 0;
+
     // Set the easy underline invisible
     lineEasy.setVisible(false);
 
@@ -209,6 +221,12 @@ public class OptionsMenuController {
   private void setDifficultyMedium() {
     // Set the difficulty to medium
     GameState.gameDifficulty = Difficulty.MEDIUM;
+
+    // Set max hints to 5
+    GameState.maxHints = 5;
+
+    // Set the amount of hints to 5
+    GameState.hintCounter = 5;
 
     // Set the easy underline invisible
     lineEasy.setVisible(false);
