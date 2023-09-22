@@ -85,7 +85,16 @@ public class HintManager {
     }
   }
 
-  private static void disableHintButtons() {
+  /** Enable all hint buttons. */
+  public static void enableHintButtons() {
+    // Disable all hint buttons
+    for (Polygon pgHint : hintPolygons) {
+      pgHint.setDisable(false);
+    }
+  }
+
+  /** Disable all hint buttons */
+  public static void disableHintButtons() {
     // Disable all hint buttons
     for (Polygon pgHint : hintPolygons) {
       pgHint.setDisable(true);

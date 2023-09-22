@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="paDecryption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
@@ -81,11 +83,6 @@
                </effect>
             </Label>
             <Label fx:id="lblTime" layoutX="610.0" prefHeight="65.0" prefWidth="100.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="#ff6400">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-            <Label layoutX="535.0" prefHeight="65.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="0/4" textFill="#ff6400">
                <font>
                   <Font size="40.0" />
                </font>
@@ -171,18 +168,26 @@
             </Pane>
          </children>
       </HBox>
-      <Pane fx:id="paHint" layoutX="440.0" layoutY="12.5" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: transparent;" styleClass="orange-border-pane" stylesheets="@../../css/puzzles/decryption.css">
-         <children>
-            <Pane fx:id="paHintOverlay" opacity="0.15" prefHeight="50.0" prefWidth="95.0" style="-fx-background-color: orange;" visible="false" />
-            <Label layoutX="8.0" layoutY="-8.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Hint" textFill="#ff6400">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-         </children>
+      <Label layoutX="450.0" layoutY="5.0" prefHeight="65.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="Hint" textFill="#ff6400">
+         <font>
+            <Font size="40.0" />
+         </font>
          <effect>
-            <Bloom threshold="0.0" />
+            <Bloom />
          </effect>
-      </Pane>
+      </Label>
+      <Label fx:id="lblHintCounter" layoutX="538.0" layoutY="5.0" prefHeight="65.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="0/0" textFill="#ff6400">
+         <font>
+            <Font size="26.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Polygon fx:id="pgHint" fill="#ff6200" onMouseClicked="#onHintClicked" onMouseEntered="#onHintEntered" onMouseExited="#onHintExited" opacity="0.0" points="436.0000305175781, 69.50000762939453, 604.9999389648438, 69.50000762939453, 604.9999389648438, 4.666666507720947, 436.0000305175781, 5.99999475479126" stroke="#ffffff00" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Polygon>
    </children>
 </Pane>

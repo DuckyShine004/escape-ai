@@ -12,7 +12,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
 import nz.ac.auckland.se206.constants.Description;
@@ -28,14 +30,12 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
-  @FXML private Pane paHint;
   @FXML private Pane paBack;
   @FXML private Pane paDigit0;
   @FXML private Pane paDigit1;
   @FXML private Pane paDigit2;
   @FXML private Pane paDigit3;
   @FXML private Pane paDecryption;
-  @FXML private Pane paHintOverlay;
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
@@ -43,6 +43,9 @@ public class DecryptionPuzzleController {
   @FXML private Label lblDigit1;
   @FXML private Label lblDigit2;
   @FXML private Label lblDigit3;
+  @FXML private Label lblHintCounter;
+
+  @FXML private Polygon pgHint;
 
   @FXML private TextArea taChat;
   @FXML private TextArea taPseudocode;
@@ -64,12 +67,14 @@ public class DecryptionPuzzleController {
   /** Initializes the decryption puzzle. */
   @FXML
   private void initialize() throws Exception {
-
     // get the game state instance of tts
     this.tts = GameState.tts;
 
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
+
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, pgHint);
 
     // Initialize the decryption puzzle chats and algorithms
     initializeChat();
@@ -78,14 +83,14 @@ public class DecryptionPuzzleController {
 
   /** When the mouse is hovering over the pane, the overlay appears (hint). */
   @FXML
-  private void onHintPaneEntered() {
-    paHintOverlay.setVisible(true);
+  private void onHintEntered() {
+    pgHint.setOpacity(0.25);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (hint). */
   @FXML
-  private void onHintPaneExited() {
-    paHintOverlay.setVisible(false);
+  private void onHintExited() {
+    pgHint.setOpacity(0);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -102,7 +107,7 @@ public class DecryptionPuzzleController {
 
   /** When hint is clicked, give the user a hint. */
   @FXML
-  private void onHintPaneClicked() {
+  private void onHintClicked() {
     getUserHint();
   }
 
@@ -352,6 +357,9 @@ public class DecryptionPuzzleController {
 
   /** Generate a GPT response. GPT should give a hint for the current pseudocode. */
   private void getUserHint() {
+    // Update the hint counter
+    HintManager.updateHintCounter();
+
     // Get the incorrect line number for the following pseudocode and hint index
     int lineNumber = Integer.valueOf(sequence.charAt(hintIndex));
 
@@ -525,7 +533,7 @@ public class DecryptionPuzzleController {
     tfChat.setDisable(false);
 
     // Enable the hint pane
-    paHint.setDisable(false);
+    pgHint.setDisable(false);
   }
 
   /** disable components when a task is running. */
@@ -534,7 +542,7 @@ public class DecryptionPuzzleController {
     tfChat.setDisable(true);
 
     // Disable the hint pane
-    paHint.setDisable(true);
+    pgHint.setDisable(true);
   }
 
   /**
