@@ -63,7 +63,7 @@ public class GameState {
   public static int maxSequence = 4;
 
   /** the number of pseudocodes in decrpytion puzzle. */
-  public static int maxPseudocodes = 1;
+  public static int maxPseudocodes = 6;
 
   /** The critical time at which GPT switches persona */
   public static int criticalTime = 30;
