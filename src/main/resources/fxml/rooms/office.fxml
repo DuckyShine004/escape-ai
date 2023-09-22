@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="paOffice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.GeneralOfficeController">
@@ -46,7 +45,6 @@
             <Image url="@../../images/avataroutline.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="vase" focusTraversable="true" height="26.0" layoutX="172.0" layoutY="287.0" onMouseClicked="#clickVase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0" />
       <Polygon fx:id="pgDesktop" fill="YELLOW" layoutX="348.0" layoutY="260.0" onMouseClicked="#onDesktopClicked" onMouseEntered="#onDesktopEntered" onMouseExited="#onDesktopExited" opacity="0.0" points="-52.000030517578125, 37.999969482421875, 65.333343505859375, 43.999969482421875, 61.333343505859375, -59.99998474121094, -54.000030517578125, -33.99998474121094, -52.000030517578125, 3.33331298828125" stroke="#ffffff00" strokeType="INSIDE">
          <cursor>
             <Cursor fx:constant="HAND" />
