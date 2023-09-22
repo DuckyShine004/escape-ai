@@ -148,11 +148,23 @@ public abstract class MenuController {
 
   /** This method will reset all the global fields in GameState. */
   private void resetGlobalVariables() {
+    // Reset riddle puzzle solved
     GameState.isRiddleResolved = false;
+
+    // Reset logic gate puzzle solved
     GameState.isLogicGateSolved = false;
+
+    // Reset decryption puzzle solved
     GameState.isDecryptionSolved = false;
-    GameState.riddlesSolved = 0;
+
+    // Reset global game solved
     GameState.isSolved = false;
+
+    // Reset amount of riddles solved
+    GameState.riddlesSolved = 0;
+
+    // Reset the amount of hints user has
+    GameState.hintCounter = GameState.maxHints;
   }
 
   /** Starts the game. */

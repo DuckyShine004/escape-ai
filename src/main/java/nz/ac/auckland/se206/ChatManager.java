@@ -134,6 +134,9 @@ public class ChatManager {
    * @param entityMessage the chat message to be sent to GPT.
    */
   public static void getChatResponse(ChatMessage entityMessage, boolean isHint) {
+    // Disable all chat components
+    disableChatComponents();
+
     // add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
@@ -152,7 +155,6 @@ public class ChatManager {
     gptTask.setOnRunning(
         event -> {
           startThinking();
-          disableChatComponents();
         });
 
     // If the task succeeds, then enable components
@@ -170,8 +172,14 @@ public class ChatManager {
     // If the task fails
     gptTask.setOnFailed(
         event -> {
+          enableChatComponents();
           stopThinking();
           System.out.println("FAILED TO GENERATE RESPONSE");
+
+          // Remove the previous message if it was a hint
+          if (isHint) {
+            removePreviousMessage();
+          }
         });
 
     // Create a thread to handle GPT concurrency

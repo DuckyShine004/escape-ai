@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -483,6 +484,11 @@ public class RiddlePuzzleController {
 
   @FXML
   private void onHintClicked(MouseEvent event) throws ApiProxyException {
+    // If the difficulty is hard, ignore user.
+    if (GameState.gameDifficulty == Difficulty.HARD) {
+      return;
+    }
+
     // Update the hint counter
     HintManager.updateHintCounter();
 

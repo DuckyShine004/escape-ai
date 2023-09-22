@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -117,6 +118,11 @@ public class BreakerRoomController extends RoomController {
 
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
+    // If the difficulty is hard, ignore user.
+    if (GameState.gameDifficulty == Difficulty.HARD) {
+      return;
+    }
+
     // Update the hint counter
     HintManager.updateHintCounter();
 
