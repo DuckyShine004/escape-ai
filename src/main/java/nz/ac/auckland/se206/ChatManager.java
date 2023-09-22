@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206;
 
+import java.io.FileInputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -19,6 +22,10 @@ public class ChatManager {
   private static List<TextArea> textAreas;
   private static List<TextField> textFields;
 
+  private static List<ImageView> imgAiFigures;
+  private static Image AiFigure;
+  private static Image mutedAiFigure;
+
   private static ChatCompletionRequest gptRequest;
 
   /** Initialize the chat manager. */
@@ -26,6 +33,46 @@ public class ChatManager {
     // Initialize fields
     textAreas = new ArrayList<TextArea>();
     textFields = new ArrayList<TextField>();
+
+    imgAiFigures = new ArrayList<ImageView>();
+
+    initializeAiFigures();
+  }
+
+  /** loads ImageView and Images into class */
+  private static void initializeAiFigures() {
+    //
+    try {
+
+      AiFigure =
+          new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
+      mutedAiFigure =
+          new Image(new FileInputStream("src/main/resources/images/" + "mutedavatar" + ".png"));
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /** add instances of ImageView into list */
+  public static void addAiInstance(ImageView AiFigure) {
+    imgAiFigures.add(AiFigure);
+  }
+
+  /** toggles image of scene AIs */
+  public static void toggleAiMuted() {
+    //
+
+    for (ImageView imageView : imgAiFigures) {
+      if (GameState.muted) {
+
+        // change to muted figure
+        imageView.setImage(mutedAiFigure);
+      } else {
+        // change to un-muted figure
+        imageView.setImage(AiFigure);
+      }
+    }
   }
 
   /**

@@ -1,19 +1,14 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
-import java.io.FileInputStream;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.ChatManager;
-import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public abstract class RoomController {
@@ -27,32 +22,6 @@ public abstract class RoomController {
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
-
-  @FXML private ImageView imgAvatar;
-
-  @FXML
-  private void onAiClicked(MouseEvent event) {
-    GameState.muted = GameState.muted == false;
-    GameState.tts.stop();
-
-    Image avatarImage;
-    try {
-      if (GameState.muted == true) {
-
-        avatarImage =
-            new Image(new FileInputStream("src/main/resources/images/" + "mutedavatar" + ".png"));
-
-      } else {
-        //
-        avatarImage =
-            new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
-      }
-
-      imgAvatar.setImage(avatarImage);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
 
   /**
    * Check if there is a keyboard event. If there is a keyboard event, handle the event
