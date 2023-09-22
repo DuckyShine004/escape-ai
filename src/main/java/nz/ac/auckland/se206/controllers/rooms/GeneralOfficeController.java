@@ -40,7 +40,7 @@ public class GeneralOfficeController extends RoomController {
     Timer.addLabel(lblTime);
 
     // Add the hint counter components
-    // HintManager.addHintComponents(lblHintCounter, pgHint);
+    HintManager.addHintComponents(lblHintCounter, pgHint);
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);

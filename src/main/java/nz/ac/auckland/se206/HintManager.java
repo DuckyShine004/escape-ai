@@ -2,20 +2,20 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
 /** The HintManager class will help keep the hint counter the same */
 public class HintManager {
   private static List<Label> hintLabels;
-  private static List<Button> hintButtons;
+  private static List<Polygon> hintPolygons;
 
   public static void initialize() {
     // Initialize fields
     hintLabels = new ArrayList<Label>();
-    hintButtons = new ArrayList<Button>();
+    hintPolygons = new ArrayList<Polygon>();
   }
 
   /** Initialize the hints. This should initialize the hint counter label. */
@@ -40,14 +40,14 @@ public class HintManager {
    * updated globally.
    *
    * @param label the label to be added to the list of labels.
-   * @param button the button to be added to the list of buttons.
+   * @param polygon the polygon to be added to the list of polygons.
    */
-  public static void addHintComponents(Label label, Button button) {
+  public static void addHintComponents(Label label, Polygon polygon) {
     // Add the label to the list of labels
     hintLabels.add(label);
 
     // Add the button to the list of buttons
-    hintButtons.add(button);
+    hintPolygons.add(polygon);
   }
 
   /** Set the hint counter label to infinity (only in easy mode). */
@@ -87,8 +87,8 @@ public class HintManager {
 
   private static void disableHintButtons() {
     // Disable all hint buttons
-    for (Button btnHint : hintButtons) {
-      btnHint.setDisable(true);
+    for (Polygon pgHint : hintPolygons) {
+      pgHint.setDisable(true);
     }
   }
 }
