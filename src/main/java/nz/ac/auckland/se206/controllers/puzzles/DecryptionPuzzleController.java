@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.constants.Sequence;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -108,6 +109,11 @@ public class DecryptionPuzzleController {
   /** When hint is clicked, give the user a hint. */
   @FXML
   private void onHintClicked() {
+    // If the difficulty is hard, ignore user.
+    if (GameState.gameDifficulty == Difficulty.HARD) {
+      return;
+    }
+
     getUserHint();
   }
 
