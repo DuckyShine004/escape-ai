@@ -1,13 +1,12 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -33,6 +32,8 @@ public class BreakerRoomController extends RoomController {
   @FXML private TextField tfChat;
 
   @FXML private ImageView imgAvatar;
+  @FXML private ImageView imgAvatarShaddow;
+  @FXML private ImageView imgEmotion;
 
   /** Initialize the breaker room. */
   @FXML
@@ -45,6 +46,8 @@ public class BreakerRoomController extends RoomController {
 
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
+
+    ChatManager.addAiInstance(imgAvatar, imgEmotion);
   }
 
   /**
@@ -55,6 +58,18 @@ public class BreakerRoomController extends RoomController {
   @FXML
   private void onLeftButton() throws IOException {
     App.setUi(AppUi.OFFICE);
+  }
+
+  @FXML
+  private void onMouseEnterAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(true);
+  }
+
+  @FXML
+  private void onMouseExitAi(Event event) {
+    // enter
+    imgAvatarShaddow.setVisible(false);
   }
 
   /**
@@ -110,23 +125,6 @@ public class BreakerRoomController extends RoomController {
 
     GameState.muted = GameState.muted == false;
     GameState.tts.stop();
-
-    Image avatarImage;
-    try {
-      if (GameState.muted == true) {
-
-        avatarImage =
-            new Image(new FileInputStream("src/main/resources/images/" + "mutedavatar" + ".png"));
-
-      } else {
-        //
-        avatarImage =
-            new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
-      }
-
-      imgAvatar.setImage(avatarImage);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    ChatManager.toggleAiMuted();
   }
 }
