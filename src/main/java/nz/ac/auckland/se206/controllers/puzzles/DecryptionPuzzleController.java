@@ -193,7 +193,7 @@ public class DecryptionPuzzleController {
    */
   private void initializePseudocode() throws Exception {
     // Get a random pseudo code
-    psuedocodeIndex = (int) (Math.random() * (GameState.maxPseudocodes + 1));
+    psuedocodeIndex = (int) (Math.random() * (GameState.maxPseudocodes));
 
     System.out.println("Current psuedocode: " + psuedocodeIndex);
 
