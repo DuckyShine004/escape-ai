@@ -114,6 +114,11 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // If the number of remaining hints is zero
+    if (GameState.hintCounter == 0) {
+      return;
+    }
+
     getUserHint();
   }
 
