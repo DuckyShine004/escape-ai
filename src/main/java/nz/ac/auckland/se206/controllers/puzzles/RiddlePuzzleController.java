@@ -409,6 +409,7 @@ public class RiddlePuzzleController {
             ChatMessage responseMsg;
             // Send the button text as a response to GPT
             System.out.println(buttonText);
+            startThinking();
             if (getHint) {
               responseMsg = runGpt(new ChatMessage("user", "Define: " + buttonText));
               System.out.println(responseMsg.getContent());
@@ -420,6 +421,7 @@ public class RiddlePuzzleController {
             // Update UI based on the response
             Platform.runLater(
                 () -> {
+                  stopThinking();
                   // If the response is from the assistant and the answer is correct, update the
                   // number of riddles solved
                   if (responseMsg.getRole().equals("assistant")
