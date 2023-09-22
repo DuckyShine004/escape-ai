@@ -23,8 +23,6 @@ public class ChatManager {
   public static void initialize() {
     textAreas = new ArrayList<TextArea>();
     textFields = new ArrayList<TextField>();
-
-    initializeChat();
   }
 
   /**
@@ -33,7 +31,7 @@ public class ChatManager {
    * <p>Note: I would love to be able to name this method 'initializeGPT'. Unfortunately, we are not
    * allowed to have acronyms as method names as per the naming convention.
    */
-  public static void initializeChat() {
+  public static void start() {
     // initialize the chat message field
     ChatMessage gptMessage;
 
@@ -75,6 +73,7 @@ public class ChatManager {
   public static void getChatResponse(ChatMessage entityMessage, boolean isHint) {
     // add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
+
 
     // create a concurrent task for handling GPT response
     Task<Void> gptTask =
@@ -132,6 +131,7 @@ public class ChatManager {
 
     // Add the message to GPT's context
     gptRequest.addMessage(gptMessage);
+
 
     // Update all the chat areas
     updateChatResponse(gptOutput);
@@ -243,6 +243,6 @@ public class ChatManager {
     clearChatHistory();
 
     // Initialize the initial message again
-    ChatManager.initializeChat();
+    ChatManager.start();
   }
 }

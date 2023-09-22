@@ -30,6 +30,9 @@ public class MainMenuController {
   @FXML
   private void onStartButton() {
 
+    // initialize the chat manager
+    ChatManager.start();
+
     resetGlobalVariables();
 
     try {
@@ -46,9 +49,6 @@ public class MainMenuController {
     if (!GameState.isDeveloperMode) {
       Timer.play();
     }
-
-    // Clear the chat manager
-    ChatManager.reset();
 
     // change scene to Room
     App.setUi(AppUi.OFFICE);
