@@ -110,8 +110,10 @@ public class App extends Application {
   }
 
   /*
-   * This method will initalize the scenes, by storing instatnces of the loaded fxmls in SceneManager
-   * @throws IOException if fxml is not found
+   * This method will initalize the scenes, by storing instances of the loaded
+   * fxmls in SceneManager
+   *
+   * @throws IOException
    */
   private static void initalizeScenes() throws IOException {
     // initialize the timer
