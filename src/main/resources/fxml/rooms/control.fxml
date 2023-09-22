@@ -16,7 +16,7 @@
 <Pane fx:id="paControl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
       <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
-      <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" />
+      <TextField fx:id="tfChat" layoutX="480.0" layoutY="440.0" prefHeight="25.0" prefWidth="210.0" promptText="Enter Question" />
       <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="20.0" layoutY="65.0">
          <image>
             <Image url="@../../images/rooms/control.png" />
