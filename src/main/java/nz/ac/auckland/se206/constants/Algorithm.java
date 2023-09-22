@@ -10,7 +10,7 @@ public class Algorithm {
           + "6.     output \"NO\"; \n"
           + "7. }";
 
-  public static final String alogrithm1 =
+  public static final String algorithm1 =
       "1. int low = 1, high = 8; \n"
           + "2. int randomNum = "
           + "       Math.random(low, low); \n"
