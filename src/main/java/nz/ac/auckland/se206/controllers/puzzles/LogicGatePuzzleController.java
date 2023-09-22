@@ -1124,15 +1124,20 @@ public class LogicGatePuzzleController {
    */
   @FXML
   private void onHintClicked(MouseEvent mouseEvent) {
-    // Update the hint counter
-    HintManager.updateHintCounter();
-
     // no hints for hard mode
     if (GameState.gameDifficulty == Difficulty.HARD) {
       taGptText.appendText("System> " + "Hard Mode has Disabled Hints" + "\n\n");
       pgHint.setDisable(true);
       return;
     }
+
+    // If the number of remaining hints is zero
+    if (GameState.hintCounter == 0) {
+      return;
+    }
+
+    // Update the hint counter
+    HintManager.updateHintCounter();
 
     // create a new instance of input chat message object
     ChatMessage inputMessage = new ChatMessage("user", getHintPrompt());

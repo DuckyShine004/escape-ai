@@ -140,6 +140,11 @@ public class GeneralOfficeController extends RoomController {
       return;
     }
 
+    // If the number of remaining hints is zero
+    if (GameState.hintCounter == 0) {
+      return;
+    }
+
     // Update the hint counter
     HintManager.updateHintCounter();
 

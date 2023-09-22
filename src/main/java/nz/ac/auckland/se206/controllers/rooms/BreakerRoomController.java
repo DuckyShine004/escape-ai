@@ -123,6 +123,11 @@ public class BreakerRoomController extends RoomController {
       return;
     }
 
+    // If the number of remaining hints is zero
+    if (GameState.hintCounter == 0) {
+      return;
+    }
+
     // Update the hint counter
     HintManager.updateHintCounter();
 
