@@ -94,25 +94,6 @@ public class GeneralOfficeController {
       App.setRoot("puzzles/riddle");
       return;
     }
-
-    if (!GameState.isKeyFound) {
-      System.out.println("key found");
-    } else {
-      App.setUi(AppUi.WINNING);
-    }
-  }
-
-  /**
-   * Handles the click event on the vase.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickVase(MouseEvent event) {
-    System.out.println("vase clicked");
-    if (GameState.isRiddleResolved && !GameState.isKeyFound) {
-      GameState.isKeyFound = true;
-    }
   }
 
   @FXML
