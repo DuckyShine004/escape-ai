@@ -18,9 +18,9 @@
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
-                  <Pane fx:id="pLogicGateAnchor" prefHeight="305.0" prefWidth="500.0">
+                  <Pane fx:id="pneLogicGateAnchor" prefHeight="305.0" prefWidth="500.0">
                      <children>
-                        <Pane fx:id="pAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -30,7 +30,7 @@
                               <ImageView fx:id="imgInput1" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate1" layoutX="21.0" layoutY="111.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate1" layoutX="21.0" layoutY="111.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate1" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate1Clicked" onMouseEntered="#onGate1Enter" onMouseExited="#onGate1Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -40,7 +40,7 @@
                               <ImageView fx:id="imgInput3" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate2" layoutX="21.0" layoutY="173.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate2" layoutX="21.0" layoutY="173.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate2" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -50,7 +50,7 @@
                               <ImageView fx:id="imgInput5" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate3" layoutX="21.0" layoutY="233.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate3" layoutX="21.0" layoutY="233.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate3" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -60,7 +60,7 @@
                               <ImageView fx:id="imgInput7" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate4" layoutX="200.0" layoutY="73.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate4" layoutX="200.0" layoutY="73.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate4" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate4Clicked" onMouseEntered="#onGate4Enter" onMouseExited="#onGate4Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -68,7 +68,7 @@
                                  </cursor></ImageView>
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate5" layoutX="200.0" layoutY="201.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate5" layoutX="200.0" layoutY="201.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate5" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate5Clicked" onMouseEntered="#onGate5Enter" onMouseExited="#onGate5Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -76,7 +76,7 @@
                                  </cursor></ImageView>
                            </children>
                         </Pane>
-                        <Pane fx:id="pAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate6" fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -87,20 +87,20 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Pane>
-                        <Pane fx:id="pInput8" layoutX="96.0" layoutY="51.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pInput8_2" layoutX="195.0" layoutY="57.0" prefHeight="26.0" prefWidth="12.0" />
-                        <Pane fx:id="pInput9" layoutX="96.0" layoutY="126.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pInput9_2" layoutX="195.0" layoutY="101.0" prefHeight="30.0" prefWidth="12.0" />
-                        <Pane fx:id="pInput10" layoutX="96.0" layoutY="188.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pInput10_2" layoutX="195.0" layoutY="191.0" prefHeight="26.0" prefWidth="12.0" />
-                        <Pane fx:id="pInput11" layoutX="96.0" layoutY="248.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pInput11_2" layoutX="195.0" layoutY="228.0" prefHeight="26.0" prefWidth="12.0" />
-                        <Pane fx:id="pInput12" layoutX="274.0" layoutY="86.0" prefHeight="10.0" prefWidth="80.0" />
-                        <Pane fx:id="pInput12_2" layoutX="342.0" layoutY="96.0" prefHeight="50.0" prefWidth="12.0" />
-                        <Pane fx:id="pInput13" layoutX="274.0" layoutY="216.0" prefHeight="10.0" prefWidth="80.0" />
-                        <Pane fx:id="pInput13_2" layoutX="342.0" layoutY="164.0" prefHeight="52.0" prefWidth="12.0" />
-                        <Pane fx:id="pInput14" layoutX="415.0" layoutY="152.0" prefHeight="10.0" prefWidth="46.0" />
-                        <Pane fx:id="pInput14_2" layoutX="449.0" layoutY="160.0" prefHeight="50.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput8" layoutX="96.0" layoutY="51.0" prefHeight="10.0" prefWidth="111.0" />
+                        <Pane fx:id="pneInput8_2" layoutX="195.0" layoutY="57.0" prefHeight="26.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput9" layoutX="96.0" layoutY="126.0" prefHeight="10.0" prefWidth="111.0" />
+                        <Pane fx:id="pneInput9_2" layoutX="195.0" layoutY="101.0" prefHeight="30.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput10" layoutX="96.0" layoutY="188.0" prefHeight="10.0" prefWidth="111.0" />
+                        <Pane fx:id="pneInput10_2" layoutX="195.0" layoutY="191.0" prefHeight="26.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput11" layoutX="96.0" layoutY="248.0" prefHeight="10.0" prefWidth="111.0" />
+                        <Pane fx:id="pneInput11_2" layoutX="195.0" layoutY="228.0" prefHeight="26.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput12" layoutX="274.0" layoutY="86.0" prefHeight="10.0" prefWidth="80.0" />
+                        <Pane fx:id="pneInput12_2" layoutX="342.0" layoutY="96.0" prefHeight="50.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput13" layoutX="274.0" layoutY="216.0" prefHeight="10.0" prefWidth="80.0" />
+                        <Pane fx:id="pneInput13_2" layoutX="342.0" layoutY="164.0" prefHeight="52.0" prefWidth="12.0" />
+                        <Pane fx:id="pneInput14" layoutX="415.0" layoutY="152.0" prefHeight="10.0" prefWidth="46.0" />
+                        <Pane fx:id="pneInput14_2" layoutX="449.0" layoutY="160.0" prefHeight="50.0" prefWidth="12.0" />
                         <ImageView fx:id="imgSolvedLight" fitHeight="78.0" fitWidth="84.0" layoutX="417.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgHelpToDo" fitHeight="50.0" fitWidth="55.0" layoutX="342.0" layoutY="10.0" onMouseClicked="#onGetToDoHelp" pickOnBounds="true" preserveRatio="true" />
                      </children>
