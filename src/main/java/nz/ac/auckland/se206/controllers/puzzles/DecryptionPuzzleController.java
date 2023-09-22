@@ -71,10 +71,8 @@ public class DecryptionPuzzleController {
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
-    // Initialize GPT
+    // Initialize the decryption puzzle chats and algorithms
     initializeChat();
-
-    // Initialize the pseudocode puzzle
     initializePseudocode();
   }
 

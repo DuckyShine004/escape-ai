@@ -57,24 +57,32 @@ public class RiddlePuzzleController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   @FXML
-  public void initialize() throws ApiProxyException {
+  private void initialize() throws ApiProxyException {
 
+    // bind text properties to their buttons
     btnAnswer1.textProperty().bind(answer1Property);
     btnAnswer2.textProperty().bind(answer2Property);
     btnAnswer3.textProperty().bind(answer3Property);
+
+    // set the text of the buttons
     answer1Property.set("Answer 1");
     answer2Property.set("Answer 2");
     answer3Property.set("Answer 3");
 
+    // disable all buttons and the navigate button
     btnAnswer1.setDisable(true);
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
     btnGetHint.setDisable(true);
     paNext.setDisable(true);
 
+    // instantiate the tts
     this.tts = GameState.tts;
 
+    // update the scene to get the timer time
     updateScene();
+
+    // only load the riddle when not in developer mode
     if (!GameState.isDeveloperMode) {
       loadRiddle();
     }
@@ -463,12 +471,15 @@ public class RiddlePuzzleController {
   private void updateScene() {
     AnimationTimer animationTimer =
         new AnimationTimer() {
+          // This method is called every frame (~60 times per second)
           @Override
           public void handle(long time) {
+            // Update the timer text
             lblTime.setText(Timer.getTime());
           }
         };
 
+    // Start the animation timer
     animationTimer.start();
   }
 }

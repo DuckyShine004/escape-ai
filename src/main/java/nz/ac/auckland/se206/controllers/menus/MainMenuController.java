@@ -25,6 +25,10 @@ public class MainMenuController extends MenuController {
 
   @FXML private Label lblConfirm;
 
+  /** Returns the message to be displayed in the main menu
+   * 
+   * @return the message to be displayed in the main menu
+   */
   @Override
   public String getMessage() {
     return "You have been tasked by the Clients Nas-Ty and Not V to terminate a world-ending AI"

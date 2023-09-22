@@ -166,7 +166,7 @@ public class OptionsMenuController {
 
   /** When the switch to developer button is pressed, toggle the developer mode. */
   @FXML
-  private void onDeveloperMode() {
+  private void onDeveloperModeClicked() {
     // Toggle the developer mode state
     GameState.isDeveloperMode = !GameState.isDeveloperMode;
 

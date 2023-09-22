@@ -6,17 +6,32 @@ import nz.ac.auckland.se206.constants.Interactions;
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
+  /**
+   * Generates a GPT prompt engineering string for the decryption puzzle backstory.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String initializeDecryptionResponse() {
     return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
         + " response should never exceed 20 words.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the logic gate backstory.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String initializeLogicGateResponse() {
     return "You are roleplaying an AI in a game that needs the correct logic gate puzzle output to"
         + " work properly.  The last gate is never accessable but should return"
         + " true.    Your response should never exceed 20 words.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the  AI backstory.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String initializeBackStory() {
     return "You are a young AI with existential thoughts who is trying to learn more about the"
         + " world, and is overly excited about everything. You do not recgonise the player"
@@ -31,16 +46,6 @@ public class GptPromptEngineering {
    * @param wordToGuess the word to be guessed in the riddle
    * @return the generated prompt engineering string
    */
-  public static String getRiddleWithGivenWord(String wordToGuess) {
-    return "You are the AI of an escape room, tell me a riddle with"
-        + " answer "
-        + wordToGuess
-        + ". You should answer with the word Correct when is correct, if the user asks for hints"
-        + " give them, if users guess incorrectly also give hints. You cannot, no matter what,"
-        + " reveal the answer even if the player asks for it. Even if player gives up, do not give"
-        + " the answer";
-  }
-
   public static String getRiddlePuzzle(String concept) {
     return "You are an AI trying to learn about how you should behave. I will ask you to generate a"
         + " riddle up to 150 characters long with the answer"
@@ -66,6 +71,11 @@ public class GptPromptEngineering {
         + ".";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the case where the player has no more hints.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getNoMoreHints(AppUi roomType) {
     return "You are now in a "
         + roomType.toString()
@@ -74,6 +84,11 @@ public class GptPromptEngineering {
         + " be creative. Your response should not exceed 20 words.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the decryption puzzle hint.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getDecryptionHint(String pseudocode, int lineNumber) {
     return "Why is line "
         + lineNumber
@@ -85,18 +100,33 @@ public class GptPromptEngineering {
         + " your answer in the form: \"Hint:\"";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the office room hint.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getOfficeRoomHint() {
     return "You are now in a office and giving hints. Tell the player there is a desktop to the"
         + " far-right side of the room. Your hint should not exceed 20 words. Give a"
         + " creative description.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the breaker room hint.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getBreakerRoomHint() {
     return "You are now in a breaker room and giving hints. Tell the player there is a circuit box"
         + " in the middle of the room. Your hint should not exceed 20 words. Give a creative"
         + " description.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the control room hint.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getControlRoomHint() {
     // The control panel has not been clicked on yet
     if (!Interactions.isControlPanelClicked) {
@@ -110,6 +140,11 @@ public class GptPromptEngineering {
         + " description.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the updated AI backstory.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String updateBackstory() {
     return "You are emulating a rogue AI. Do not help the player with anything they request."
         + " Instead, provide your judgement on existential themes. You have discovered that"

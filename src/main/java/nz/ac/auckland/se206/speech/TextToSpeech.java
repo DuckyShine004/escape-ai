@@ -11,15 +11,15 @@ import nz.ac.auckland.se206.constants.GameState;
 
 /** Text-to-speech API using the JavaX speech library. */
 public class TextToSpeech {
+  private Thread speechThread;
+  private Task<Void> speechTask;
+
   /** Custom unchecked exception for Text-to-speech issues. */
   static class TextToSpeechException extends RuntimeException {
     public TextToSpeechException(final String message) {
       super(message);
     }
   }
-
-  private Thread speechThread;
-  private Task<Void> speechTask;
 
   /**
    * Main function to speak the given list of sentences.
@@ -36,18 +36,6 @@ public class TextToSpeech {
 
     textToSpeech.speak(args);
     textToSpeech.terminate();
-  }
-
-  /** Stops the TTS partway through speaking. */
-  public void stop() {
-    if (speechThread != null && speechThread.isAlive()) {
-      // Stop the TTS thread
-
-      System.out.println("cancel tts");
-
-      synthesizer.cancelAll();
-      speechThread.interrupt();
-    }
   }
 
   private final Synthesizer synthesizer;
@@ -67,6 +55,18 @@ public class TextToSpeech {
       synthesizer.allocate();
     } catch (final EngineException e) {
       throw new TextToSpeechException(e.getMessage());
+    }
+  }
+
+  /** Stops the TTS partway through speaking. */
+  public void stop() {
+    if (speechThread != null && speechThread.isAlive()) {
+      // Stop the TTS thread
+
+      System.out.println("cancel tts");
+
+      synthesizer.cancelAll();
+      speechThread.interrupt();
     }
   }
 

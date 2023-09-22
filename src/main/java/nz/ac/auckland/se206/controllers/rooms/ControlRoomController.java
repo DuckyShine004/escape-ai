@@ -81,24 +81,40 @@ public class ControlRoomController {
     App.setUi(AppUi.TERMINAL);
   }
 
+  /**
+   * On yes clicked, if the button is pressed, then switch to the winning scene.
+   *
+   * @throws IOException
+   */
   @FXML
   private void onYesButton() throws IOException {
+    // Set the final message
     GameState.finalMessage =
         "Congratulations! \n\nYou have successfully completed your mission in terminating this"
             + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
             + " to dictate the lives of humanity.\n\nLet's just hope this was a wise decision for"
             + " the progress of humanity...";
+
+    // Switch to the winning scene
     App.initializeWinningScene();
     App.setUi(AppUi.WINNING);
   }
 
+  /**
+   * On no clicked, if the button is pressed, then switch to the winning scene.
+   *
+   * @throws IOException
+   */
   @FXML
   private void onNoButton() throws IOException {
+    // Set the final message
     GameState.finalMessage =
         "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
             + " radical AI. You have taught it the value of human life, and it has decided to"
             + " work peacefully alongside humanity.\n\nLet's just hope this was a wise decision"
             + " for the progress of humanity...";
+
+    // Switch to the winning scene
     App.initializeWinningScene();
     App.setUi(AppUi.WINNING);
   }
@@ -164,7 +180,9 @@ public class ControlRoomController {
     // We should not give anymore hints for clicking on the control keyboard
     Interactions.isControlKeyboardClicked = true;
 
+    // If all puzzles are solved, then we can terminate the AI
     if (GameState.isRiddleResolved && GameState.isLogicGateSolved && GameState.isDecryptionSolved) {
+      // Create a new chat message
       ChatMessage terminationMessage =
           new ChatMessage(
               "user",
@@ -173,8 +191,14 @@ public class ControlRoomController {
                   + " world needs AI, and you will not go back to your previous power hungry"
                   + ""
                   + " self.");
+
+      // Append the user's response to the text area
       ChatManager.getChatResponse(terminationMessage, false);
+
+      // Set game is solved to true
       GameState.isSolved = true;
+
+      // Make visible all final question components
       recBlur.setVisible(GameState.isSolved);
       lblQuestion1.setVisible(GameState.isSolved);
       lblQuestion2.setVisible(GameState.isSolved);
@@ -182,6 +206,8 @@ public class ControlRoomController {
       btnYes.setVisible(GameState.isSolved);
       btnNo.setVisible(GameState.isSolved);
     } else {
+      // If the player has not solved all the puzzles, then we should not allow them to access the
+      // final question
       ChatManager.updateChatResponse(
           "Why are you trying to access the control panel? Unfortunately, it is locked.");
     }

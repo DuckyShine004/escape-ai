@@ -27,13 +27,16 @@ public class Timer {
    * @param time the input time. This should be 2, 4, or 6 minutes only (in seconds).
    */
   public static void initialize() {
+    // Create a new arraylist of labels
     labels = new ArrayList<Label>();
 
+    // Create a new timeline
     timer =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
                 event -> {
+                  // Update the timer
                   Timer.update();
                 }));
   }
