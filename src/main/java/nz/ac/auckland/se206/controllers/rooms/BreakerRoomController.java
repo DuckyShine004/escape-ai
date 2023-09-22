@@ -33,6 +33,7 @@ public class BreakerRoomController extends RoomController {
 
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgAvatarShaddow;
+  @FXML private ImageView imgEmotion;
 
   /** Initialize the breaker room. */
   @FXML
@@ -46,7 +47,7 @@ public class BreakerRoomController extends RoomController {
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
 
-    ChatManager.addAiInstance(imgAvatar);
+    ChatManager.addAiInstance(imgAvatar, imgEmotion);
   }
 
   /**

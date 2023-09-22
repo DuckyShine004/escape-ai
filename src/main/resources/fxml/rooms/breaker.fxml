@@ -61,5 +61,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
+      <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="413.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

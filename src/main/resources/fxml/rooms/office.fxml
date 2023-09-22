@@ -61,5 +61,6 @@
          </cursor></Polygon>
       <Button fx:id="btnLeft" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
       <Button fx:id="btnRight" layoutX="369.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
+      <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="54.0" layoutX="413.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

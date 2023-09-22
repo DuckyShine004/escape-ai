@@ -26,6 +26,9 @@ public class ChatManager {
   private static Image AiFigure;
   private static Image mutedAiFigure;
 
+  private static List<ImageView> imgEmotions;
+  private static Image questioningImage;
+
   private static ChatCompletionRequest gptRequest;
 
   /** Initialize the chat manager. */
@@ -35,12 +38,13 @@ public class ChatManager {
     textFields = new ArrayList<TextField>();
 
     imgAiFigures = new ArrayList<ImageView>();
+    imgEmotions = new ArrayList<ImageView>();
 
-    initializeAiFigures();
+    initializeImages();
   }
 
   /** loads ImageView and Images into class */
-  private static void initializeAiFigures() {
+  private static void initializeImages() {
     //
     try {
 
@@ -48,6 +52,8 @@ public class ChatManager {
           new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
       mutedAiFigure =
           new Image(new FileInputStream("src/main/resources/images/" + "mutedavatar" + ".png"));
+      questioningImage =
+          new Image(new FileInputStream("src/main/resources/images/" + "questionmark" + ".png"));
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -55,8 +61,9 @@ public class ChatManager {
   }
 
   /** add instances of ImageView into list */
-  public static void addAiInstance(ImageView AiFigure) {
+  public static void addAiInstance(ImageView AiFigure, ImageView AiEmotion) {
     imgAiFigures.add(AiFigure);
+    imgEmotions.add(AiEmotion);
   }
 
   /** toggles image of scene AIs */
@@ -145,6 +152,7 @@ public class ChatManager {
     // If the task is running, disable certain components
     gptTask.setOnRunning(
         event -> {
+          startThinking();
           disableChatComponents();
         });
 
@@ -152,6 +160,7 @@ public class ChatManager {
     gptTask.setOnSucceeded(
         event -> {
           enableChatComponents();
+          stopThinking();
 
           // Remove the previous message if it was a hint
           if (isHint) {
@@ -162,6 +171,7 @@ public class ChatManager {
     // If the task fails
     gptTask.setOnFailed(
         event -> {
+          stopThinking();
           System.out.println("FAILED TO GENERATE RESPONSE");
         });
 
@@ -355,6 +365,31 @@ public class ChatManager {
     // Enable text field components
     for (TextField tfChat : textFields) {
       tfChat.setDisable(false);
+    }
+  }
+
+  /** set a question mark and thinking indicator */
+  private static void startThinking() {
+    //
+    for (ImageView imageView : imgEmotions) {
+      imageView.setImage(questioningImage);
+      imageView.setVisible(true);
+    }
+
+    for (TextField tfChat : textFields) {
+      tfChat.setText("Hmmm. Let me think about that");
+    }
+  }
+
+  /** remove question mark and thinking indicator */
+  private static void stopThinking() {
+    //
+    for (ImageView imageView : imgEmotions) {
+      imageView.setVisible(false);
+    }
+
+    for (TextField tfChat : textFields) {
+      tfChat.setText("");
     }
   }
 

@@ -37,6 +37,7 @@ public class GeneralOfficeController extends RoomController {
 
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgAvatarShaddow;
+  @FXML private ImageView imgEmotion;
 
   /** Initializes the general office. */
   @FXML
@@ -50,7 +51,7 @@ public class GeneralOfficeController extends RoomController {
     // Add the text area and text field to the list of chat components
     ChatManager.addChatComponents(taChat, tfChat);
 
-    ChatManager.addAiInstance(imgAvatar);
+    ChatManager.addAiInstance(imgAvatar, imgEmotion);
   }
 
   @FXML
