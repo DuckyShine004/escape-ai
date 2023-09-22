@@ -73,17 +73,16 @@ public class HintManager {
       return;
     }
 
-    // If we have no more hints left, disable the hint buttons
-    if (GameState.hintCounter == 0) {
-      disableHintButtons();
-      return;
-    }
-
     // Decrement the amount of hints
     GameState.hintCounter--;
 
     // Set the hint counter label
     setHintCounter();
+
+    // If we have no more hints left, disable the hint buttons
+    if (GameState.hintCounter == 0) {
+      disableHintButtons();
+    }
   }
 
   private static void disableHintButtons() {
