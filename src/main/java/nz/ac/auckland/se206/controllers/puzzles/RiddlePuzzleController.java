@@ -208,8 +208,8 @@ public class RiddlePuzzleController {
             } else {
               // If GPT does not provide options in the correct format, generate them manually
               answer1 = concept;
-              answer2 = concepts[(randomNumber + 1) % 10];
-              answer3 = concepts[(randomNumber + 2) % 10];
+              answer2 = concepts[(randomNumber + 1) % 20];
+              answer3 = concepts[(randomNumber + 2) % 20];
             }
             // Update the UI thread
             Platform.runLater(
@@ -355,6 +355,11 @@ public class RiddlePuzzleController {
       answer3 =
           segments[(2 + randomNumber) % 3].substring(
               segments[(2 + randomNumber) % 3].lastIndexOf("{") + 1);
+    } else {
+      // If GPT does not provide options in the correct format, generate them manually
+      answer1 = concept;
+      answer2 = "Death";
+      answer3 = "Culture";
     }
   }
 
