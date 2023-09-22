@@ -61,7 +61,7 @@ public class LogicGatePuzzleController {
   @FXML private Label lblHelperGate3;
 
   // list to hold helper gates
-  List<Label> lblHelperGates;
+  private List<Label> lblHelperGates;
 
   // input logic img views
   @FXML private ImageView imgInput0;
@@ -719,7 +719,7 @@ public class LogicGatePuzzleController {
 
     for (int i = 0; i < logicInSection.size(); i++) {
 
-      String colour = "";
+      String colour;
 
       if (logicTrail.get(i + 8) == true) {
 
