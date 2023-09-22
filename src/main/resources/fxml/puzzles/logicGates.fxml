@@ -18,65 +18,10 @@
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
                <children>
-                  <Pane fx:id="pneLogicGateAnchor" prefHeight="305.0" prefWidth="500.0">
+                  <Pane id="broken-glass-pane" fx:id="pneLogicGateAnchor" prefHeight="290.0" prefWidth="500.0">
                      <children>
-                        <Pane fx:id="pneAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
-                                 </cursor></ImageView>
-                              <ImageView fx:id="imgInput0" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="imgInput1" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pneAnswerGate1" layoutX="21.0" layoutY="111.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate1" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate1Clicked" onMouseEntered="#onGate1Enter" onMouseExited="#onGate1Exit" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
-                                 </cursor></ImageView>
-                              <ImageView fx:id="imgInput2" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="imgInput3" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pneAnswerGate2" layoutX="21.0" layoutY="173.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate2" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
-                                 </cursor></ImageView>
-                              <ImageView fx:id="imgInput4" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="imgInput5" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pneAnswerGate3" layoutX="21.0" layoutY="233.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate3" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
-                                 </cursor></ImageView>
-                              <ImageView fx:id="imgInput6" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="imgInput7" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pneAnswerGate4" layoutX="200.0" layoutY="73.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate4" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate4Clicked" onMouseEntered="#onGate4Enter" onMouseExited="#onGate4Exit" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
-                                 </cursor></ImageView>
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pneAnswerGate5" layoutX="200.0" layoutY="201.0" prefHeight="60.0" prefWidth="90.0">
-                           <children>
-                              <ImageView fx:id="imgAnswerGate5" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate5Clicked" onMouseEntered="#onGate5Enter" onMouseExited="#onGate5Exit" pickOnBounds="true" preserveRatio="true">
-                                 <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
-                                 </cursor></ImageView>
-                           </children>
-                        </Pane>
-                        <Pane fx:id="pneAnswerGate6" layoutX="346.0" layoutY="136.0" prefHeight="60.0" prefWidth="90.0">
+                        <ImageView fx:id="imgBlueCircuits" fitHeight="285.0" fitWidth="500.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" />
+                        <Pane fx:id="pneAnswerGate6" layoutX="346.0" layoutY="136.0" opacity="0.8" prefHeight="50.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate6" fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -86,6 +31,63 @@
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
+                        </Pane>
+                        <ImageView fx:id="imgGlassScreen" fitHeight="290.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+                        <Pane fx:id="pneAnswerGate0" layoutX="21.0" layoutY="35.0" prefHeight="50.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate0" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate0Clicked" onMouseEntered="#onGate0Enter" onMouseExited="#onGate0Exit" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor></ImageView>
+                              <ImageView fx:id="imgInput0" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgInput1" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pneAnswerGate1" layoutX="21.0" layoutY="111.0" prefHeight="50.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate1" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate1Clicked" onMouseEntered="#onGate1Enter" onMouseExited="#onGate1Exit" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor></ImageView>
+                              <ImageView fx:id="imgInput2" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgInput3" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pneAnswerGate2" layoutX="21.0" layoutY="173.0" prefHeight="50.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate2" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate2Clicked" onMouseEntered="#onGate2Enter" onMouseExited="#onGate2Exit" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor></ImageView>
+                              <ImageView fx:id="imgInput4" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgInput5" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pneAnswerGate3" layoutX="21.0" layoutY="233.0" prefHeight="50.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate3" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate3Clicked" onMouseEntered="#onGate3Enter" onMouseExited="#onGate3Exit" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor></ImageView>
+                              <ImageView fx:id="imgInput6" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgInput7" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pneAnswerGate4" layoutX="200.0" layoutY="73.0" prefHeight="50.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate4" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate4Clicked" onMouseEntered="#onGate4Enter" onMouseExited="#onGate4Exit" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor></ImageView>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pneAnswerGate5" layoutX="200.0" layoutY="201.0" prefHeight="50.0" prefWidth="90.0">
+                           <children>
+                              <ImageView fx:id="imgAnswerGate5" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate5Clicked" onMouseEntered="#onGate5Enter" onMouseExited="#onGate5Exit" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor></ImageView>
+                           </children>
                         </Pane>
                         <Pane fx:id="pneInput8" layoutX="96.0" layoutY="51.0" prefHeight="10.0" prefWidth="111.0" />
                         <Pane fx:id="pneInput8_2" layoutX="195.0" layoutY="57.0" prefHeight="26.0" prefWidth="12.0" />
@@ -144,7 +146,6 @@
                   </Pane>
                </children>
             </VBox>
-            <ImageView fx:id="imgBlueCircuits" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <Pane prefHeight="50.0" prefWidth="720.0" styleClass="header-pane" stylesheets="@../../css/menus/topBar.css">
@@ -170,6 +171,5 @@
          </font>
       </TextArea>
       <TextField fx:id="tfTextInput" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
-      <ImageView fx:id="imgGlassScreen" fitHeight="150.0" fitWidth="200.0" layoutX="481.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>
