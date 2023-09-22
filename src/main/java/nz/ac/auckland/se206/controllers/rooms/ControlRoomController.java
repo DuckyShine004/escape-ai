@@ -1,11 +1,13 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -43,6 +45,8 @@ public class ControlRoomController extends RoomController {
   @FXML private Rectangle recBlur;
 
   @FXML private ImageView imgButton;
+
+  @FXML private ImageView imgAvatar;
 
   /** Initializes the control room. */
   @FXML
@@ -140,6 +144,25 @@ public class ControlRoomController extends RoomController {
   @FXML
   private void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
+    GameState.tts.stop();
+
+    Image avatarImage;
+    try {
+      if (GameState.muted == true) {
+
+        avatarImage =
+            new Image(new FileInputStream("src/main/resources/images/" + "mutedavatar" + ".png"));
+
+      } else {
+        //
+        avatarImage =
+            new Image(new FileInputStream("src/main/resources/images/" + "avataroutline" + ".png"));
+      }
+
+      imgAvatar.setImage(avatarImage);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @FXML
