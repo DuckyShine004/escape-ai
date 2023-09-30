@@ -12,4 +12,19 @@ public class Interactions {
 
   /** Indicates whether the control keyboard in the control room has been clicked or not. */
   public static boolean isControlKeyboardClicked = false;
+
+  /** Reset all variables to be resetted in this class to their initial value. */
+  public static void reset() {
+    // Reset desktop clicked
+    isDesktopClicked = false;
+
+    // Reset circuit breaker clicked
+    isCircuitBoxClicked = false;
+
+    // Reset control panel clicked
+    isControlPanelClicked = false;
+
+    // reset control keybooard clicked
+    isControlKeyboardClicked = false;
+  }
 }

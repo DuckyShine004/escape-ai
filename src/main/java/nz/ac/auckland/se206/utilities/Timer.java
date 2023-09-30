@@ -52,6 +52,7 @@ public class Timer {
     minutes = time / 60;
     seconds = time % 60;
 
+    // Set the timer label for every single label
     for (Label label : labels) {
       label.setText(getTime());
     }

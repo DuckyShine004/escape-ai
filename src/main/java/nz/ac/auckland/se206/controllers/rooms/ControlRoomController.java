@@ -121,6 +121,9 @@ public class ControlRoomController extends RoomController {
     // Switch to the winning scene
     App.initializeWinningScene();
     App.setUi(AppUi.WINNING);
+
+    // Stop the timer
+    Timer.stop();
   }
 
   /**
@@ -140,6 +143,9 @@ public class ControlRoomController extends RoomController {
     // Switch to the winning scene
     App.initializeWinningScene();
     App.setUi(AppUi.WINNING);
+
+    // Stop the timer
+    Timer.stop();
   }
 
   @FXML
