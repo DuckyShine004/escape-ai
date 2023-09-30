@@ -45,6 +45,7 @@ public class ControlRoomController extends RoomController {
   @FXML private TextField tfChat;
 
   @FXML private Rectangle recBlur;
+  @FXML private Rectangle recOpaque;
 
   @FXML private ImageView imgButton;
 
@@ -183,6 +184,16 @@ public class ControlRoomController extends RoomController {
     GameState.muted = GameState.muted == false;
     GameState.tts.stop();
     ChatManager.toggleAiMuted();
+    GameState.isChatting = !GameState.isChatting;
+    if (GameState.isChatting) {
+      taChat.setVisible(true);
+      tfChat.setVisible(true);
+      recOpaque.setVisible(true);
+    } else {
+      taChat.setVisible(false);
+      tfChat.setVisible(false);
+      recOpaque.setVisible(false);
+    }
   }
 
   @FXML

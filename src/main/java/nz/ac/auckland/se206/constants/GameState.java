@@ -23,6 +23,8 @@ public class GameState {
 
   public static AppUi currentRoom = AppUi.MENU;
 
+  public static boolean isChatting = false;
+
   /** Game difficulty, starts in easy */
   public static Difficulty gameDifficulty = Difficulty.EASY;
 

@@ -78,8 +78,6 @@
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" />
-      <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" styleClass="custom-text-field" stylesheets="@../../css/index.css" />
       <Line endY="25.0" fill="WHITE" layoutX="10.0" layoutY="15.0" stroke="#0093d7" strokeWidth="6.0">
          <effect>
             <Glow />
@@ -111,19 +109,6 @@
       <ImageView fx:id="imgButton" fitHeight="150.0" fitWidth="150.0" layoutX="145.0" layoutY="214.0" onMouseClicked="#onAiClicked" styleClass="imageView" visible="false">
          <image>
             <Image url="@../../images/redubutton.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="287.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
-         <image>
-            <Image url="@../../images/avataroutline.png" />
-         </image>
-         <effect>
-            <ColorAdjust />
-         </effect>
-      </ImageView>
-      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="300.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
-         <image>
-            <Image url="@../../images/mutedavatar.png" />
          </image>
       </ImageView>
       <Rectangle fx:id="recBlur" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="400.0" layoutX="12.0" layoutY="65.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" visible="false" width="400.0" />
@@ -204,5 +189,21 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
+      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" opacity="0.8" layoutX="0.0" layoutY="0.0" height="480.0" width="720.0" visible="false" />
+      <TextArea fx:id="taChat" editable="false" layoutX="440.0" layoutY="65.0" prefHeight="370.0" prefWidth="250.0" wrapText="true" visible="false"/>
+      <TextField fx:id="tfChat" layoutX="440.0" layoutY="440.0" prefHeight="25.0" prefWidth="250.0" styleClass="custom-text-field" stylesheets="@../../css/index.css" visible="false"/>
+      <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="287.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
+         <image>
+            <Image url="@../../images/avataroutline.png" />
+         </image>
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="300.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
+         <image>
+            <Image url="@../../images/mutedavatar.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
