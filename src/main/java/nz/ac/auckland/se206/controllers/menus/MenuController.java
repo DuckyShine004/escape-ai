@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public abstract class MenuController {
@@ -165,6 +166,9 @@ public abstract class MenuController {
 
     // Reset the amount of hints user has
     GameState.hintCounter = GameState.maxHints;
+
+    // Reset all interactions
+    Interactions.reset();
   }
 
   /** Starts the game. */
@@ -218,6 +222,8 @@ public abstract class MenuController {
 
     // Remove visibility of the text area
     taMessage.setVisible(false);
+
+    // TODO: Stop the timer
   }
 
   /** Disables the exit components of the menu. */

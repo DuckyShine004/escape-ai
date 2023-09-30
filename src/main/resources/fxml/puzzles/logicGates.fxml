@@ -19,6 +19,58 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" styleClass="anchor-pane" stylesheets="@../../css/puzzles/logicGates.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.LogicGatePuzzleController">
    <children>
+      <GridPane gridLinesVisible="true" layoutX="-15.0" layoutY="-15.0" opacity="0.1" styleClass="custom-grid-pane" stylesheets="@../../css/index.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
       <Button layoutX="600.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" prefHeight="78.0" prefWidth="111.0" styleClass="back-button" stylesheets="@../../css/puzzles/logicGates.css" text="Back" />
       <HBox layoutX="8.0" layoutY="60.0" prefHeight="450.0" prefWidth="547.0">
          <children>
@@ -172,58 +224,6 @@
          </font>
       </TextArea>
       <TextField fx:id="tfTextInput" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
-      <GridPane gridLinesVisible="true" layoutX="-15.0" layoutY="-15.0" opacity="0.1" styleClass="custom-grid-pane" stylesheets="@../../css/index.css">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
       <Line endY="25.0" fill="WHITE" layoutX="10.0" layoutY="15.0" stroke="#0093d7" strokeWidth="6.0">
          <effect>
             <Glow />
@@ -234,7 +234,28 @@
             <Glow />
          </effect>
       </Line>
+      <Line endX="120.0" fill="WHITE" layoutX="308.0" layoutY="10.0" stroke="#0093d7" strokeWidth="2.0">
+         <effect>
+            <Glow />
+         </effect>
+      </Line>
       <Label layoutX="21.0" layoutY="8.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="LOGIC GATE PUZZLE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label layoutX="313.0" layoutY="8.0" text="HINT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Label>
+      <Label fx:id="lblHintCounter" layoutX="380.0" layoutY="8.0" text="0/0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -263,26 +284,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <Line endX="120.0" fill="WHITE" layoutX="308.0" layoutY="10.0" stroke="#0093d7" strokeWidth="2.0">
-         <effect>
-            <Glow />
-         </effect>
-      </Line>
-      <Label layoutX="313.0" layoutY="8.0" text="HINT" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <effect>
-            <Glow level="0.65" />
-         </effect>
-      </Label>
-      <Label fx:id="lblHintCounter" layoutX="380.0" layoutY="8.0" text="0/0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <effect>
-            <Glow level="0.65" />
-         </effect>
-      </Label>
    </children>
 </Pane>
