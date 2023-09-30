@@ -44,6 +44,7 @@ public abstract class RoomController {
       taChat.setVisible(true);
       tfChat.setVisible(true);
       recOpaque.setVisible(true);
+      
     } else {
       taChat.setVisible(false);
       tfChat.setVisible(false);

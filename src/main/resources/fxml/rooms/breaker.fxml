@@ -158,9 +158,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" opacity="0.8" onMouseClicked="#onAiClicked" layoutX="0.0" layoutY="0.0" height="480.0" width="720.0" visible="false" />
-      <TextArea fx:id="taChat" editable="false" layoutX="320.0" layoutY="65.0" prefHeight="330.0" prefWidth="250.0" wrapText="true" visible="false"/>
-      <TextField fx:id="tfChat" layoutX="320.0" layoutY="400.0" prefHeight="25.0" prefWidth="250.0" styleClass="custom-text-field" stylesheets="@../../css/index.css" visible="false"/>
+      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
+      <TextArea fx:id="taChat" editable="false" layoutX="50.0" layoutY="65.0" prefHeight="335.0" prefWidth="450.0" styleClass="custom-text-area" stylesheets="@../../css/menus/chatArea.css" visible="false" wrapText="true" />
+      <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false" promptText="Enter message">
+         <effect>
+            <Glow level="0.1" />
+         </effect>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
       <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="537.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
          <image>
             <Image url="@../../images/avataroutline.png" />

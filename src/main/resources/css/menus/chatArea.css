@@ -1,19 +1,99 @@
-/* chatArea.css */
-
-/* Style the TextArea for chat messages */
-.text-area {
-  -fx-font-size: 14px;
-  -fx-pref-height: 200px;
+/* For a red border style pane */
+.red-border-pane {
+  -fx-border-color: rgb(255, 0, 0);
+  -fx-border-width: 2px;
 }
 
-/* Style the input TextField */
-.text-field {
-  -fx-font-size: 14px;
-  -fx-pref-width: 200px;
+/* For a green border style pane */
+.green-border-pane {
+  -fx-border-color: rgb(0, 255, 0);
+  -fx-border-width: 2px;
 }
 
-/* Style the Send Button */
-.button {
-  -fx-font-size: 14px;
-  -fx-pref-width: 80px;
+/* For a orange border style pane */
+.orange-border-pane {
+  -fx-border-color: rgb(255, 135, 0);
+  -fx-border-width: 2px;
 }
+
+/* Font styling */
+@font-face {
+  font-family: Terminus (TTF);
+  src: url("/../../fonts/terminal.ttf");
+}
+
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/determination.ttf");
+}
+
+@font-face {
+  font-family: DS-Digital;
+  src: url("/../../fonts/timer.ttf");
+}
+
+/* Label with custom font */
+.custom-label {
+  -fx-font-family: "Determination Mono Web";
+}
+
+.custom-label:disabled {
+  -fx-font-size: 40;
+}
+
+/* Timer label */
+.timer-label {
+  -fx-font-family: "DS-Digital";
+}
+
+/* For the text area styling */
+.custom-text-area {
+  -fx-text-alignment: top-left;
+  -fx-background-color: rgba(0, 0, 0, 0.4);
+  -fx-text-inner-color: rgb(119, 232, 230);
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 18;
+  -fx-opacity: 1;
+  -fx-border-color: rgb(119, 232, 230);
+  -fx-border-width: 2px 2px 0px 2px;
+}
+
+.custom-text-area .scroll-bar:horizontal:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
+
+.custom-text-area .scroll-bar:vertical:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
+
+.custom-text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane .content {
+  -fx-background-color: transparent;
+}
+
+/* Text field styling */
+.custom-text-field {
+  -fx-text-alignment: top-left;
+  -fx-background-color: rgba(0, 0, 0, 0.4);
+  -fx-text-inner-color: rgb(119, 232, 230);
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 18;
+  -fx-opacity: 1;
+  -fx-border-color: rgb(119, 232, 230);
+  -fx-border-width: 0px 2px 2px 2px;
+}
+
+.custom-text-field .typing {
+  -fx-font-size: 18;
+}
+
+
