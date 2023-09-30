@@ -218,6 +218,8 @@ public abstract class MenuController {
 
     // Remove visibility of the text area
     taMessage.setVisible(false);
+
+    // TODO: Stop the timer
   }
 
   /** Disables the exit components of the menu. */
