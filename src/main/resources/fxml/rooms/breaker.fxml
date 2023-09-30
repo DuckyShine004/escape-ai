@@ -158,7 +158,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" opacity="0.8" layoutX="0.0" layoutY="0.0" height="480.0" width="720.0" visible="false" />
+      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" opacity="0.8" onMouseClicked="#onAiClicked" layoutX="0.0" layoutY="0.0" height="480.0" width="720.0" visible="false" />
       <TextArea fx:id="taChat" editable="false" layoutX="320.0" layoutY="65.0" prefHeight="330.0" prefWidth="250.0" wrapText="true" visible="false"/>
       <TextField fx:id="tfChat" layoutX="320.0" layoutY="400.0" prefHeight="25.0" prefWidth="250.0" styleClass="custom-text-field" stylesheets="@../../css/index.css" visible="false"/>
       <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="537.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">

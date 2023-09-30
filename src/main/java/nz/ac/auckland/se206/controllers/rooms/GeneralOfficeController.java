@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
@@ -37,10 +35,7 @@ public class GeneralOfficeController extends RoomController {
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
 
-  @FXML private Rectangle recOpaque;
-
   @FXML private ImageView imgAvatar;
-  @FXML private ImageView imgAvatarShaddow;
   @FXML private ImageView imgEmotion;
 
   /** Initializes the general office. */
@@ -56,35 +51,6 @@ public class GeneralOfficeController extends RoomController {
     ChatManager.addChatComponents(taChat, tfChat);
 
     ChatManager.addAiInstance(imgAvatar, imgEmotion);
-  }
-
-  @FXML
-  private void onAiClicked(MouseEvent event) {
-    GameState.muted = GameState.muted == false;
-    GameState.tts.stop();
-    ChatManager.toggleAiMuted();
-    GameState.isChatting = !GameState.isChatting;
-    if (GameState.isChatting) {
-      taChat.setVisible(true);
-      tfChat.setVisible(true);
-      recOpaque.setVisible(true);
-    } else {
-      taChat.setVisible(false);
-      tfChat.setVisible(false);
-      recOpaque.setVisible(false);
-    }
-  }
-
-  @FXML
-  private void onMouseEnterAi(Event event) {
-    // enter
-    imgAvatarShaddow.setVisible(true);
-  }
-
-  @FXML
-  private void onMouseExitAi(Event event) {
-    // enter
-    imgAvatarShaddow.setVisible(false);
   }
 
   /**
