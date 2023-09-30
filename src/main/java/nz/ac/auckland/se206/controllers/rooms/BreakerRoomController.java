@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
@@ -34,6 +35,8 @@ public class BreakerRoomController extends RoomController {
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
+
+  @FXML private Rectangle recOpaque;
 
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgAvatarShaddow;
@@ -150,5 +153,15 @@ public class BreakerRoomController extends RoomController {
     GameState.muted = GameState.muted == false;
     GameState.tts.stop();
     ChatManager.toggleAiMuted();
+    GameState.isChatting = !GameState.isChatting;
+    if (GameState.isChatting) {
+      taChat.setVisible(true);
+      tfChat.setVisible(true);
+      recOpaque.setVisible(true);
+    } else {
+      taChat.setVisible(false);
+      tfChat.setVisible(false);
+      recOpaque.setVisible(false);
+    }
   }
 }
