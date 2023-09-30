@@ -169,6 +169,13 @@ public abstract class MenuController {
 
     // Reset all interactions
     Interactions.reset();
+
+    // Reset the chatting status
+    GameState.isChatting = false;
+
+    // Reset the TTS
+    GameState.isSpeaking = false;
+
   }
 
   /** Starts the game. */

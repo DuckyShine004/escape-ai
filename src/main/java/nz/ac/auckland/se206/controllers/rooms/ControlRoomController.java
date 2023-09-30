@@ -1,14 +1,12 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -45,6 +43,7 @@ public class ControlRoomController extends RoomController {
   @FXML private TextField tfChat;
 
   @FXML private Rectangle recBlur;
+  @FXML private Rectangle recOpaque;
 
   @FXML private ImageView imgButton;
 
@@ -65,18 +64,6 @@ public class ControlRoomController extends RoomController {
     ChatManager.addChatComponents(taChat, tfChat);
 
     ChatManager.addAiInstance(imgAvatar, imgEmotion);
-  }
-
-  @FXML
-  private void onMouseEnterAi(Event event) {
-    // enter
-    imgAvatarShaddow.setVisible(true);
-  }
-
-  @FXML
-  private void onMouseExitAi(Event event) {
-    // enter
-    imgAvatarShaddow.setVisible(false);
   }
 
   /**
@@ -178,12 +165,6 @@ public class ControlRoomController extends RoomController {
     pgControlKeyboard.setOpacity(0);
   }
 
-  @FXML
-  private void onAiClicked(MouseEvent event) {
-    GameState.muted = GameState.muted == false;
-    GameState.tts.stop();
-    ChatManager.toggleAiMuted();
-  }
 
   @FXML
   private void onHintClicked() {

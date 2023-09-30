@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
 import java.io.IOException;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
@@ -34,6 +34,8 @@ public class BreakerRoomController extends RoomController {
 
   @FXML private TextArea taChat;
   @FXML private TextField tfChat;
+
+  @FXML private Rectangle recOpaque;
 
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgAvatarShaddow;
@@ -62,18 +64,6 @@ public class BreakerRoomController extends RoomController {
   @FXML
   private void onLeftButton() throws IOException {
     App.setUi(AppUi.OFFICE);
-  }
-
-  @FXML
-  private void onMouseEnterAi(Event event) {
-    // enter
-    imgAvatarShaddow.setVisible(true);
-  }
-
-  @FXML
-  private void onMouseExitAi(Event event) {
-    // enter
-    imgAvatarShaddow.setVisible(false);
   }
 
   /**
@@ -144,11 +134,4 @@ public class BreakerRoomController extends RoomController {
     ChatManager.getUserHint(true);
   }
 
-  @FXML
-  private void onAiClicked(MouseEvent mouseEvent) {
-
-    GameState.muted = GameState.muted == false;
-    GameState.tts.stop();
-    ChatManager.toggleAiMuted();
-  }
 }

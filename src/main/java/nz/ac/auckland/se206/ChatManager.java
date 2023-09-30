@@ -371,7 +371,7 @@ public class ChatManager {
   private static void enableChatComponents() {
     // Enable text field components
     for (TextField tfChat : textFields) {
-      tfChat.setDisable(false);
+      tfChat.setEditable(true);
     }
 
     // Enable all hint buttons
@@ -407,7 +407,7 @@ public class ChatManager {
   private static void disableChatComponents() {
     // Disable text field components
     for (TextField tfChat : textFields) {
-      tfChat.setDisable(true);
+      tfChat.setEditable(false);
     }
 
     // Disable all hint buttonss
