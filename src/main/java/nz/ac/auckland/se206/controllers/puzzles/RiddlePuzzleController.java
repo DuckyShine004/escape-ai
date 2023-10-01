@@ -110,6 +110,8 @@ public class RiddlePuzzleController {
     if (!GameState.isDeveloperMode) {
       loadRiddle();
     }
+
+    HintManager.initializeHintCounter();
   }
 
   /**
@@ -491,6 +493,10 @@ public class RiddlePuzzleController {
 
     // If the number of remaining hints is zero
     if (GameState.hintCounter == 0) {
+      return;
+    }
+
+    if (getHint == true) {
       return;
     }
 

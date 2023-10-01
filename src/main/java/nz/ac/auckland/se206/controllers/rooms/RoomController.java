@@ -35,7 +35,7 @@ public abstract class RoomController {
   @FXML private ImageView imgEmotion;
 
   @FXML
-  private void onAiClicked(MouseEvent event) {
+  protected void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
     GameState.tts.stop();
     ChatManager.toggleAiMuted();
