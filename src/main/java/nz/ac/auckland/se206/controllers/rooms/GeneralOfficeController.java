@@ -124,6 +124,11 @@ public class GeneralOfficeController extends RoomController {
       return;
     }
 
+    // Toggle the AI
+    if (!GameState.isChatting) {
+      onAiClicked(mouseEvent);
+    }
+
     // Update the hint counter
     HintManager.updateHintCounter();
 
