@@ -13,6 +13,13 @@
 
 <Pane fx:id="paDecryption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: rgb(20,20,23);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
    <children>
+      <Polygon fx:id="pgPasswordLeft" fill="#1d1e25" layoutX="404.0" layoutY="-5.0" points="-44.000030517578125, 44.0000114440918, -63.000030517578125, 44.0000114440918, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
+      <Polygon fx:id="pgEmptyRight" fill="#1d1e25" layoutX="414.0" layoutY="5.0" points="24.939300537109375, 36.06064987182617, 24.939300537109375, 15.666666030883789, 43.333343505859375, 15.666666030883789" stroke="#1d1e25" strokeType="INSIDE" />
+      <Polygon fx:id="pgEmptyLeft" fill="#1d1e25" layoutX="504.0" layoutY="-5.0" points="-44.000030517578125, 44.0000114440918, -63.000030517578125, 44.0000114440918, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
+      <Polygon fx:id="pgEmptyRight" fill="#1d1e25" layoutX="514.0" layoutY="5.0" points="171.50006103515625, 14.999994277954102, 170.66668701171875, 34.0000114440918, 190.00006103515625, 34.0000114440918" stroke="#1d1e25" strokeType="INSIDE" />
+      <Polygon fill="#1d1e25" layoutX="404.0" layoutY="420.0" points="-63.000030517578125, 24.999969482421875, -44.000030517578125, 43.999969482421875, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
+      <Pane fx:id="paPassword" layoutX="360.0" layoutY="21.0" prefHeight="20.0" prefWidth="82.0" style="-fx-background-color: rgb(29,30,37);" />
+      <Pane fx:id="paEmpty" layoutX="460.0" layoutY="21.0" prefHeight="20.0" prefWidth="227.0" style="-fx-background-color: rgb(29,30,37);" />
       <Pane layoutX="5.0" layoutY="290.0" prefHeight="150.0" prefWidth="315.0" style="-fx-background-color: transparent;" styleClass="hint-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Pane layoutX="2.5" layoutY="2.5" opacity="0.5" prefHeight="145.0" prefWidth="310.0" style="-fx-background-color: transparent;" styleClass="hint-border-pane" stylesheets="@../../css/puzzles/decryption.css">
@@ -79,6 +86,49 @@
       </Pane>
       <Pane layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
+            <Pane prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: rgb(219,175,146);">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <DropShadow>
+                           <input>
+                              <Glow />
+                           </input>
+                        </DropShadow>
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <children>
+                  <Label layoutX="7.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~/password/algorithm">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="210.0" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: black;">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <DropShadow>
+                           <input>
+                              <Glow />
+                           </input>
+                        </DropShadow>
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <children>
+                  <Label layoutX="70.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
             <Pane layoutX="25.0" layoutY="280.0" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: black;">
                <children>
                   <Label layoutX="5.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~/password/" textFill="#96979d">
@@ -128,16 +178,13 @@
                </effect>
                <children>
                   <Label layoutX="7.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="V">
-                     <effect>
-                        <Glow level="0.9" />
-                     </effect>
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="taPseudocode" disable="true" editable="false" focusTraversable="false" prefHeight="250.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="25.0" prefHeight="280.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
@@ -150,7 +197,6 @@
          </children>
       </Pane>
       <Pane layoutX="360.0" layoutY="444.0" prefHeight="21.0" prefWidth="345.0" style="-fx-background-color: rgb(29,30,37);" />
-      <Polygon fill="#1d1e25" layoutX="404.0" layoutY="420.0" points="-63.000030517578125, 24.999969482421875, -44.000030517578125, 43.999969482421875, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
       <Label fx:id="lblTime" layoutX="40.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
          <font>
             <Font size="36.0" />
@@ -220,6 +266,16 @@
          </font>
       </Label>
       <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="370.0" layoutY="21.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="PASSWORD" textFill="#4fadff">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="555.0" layoutY="21.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="EMPTY" textFill="#4fadff">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -323,7 +379,7 @@
             </Glow>
          </effect>
       </Line>
-      <Line endX="200.0" layoutX="360.0" layoutY="20.0" stroke="#48484f">
+      <Line endX="325.0" layoutX="360.0" layoutY="20.0" stroke="#48484f">
          <effect>
             <Glow level="0.7">
                <input>

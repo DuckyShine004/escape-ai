@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
@@ -29,7 +30,9 @@ import nz.ac.auckland.se206.utilities.Timer;
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
   @FXML private Pane paHint;
+  @FXML private Pane paEmpty;
   @FXML private Pane paAnalyze;
+  @FXML private Pane paPassword;
   @FXML private Pane paDecryption;
   @FXML private Pane paBackOverlay;
 
@@ -37,8 +40,13 @@ public class DecryptionPuzzleController {
   @FXML private Label lblMemory;
   @FXML private Label lblHintCounter;
 
+  @FXML private Polygon pgEmptyLeft;
+  @FXML private Polygon pgEmptyRight;
+  @FXML private Polygon pgPasswordLeft;
+  @FXML private Polygon pgPasswordRight;
+
   @FXML private TextArea taChat;
-  @FXML private TextArea taPseudocode;
+  @FXML private TextArea taAlgorithm;
   @FXML private TextArea taDescription;
 
   private int hintIndex;
@@ -191,9 +199,11 @@ public class DecryptionPuzzleController {
     initializeDescription();
     initializeAlgorithm();
 
-    // Append the description to the description text area
+    // Append the description to the text area
     taDescription.appendText(description);
-    taPseudocode.appendText(algorithm);
+
+    // Create labels and panes for the algorithm
+    setAlgorithm(algorithm);
 
     // Get the pseudocode in string form
     pseudocode = description + algorithm;
@@ -384,6 +394,8 @@ public class DecryptionPuzzleController {
     // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
+
+  private void setAlgorithm(String algorithm) {}
 
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
