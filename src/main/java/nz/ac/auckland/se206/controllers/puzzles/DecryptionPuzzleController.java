@@ -5,8 +5,10 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.effect.Glow;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -31,15 +33,16 @@ public class DecryptionPuzzleController {
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
+  @FXML private Label lblMemory;
   @FXML private Label lblHintCounter;
-
-  @FXML private Polygon pgHint;
 
   @FXML private TextArea taChat;
   @FXML private TextArea taPseudocode;
 
   private int hintIndex;
   private int psuedocodeIndex;
+
+  private double memoryUsed;
 
   private String sequence;
   private String algorithm;
@@ -59,8 +62,8 @@ public class DecryptionPuzzleController {
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
-    // Add the hint counter components
-    HintManager.addHintComponents(lblHintCounter, pgHint);
+    // Initialize the memory component
+    initializeMemory();
 
     // Initialize the pseudocode and algorithms
     initializePseudocode();
@@ -110,6 +113,24 @@ public class DecryptionPuzzleController {
   @FXML
   private void onBackPaneClicked() {
     App.setUi(AppUi.TERMINAL);
+  }
+
+  private void initializeMemory() {
+    // Initialize memory used to zero
+    memoryUsed = 0;
+
+    // Create a grid of memory cells
+    for (double y = 0; y < 5; y++) {
+      for (double x = 0; x < 15; x++) {
+        setMemoryLocation(x, y, 5, 5);
+      }
+    }
+
+    // Recalculate memory used using ratio
+    memoryUsed = getMemoryUsed();
+
+    // Set the memory used text
+    lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
   }
 
   /**
@@ -302,6 +323,29 @@ public class DecryptionPuzzleController {
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
   }
 
+  public double getMemoryUsed() {
+    // Get the ratio of memory used
+    memoryUsed = (memoryUsed / 75) * 32;
+
+    // Get the memory used to 2 decimal places
+    String roundedMemoryUsed = String.format("%.2f", memoryUsed);
+
+    return Double.parseDouble(roundedMemoryUsed);
+  }
+
+  public Color getRandomColor() {
+    Color green = Color.rgb(130, 240, 130);
+    Color gray = Color.rgb(56, 57, 63);
+
+    boolean isColorGreen = Math.random() < 0.5f;
+
+    if (isColorGreen) {
+      memoryUsed++;
+    }
+
+    return (isColorGreen ? green : gray);
+  }
+
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
    *
@@ -325,6 +369,41 @@ public class DecryptionPuzzleController {
 
     // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
+  }
+
+  private void setMemoryLocation(double x, double y, double w, double h) {
+    // Initialize the offsets
+    double horizontalOffset = 5;
+    double verticalOffset = 85;
+
+    // Intialize the padding
+    double padding = 5;
+
+    // Create a rectangle component
+    Rectangle memory = new Rectangle(w, h);
+
+    // Get a random color
+    Color color = getRandomColor();
+
+    // Set the location of the rectangle
+    memory.setTranslateX((x * (w + padding)) + horizontalOffset);
+    memory.setTranslateY((y * (h + padding)) + verticalOffset);
+
+    // Set the color of the rectangle
+    memory.setFill(color);
+
+    // Set the style of the rectangle
+    setRectangleStyle(memory);
+
+    // Add the rectangle to the scene
+    paDecryption.getChildren().add(memory);
+  }
+
+  private void setRectangleStyle(Rectangle rectangle) {
+    Glow glow = new Glow();
+    glow.setLevel(0.7);
+
+    rectangle.setEffect(glow);
   }
 
   /** Enable components when a task is finished. */

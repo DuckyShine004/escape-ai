@@ -7,7 +7,6 @@
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="paDecryption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: rgb(20,20,23);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
@@ -29,7 +28,7 @@
             <TextArea fx:id="taChat" editable="false" layoutX="-9.0" prefHeight="220.0" prefWidth="391.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
          </children>
       </Pane>
-      <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="230.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Label layoutX="54.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT" textFill="WHITE">
                <font>
@@ -44,9 +43,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="445.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="315.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paBack11" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
-            <Label layoutX="96.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="EXIT TERMINAL" textFill="WHITE">
+            <Label layoutX="38.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="ANALYZE" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -59,7 +58,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Label fx:id="lblHintCounter" layoutX="205.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="0/0" textFill="WHITE">
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="445.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="315.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+         <children>
+            <Label layoutX="90.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="EXIT TERMINAL" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <Label fx:id="lblTime" layoutX="40.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
@@ -67,12 +81,7 @@
             <Glow level="0.7" />
          </effect>
       </Label>
-      <Polygon fx:id="pgHint" fill="#ff6200" layoutX="-121.0" layoutY="68.0" opacity="0.0" points="436.0000305175781, 69.50000762939453, 604.9999389648438, 69.50000762939453, 604.9999389648438, 4.666666507720947, 436.0000305175781, 5.99999475479126" stroke="#ffffff00" strokeType="INSIDE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Polygon>
-      <Label fx:id="lblTime" layoutX="40.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
+      <Label fx:id="lblHintCounter" layoutX="205.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="0/0" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
@@ -133,25 +142,63 @@
             <Glow level="0.9" />
          </effect>
       </Label>
-      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT-SYSTEM" textFill="WHITE">
+      <Label layoutX="5.0" layoutY="205.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="USE HINT OR ANALYZE SEQUENCE" textFill="WHITE">
+         <effect>
+            <Glow level="0.7" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
       </Label>
-      <Pane fx:id="paBack11" focusTraversable="true" layoutX="170.0" layoutY="230.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
-         <children>
-            <Label layoutX="38.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="ANALYZE" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <effect>
-                  <Glow level="0.7" />
-               </effect>
-            </Label>
-         </children>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Pane>
+      <Line endX="319.0" layoutX="3.0" layoutY="206.0" stroke="#616267" />
+      <Line endY="10.0" layoutX="3.0" layoutY="201.0" stroke="#616267" />
+      <Line endY="10.0" layoutX="322.0" layoutY="201.0" stroke="#616267" />
+      <Label layoutX="5.0" layoutY="58.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="MEMORY" textFill="WHITE">
+         <effect>
+            <Glow level="0.7" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Line endX="155.0" layoutX="3.0" layoutY="60.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="3.0" layoutY="55.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="158.0" layoutY="55.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Label fx:id="lblMemory" layoutX="5.0" layoutY="135.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="USING x OUT OF 32 GiB" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Line endX="319.0" layoutX="3.0" layoutY="150.0" stroke="#616267" />
+      <Line endY="10.0" layoutX="3.0" layoutY="145.0" stroke="#616267" />
+      <Line endY="10.0" layoutX="322.0" layoutY="145.0" stroke="#616267" />
+      <Label layoutX="5.0" layoutY="148.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="PROCESSES RUNNING" textFill="WHITE">
+         <effect>
+            <Glow level="0.7" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
