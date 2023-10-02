@@ -29,6 +29,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
   @FXML private Pane paHint;
+  @FXML private Pane paAnalyze;
   @FXML private Pane paDecryption;
   @FXML private Pane paBackOverlay;
 
@@ -38,6 +39,7 @@ public class DecryptionPuzzleController {
 
   @FXML private TextArea taChat;
   @FXML private TextArea taPseudocode;
+  @FXML private TextArea taDescription;
 
   private int hintIndex;
   private int psuedocodeIndex;
@@ -79,6 +81,18 @@ public class DecryptionPuzzleController {
   @FXML
   private void onHintPaneExited() {
     paHint.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (analyze). */
+  @FXML
+  private void onAnalyzeEntered() {
+    paAnalyze.setStyle("-fx-background-color: rgb(29,30,37);");
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (analyze). */
+  @FXML
+  private void onAnalyzeExited() {
+    paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -177,8 +191,8 @@ public class DecryptionPuzzleController {
     initializeDescription();
     initializeAlgorithm();
 
-    // Append the description and algorithm to the text area
-    taPseudocode.appendText(description);
+    // Append the description to the description text area
+    taDescription.appendText(description);
     taPseudocode.appendText(algorithm);
 
     // Get the pseudocode in string form

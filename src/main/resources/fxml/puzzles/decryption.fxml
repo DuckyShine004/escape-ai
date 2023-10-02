@@ -3,7 +3,9 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
@@ -13,8 +15,12 @@
    <children>
       <Pane layoutX="5.0" layoutY="290.0" prefHeight="150.0" prefWidth="315.0" style="-fx-background-color: transparent;" styleClass="hint-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
+            <Pane layoutX="2.5" layoutY="2.5" opacity="0.5" prefHeight="145.0" prefWidth="310.0" style="-fx-background-color: transparent;" styleClass="hint-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Pane>
             <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
-            <Pane layoutX="2.5" layoutY="2.5" opacity="0.5" prefHeight="145.0" prefWidth="310.0" style="-fx-background-color: transparent;" styleClass="hint-border-pane" stylesheets="@../../css/puzzles/decryption.css" />
          </children>
       </Pane>
       <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
@@ -31,8 +37,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
-      <Pane fx:id="paBack11" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Label layoutX="38.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="ANALYZE" textFill="WHITE">
                <font>
@@ -46,6 +55,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
       <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="445.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="315.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
@@ -61,8 +73,82 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
-      <Pane layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);" />
+      <Pane layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
+         <children>
+            <Pane layoutX="25.0" layoutY="280.0" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: black;">
+               <children>
+                  <Label layoutX="5.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~/password/" textFill="#96979d">
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="110.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="description" textFill="WHITE">
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="285.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="utf-8" textFill="WHITE">
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX">
+                     <input>
+                        <InnerShadow />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Pane>
+            <Pane layoutY="280.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: rgb(154,160,171);">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <DropShadow>
+                           <input>
+                              <Glow />
+                           </input>
+                        </DropShadow>
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <children>
+                  <Label layoutX="7.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="V">
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="taPseudocode" disable="true" editable="false" focusTraversable="false" prefHeight="250.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </TextArea>
+            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </TextArea>
+         </children>
+      </Pane>
       <Pane layoutX="360.0" layoutY="444.0" prefHeight="21.0" prefWidth="345.0" style="-fx-background-color: rgb(29,30,37);" />
       <Polygon fill="#1d1e25" layoutX="404.0" layoutY="420.0" points="-63.000030517578125, 24.999969482421875, -44.000030517578125, 43.999969482421875, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
       <Label fx:id="lblTime" layoutX="40.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
@@ -228,35 +314,58 @@
             <Glow level="0.2" />
          </effect>
       </Line>
-      <TextArea fx:id="taPseudocode" disable="true" editable="false" focusTraversable="false" layoutX="360.0" layoutY="26.0" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
       <Line endY="405.0" layoutX="340.0" layoutY="40.0" stroke="#48494f" strokeWidth="2.0">
          <effect>
-            <Glow level="0.8" />
+            <Glow level="0.8">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
          </effect>
       </Line>
       <Line endX="200.0" layoutX="360.0" layoutY="20.0" stroke="#48484f">
          <effect>
-            <Glow level="0.5" />
+            <Glow level="0.7">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
          </effect>
       </Line>
       <Line endX="340.0" endY="40.0" layoutX="100.0" startX="360.0" startY="20.0" stroke="#6e6e73" strokeWidth="1.5">
          <effect>
-            <Glow level="0.7" />
+            <Glow level="0.7">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
          </effect>
       </Line>
       <Line endX="360.0" endY="465.0" startX="340.0" startY="445.0" stroke="#48494f" strokeWidth="2.0">
          <effect>
-            <Glow level="0.8" />
+            <Glow level="0.8">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
          </effect>
       </Line>
       <Line endY="425.0" layoutX="705.0" layoutY="40.0" stroke="#48494f" strokeWidth="2.0">
          <effect>
-            <Glow level="0.8" />
+            <Glow level="0.8">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
          </effect>
       </Line>
       <Line endX="705.0" endY="465.0" startX="360.0" startY="465.0" stroke="#48494f" strokeWidth="2.0">
          <effect>
-            <Glow level="0.8" />
+            <Glow level="0.8">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
          </effect>
       </Line>
    </children>

@@ -18,16 +18,6 @@
 
 /* Font styling */
 @font-face {
-  font-family: Terminus (TTF);
-  src: url("/../../fonts/terminal.ttf");
-}
-
-@font-face {
-  font-family: Determination Mono Web;
-  src: url("/../../fonts/determination.ttf");
-}
-
-@font-face {
   font-family: Determination Mono Web;
   src: url("/../../fonts/jetbrains.ttf");
 }
@@ -40,6 +30,10 @@
 /* Label with custom font */
 .custom-label {
   -fx-font-family: "JetBrainsMono NF";
+}
+
+.custom-bold-label {
+  -fx-font-family: "JetBrainsMono NF Bold";
 }
 
 .custom-label:disabled {
@@ -55,9 +49,9 @@
 .custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: rgb(0, 220, 0);
-  -fx-font-family: "Determination Mono Web";
-  -fx-font-size: 18;
+  -fx-text-inner-color: rgb(255, 255, 255);
+  -fx-font-family: "JetBrainsMono NF";
+  -fx-font-size: 16;
   -fx-opacity: 1;
 }
 
