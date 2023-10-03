@@ -34,7 +34,16 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Polygon>
-      <Polygon fill="#1d1e25" layoutX="404.0" layoutY="420.0" points="-63.000030517578125, 24.999969482421875, -44.000030517578125, 43.999969482421875, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
+      <Polygon fx:id="pgPasswordComponent" fill="#1d1e25" layoutX="404.0" layoutY="420.0" points="-63.000030517578125, 24.999969482421875, -44.000030517578125, 43.999969482421875, -44.000030517578125, 24.999969482421875" stroke="#1d1e25" strokeType="INSIDE" />
+      <Polygon fx:id="pgEmptyComponent" disable="true" layoutX="404.0" layoutY="420.0" points="-63.000030517578125, 24.999969482421875, -44.000030517578125, 43.999969482421875, -44.000030517578125, 24.999969482421875" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: black;" visible="false">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <DropShadow />
+               </input>
+            </InnerShadow>
+         </effect>
+      </Polygon>
       <Pane fx:id="paPassword" layoutX="360.0" layoutY="21.0" onMouseClicked="#onPasswordClicked" onMouseEntered="#onPasswordEntered" onMouseExited="#onPasswordExited" prefHeight="20.0" prefWidth="82.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
             <Label fx:id="lblPassword" layoutX="9.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="PASSWORD" textFill="#50aaff">
@@ -138,7 +147,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Pane layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
+      <Pane fx:id="paPasswordComponent" layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
             <Pane prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: rgb(219,175,146);">
                <effect>
@@ -258,8 +267,30 @@
             </TextArea>
          </children>
       </Pane>
-      <Pane layoutX="360.0" layoutY="444.0" prefHeight="21.0" prefWidth="345.0" style="-fx-background-color: rgb(29,30,37);" />
-      <Canvas fx:id="cvsMatrixRain" height="405.0" layoutX="340.0" layoutY="40.0" width="365.0" />
+      <Canvas fx:id="cvsMatrixRain" disable="true" height="405.0" layoutX="340.0" layoutY="40.0" visible="false" width="365.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Canvas>
+      <Pane fx:id="paPasswordComponent" layoutX="360.0" layoutY="444.0" prefHeight="21.0" prefWidth="345.0" style="-fx-background-color: rgb(29,30,37);" />
+      <Pane fx:id="paEmptyComponentBar" disable="true" layoutX="360.0" layoutY="444.0" prefHeight="21.0" prefWidth="345.0" style="-fx-background-color: black;" visible="false">
+         <effect>
+            <DropShadow>
+               <input>
+                  <InnerShadow />
+               </input>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Pane fx:id="paEmptyComponent" disable="true" layoutX="340.0" layoutY="40.0" prefHeight="25.0" prefWidth="365.0" style="-fx-background-color: black;" visible="false">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <DropShadow blurType="TWO_PASS_BOX" />
+               </input>
+            </InnerShadow>
+         </effect>
+      </Pane>
       <Label fx:id="lblTime" layoutX="40.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
          <font>
             <Font size="36.0" />

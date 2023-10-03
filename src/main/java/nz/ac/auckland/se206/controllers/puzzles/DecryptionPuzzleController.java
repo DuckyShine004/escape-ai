@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -41,6 +42,9 @@ public class DecryptionPuzzleController {
   @FXML private Pane paDecryption;
   @FXML private Pane paMatrixRain;
   @FXML private Pane paBackOverlay;
+  @FXML private Pane paEmptyComponent;
+  @FXML private Pane paEmptyComponentBar;
+  @FXML private Pane paPasswordComponent;
 
   @FXML private Label lblTime;
   @FXML private Label lblEmpty;
@@ -54,6 +58,8 @@ public class DecryptionPuzzleController {
   @FXML private Polygon pgEmptyRight;
   @FXML private Polygon pgPasswordLeft;
   @FXML private Polygon pgPasswordRight;
+  @FXML private Polygon pgEmptyComponent;
+  @FXML private Polygon pgPasswordComponent;
 
   @FXML private TextArea taChat;
   @FXML private TextArea taAlgorithm;
@@ -202,8 +208,11 @@ public class DecryptionPuzzleController {
     // Set the password label to 'closed tab' color
     lblPassword.setTextFill(Color.rgb(255, 255, 255));
 
-    // Disable password tab components
-    disablePasswordTabComponents();
+    // Disable password pane components
+    disablePasswordComponents();
+
+    // Enable empty pane components
+    enableEmptyComponents();
   }
 
   @FXML
@@ -217,8 +226,13 @@ public class DecryptionPuzzleController {
     // Set the password label to 'opened tab' color
     lblPassword.setTextFill(Color.rgb(80, 170, 255));
 
-    // Enable empty tab components
-    disableEmptyTabComponents();
+    // Enable password pane components
+    enablePasswordComponents();
+
+    // Disable empty pane components
+    disableEmptyComponents();
+
+    cvsMatrixRain.setVisible(false);
   }
 
   /**
@@ -262,8 +276,8 @@ public class DecryptionPuzzleController {
     lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
   }
 
+  /** Intialize the matrix rain for the decryption puzzle. */
   private void initializeMatrixRain() {
-
     new AnimationTimer() {
       // Keep track of when the previous fram was called
       long lastTimerCall = 0;
@@ -276,14 +290,14 @@ public class DecryptionPuzzleController {
       int height = (int) cvsMatrixRain.getHeight();
 
       // Get the number of columns for the matrix pane
-      int columns = (int) Math.floor(cvsMatrixRain.getWidth() / fontSize) + 1;
+      int columns = (int) Math.floor(cvsMatrixRain.getWidth() / fontSize);
 
       // Initialize array to store each rain drop's last position
       int[] verticalPositions = new int[columns];
 
       // Nanoseconds in a millisecond and get 50ms
       long nanoseconds = 1000000;
-      long animationDelay = nanoseconds * 50;
+      long animationDelay = nanoseconds * 100;
 
       // Initialize instance of random method
       Random random = new Random();
@@ -296,27 +310,30 @@ public class DecryptionPuzzleController {
         if (now > lastTimerCall + animationDelay) {
           lastTimerCall = now;
 
-          gcMatrixRain.setFill(Color.web("#0001"));
+          // Add a fade out effect for the text
+          gcMatrixRain.setFill(Color.web("#1d1e2530"));
           gcMatrixRain.fillRect(0, 0, width, height);
 
+          // Draw the text onto the matrix rain canvas
           gcMatrixRain.setFill(Color.web("00ff00"));
-          // gcMatrixRain.setFont(new Font("monospace", fontSize));
+          gcMatrixRain.setFont(new Font("monospace", 16));
 
           for (int i = 0; i < columns; i++) {
             // Get a random text for the matrix rain drop
             String currentText = getRandomCharacter(random);
 
-            // X coordinate to draw from left to right (each column).
-            double horizontalPosition = i * fontSize;
+            // X coordinate to draw from left to right (each column)
+            double horizontalPosition = (i * fontSize) + (fontSize / 2);
 
-            // Y coordinate is based on the value previously stored.
+            // Y coordinate is based on the value previously stored
             int verticalPosition = verticalPositions[i];
 
             // Draw a character with an opaque color
-            gcMatrixRain.fillText(currentText, horizontalPosition, verticalPositions[i]);
+            gcMatrixRain.fillText(currentText, horizontalPosition, verticalPosition);
 
-            // Restart the the current rain drop if the rain reaches the bottom of the canvas
-            if (verticalPosition > 100 + Math.random() * 10000) {
+            // Restart the the current rain drop if the rain reaches somewhere at bottom of the
+            // canvas
+            if (verticalPosition > 100 + (Math.random() * 10000)) {
               verticalPositions[i] = 0;
             } else {
               verticalPositions[i] = verticalPosition + fontSize;
@@ -335,8 +352,6 @@ public class DecryptionPuzzleController {
   private void initializePseudocode() throws Exception {
     // Get a random pseudo code
     psuedocodeIndex = (int) (Math.random() * (GameState.maxPseudocodes));
-
-    System.out.println("Current psuedocode: " + psuedocodeIndex);
 
     // Hint index is initially zero
     hintIndex = 0;
@@ -615,6 +630,39 @@ public class DecryptionPuzzleController {
     paHint.setDisable(false);
   }
 
+  /** Enable empty pane components. */
+  private void enableEmptyComponents() {
+    // Enable empty tab components
+    enableEmptyTabComponents();
+
+    // Set the matrix rain visible
+    cvsMatrixRain.setVisible(true);
+
+    // Set all components in empty pane visible
+    paEmptyComponent.setVisible(true);
+    pgEmptyComponent.setVisible(true);
+    paEmptyComponentBar.setVisible(true);
+
+    // Enable all components in empty pane
+    paEmptyComponent.setDisable(false);
+    pgEmptyComponent.setDisable(false);
+    paEmptyComponentBar.setDisable(false);
+  }
+
+  /** Enable password pane components. */
+  private void enablePasswordComponents() {
+    // Enable password tab components
+    enablePasswordTabComponents();
+
+    // Set all components in password pane visible
+    paPasswordComponent.setVisible(true);
+    pgPasswordComponent.setVisible(true);
+
+    // Enable all components in password pane
+    paPasswordComponent.setDisable(false);
+    pgPasswordComponent.setDisable(false);
+  }
+
   /** Enable empty tab components. */
   private void enableEmptyTabComponents() {
     // Set entered color for the pane
@@ -635,10 +683,42 @@ public class DecryptionPuzzleController {
     setPolygonEntered(pgPasswordRight);
   }
 
-  /** disable components when a task is running. */
+  /** Disable components when a task is running. */
   private void disableComponents() {
-    // Disable the hint pane
     paHint.setDisable(true);
+  }
+
+  /** Disable empty pane components. */
+  private void disableEmptyComponents() {
+    // Disable empty tab components
+    disableEmptyTabComponents();
+
+    // Set the matrix rain invisible
+    cvsMatrixRain.setVisible(false);
+
+    // Set all components in empty pane invisible
+    paEmptyComponent.setVisible(false);
+    pgEmptyComponent.setVisible(false);
+    paEmptyComponentBar.setVisible(false);
+
+    // Disable all components in empty pane
+    paEmptyComponent.setDisable(true);
+    pgEmptyComponent.setDisable(true);
+    paEmptyComponentBar.setDisable(true);
+  }
+
+  /** Disable password pane components. */
+  private void disablePasswordComponents() {
+    // Disable password tab components
+    disablePasswordTabComponents();
+
+    // Set all components in password pane invisible
+    paPasswordComponent.setVisible(false);
+    pgPasswordComponent.setVisible(false);
+
+    // Disable all components in password pane
+    paPasswordComponent.setDisable(true);
+    pgPasswordComponent.setDisable(true);
   }
 
   /** Disable empty tab components. */
