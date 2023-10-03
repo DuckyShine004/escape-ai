@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
@@ -258,6 +259,7 @@
          </children>
       </Pane>
       <Pane layoutX="360.0" layoutY="444.0" prefHeight="21.0" prefWidth="345.0" style="-fx-background-color: rgb(29,30,37);" />
+      <Canvas fx:id="cvsMatrixRain" height="405.0" layoutX="340.0" layoutY="40.0" width="365.0" />
       <Label fx:id="lblTime" layoutX="40.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
          <font>
             <Font size="36.0" />

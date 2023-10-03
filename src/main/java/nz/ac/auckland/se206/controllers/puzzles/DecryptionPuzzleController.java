@@ -1,8 +1,13 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
+import java.util.Random;
+import java.util.stream.IntStream;
+import javafx.animation.AnimationTimer;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.Glow;
@@ -34,6 +39,7 @@ public class DecryptionPuzzleController {
   @FXML private Pane paAnalyze;
   @FXML private Pane paPassword;
   @FXML private Pane paDecryption;
+  @FXML private Pane paMatrixRain;
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
@@ -41,6 +47,8 @@ public class DecryptionPuzzleController {
   @FXML private Label lblMemory;
   @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
+
+  @FXML private Canvas cvsMatrixRain;
 
   @FXML private Polygon pgEmptyLeft;
   @FXML private Polygon pgEmptyRight;
@@ -81,6 +89,9 @@ public class DecryptionPuzzleController {
 
     // Initialize the memory component
     initializeMemory();
+
+    // Initialize the matrix rain
+    initializeMatrixRain();
 
     // Initialize the pseudocode and algorithms
     initializePseudocode();
@@ -180,24 +191,6 @@ public class DecryptionPuzzleController {
     App.setUi(AppUi.TERMINAL);
   }
 
-  private void initializeMemory() {
-    // Initialize memory used to zero
-    memoryUsed = 0;
-
-    // Create a grid of memory cells
-    for (double y = 0; y < 5; y++) {
-      for (double x = 0; x < 15; x++) {
-        setMemoryLocation(x, y, 5, 5);
-      }
-    }
-
-    // Recalculate memory used using ratio
-    memoryUsed = getMemoryUsed();
-
-    // Set the memory used text
-    lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
-  }
-
   @FXML
   private void onEmptyClicked() {
     // Empty tab is now open
@@ -249,6 +242,89 @@ public class DecryptionPuzzleController {
 
     // set the max tokens -> has to be at least '1'
     gptRequest.setMaxTokens(100);
+  }
+
+  private void initializeMemory() {
+    // Initialize memory used to zero
+    memoryUsed = 0;
+
+    // Create a grid of memory cells
+    for (double y = 0; y < 5; y++) {
+      for (double x = 0; x < 15; x++) {
+        setMemoryLocation(x, y, 5, 5);
+      }
+    }
+
+    // Recalculate memory used using ratio
+    memoryUsed = getMemoryUsed();
+
+    // Set the memory used text
+    lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
+  }
+
+  private void initializeMatrixRain() {
+
+    new AnimationTimer() {
+      // Keep track of when the previous fram was called
+      long lastTimerCall = 0;
+
+      // Initialize the font size
+      int fontSize = 16;
+
+      // Get the width and height of the matrix rain canvas
+      int width = (int) cvsMatrixRain.getWidth();
+      int height = (int) cvsMatrixRain.getHeight();
+
+      // Get the number of columns for the matrix pane
+      int columns = (int) Math.floor(cvsMatrixRain.getWidth() / fontSize) + 1;
+
+      // Initialize array to store each rain drop's last position
+      int[] verticalPositions = new int[columns];
+
+      // Nanoseconds in a millisecond and get 50ms
+      long nanoseconds = 1000000;
+      long animationDelay = nanoseconds * 50;
+
+      // Initialize instance of random method
+      Random random = new Random();
+
+      // Get the graphic context of the matrix rain canvas
+      GraphicsContext gcMatrixRain = cvsMatrixRain.getGraphicsContext2D();
+
+      public void handle(long now) {
+        // Check if the current frame is drawing the matrix rain
+        if (now > lastTimerCall + animationDelay) {
+          lastTimerCall = now;
+
+          gcMatrixRain.setFill(Color.web("#0001"));
+          gcMatrixRain.fillRect(0, 0, width, height);
+
+          gcMatrixRain.setFill(Color.web("00ff00"));
+          // gcMatrixRain.setFont(new Font("monospace", fontSize));
+
+          for (int i = 0; i < columns; i++) {
+            // Get a random text for the matrix rain drop
+            String currentText = getRandomCharacter(random);
+
+            // X coordinate to draw from left to right (each column).
+            double horizontalPosition = i * fontSize;
+
+            // Y coordinate is based on the value previously stored.
+            int verticalPosition = verticalPositions[i];
+
+            // Draw a character with an opaque color
+            gcMatrixRain.fillText(currentText, horizontalPosition, verticalPositions[i]);
+
+            // Restart the the current rain drop if the rain reaches the bottom of the canvas
+            if (verticalPosition > 100 + Math.random() * 10000) {
+              verticalPositions[i] = 0;
+            } else {
+              verticalPositions[i] = verticalPosition + fontSize;
+            }
+          }
+        }
+      }
+    }.start();
   }
 
   /**
@@ -420,7 +496,7 @@ public class DecryptionPuzzleController {
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
   }
 
-  public double getMemoryUsed() {
+  private double getMemoryUsed() {
     // Get the ratio of memory used
     memoryUsed = (memoryUsed / 75) * 32;
 
@@ -430,7 +506,7 @@ public class DecryptionPuzzleController {
     return Double.parseDouble(roundedMemoryUsed);
   }
 
-  public Color getRandomColor() {
+  private Color getRandomColor() {
     Color green = Color.rgb(130, 240, 130);
     Color gray = Color.rgb(56, 57, 63);
 
@@ -441,6 +517,14 @@ public class DecryptionPuzzleController {
     }
 
     return (isColorGreen ? green : gray);
+  }
+
+  private String getRandomCharacter(Random random) {
+    IntStream characterStream = random.ints(12353, 12380);
+
+    char character = (char) characterStream.findFirst().getAsInt();
+
+    return Character.toString(character);
   }
 
   /**
