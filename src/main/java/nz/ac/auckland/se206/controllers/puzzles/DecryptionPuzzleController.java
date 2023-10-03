@@ -37,7 +37,9 @@ public class DecryptionPuzzleController {
   @FXML private Pane paBackOverlay;
 
   @FXML private Label lblTime;
+  @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
+  @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
 
   @FXML private Polygon pgEmptyLeft;
@@ -54,6 +56,8 @@ public class DecryptionPuzzleController {
 
   private double memoryUsed;
 
+  private boolean isPasswordTabOpen;
+
   private String sequence;
   private String algorithm;
   private String pseudocode;
@@ -66,6 +70,9 @@ public class DecryptionPuzzleController {
   /** Initializes the decryption puzzle. */
   @FXML
   private void initialize() throws Exception {
+    // Password tab is initially open
+    isPasswordTabOpen = true;
+
     // get the game state instance of tts
     this.tts = GameState.tts;
 
@@ -115,6 +122,42 @@ public class DecryptionPuzzleController {
     paBack.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
+  /** When the mouse is hovering over the pane, the overlay appears (empty). */
+  @FXML
+  private void onEmptyEntered() {
+    enableEmptyTabComponents();
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (empty). */
+  @FXML
+  private void onEmptyExited() {
+    // Check if the empty tab is already opened
+    if (!isPasswordTabOpen) {
+      return;
+    }
+
+    // disable empty tab components
+    disableEmptyTabComponents();
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (password). */
+  @FXML
+  private void onPasswordEntered() {
+    enablePasswordTabComponents();
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (password). */
+  @FXML
+  private void onPasswordExited() {
+    // Check if the password tab is already open
+    if (isPasswordTabOpen) {
+      return;
+    }
+
+    // disable password tab components
+    disablePasswordTabComponents();
+  }
+
   /** When hint is clicked, give the user a hint. */
   @FXML
   private void onHintPaneClicked() {
@@ -153,6 +196,36 @@ public class DecryptionPuzzleController {
 
     // Set the memory used text
     lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
+  }
+
+  @FXML
+  private void onEmptyClicked() {
+    // Empty tab is now open
+    isPasswordTabOpen = false;
+
+    // Set the empty label to 'opened tab' color
+    lblEmpty.setTextFill(Color.rgb(80, 170, 255));
+
+    // Set the password label to 'closed tab' color
+    lblPassword.setTextFill(Color.rgb(255, 255, 255));
+
+    // Disable password tab components
+    disablePasswordTabComponents();
+  }
+
+  @FXML
+  private void onPasswordClicked() {
+    // Password tab is now open
+    isPasswordTabOpen = true;
+
+    // Set the empty label to 'closed tab' color
+    lblEmpty.setTextFill(Color.rgb(255, 255, 255));
+
+    // Set the password label to 'opened tab' color
+    lblPassword.setTextFill(Color.rgb(80, 170, 255));
+
+    // Enable empty tab components
+    disableEmptyTabComponents();
   }
 
   /**
@@ -426,10 +499,30 @@ public class DecryptionPuzzleController {
   }
 
   private void setRectangleStyle(Rectangle rectangle) {
+    // Initialize a glow for the rectangle
     Glow glow = new Glow();
     glow.setLevel(0.7);
 
+    // Set the glow effect for the rectangle
     rectangle.setEffect(glow);
+  }
+
+  private void setPaneEntered(Pane pane) {
+    pane.setStyle("-fx-background-color: rgb(29,30,37);");
+  }
+
+  private void setPaneExited(Pane pane) {
+    pane.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  private void setPolygonEntered(Polygon polygon) {
+    polygon.setStroke(Color.rgb(29, 30, 37));
+    polygon.setFill(Color.rgb(29, 30, 37));
+  }
+
+  private void setPolygonExited(Polygon polygon) {
+    polygon.setStroke(Color.rgb(20, 20, 23));
+    polygon.setFill(Color.rgb(20, 20, 23));
   }
 
   /** Enable components when a task is finished. */
@@ -438,9 +531,49 @@ public class DecryptionPuzzleController {
     paHint.setDisable(false);
   }
 
+  /** Enable empty tab components. */
+  private void enableEmptyTabComponents() {
+    // Set entered color for the pane
+    setPaneEntered(paEmpty);
+
+    // Set entered colors for the polygons
+    setPolygonEntered(pgEmptyLeft);
+    setPolygonEntered(pgEmptyRight);
+  }
+
+  /** Enable password tab components. */
+  private void enablePasswordTabComponents() {
+    // Set entered color for the pane
+    setPaneEntered(paPassword);
+
+    // Set entered colors for the polygons
+    setPolygonEntered(pgPasswordLeft);
+    setPolygonEntered(pgPasswordRight);
+  }
+
   /** disable components when a task is running. */
   private void disableComponents() {
     // Disable the hint pane
     paHint.setDisable(true);
+  }
+
+  /** Disable empty tab components. */
+  private void disableEmptyTabComponents() {
+    // Set exited color for the pane
+    setPaneExited(paEmpty);
+
+    // Set exited colors for the polygons
+    setPolygonExited(pgEmptyLeft);
+    setPolygonExited(pgEmptyRight);
+  }
+
+  /** Disable password tab components. */
+  private void disablePasswordTabComponents() {
+    // Set exited color for the pane
+    setPaneExited(paPassword);
+
+    // Set exited colors for the polygons
+    setPolygonExited(pgPasswordLeft);
+    setPolygonExited(pgPasswordRight);
   }
 }
