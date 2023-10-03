@@ -172,6 +172,12 @@ public class App extends Application {
     // load the terminal font (temporary, to see which font is better)
     loadFont("determination", "ttf", 23);
 
+    // load the jetbrains terminal font
+    loadFont("jetbrains", "ttf", 23);
+
+    // load the jetbrains terminal font - bold
+    loadFont("jetbrainsBold", "ttf", 23);
+
     // load the timer font
     loadFont("timer", "TTF", 23);
   }

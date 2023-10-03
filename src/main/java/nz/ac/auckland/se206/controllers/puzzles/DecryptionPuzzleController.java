@@ -1,18 +1,21 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.lang.reflect.Field;
-import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+import javafx.animation.AnimationTimer;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.effect.Glow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -32,29 +35,42 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
   @FXML private Pane paBack;
-  @FXML private Pane paDigit0;
-  @FXML private Pane paDigit1;
-  @FXML private Pane paDigit2;
-  @FXML private Pane paDigit3;
+  @FXML private Pane paHint;
+  @FXML private Pane paEmpty;
+  @FXML private Pane paAnalyze;
+  @FXML private Pane paPassword;
   @FXML private Pane paDecryption;
+  @FXML private Pane paMatrixRain;
   @FXML private Pane paBackOverlay;
+  @FXML private Pane paEmptyComponent;
+  @FXML private Pane paEmptyComponentBar;
+  @FXML private Pane paPasswordComponent;
 
   @FXML private Label lblTime;
-  @FXML private Label lblDigit0;
-  @FXML private Label lblDigit1;
-  @FXML private Label lblDigit2;
-  @FXML private Label lblDigit3;
+  @FXML private Label lblEmpty;
+  @FXML private Label lblMemory;
+  @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
 
-  @FXML private Polygon pgHint;
+  @FXML private Canvas cvsMatrixRain;
+
+  @FXML private Polygon pgEmptyLeft;
+  @FXML private Polygon pgEmptyRight;
+  @FXML private Polygon pgPasswordLeft;
+  @FXML private Polygon pgPasswordRight;
+  @FXML private Polygon pgEmptyComponent;
+  @FXML private Polygon pgPasswordComponent;
 
   @FXML private TextArea taChat;
-  @FXML private TextArea taPseudocode;
-
-  @FXML private TextField tfChat;
+  @FXML private TextArea taAlgorithm;
+  @FXML private TextArea taDescription;
 
   private int hintIndex;
   private int psuedocodeIndex;
+
+  private double memoryUsed;
+
+  private boolean isPasswordTabOpen;
 
   private String sequence;
   private String algorithm;
@@ -68,47 +84,100 @@ public class DecryptionPuzzleController {
   /** Initializes the decryption puzzle. */
   @FXML
   private void initialize() throws Exception {
+    // Password tab is initially open
+    isPasswordTabOpen = true;
+
     // get the game state instance of tts
     this.tts = GameState.tts;
 
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
-    // Add the hint counter components
-    HintManager.addHintComponents(lblHintCounter, pgHint);
+    // Initialize the memory component
+    initializeMemory();
 
-    // Initialize the decryption puzzle chats and algorithms
-    initializeChat();
+    // Initialize the matrix rain
+    initializeMatrixRain();
+
+    // Initialize the pseudocode and algorithms
     initializePseudocode();
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (hint). */
   @FXML
-  private void onHintEntered() {
-    pgHint.setOpacity(0.25);
+  private void onHintPaneEntered() {
+    paHint.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (hint). */
   @FXML
-  private void onHintExited() {
-    pgHint.setOpacity(0);
+  private void onHintPaneExited() {
+    paHint.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (analyze). */
+  @FXML
+  private void onAnalyzeEntered() {
+    paAnalyze.setStyle("-fx-background-color: rgb(29,30,37);");
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (analyze). */
+  @FXML
+  private void onAnalyzeExited() {
+    paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
   @FXML
   private void onBackPaneEntered() {
-    paBackOverlay.setVisible(true);
+    paBack.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (back). */
   @FXML
   private void onBackPaneExited() {
-    paBackOverlay.setVisible(false);
+    paBack.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (empty). */
+  @FXML
+  private void onEmptyEntered() {
+    enableEmptyTabComponents();
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (empty). */
+  @FXML
+  private void onEmptyExited() {
+    // Check if the empty tab is already opened
+    if (!isPasswordTabOpen) {
+      return;
+    }
+
+    // disable empty tab components
+    disableEmptyTabComponents();
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (password). */
+  @FXML
+  private void onPasswordEntered() {
+    enablePasswordTabComponents();
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (password). */
+  @FXML
+  private void onPasswordExited() {
+    // Check if the password tab is already open
+    if (isPasswordTabOpen) {
+      return;
+    }
+
+    // disable password tab components
+    disablePasswordTabComponents();
   }
 
   /** When hint is clicked, give the user a hint. */
   @FXML
-  private void onHintClicked() {
+  private void onHintPaneClicked() {
     // If the difficulty is hard, ignore user.
     if (GameState.gameDifficulty == Difficulty.HARD) {
       return;
@@ -128,46 +197,42 @@ public class DecryptionPuzzleController {
     App.setUi(AppUi.TERMINAL);
   }
 
-  /**
-   * Check if there is a keyboard event. If there is a keyboard event, handle the event
-   * appropriately.
-   *
-   * @param keyEvent this event is generated when a key is pressed, released, or typed
-   */
   @FXML
-  private void onKeyPressed(KeyEvent keyEvent) {
-    String userInput = "";
+  private void onEmptyClicked() {
+    // Empty tab is now open
+    isPasswordTabOpen = false;
 
-    // get the user input from the chat text field
-    if (keyEvent.getCode() == KeyCode.ENTER) {
-      userInput = tfChat.getText();
-    }
+    // Set the empty label to 'opened tab' color
+    lblEmpty.setTextFill(Color.rgb(80, 170, 255));
 
-    // trim the user input
-    userInput = userInput.trim();
+    // Set the password label to 'closed tab' color
+    lblPassword.setTextFill(Color.rgb(255, 255, 255));
 
-    // check if the user input is empty
-    if (userInput == null || userInput.isEmpty()) {
-      return;
-    }
+    // Disable password pane components
+    disablePasswordComponents();
 
-    // the user has entered a sequence and the puzzle is not solved
-    if (isUserInputSequence(userInput) && !GameState.isDecryptionSolved) {
-      handleUserSequence(userInput);
-      return;
-    }
+    // Enable empty pane components
+    enableEmptyComponents();
+  }
 
-    // initialize user chat message object
-    ChatMessage userMessage;
+  @FXML
+  private void onPasswordClicked() {
+    // Password tab is now open
+    isPasswordTabOpen = true;
 
-    // create a new instance of user chat message object
-    userMessage = new ChatMessage("user", userInput);
+    // Set the empty label to 'closed tab' color
+    lblEmpty.setTextFill(Color.rgb(255, 255, 255));
 
-    // append the user's response to the text area
-    setUserResponse(userInput);
+    // Set the password label to 'opened tab' color
+    lblPassword.setTextFill(Color.rgb(80, 170, 255));
 
-    // get chatGPT's response and append it to the chatting text area
-    getChatResponse(userMessage, false);
+    // Enable password pane components
+    enablePasswordComponents();
+
+    // Disable empty pane components
+    disableEmptyComponents();
+
+    cvsMatrixRain.setVisible(false);
   }
 
   /**
@@ -177,12 +242,6 @@ public class DecryptionPuzzleController {
    * allowed to have acronyms as method names as per the naming convention.
    */
   private void initializeChat() {
-    // initialize the chat message field
-    ChatMessage gptMessage;
-
-    // initialize GPT chat message object
-    gptMessage = new ChatMessage("assistant", GptPromptEngineering.initializeDecryptionResponse());
-
     // initialize an instance of GPT request
     gptRequest = new ChatCompletionRequest();
 
@@ -197,9 +256,92 @@ public class DecryptionPuzzleController {
 
     // set the max tokens -> has to be at least '1'
     gptRequest.setMaxTokens(100);
+  }
 
-    // get a response from GPT to setup the chat
-    getChatResponse(gptMessage, false);
+  private void initializeMemory() {
+    // Initialize memory used to zero
+    memoryUsed = 0;
+
+    // Create a grid of memory cells
+    for (double y = 0; y < 5; y++) {
+      for (double x = 0; x < 15; x++) {
+        setMemoryLocation(x, y, 5, 5);
+      }
+    }
+
+    // Recalculate memory used using ratio
+    memoryUsed = getMemoryUsed();
+
+    // Set the memory used text
+    lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
+  }
+
+  /** Intialize the matrix rain for the decryption puzzle. */
+  private void initializeMatrixRain() {
+    new AnimationTimer() {
+      // Keep track of when the previous fram was called
+      long lastTimerCall = 0;
+
+      // Initialize the font size
+      int fontSize = 16;
+
+      // Get the width and height of the matrix rain canvas
+      int width = (int) cvsMatrixRain.getWidth();
+      int height = (int) cvsMatrixRain.getHeight();
+
+      // Get the number of columns for the matrix pane
+      int columns = (int) Math.floor(cvsMatrixRain.getWidth() / fontSize);
+
+      // Initialize array to store each rain drop's last position
+      int[] verticalPositions = new int[columns];
+
+      // Nanoseconds in a millisecond and get 50ms
+      long nanoseconds = 1000000;
+      long animationDelay = nanoseconds * 100;
+
+      // Initialize instance of random method
+      Random random = new Random();
+
+      // Get the graphic context of the matrix rain canvas
+      GraphicsContext gcMatrixRain = cvsMatrixRain.getGraphicsContext2D();
+
+      public void handle(long now) {
+        // Check if the current frame is drawing the matrix rain
+        if (now > lastTimerCall + animationDelay) {
+          lastTimerCall = now;
+
+          // Add a fade out effect for the text
+          gcMatrixRain.setFill(Color.web("#1d1e2530"));
+          gcMatrixRain.fillRect(0, 0, width, height);
+
+          // Draw the text onto the matrix rain canvas
+          gcMatrixRain.setFill(Color.web("00ff00"));
+          gcMatrixRain.setFont(new Font("monospace", 16));
+
+          for (int i = 0; i < columns; i++) {
+            // Get a random text for the matrix rain drop
+            String currentText = getRandomCharacter(random);
+
+            // X coordinate to draw from left to right (each column)
+            double horizontalPosition = (i * fontSize) + (fontSize / 2);
+
+            // Y coordinate is based on the value previously stored
+            int verticalPosition = verticalPositions[i];
+
+            // Draw a character with an opaque color
+            gcMatrixRain.fillText(currentText, horizontalPosition, verticalPosition);
+
+            // Restart the the current rain drop if the rain reaches somewhere at bottom of the
+            // canvas
+            if (verticalPosition > 100 + (Math.random() * 10000)) {
+              verticalPositions[i] = 0;
+            } else {
+              verticalPositions[i] = verticalPosition + fontSize;
+            }
+          }
+        }
+      }
+    }.start();
   }
 
   /**
@@ -211,8 +353,6 @@ public class DecryptionPuzzleController {
     // Get a random pseudo code
     psuedocodeIndex = (int) (Math.random() * (GameState.maxPseudocodes));
 
-    System.out.println("Current psuedocode: " + psuedocodeIndex);
-
     // Hint index is initially zero
     hintIndex = 0;
 
@@ -223,9 +363,11 @@ public class DecryptionPuzzleController {
     initializeDescription();
     initializeAlgorithm();
 
-    // Append the description and algorithm to the text area
-    taPseudocode.appendText(description);
-    taPseudocode.appendText(algorithm);
+    // Append the description to the text area
+    taDescription.appendText(description);
+
+    // Create labels and panes for the algorithm
+    setAlgorithm(algorithm);
 
     // Get the pseudocode in string form
     pseudocode = description + algorithm;
@@ -330,11 +472,12 @@ public class DecryptionPuzzleController {
     gptTask.setOnSucceeded(
         event -> {
           enableComponents();
+        });
 
-          // Remove previous message if it is a hint
-          if (isHint) {
-            removePreviousMessage();
-          }
+    // If the task fails, then enable components
+    gptTask.setOnFailed(
+        event -> {
+          enableComponents();
         });
 
     // Create a thread to handle GPT concurrency
@@ -344,30 +487,11 @@ public class DecryptionPuzzleController {
     gptThread.start();
   }
 
-  /**
-   * @param userInput the user's input from the text field.
-   * @return the user's sequence.
-   */
-  private String getUserSequence(String userInput) {
-    // Initialize fields
-    String userSequence;
-    int position;
-
-    // Stop at the first digit
-    for (position = 0; position < userInput.length(); position++) {
-      if (Character.isDigit(userInput.charAt(position))) {
-        break;
-      }
-    }
-
-    // Get the next four characters from the user's input
-    userSequence = userInput.substring(position, position + GameState.maxSequence);
-
-    return userSequence;
-  }
-
   /** Generate a GPT response. GPT should give a hint for the current pseudocode. */
   private void getUserHint() {
+    // Initialize a new instance of gpt
+    initializeChat();
+
     // Update the hint counter
     HintManager.updateHintCounter();
 
@@ -385,6 +509,37 @@ public class DecryptionPuzzleController {
 
     // Update the hint index
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
+  }
+
+  private double getMemoryUsed() {
+    // Get the ratio of memory used
+    memoryUsed = (memoryUsed / 75) * 32;
+
+    // Get the memory used to 2 decimal places
+    String roundedMemoryUsed = String.format("%.2f", memoryUsed);
+
+    return Double.parseDouble(roundedMemoryUsed);
+  }
+
+  private Color getRandomColor() {
+    Color green = Color.rgb(130, 240, 130);
+    Color gray = Color.rgb(56, 57, 63);
+
+    boolean isColorGreen = Math.random() < 0.5f;
+
+    if (isColorGreen) {
+      memoryUsed++;
+    }
+
+    return (isColorGreen ? green : gray);
+  }
+
+  private String getRandomCharacter(Random random) {
+    IntStream characterStream = random.ints(12353, 12380);
+
+    char character = (char) characterStream.findFirst().getAsInt();
+
+    return Character.toString(character);
   }
 
   /**
@@ -412,233 +567,177 @@ public class DecryptionPuzzleController {
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
 
-  /**
-   * Set the user's response. The user's response will be appended to the chat.
-   *
-   * @param userInput the user input from the text field.
-   */
-  private void setUserResponse(String userInput) {
-    // append the text to the chat text area
-    taChat.appendText("user> " + userInput + "\n\n");
+  private void setAlgorithm(String algorithm) {}
 
-    // clear the text field user input
-    tfChat.clear();
+  private void setMemoryLocation(double x, double y, double w, double h) {
+    // Initialize the offsets
+    double horizontalOffset = 5;
+    double verticalOffset = 85;
+
+    // Intialize the padding
+    double padding = 5;
+
+    // Create a rectangle component
+    Rectangle memory = new Rectangle(w, h);
+
+    // Get a random color
+    Color color = getRandomColor();
+
+    // Set the location of the rectangle
+    memory.setTranslateX((x * (w + padding)) + horizontalOffset);
+    memory.setTranslateY((y * (h + padding)) + verticalOffset);
+
+    // Set the color of the rectangle
+    memory.setFill(color);
+
+    // Set the style of the rectangle
+    setRectangleStyle(memory);
+
+    // Add the rectangle to the scene
+    paDecryption.getChildren().add(memory);
   }
 
-  /**
-   * Set the digit for the given user sequence; for the corresponding index.
-   *
-   * @param userSequence the user's sequence.
-   * @param index the index of the digit to be updated.
-   */
-  private void setDigit(String userSequence, int index) {
-    // Get the current scene
-    Scene currentScene = paDecryption.getScene();
+  private void setRectangleStyle(Rectangle rectangle) {
+    // Initialize a glow for the rectangle
+    Glow glow = new Glow();
+    glow.setLevel(0.7);
 
-    // Get the digit label associated with the index
-    Label lblDigit = (Label) currentScene.lookup("#lblDigit" + String.valueOf(index));
-
-    // Update the previous digit to the current one
-    lblDigit.setText(String.valueOf(userSequence.charAt(index)));
+    // Set the glow effect for the rectangle
+    rectangle.setEffect(glow);
   }
 
-  /**
-   * Set the pane color to green if the user correctly identifies the sequence.
-   *
-   * @param index the index of the pane to be updated.
-   */
-  private void setDigitPaneColor(int index) {
-    // Get the current scene
-    Scene currentScene = paDecryption.getScene();
-
-    // Get the digit label associated with the index
-    Pane paDigit = (Pane) currentScene.lookup("#paDigit" + String.valueOf(index));
-
-    // Set the style class to green
-    paDigit.getStyleClass().add("green-border-pane");
+  private void setPaneEntered(Pane pane) {
+    pane.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
-  /**
-   * Set the label color to green if the user correctly identifies the sequence.
-   *
-   * @param index the index of the digit to be updated.
-   * @param color the color to be set for the label.
-   */
-  private void setDigitLabelColor(int index, Color color) {
-    // Get the current scene
-    Scene currentScene = paDecryption.getScene();
-
-    // Get the digit label associated with the index
-    Label lblDigit = (Label) currentScene.lookup("#lblDigit" + String.valueOf(index));
-
-    // Update the digit to the input color
-    lblDigit.setTextFill(color);
+  private void setPaneExited(Pane pane) {
+    pane.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
-  /**
-   * Handle the user's sequence. This should handle both cases where the user either correctly
-   * determines the sequence or they incorrectly identify the sequence. Updating the sequence labels
-   * are also done through this method.
-   *
-   * @param userInput the user's input from the text field.
-   */
-  private void handleUserSequence(String userInput) {
-    // Get the user's sequence
-    String userSequence = getUserSequence(userInput);
-
-    // Check if the user sequence is correct or not
-    if (userSequence.equals(sequence)) {
-      handleCorrectSequence(userSequence);
-    } else {
-      handleIncorrectSequence(userSequence);
-    }
-
-    // Update the user's sequence on the red boxes
-    updateUserSequence(userSequence);
-
-    // Set the user's response - sequence to the text area
-    setUserResponse(userSequence);
+  private void setPolygonEntered(Polygon polygon) {
+    polygon.setStroke(Color.rgb(29, 30, 37));
+    polygon.setFill(Color.rgb(29, 30, 37));
   }
 
-  /**
-   * Handle the case where the user correctly identifies the sequence.
-   *
-   * @param userSequence the user's sequence.
-   */
-  private void handleCorrectSequence(String userSequence) {
-    System.out.println("SEQUENCE IS CORRECT");
-
-    // Update the labels and panes to green color
-    for (int index = 0; index < GameState.maxSequence; index++) {
-      setDigitPaneColor(index);
-      setDigitLabelColor(index, Color.GREEN);
-    }
-
-    // The user has solved the puzzle
-    GameState.isDecryptionSolved = true;
-  }
-
-  /**
-   * Handle the case where the user incorrectly identifies the sequence.
-   *
-   * @param userSequence the user's sequence.
-   */
-  private void handleIncorrectSequence(String userSequence) {
-    System.out.println("SEQUENCE IS INCORRECT");
-  }
-
-  /**
-   * Update the user's sequence. This should update the previous displayed user sequence.
-   *
-   * @param userSequence the user's sequence.
-   */
-  private void updateUserSequence(String userSequence) {
-    for (int index = 0; index < GameState.maxSequence; index++) {
-      setDigit(userSequence, index);
-    }
+  private void setPolygonExited(Polygon polygon) {
+    polygon.setStroke(Color.rgb(20, 20, 23));
+    polygon.setFill(Color.rgb(20, 20, 23));
   }
 
   /** Enable components when a task is finished. */
   private void enableComponents() {
-    // Enable the user input field
-    tfChat.setDisable(false);
-
     // Enable the hint pane
-    pgHint.setDisable(false);
+    paHint.setDisable(false);
   }
 
-  /** disable components when a task is running. */
+  /** Enable empty pane components. */
+  private void enableEmptyComponents() {
+    // Enable empty tab components
+    enableEmptyTabComponents();
+
+    // Set the matrix rain visible
+    cvsMatrixRain.setVisible(true);
+
+    // Set all components in empty pane visible
+    paEmptyComponent.setVisible(true);
+    pgEmptyComponent.setVisible(true);
+    paEmptyComponentBar.setVisible(true);
+
+    // Enable all components in empty pane
+    paEmptyComponent.setDisable(false);
+    pgEmptyComponent.setDisable(false);
+    paEmptyComponentBar.setDisable(false);
+  }
+
+  /** Enable password pane components. */
+  private void enablePasswordComponents() {
+    // Enable password tab components
+    enablePasswordTabComponents();
+
+    // Set all components in password pane visible
+    paPasswordComponent.setVisible(true);
+    pgPasswordComponent.setVisible(true);
+
+    // Enable all components in password pane
+    paPasswordComponent.setDisable(false);
+    pgPasswordComponent.setDisable(false);
+  }
+
+  /** Enable empty tab components. */
+  private void enableEmptyTabComponents() {
+    // Set entered color for the pane
+    setPaneEntered(paEmpty);
+
+    // Set entered colors for the polygons
+    setPolygonEntered(pgEmptyLeft);
+    setPolygonEntered(pgEmptyRight);
+  }
+
+  /** Enable password tab components. */
+  private void enablePasswordTabComponents() {
+    // Set entered color for the pane
+    setPaneEntered(paPassword);
+
+    // Set entered colors for the polygons
+    setPolygonEntered(pgPasswordLeft);
+    setPolygonEntered(pgPasswordRight);
+  }
+
+  /** Disable components when a task is running. */
   private void disableComponents() {
-    // Disable the user input field
-    tfChat.setDisable(true);
-
-    // Disable the hint pane
-    pgHint.setDisable(true);
+    paHint.setDisable(true);
   }
 
-  /**
-   * Remove the previous message in GPT's history. This is to ensure that the users won't be able to
-   * abuse the hint system.
-   */
-  private void removePreviousMessage() {
-    // Get the current GPT messages
-    List<ChatMessage> gptMessages = gptRequest.getMessages();
+  /** Disable empty pane components. */
+  private void disableEmptyComponents() {
+    // Disable empty tab components
+    disableEmptyTabComponents();
 
-    // Remove last message sent
-    gptMessages.remove(gptMessages.size() - 1);
+    // Set the matrix rain invisible
+    cvsMatrixRain.setVisible(false);
+
+    // Set all components in empty pane invisible
+    paEmptyComponent.setVisible(false);
+    pgEmptyComponent.setVisible(false);
+    paEmptyComponentBar.setVisible(false);
+
+    // Disable all components in empty pane
+    paEmptyComponent.setDisable(true);
+    pgEmptyComponent.setDisable(true);
+    paEmptyComponentBar.setDisable(true);
   }
 
-  /**
-   * Check if the user's input has contains a four digit number. If it does, then handle it in
-   * another function call.
-   *
-   * @param userInput the user's input from the text field.
-   * @return a boolean based on whether the user's input is a sequence.
-   */
-  private Boolean isUserInputSequence(String userInput) {
-    // Check if there are only four digits in the user's input
-    if (!isUserSequenceFourDigits(userInput)) {
-      return false;
-    }
+  /** Disable password pane components. */
+  private void disablePasswordComponents() {
+    // Disable password tab components
+    disablePasswordTabComponents();
 
-    // Check if the digits are contiguous in the user's input
-    if (!isUserSequenceContiguous(userInput)) {
-      return false;
-    }
+    // Set all components in password pane invisible
+    paPasswordComponent.setVisible(false);
+    pgPasswordComponent.setVisible(false);
 
-    return true;
+    // Disable all components in password pane
+    paPasswordComponent.setDisable(true);
+    pgPasswordComponent.setDisable(true);
   }
 
-  /**
-   * Check whether the user's input contains four digits or not.
-   *
-   * @param userInput
-   * @return a boolean value based on whether the user's input contains four digits.
-   */
-  private Boolean isUserSequenceFourDigits(String userInput) {
-    int count = 0;
+  /** Disable empty tab components. */
+  private void disableEmptyTabComponents() {
+    // Set exited color for the pane
+    setPaneExited(paEmpty);
 
-    // Go through the user's input and check if there are only four digits
-    for (int i = 0; i < userInput.length(); i++) {
-      if (Character.isDigit(userInput.charAt(i))) {
-        count++;
-      }
-    }
-
-    return (count == GameState.maxSequence ? true : false);
+    // Set exited colors for the polygons
+    setPolygonExited(pgEmptyLeft);
+    setPolygonExited(pgEmptyRight);
   }
 
-  /**
-   * Check whether there exists four contiguous digits in the user's input.
-   *
-   * @param userInput the user's input from the text field.
-   * @return a boolean value based on whether there are four contiguous digits.
-   */
-  private Boolean isUserSequenceContiguous(String userInput) {
-    // Initialize fields
-    String userSequence;
-    int position;
+  /** Disable password tab components. */
+  private void disablePasswordTabComponents() {
+    // Set exited color for the pane
+    setPaneExited(paPassword);
 
-    // Stop at the first digit
-    for (position = 0; position < userInput.length(); position++) {
-      if (Character.isDigit(userInput.charAt(position))) {
-        break;
-      }
-    }
-
-    // Get the next four characters from the user's input
-    userSequence = userInput.substring(position, position + GameState.maxSequence);
-
-    return isUserSequenceNumeric(userSequence);
-  }
-
-  /**
-   * Check if the user's sequence is numeric.
-   *
-   * @param userSequence the user's sequence.
-   * @return a boolean value whether the user's sequence is a valid four digit number.
-   */
-  private Boolean isUserSequenceNumeric(String userSequence) {
-    return userSequence.matches("-?\\d+(\\.\\d+)?");
+    // Set exited colors for the polygons
+    setPolygonExited(pgPasswordLeft);
+    setPolygonExited(pgPasswordRight);
   }
 }
