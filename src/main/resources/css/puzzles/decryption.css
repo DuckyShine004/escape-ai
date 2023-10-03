@@ -45,6 +45,17 @@
   -fx-font-family: "DS-Digital";
 }
 
+/* For the text flow styling */
+.text-flow-text {
+  -fx-text-alignment: top-left;
+  -fx-fill: white !important;
+  -fx-font-family: "JetBrainsMono NF";
+  -fx-font-size: 16px;
+}
+
+#text-flow {
+}
+
 /* For the text area styling */
 .custom-text-area {
   -fx-text-alignment: top-left;

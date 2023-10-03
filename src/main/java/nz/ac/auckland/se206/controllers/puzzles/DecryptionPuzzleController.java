@@ -77,10 +77,10 @@ public class DecryptionPuzzleController {
   @FXML private TextArea taAlgorithm;
   @FXML private TextArea taDescription;
 
+  private boolean[] isLineSelected;
+
   private Pane[] paLines;
   private Pane[] paLineOverlays;
-
-  private int[] sequenceIndices;
 
   private int hintIndex;
   private int pseudocodeIndex;
@@ -159,6 +159,11 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Check if the line has already been selected
+    if (isLineSelected[lineIndex]) {
+      return;
+    }
+
     // Set the line visible
     paLines[lineIndex].setOpacity(1);
 
@@ -174,6 +179,11 @@ public class DecryptionPuzzleController {
 
     // Check if the index is greater than the amount of lines
     if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Check if the line has already been selected
+    if (isLineSelected[lineIndex]) {
       return;
     }
 
@@ -247,6 +257,34 @@ public class DecryptionPuzzleController {
 
     // Get a user hint
     getUserHint();
+  }
+
+  @FXML
+  private void onLinePaneClicked(Event event) {
+    // Retrieve the line's index
+    int lineIndex = getLineIndex(event);
+
+    // Check if the index is greater than the amount of lines
+    if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Check if the user can click on anymore lines
+    if (getLinesSelected() == GameState.maxSequence && !isLineSelected[lineIndex]) {
+      return;
+    }
+
+    // Get the next opacity for the line
+    double nextLineOpacity = (isLineSelected[lineIndex] ? 0 : 1);
+
+    // Toggle the current sequence index
+    isLineSelected[lineIndex] = !isLineSelected[lineIndex];
+
+    // Toggle the visibility of the line
+    paLines[lineIndex].setOpacity(nextLineOpacity);
+
+    // Toggle the visibility of the line overlay
+    paLineOverlays[lineIndex].setVisible(isLineSelected[lineIndex]);
   }
 
   /** When back is clicked, go back to previous section (control room). */
@@ -435,7 +473,7 @@ public class DecryptionPuzzleController {
 
   private void initializePuzzleComponents() {
     // Initialize the sequence indice array
-    sequenceIndices = new int[9];
+    isLineSelected = new boolean[9];
 
     // Initialize the pseudocode lines array
     paLines = new Pane[pseudocodeLines];
@@ -631,6 +669,16 @@ public class DecryptionPuzzleController {
     return Integer.parseInt(index.substring(index.length() - 1));
   }
 
+  private int getLinesSelected() {
+    int count = 0;
+
+    for (boolean isSelected : isLineSelected) {
+      count += (isSelected ? 1 : 0);
+    }
+
+    return count;
+  }
+
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
    *
@@ -710,8 +758,6 @@ public class DecryptionPuzzleController {
     polygon.setStroke(Color.rgb(20, 20, 23));
     polygon.setFill(Color.rgb(20, 20, 23));
   }
-
-  private void setLineClicked(int index) {}
 
   /** Enable components when a task is finished. */
   private void enableComponents() {
