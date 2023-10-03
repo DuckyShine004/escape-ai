@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
 <Pane fx:id="paDecryption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: rgb(20,20,23);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.DecryptionPuzzleController">
    <children>
@@ -150,12 +149,7 @@
       </Pane>
       <Pane fx:id="paPasswordComponent" layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
-            <TextFlow id="text-flow" fx:id="tfwAlgorithm" layoutY="45.0" prefHeight="200.0" prefWidth="370.0" styleClass="text-flow-text" stylesheets="@../../css/puzzles/decryption.css">
-               <effect>
-                  <Glow level="0.5" />
-               </effect>
-            </TextFlow>
-            <Pane fx:id="paLine0" layoutY="51.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine0" layoutY="51.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -167,7 +161,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine1" layoutY="73.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine1" layoutY="73.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -179,7 +173,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine2" layoutY="95.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine2" layoutY="95.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -191,7 +185,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine3" layoutY="117.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine3" layoutY="117.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -203,7 +197,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine4" layoutY="139.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine4" layoutY="139.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -215,7 +209,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine5" layoutY="161.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine5" layoutY="161.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -227,7 +221,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine6" layoutY="183.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine6" layoutY="183.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -239,7 +233,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine7" layoutY="205.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine7" layoutY="205.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -251,7 +245,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine8" layoutY="227.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);">
+            <Pane fx:id="paLine8" layoutY="227.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
                <effect>
                   <InnerShadow>
                      <input>
@@ -263,47 +257,47 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay0" layoutX="35.0" layoutY="51.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay0" layoutX="35.0" layoutY="51.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay1" layoutX="35.0" layoutY="73.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay1" layoutX="35.0" layoutY="73.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay2" layoutX="35.0" layoutY="95.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay2" layoutX="35.0" layoutY="95.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay3" layoutX="35.0" layoutY="117.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay3" layoutX="35.0" layoutY="117.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay4" layoutX="35.0" layoutY="139.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay4" layoutX="35.0" layoutY="139.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay5" layoutX="35.0" layoutY="161.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay5" layoutX="35.0" layoutY="161.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay6" layoutX="35.0" layoutY="183.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay6" layoutX="35.0" layoutY="183.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay7" layoutX="35.0" layoutY="205.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay7" layoutX="35.0" layoutY="205.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLineOverlay8" layoutX="35.0" layoutY="227.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" visible="false">
+            <Pane fx:id="paLineOverlay8" layoutX="35.0" layoutY="227.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
@@ -414,7 +408,7 @@
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="45.0" prefHeight="260.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="40.0" prefHeight="260.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
@@ -424,7 +418,23 @@
                   <Glow level="0.5" />
                </effect>
             </TextArea>
-            <Line endY="197.0" layoutX="34.0" layoutY="52.0" stroke="#48494f" strokeWidth="1.5">
+            <Label layoutX="10.0" layoutY="252.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="CURRENT SEQUENCE:" textFill="#ff5e5e">
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblSequence" layoutX="180.0" layoutY="252.5" styleClass="timer-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="1_34" textFill="#ff5e5e">
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Line fx:id="lineVertical" endY="197.0" layoutX="34.0" layoutY="47.0" stroke="#48494f" strokeWidth="1.5">
                <effect>
                   <Glow level="0.5">
                      <input>

@@ -180,6 +180,9 @@ public class App extends Application {
 
     // load the timer font
     loadFont("timer", "TTF", 23);
+
+    // load the timer font - bold
+    loadFont("timerBold", "TTF", 23);
   }
 
   /**

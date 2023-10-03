@@ -7,6 +7,7 @@ import javafx.animation.AnimationTimer;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -58,9 +60,12 @@ public class DecryptionPuzzleController {
   @FXML private Pane paEmptyComponentBar;
   @FXML private Pane paPasswordComponent;
 
+  @FXML private Line lineVertical;
+
   @FXML private Label lblTime;
   @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
+  @FXML private Label lblSequence;
   @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
 
@@ -426,8 +431,7 @@ public class DecryptionPuzzleController {
             // Draw a character with an opaque color
             gcMatrixRain.fillText(currentText, horizontalPosition, verticalPosition);
 
-            // Restart the the current rain drop if the rain reaches somewhere at bottom of the
-            // canvas
+            // Restart the current rain drop if the drop reaches the bottom of the canvas
             if (verticalPosition > 100 + (Math.random() * 10000)) {
               verticalPositions[i] = 0;
             } else {
@@ -486,6 +490,15 @@ public class DecryptionPuzzleController {
       paLines[line] = (Pane) paDecryption.lookup("#paLine" + line);
       paLineOverlays[line] = (Pane) paDecryption.lookup("#paLineOverlay" + line);
     }
+
+    // Change the cursor for un-touchable lines
+    for (int line = pseudocodeLines; line < 9; line++) {
+      Pane paLine = (Pane) paDecryption.lookup("#paLine" + line);
+      paLine.setCursor(Cursor.DEFAULT);
+    }
+
+    // Change the line height to match the number of algorithm lines present
+    lineVertical.setEndY((22 * pseudocodeLines) - 1.5);
   }
 
   /**

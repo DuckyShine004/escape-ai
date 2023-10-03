@@ -24,7 +24,12 @@
 
 @font-face {
   font-family: DS-Digital;
-  src: url("/../../fonts/timer.ttf");
+  src: url("/../../fonts/timer.TTf");
+}
+
+@font-face {
+  font-family: DS-Digital;
+  src: url("/../../fonts/timerBold.TTf");
 }
 
 /* Label with custom font */
@@ -45,15 +50,8 @@
   -fx-font-family: "DS-Digital";
 }
 
-/* For the text flow styling */
-.text-flow-text {
-  -fx-text-alignment: top-left;
-  -fx-fill: white !important;
-  -fx-font-family: "JetBrainsMono NF";
-  -fx-font-size: 16px;
-}
-
-#text-flow {
+.timer-bold-label {
+  -fx-font-family: "DS-Digital Bold";
 }
 
 /* For the text area styling */
