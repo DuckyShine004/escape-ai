@@ -290,6 +290,9 @@ public class DecryptionPuzzleController {
 
     // Toggle the visibility of the line overlay
     paLineOverlays[lineIndex].setVisible(isLineSelected[lineIndex]);
+
+    // Set the sequence entered by the user
+    setUserSequence();
   }
 
   /** When back is clicked, go back to previous section (control room). */
@@ -743,6 +746,21 @@ public class DecryptionPuzzleController {
 
     // Add the rectangle to the scene
     paDecryption.getChildren().add(memory);
+  }
+
+  private void setUserSequence() {
+    // Initialize a new sequence
+    String newSequence = "";
+
+    // Get which line numbers are selected by the user
+    for (int line = 0; line < pseudocodeLines; line++) {
+      if (isLineSelected[line]) {
+        newSequence += line + 1;
+      }
+    }
+
+    // Update the old user's sequence
+    lblSequence.setText(newSequence);
   }
 
   private void setRectangleStyle(Rectangle rectangle) {
