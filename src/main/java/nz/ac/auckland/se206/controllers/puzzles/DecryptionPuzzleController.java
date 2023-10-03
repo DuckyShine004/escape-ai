@@ -63,11 +63,13 @@ public class DecryptionPuzzleController {
   @FXML private Line lineVertical;
 
   @FXML private Label lblTime;
+  @FXML private Label lblError;
   @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
   @FXML private Label lblSequence;
   @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
+  @FXML private Label lblPrefixSequence;
 
   @FXML private Canvas cvsMatrixRain;
 
@@ -153,11 +155,16 @@ public class DecryptionPuzzleController {
     paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
-  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  /** When the mouse is hovering over the pane, the overlay appears (line). */
   @FXML
   private void onLinePaneEntered(Event event) {
     // Retrieve the line's index
     int lineIndex = getLineIndex(event);
+
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
 
     // Check if the index is greater than the amount of lines
     if (lineIndex >= pseudocodeLines) {
@@ -176,7 +183,7 @@ public class DecryptionPuzzleController {
     paLineOverlays[lineIndex].setVisible(true);
   }
 
-  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  /** When the mouse is hovering over the pane, the overlay appears (line). */
   @FXML
   private void onLinePaneExited(Event event) {
     // Retrieve the line's index
@@ -250,6 +257,11 @@ public class DecryptionPuzzleController {
   /** When hint is clicked, give the user a hint. */
   @FXML
   private void onHintPaneClicked() {
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
+
     // If the difficulty is hard, ignore user.
     if (GameState.gameDifficulty == Difficulty.HARD) {
       return;
@@ -264,10 +276,31 @@ public class DecryptionPuzzleController {
     getUserHint();
   }
 
+  /** When analyze pane is pressed, check if the user's sequence is corrrect. */
+  @FXML
+  private void onAnalyzeClicked() {
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
+
+    // Handle the user's sequence based on whether it is correct or not
+    if (lblSequence.getText().equals(sequence)) {
+      handleCorrectUserSequence();
+    } else {
+      handleIncorrectUserSequence();
+    }
+  }
+
   @FXML
   private void onLinePaneClicked(Event event) {
     // Retrieve the line's index
     int lineIndex = getLineIndex(event);
+
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
 
     // Check if the index is greater than the amount of lines
     if (lineIndex >= pseudocodeLines) {
@@ -772,6 +805,19 @@ public class DecryptionPuzzleController {
     rectangle.setEffect(glow);
   }
 
+  /** Update labels when player solves the puzzle. */
+  private void setLabelsSolved() {
+    // There are now zero errors
+    lblError.setText("0 errors");
+
+    // Change the color of the error label
+    lblError.setTextFill(Color.rgb(130, 255, 90));
+
+    // Change the color of the sequence labels
+    lblSequence.setTextFill(Color.rgb(130, 255, 90));
+    lblPrefixSequence.setTextFill(Color.rgb(130, 255, 90));
+  }
+
   private void setPaneEntered(Pane pane) {
     pane.setStyle("-fx-background-color: rgb(29,30,37);");
   }
@@ -904,5 +950,24 @@ public class DecryptionPuzzleController {
     // Set exited colors for the polygons
     setPolygonExited(pgPasswordLeft);
     setPolygonExited(pgPasswordRight);
+  }
+
+  /** Handle the event when user correctly inputs the sequence. */
+  private void handleCorrectUserSequence() {
+    // Set cursor to default for all line panes
+    for (Pane pane : paLines) {
+      pane.setCursor(Cursor.DEFAULT);
+    }
+
+    // Update all labels associated with solving the puzzle
+    setLabelsSolved();
+
+    // The decryption puzzle is now solved
+    GameState.isDecryptionSolved = true;
+  }
+
+  /** Handle the event when user incorrectly inputs the sequence. */
+  private void handleIncorrectUserSequence() {
+    System.out.println("INCORRECT");
   }
 }

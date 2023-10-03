@@ -111,7 +111,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseClicked="#onAnalyzeClicked" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Label layoutX="38.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="ANALYZE" textFill="WHITE">
                <font>
@@ -343,7 +343,7 @@
                   </InnerShadow>
                </effect>
                <children>
-                  <Label layoutX="72.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
+                  <Label fx:id="lblError" layoutX="72.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -418,7 +418,7 @@
                   <Glow level="0.5" />
                </effect>
             </TextArea>
-            <Label layoutX="10.0" layoutY="252.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="CURRENT SEQUENCE:" textFill="#ff5e5e">
+            <Label fx:id="lblPrefixSequence" layoutX="10.0" layoutY="252.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="CURRENT SEQUENCE:" textFill="#ff5e5e">
                <effect>
                   <Glow level="0.7" />
                </effect>

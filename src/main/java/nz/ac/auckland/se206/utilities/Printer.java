@@ -18,6 +18,7 @@ public class Printer {
    *
    * @param textArea the passed in text area
    * @param message the message to be printed
+   * @param speed the speed at which the letters will be printed
    */
   public static void printText(TextArea textArea, String message, double speed) {
     currentLetterPosition = 0;
