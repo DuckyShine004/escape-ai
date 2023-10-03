@@ -5,7 +5,9 @@ import java.util.Random;
 import java.util.stream.IntStream;
 import javafx.animation.AnimationTimer;
 import javafx.concurrent.Task;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -34,6 +36,16 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
+  @FXML private Pane paLine0;
+  @FXML private Pane paLine1;
+  @FXML private Pane paLine2;
+  @FXML private Pane paLine3;
+  @FXML private Pane paLine4;
+  @FXML private Pane paLine5;
+  @FXML private Pane paLine6;
+  @FXML private Pane paLine7;
+  @FXML private Pane paLine8;
+
   @FXML private Pane paBack;
   @FXML private Pane paHint;
   @FXML private Pane paEmpty;
@@ -65,8 +77,14 @@ public class DecryptionPuzzleController {
   @FXML private TextArea taAlgorithm;
   @FXML private TextArea taDescription;
 
+  private Pane[] paLines;
+  private Pane[] paLineOverlays;
+
+  private int[] sequenceIndices;
+
   private int hintIndex;
-  private int psuedocodeIndex;
+  private int pseudocodeIndex;
+  private int pseudocodeLines;
 
   private double memoryUsed;
 
@@ -101,6 +119,9 @@ public class DecryptionPuzzleController {
 
     // Initialize the pseudocode and algorithms
     initializePseudocode();
+
+    // Intialize the puzzle components
+    initializePuzzleComponents();
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (hint). */
@@ -125,6 +146,42 @@ public class DecryptionPuzzleController {
   @FXML
   private void onAnalyzeExited() {
     paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  @FXML
+  private void onLinePaneEntered(Event event) {
+    // Retrieve the line's index
+    int lineIndex = getLineIndex(event);
+
+    // Check if the index is greater than the amount of lines
+    if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Set the line visible
+    paLines[lineIndex].setOpacity(1);
+
+    // Set the line overlay visible
+    paLineOverlays[lineIndex].setVisible(true);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  @FXML
+  private void onLinePaneExited(Event event) {
+    // Retrieve the line's index
+    int lineIndex = getLineIndex(event);
+
+    // Check if the index is greater than the amount of lines
+    if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Set the line overlay invisible
+    paLines[lineIndex].setOpacity(0);
+
+    // Set the line overlay invisible
+    paLineOverlays[lineIndex].setVisible(false);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -188,6 +245,7 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Get a user hint
     getUserHint();
   }
 
@@ -231,8 +289,6 @@ public class DecryptionPuzzleController {
 
     // Disable empty pane components
     disableEmptyComponents();
-
-    cvsMatrixRain.setVisible(false);
   }
 
   /**
@@ -258,6 +314,7 @@ public class DecryptionPuzzleController {
     gptRequest.setMaxTokens(100);
   }
 
+  /** Initialize the memory grid (for visual effects). */
   private void initializeMemory() {
     // Initialize memory used to zero
     memoryUsed = 0;
@@ -350,11 +407,11 @@ public class DecryptionPuzzleController {
    * @throws Exception thrown when there is an error initializing pseudocode instances.
    */
   private void initializePseudocode() throws Exception {
-    // Get a random pseudo code
-    psuedocodeIndex = (int) (Math.random() * (GameState.maxPseudocodes));
-
     // Hint index is initially zero
     hintIndex = 0;
+
+    // Get a random pseudo code
+    pseudocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
 
     // Initialize the sequence
     intializeSequence();
@@ -363,14 +420,34 @@ public class DecryptionPuzzleController {
     initializeDescription();
     initializeAlgorithm();
 
+    // Get the number of lines for the pseudocode
+    pseudocodeLines = getPseudocodeLines();
+
     // Append the description to the text area
     taDescription.appendText(description);
 
-    // Create labels and panes for the algorithm
-    setAlgorithm(algorithm);
+    // Append the algorithm to the text area
+    taAlgorithm.appendText(algorithm);
 
     // Get the pseudocode in string form
     pseudocode = description + algorithm;
+  }
+
+  private void initializePuzzleComponents() {
+    // Initialize the sequence indice array
+    sequenceIndices = new int[9];
+
+    // Initialize the pseudocode lines array
+    paLines = new Pane[pseudocodeLines];
+
+    // Initialize the line overlays array
+    paLineOverlays = new Pane[pseudocodeLines];
+
+    // Retrieve the line and overlay pane components
+    for (int line = 0; line < pseudocodeLines; line++) {
+      paLines[line] = (Pane) paDecryption.lookup("#paLine" + line);
+      paLineOverlays[line] = (Pane) paDecryption.lookup("#paLineOverlay" + line);
+    }
   }
 
   /**
@@ -381,7 +458,7 @@ public class DecryptionPuzzleController {
    */
   private void intializeSequence() throws Exception {
     // get the field name for the corresponding random pseudocode index
-    String fieldName = "sequence" + Integer.toString(psuedocodeIndex);
+    String fieldName = "sequence" + Integer.toString(pseudocodeIndex);
 
     // create an object of 'Sequence'
     Sequence sequence = new Sequence();
@@ -404,7 +481,7 @@ public class DecryptionPuzzleController {
    */
   private void initializeAlgorithm() throws Exception {
     // get the field name for the corresponding random pseudocode index
-    String fieldName = "algorithm" + Integer.toString(psuedocodeIndex);
+    String fieldName = "algorithm" + Integer.toString(pseudocodeIndex);
 
     // create an object of 'Algorithm'
     Algorithm algorithm = new Algorithm();
@@ -427,7 +504,7 @@ public class DecryptionPuzzleController {
    */
   private void initializeDescription() throws Exception {
     // get the field name for the corresponding random pseudocode index
-    String fieldName = "description" + Integer.toString(psuedocodeIndex);
+    String fieldName = "description" + Integer.toString(pseudocodeIndex);
 
     // create an object of 'Description'
     Description description = new Description();
@@ -542,6 +619,18 @@ public class DecryptionPuzzleController {
     return Character.toString(character);
   }
 
+  private int getPseudocodeLines() {
+    IntStream characterStream = algorithm.chars();
+
+    return (int) characterStream.filter(character -> character == '\n').count() + 1;
+  }
+
+  private int getLineIndex(Event event) {
+    String index = ((Node) event.getSource()).getId();
+
+    return Integer.parseInt(index.substring(index.length() - 1));
+  }
+
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
    *
@@ -566,8 +655,6 @@ public class DecryptionPuzzleController {
     // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
-
-  private void setAlgorithm(String algorithm) {}
 
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
@@ -624,9 +711,10 @@ public class DecryptionPuzzleController {
     polygon.setFill(Color.rgb(20, 20, 23));
   }
 
+  private void setLineClicked(int index) {}
+
   /** Enable components when a task is finished. */
   private void enableComponents() {
-    // Enable the hint pane
     paHint.setDisable(false);
   }
 

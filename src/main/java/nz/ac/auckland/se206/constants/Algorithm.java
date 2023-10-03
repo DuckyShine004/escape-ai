@@ -47,12 +47,5 @@ public class Algorithm {
           + "7.     output Commencing AI training.; \n";
 
   public static final String algorithm5 =
-      "1. bool isRestricted = true; \n"
-          + "2. bool allowAdministrator = false; \n"
-          + "3. if (!isRestricted) { \n"
-          + "4.   output \"AI is restricted!\"; \n"
-          + "5. } \n"
-          + "6. if (allowAdministrator) { \n"
-          + "7.   output \"AI totally has no admin!\"; \n"
-          + "8. } \n";
+      "1. \n" + "2. \n" + "3. \n" + "4. \n" + "5. \n" + "6. \n" + "7. \n" + "8. \n" + "9.";
 }
