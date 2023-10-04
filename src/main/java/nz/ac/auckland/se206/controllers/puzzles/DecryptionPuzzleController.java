@@ -177,7 +177,11 @@ public class DecryptionPuzzleController {
     paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
-  /** When the mouse is hovering over the pane, the overlay appears (line). */
+  /**
+   * When the mouse is hovering over the pane, the overlay appears (line).
+   *
+   * @param event the event source specifies for an event handler the object.
+   */
   @FXML
   private void onLinePaneEntered(Event event) {
     // Retrieve the line's index
@@ -203,7 +207,11 @@ public class DecryptionPuzzleController {
     paLineOverlays[lineIndex].setVisible(true);
   }
 
-  /** When the mouse is hovering over the pane, the overlay appears (line). */
+  /**
+   * When the mouse is hovering over the pane, the overlay appears (line).
+   *
+   * @param event the event source specifies for an event handler the object.
+   */
   @FXML
   private void onLinePaneExited(Event event) {
     // Retrieve the line's index
@@ -326,6 +334,11 @@ public class DecryptionPuzzleController {
     }
   }
 
+  /**
+   * When line pane is pressed, highlight which line of the algorithm is selected.
+   *
+   * @param event the event source specifies for an event handler the object.
+   */
   @FXML
   private void onLinePaneClicked(Event event) {
     // Retrieve the line's index
@@ -363,6 +376,7 @@ public class DecryptionPuzzleController {
     App.setUi(AppUi.TERMINAL);
   }
 
+  /** When the empty pane is clicked, go to the empty tab. */
   @FXML
   private void onEmptyClicked() {
     // Empty tab is now open
@@ -381,6 +395,7 @@ public class DecryptionPuzzleController {
     enableEmptyComponents();
   }
 
+  /** When the password pane is clicked, go to the password tab. */
   @FXML
   private void onPasswordClicked() {
     // Password tab is now open
@@ -540,6 +555,7 @@ public class DecryptionPuzzleController {
     pseudocode = description + algorithm;
   }
 
+  /** Initialize all puzzle components required for the puzzle to work. */
   private void initializePuzzleComponents() {
     // Initialize the sequence indice array
     isLineSelected = new boolean[9];
@@ -567,9 +583,8 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Get the string sequence for the corresponding random pseudocode index.
+   * Initialize the string sequence for the corresponding random pseudocode index.
    *
-   * @return the string value of the sequence.
    * @throws Exception throw when class or field name is not found.
    */
   private void intializeSequence() throws Exception {
@@ -590,9 +605,8 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Get the string algorithm code snippet for the corresponding random pseudocode index.
+   * Initialize the string algorithm code snippet for the corresponding random pseudocode index.
    *
-   * @return the string value of the algorithm code snippet.
    * @throws Exception throw when class or field name is not found.
    */
   private void initializeAlgorithm() throws Exception {
@@ -613,9 +627,8 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Get the string description for the corresponding random pseudocode index.
+   * Initialize the string description for the corresponding random pseudocode index.
    *
-   * @return the string value of the description.
    * @throws Exception throw when class or field name is not found.
    */
   private void initializeDescription() throws Exception {
@@ -639,6 +652,7 @@ public class DecryptionPuzzleController {
    * Generate a response from GPT.
    *
    * @param entityMessage the chat message to be sent to GPT.
+   * @param isHint the flag for if the user input is a hint.
    */
   private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
     // add user input to GPT's user input history
@@ -704,6 +718,11 @@ public class DecryptionPuzzleController {
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
   }
 
+  /**
+   * Get the memory used. This is not the actual memory used by this program.
+   *
+   * @return double the memory used.
+   */
   private double getMemoryUsed() {
     // Get the ratio of memory used
     memoryUsed = (memoryUsed / 75) * 32;
@@ -714,6 +733,11 @@ public class DecryptionPuzzleController {
     return Double.parseDouble(roundedMemoryUsed);
   }
 
+  /**
+   * Return a random color. The color choice is between green and gray.
+   *
+   * @return Color a random color between green or gray.
+   */
   private Color getRandomColor() {
     Color green = Color.rgb(130, 240, 130);
     Color gray = Color.rgb(56, 57, 63);
@@ -727,6 +751,12 @@ public class DecryptionPuzzleController {
     return (isColorGreen ? green : gray);
   }
 
+  /**
+   * Return a random japanese character for the matrix rain.
+   *
+   * @param random an instance of the random number generator.
+   * @return String a random japanese character.
+   */
   private String getRandomCharacter(Random random) {
     IntStream characterStream = random.ints(12353, 12380);
 
@@ -735,18 +765,34 @@ public class DecryptionPuzzleController {
     return Character.toString(character);
   }
 
+  /**
+   * Get the number of lines occupied by the current algorithm.
+   *
+   * @return int the number of lines for the given pseudocode.
+   */
   private int getPseudocodeLines() {
     IntStream characterStream = algorithm.chars();
 
     return (int) characterStream.filter(character -> character == '\n').count() + 1;
   }
 
+  /**
+   * Return the line number currently selected by the user.
+   *
+   * @param event the event source specifies for an event handler the object.
+   * @return int the line number selected by the user.
+   */
   private int getLineIndex(Event event) {
     String index = ((Node) event.getSource()).getId();
 
     return Integer.parseInt(index.substring(index.length() - 1));
   }
 
+  /**
+   * Return the number of selected lines by the user.
+   *
+   * @return int the number of lines in selection.
+   */
   private int getLinesSelected() {
     int count = 0;
 
@@ -782,6 +828,15 @@ public class DecryptionPuzzleController {
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
 
+  /**
+   * Create a memory cell (rectangle) component for the memory grid. This will be added to the list
+   * of children nodes.
+   *
+   * @param x the x position of the memory cell.
+   * @param y the y position of the memory cell.
+   * @param w the width of the memory cell.
+   * @param h the height of the memory cell.
+   */
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
     double horizontalOffset = 5;
@@ -810,6 +865,10 @@ public class DecryptionPuzzleController {
     paDecryption.getChildren().add(memory);
   }
 
+  /**
+   * Set the label for the user sequence. The label should display the current sequence the user has
+   * entered.
+   */
   private void setUserSequence() {
     // Initialize a new sequence
     String newSequence = "";
@@ -825,6 +884,11 @@ public class DecryptionPuzzleController {
     lblSequence.setText(newSequence);
   }
 
+  /**
+   * Set the style for the memory cell (rectangle).
+   *
+   * @param rectangle the rectangle input.
+   */
   private void setRectangleStyle(Rectangle rectangle) {
     // Initialize a glow for the rectangle
     Glow glow = new Glow();
@@ -847,19 +911,23 @@ public class DecryptionPuzzleController {
     lblPrefixSequence.setTextFill(Color.rgb(130, 255, 90));
   }
 
+  /** Overlay color when the user enters the pane component. */
   private void setPaneEntered(Pane pane) {
     pane.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
+  /** Overlay color when the user exits the pane component. */
   private void setPaneExited(Pane pane) {
     pane.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
+  /** Overlay color when the user enters the polygon component. */
   private void setPolygonEntered(Polygon polygon) {
     polygon.setStroke(Color.rgb(29, 30, 37));
     polygon.setFill(Color.rgb(29, 30, 37));
   }
 
+  /** Overlay color when the user exits the polygon component. */
   private void setPolygonExited(Polygon polygon) {
     polygon.setStroke(Color.rgb(20, 20, 23));
     polygon.setFill(Color.rgb(20, 20, 23));
@@ -1005,6 +1073,7 @@ public class DecryptionPuzzleController {
     printIncorrectSequence();
   }
 
+  /** Print the message where the user correctly enters the sequence. */
   private void printCorrectSequence() {
     // Initialize the message to print
     String message;
@@ -1020,6 +1089,7 @@ public class DecryptionPuzzleController {
     Printer.printText(taChat, message, Instructions.printSpeed);
   }
 
+  /** Print the message where the user incorrectly enters the sequence. */
   private void printIncorrectSequence() {
     // Initialize the message to print
     String message;
@@ -1035,6 +1105,7 @@ public class DecryptionPuzzleController {
     Printer.printText(taChat, message, Instructions.printSpeed);
   }
 
+  /** Print the message where the user enters an empty sequence. */
   private void printEmptySequence() {
     // Clear the chat area
     taChat.clear();
