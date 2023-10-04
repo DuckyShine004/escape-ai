@@ -41,11 +41,6 @@
   -fx-font-family: "JetBrainsMono NF Bold";
 }
 
-.custom-label:enabled {
-  -fx-opacity: 1;
-  -fx-font-size: 18;
-}
-
 .custom-label:disabled {
   -fx-opacity: 1;
   -fx-font-size: 18;

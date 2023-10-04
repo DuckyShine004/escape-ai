@@ -90,6 +90,7 @@ public class DecryptionPuzzleController {
   @FXML private Line lineVertical;
 
   @FXML private Label lblTime;
+  @FXML private Label lblHint;
   @FXML private Label lblError;
   @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
@@ -606,6 +607,9 @@ public class DecryptionPuzzleController {
 
     // Change the line height to match the number of algorithm lines present
     lineVertical.setEndY((22 * pseudocodeLines) - 1.5);
+
+    // Resize the hint label
+    resizeLabelFontSize(lblHint, 18);
   }
 
   private void initializeLoadingBar() {
@@ -988,7 +992,14 @@ public class DecryptionPuzzleController {
 
   /** Enable components when a task is finished. */
   private void enableComponents() {
+    // Enable the hint pane
     paHint.setDisable(false);
+
+    // Enable the analyze pane
+    paAnalyze.setDisable(false);
+
+    // Resize the hint label
+    resizeLabelFontSize(lblHint, 18);
   }
 
   /** Enable empty pane components. */
@@ -1046,7 +1057,11 @@ public class DecryptionPuzzleController {
 
   /** Disable components when a task is running. */
   private void disableComponents() {
+    // Disable the hint pane
     paHint.setDisable(true);
+
+    // Disable the analyze pane
+    paAnalyze.setDisable(true);
   }
 
   /** Disable empty pane components. */
@@ -1185,6 +1200,7 @@ public class DecryptionPuzzleController {
     Printer.printText(taChat, Instructions.emptySequence, Instructions.printSpeed);
   }
 
+  /** Print the message where the wrong tab is opened. */
   private void printWrongTabOpened() {
     // Clear the chat area
     taChat.clear();
@@ -1221,5 +1237,19 @@ public class DecryptionPuzzleController {
 
     // Complete the loading bar
     paLoadingBar.setPrefWidth(160);
+  }
+
+  /**
+   * Resize a label for the given size.
+   *
+   * @param label the label to be resized.
+   * @param size the new font size.
+   */
+  private void resizeLabelFontSize(Label label, int size) {
+    // Create a new font with the given size
+    Font newFont = new Font(size);
+
+    // Set the label to the new font
+    label.setFont(newFont);
   }
 }

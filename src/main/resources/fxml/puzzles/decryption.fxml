@@ -101,7 +101,7 @@
       </Pane>
       <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
-            <Label layoutX="54.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT" textFill="WHITE">
+            <Label fx:id="lblHint" layoutX="54.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
