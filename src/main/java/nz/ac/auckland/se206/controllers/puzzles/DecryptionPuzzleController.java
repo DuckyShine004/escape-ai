@@ -3,7 +3,10 @@ package nz.ac.auckland.se206.controllers.puzzles;
 import java.lang.reflect.Field;
 import java.util.Random;
 import java.util.stream.IntStream;
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -50,6 +54,26 @@ public class DecryptionPuzzleController {
   @FXML private Pane paLine7;
   @FXML private Pane paLine8;
 
+  @FXML private Pane paLineOverlay0;
+  @FXML private Pane paLineOverlay1;
+  @FXML private Pane paLineOverlay2;
+  @FXML private Pane paLineOverlay3;
+  @FXML private Pane paLineOverlay4;
+  @FXML private Pane paLineOverlay5;
+  @FXML private Pane paLineOverlay6;
+  @FXML private Pane paLineOverlay7;
+  @FXML private Pane paLineOverlay8;
+
+  @FXML private Pane paLineClick0;
+  @FXML private Pane paLineClick1;
+  @FXML private Pane paLineClick2;
+  @FXML private Pane paLineClick3;
+  @FXML private Pane paLineClick4;
+  @FXML private Pane paLineClick5;
+  @FXML private Pane paLineClick6;
+  @FXML private Pane paLineClick7;
+  @FXML private Pane paLineClick8;
+
   @FXML private Pane paBack;
   @FXML private Pane paHint;
   @FXML private Pane paEmpty;
@@ -57,6 +81,7 @@ public class DecryptionPuzzleController {
   @FXML private Pane paPassword;
   @FXML private Pane paDecryption;
   @FXML private Pane paMatrixRain;
+  @FXML private Pane paLoadingBar;
   @FXML private Pane paBackOverlay;
   @FXML private Pane paEmptyComponent;
   @FXML private Pane paEmptyComponentBar;
@@ -65,9 +90,11 @@ public class DecryptionPuzzleController {
   @FXML private Line lineVertical;
 
   @FXML private Label lblTime;
+  @FXML private Label lblHint;
   @FXML private Label lblError;
   @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
+  @FXML private Label lblProgress;
   @FXML private Label lblSequence;
   @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
@@ -104,6 +131,8 @@ public class DecryptionPuzzleController {
   private String pseudocode;
   private String description;
 
+  private Timeline loadingTime;
+
   private ChatCompletionRequest gptRequest;
 
   private TextToSpeech tts;
@@ -119,6 +148,9 @@ public class DecryptionPuzzleController {
 
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
+
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, paHint);
 
     // Initialize the memory component
     initializeMemory();
@@ -157,14 +189,18 @@ public class DecryptionPuzzleController {
     paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
-  /** When the mouse is hovering over the pane, the overlay appears (line). */
+  /**
+   * When the mouse is hovering over the pane, the overlay appears (line).
+   *
+   * @param event the event source specifies for an event handler the object.
+   */
   @FXML
   private void onLinePaneEntered(Event event) {
     // Retrieve the line's index
     int lineIndex = getLineIndex(event);
 
-    // Check if the puzzle has been solved
-    if (GameState.isDecryptionSolved) {
+    // Check if the password tab is open
+    if (!isPasswordTabOpen) {
       return;
     }
 
@@ -178,14 +214,16 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // Set the line visible
-    paLines[lineIndex].setOpacity(1);
-
-    // Set the line overlay visible
+    // Set the current selected line visible
+    paLines[lineIndex].setVisible(true);
     paLineOverlays[lineIndex].setVisible(true);
   }
 
-  /** When the mouse is hovering over the pane, the overlay appears (line). */
+  /**
+   * When the mouse is hovering over the pane, the overlay appears (line).
+   *
+   * @param event the event source specifies for an event handler the object.
+   */
   @FXML
   private void onLinePaneExited(Event event) {
     // Retrieve the line's index
@@ -201,10 +239,8 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // Set the line overlay invisible
-    paLines[lineIndex].setOpacity(0);
-
-    // Set the line overlay invisible
+    // Set the current selected line invisible
+    paLines[lineIndex].setVisible(false);
     paLineOverlays[lineIndex].setVisible(false);
   }
 
@@ -279,6 +315,15 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Check if the password tab is open, if not, print error message
+    if (!isPasswordTabOpen) {
+      printWrongTabOpened();
+      return;
+    }
+
+    // Print getting hint message but also handle concurrency
+    printGettingHint();
+
     // Get a user hint
     getUserHint();
   }
@@ -296,6 +341,12 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Check if the password tab is open, if not print error message
+    if (!isPasswordTabOpen) {
+      printWrongTabOpened();
+      return;
+    }
+
     // If the sequence is empty print an error message
     if (lblSequence.getText().isEmpty()) {
       printEmptySequence();
@@ -310,6 +361,11 @@ public class DecryptionPuzzleController {
     }
   }
 
+  /**
+   * When line pane is pressed, highlight which line of the algorithm is selected.
+   *
+   * @param event the event source specifies for an event handler the object.
+   */
   @FXML
   private void onLinePaneClicked(Event event) {
     // Retrieve the line's index
@@ -330,16 +386,11 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // Get the next opacity for the line
-    double nextLineOpacity = (isLineSelected[lineIndex] ? 0 : 1);
-
     // Toggle the current sequence index
     isLineSelected[lineIndex] = !isLineSelected[lineIndex];
 
-    // Toggle the visibility of the line
-    paLines[lineIndex].setOpacity(nextLineOpacity);
-
-    // Toggle the visibility of the line overlay
+    // Toggle the visibility of the current line selected
+    paLines[lineIndex].setVisible(isLineSelected[lineIndex]);
     paLineOverlays[lineIndex].setVisible(isLineSelected[lineIndex]);
 
     // Set the sequence entered by the user
@@ -352,6 +403,7 @@ public class DecryptionPuzzleController {
     App.setUi(AppUi.TERMINAL);
   }
 
+  /** When the empty pane is clicked, go to the empty tab. */
   @FXML
   private void onEmptyClicked() {
     // Empty tab is now open
@@ -370,6 +422,7 @@ public class DecryptionPuzzleController {
     enableEmptyComponents();
   }
 
+  /** When the password pane is clicked, go to the password tab. */
   @FXML
   private void onPasswordClicked() {
     // Password tab is now open
@@ -529,6 +582,7 @@ public class DecryptionPuzzleController {
     pseudocode = description + algorithm;
   }
 
+  /** Initialize all puzzle components required for the puzzle to work. */
   private void initializePuzzleComponents() {
     // Initialize the sequence indice array
     isLineSelected = new boolean[9];
@@ -545,20 +599,44 @@ public class DecryptionPuzzleController {
       paLineOverlays[line] = (Pane) paDecryption.lookup("#paLineOverlay" + line);
     }
 
-    // Change the cursor for un-touchable lines
+    // Change the cursor for un-touchable lines and overlays
     for (int line = pseudocodeLines; line < 9; line++) {
-      Pane paLine = (Pane) paDecryption.lookup("#paLine" + line);
-      paLine.setCursor(Cursor.DEFAULT);
+      Pane paLineClick = (Pane) paDecryption.lookup("#paLineClick" + line);
+      paLineClick.setCursor(Cursor.DEFAULT);
     }
 
     // Change the line height to match the number of algorithm lines present
     lineVertical.setEndY((22 * pseudocodeLines) - 1.5);
+
+    // Resize the hint label
+    resizeLabelFontSize(lblHint, 18);
+  }
+
+  private void initializeLoadingBar() {
+    // Reset the progress label to zero percent
+    lblProgress.setText("0%");
+
+    // Reset the loading bar
+    paLoadingBar.setPrefWidth(0);
+
+    // Create a timeline for the loading bar
+    loadingTime =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(50),
+                event -> {
+                  // Update the loading bar
+                  updateLoadingBar();
+                }));
+
+    // Start the animation for the loading bar
+    loadingTime.setCycleCount(Animation.INDEFINITE);
+    loadingTime.play();
   }
 
   /**
-   * Get the string sequence for the corresponding random pseudocode index.
+   * Initialize the string sequence for the corresponding random pseudocode index.
    *
-   * @return the string value of the sequence.
    * @throws Exception throw when class or field name is not found.
    */
   private void intializeSequence() throws Exception {
@@ -579,9 +657,8 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Get the string algorithm code snippet for the corresponding random pseudocode index.
+   * Initialize the string algorithm code snippet for the corresponding random pseudocode index.
    *
-   * @return the string value of the algorithm code snippet.
    * @throws Exception throw when class or field name is not found.
    */
   private void initializeAlgorithm() throws Exception {
@@ -602,9 +679,8 @@ public class DecryptionPuzzleController {
   }
 
   /**
-   * Get the string description for the corresponding random pseudocode index.
+   * Initialize the string description for the corresponding random pseudocode index.
    *
-   * @return the string value of the description.
    * @throws Exception throw when class or field name is not found.
    */
   private void initializeDescription() throws Exception {
@@ -628,12 +704,16 @@ public class DecryptionPuzzleController {
    * Generate a response from GPT.
    *
    * @param entityMessage the chat message to be sent to GPT.
+   * @param isHint the flag for if the user input is a hint.
    */
   private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
-    // add user input to GPT's user input history
+    // Initialize the loading bar
+    initializeLoadingBar();
+
+    // Add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
-    // create a concurrent task for handling GPT response
+    // Create a concurrent task for handling GPT response
     Task<Void> gptTask =
         new Task<Void>() {
           @Override
@@ -650,15 +730,17 @@ public class DecryptionPuzzleController {
           disableComponents();
         });
 
-    // If the task succeeds, then enable components
+    // If the task succeeds, then enable components and finish loading bar
     gptTask.setOnSucceeded(
         event -> {
+          completeLoadingBar();
           enableComponents();
         });
 
-    // If the task fails, then enable components
+    // If the task fails, then enable components and finish loading bar
     gptTask.setOnFailed(
         event -> {
+          completeLoadingBar();
           enableComponents();
         });
 
@@ -693,6 +775,11 @@ public class DecryptionPuzzleController {
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
   }
 
+  /**
+   * Get the memory used. This is not the actual memory used by this program.
+   *
+   * @return double the memory used.
+   */
   private double getMemoryUsed() {
     // Get the ratio of memory used
     memoryUsed = (memoryUsed / 75) * 32;
@@ -703,6 +790,11 @@ public class DecryptionPuzzleController {
     return Double.parseDouble(roundedMemoryUsed);
   }
 
+  /**
+   * Return a random color. The color choice is between green and gray.
+   *
+   * @return Color a random color between green or gray.
+   */
   private Color getRandomColor() {
     Color green = Color.rgb(130, 240, 130);
     Color gray = Color.rgb(56, 57, 63);
@@ -716,6 +808,12 @@ public class DecryptionPuzzleController {
     return (isColorGreen ? green : gray);
   }
 
+  /**
+   * Return a random japanese character for the matrix rain.
+   *
+   * @param random an instance of the random number generator.
+   * @return String a random japanese character.
+   */
   private String getRandomCharacter(Random random) {
     IntStream characterStream = random.ints(12353, 12380);
 
@@ -724,18 +822,34 @@ public class DecryptionPuzzleController {
     return Character.toString(character);
   }
 
+  /**
+   * Get the number of lines occupied by the current algorithm.
+   *
+   * @return int the number of lines for the given pseudocode.
+   */
   private int getPseudocodeLines() {
     IntStream characterStream = algorithm.chars();
 
     return (int) characterStream.filter(character -> character == '\n').count() + 1;
   }
 
+  /**
+   * Return the line number currently selected by the user.
+   *
+   * @param event the event source specifies for an event handler the object.
+   * @return int the line number selected by the user.
+   */
   private int getLineIndex(Event event) {
     String index = ((Node) event.getSource()).getId();
 
     return Integer.parseInt(index.substring(index.length() - 1));
   }
 
+  /**
+   * Return the number of selected lines by the user.
+   *
+   * @return int the number of lines in selection.
+   */
   private int getLinesSelected() {
     int count = 0;
 
@@ -765,12 +879,21 @@ public class DecryptionPuzzleController {
     String gptOutput = gptMessage.getContent();
 
     // Append the result to the text area
-    taChat.appendText("ai> " + gptOutput + "\n\n");
+    printHint(gptOutput);
 
     // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
 
+  /**
+   * Create a memory cell (rectangle) component for the memory grid. This will be added to the list
+   * of children nodes.
+   *
+   * @param x the x position of the memory cell.
+   * @param y the y position of the memory cell.
+   * @param w the width of the memory cell.
+   * @param h the height of the memory cell.
+   */
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
     double horizontalOffset = 5;
@@ -799,6 +922,10 @@ public class DecryptionPuzzleController {
     paDecryption.getChildren().add(memory);
   }
 
+  /**
+   * Set the label for the user sequence. The label should display the current sequence the user has
+   * entered.
+   */
   private void setUserSequence() {
     // Initialize a new sequence
     String newSequence = "";
@@ -814,6 +941,11 @@ public class DecryptionPuzzleController {
     lblSequence.setText(newSequence);
   }
 
+  /**
+   * Set the style for the memory cell (rectangle).
+   *
+   * @param rectangle the rectangle input.
+   */
   private void setRectangleStyle(Rectangle rectangle) {
     // Initialize a glow for the rectangle
     Glow glow = new Glow();
@@ -836,19 +968,23 @@ public class DecryptionPuzzleController {
     lblPrefixSequence.setTextFill(Color.rgb(130, 255, 90));
   }
 
+  /** Overlay color when the user enters the pane component. */
   private void setPaneEntered(Pane pane) {
     pane.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
+  /** Overlay color when the user exits the pane component. */
   private void setPaneExited(Pane pane) {
     pane.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
+  /** Overlay color when the user enters the polygon component. */
   private void setPolygonEntered(Polygon polygon) {
     polygon.setStroke(Color.rgb(29, 30, 37));
     polygon.setFill(Color.rgb(29, 30, 37));
   }
 
+  /** Overlay color when the user exits the polygon component. */
   private void setPolygonExited(Polygon polygon) {
     polygon.setStroke(Color.rgb(20, 20, 23));
     polygon.setFill(Color.rgb(20, 20, 23));
@@ -856,7 +992,14 @@ public class DecryptionPuzzleController {
 
   /** Enable components when a task is finished. */
   private void enableComponents() {
+    // Enable the hint pane
     paHint.setDisable(false);
+
+    // Enable the analyze pane
+    paAnalyze.setDisable(false);
+
+    // Resize the hint label
+    resizeLabelFontSize(lblHint, 18);
   }
 
   /** Enable empty pane components. */
@@ -914,7 +1057,11 @@ public class DecryptionPuzzleController {
 
   /** Disable components when a task is running. */
   private void disableComponents() {
+    // Disable the hint pane
     paHint.setDisable(true);
+
+    // Disable the analyze pane
+    paAnalyze.setDisable(true);
   }
 
   /** Disable empty pane components. */
@@ -970,14 +1117,34 @@ public class DecryptionPuzzleController {
     setPolygonExited(pgPasswordRight);
   }
 
+  /**
+   * Update the loading bar. This method is to animate the process of loading the hint for the user.
+   */
+  private void updateLoadingBar() {
+    // Update the width of the loading bar
+    double width = paLoadingBar.getWidth() + 1;
+    paLoadingBar.setPrefWidth(width);
+
+    // Check if we are at 100% of the width
+    if (width == 160) {
+      completeLoadingBar();
+      return;
+    }
+
+    // Update the progress label
+    int progress = (int) ((width / 160.0) * 100.0);
+    lblProgress.setText(progress + "%");
+  }
+
   /** Handle the event when user correctly inputs the sequence. */
   private void handleCorrectUserSequence() {
     // Print the correct sequence message to the chat
     printCorrectSequence();
 
     // Set cursor to default for all line panes
-    for (Pane pane : paLines) {
-      pane.setCursor(Cursor.DEFAULT);
+    for (int line = 0; line < pseudocodeLines; line++) {
+      paLines[line].setCursor(Cursor.DEFAULT);
+      paLineOverlays[line].setCursor(Cursor.DEFAULT);
     }
 
     // Update all labels associated with solving the puzzle
@@ -989,10 +1156,10 @@ public class DecryptionPuzzleController {
 
   /** Handle the event when user incorrectly inputs the sequence. */
   private void handleIncorrectUserSequence() {
-    // Print the incorrect sequence message to the chat
     printIncorrectSequence();
   }
 
+  /** Print the message where the user correctly enters the sequence. */
   private void printCorrectSequence() {
     // Initialize the message to print
     String message;
@@ -1008,6 +1175,7 @@ public class DecryptionPuzzleController {
     Printer.printText(taChat, message, Instructions.printSpeed);
   }
 
+  /** Print the message where the user incorrectly enters the sequence. */
   private void printIncorrectSequence() {
     // Initialize the message to print
     String message;
@@ -1023,11 +1191,65 @@ public class DecryptionPuzzleController {
     Printer.printText(taChat, message, Instructions.printSpeed);
   }
 
+  /** Print the message where the user enters an empty sequence. */
   private void printEmptySequence() {
     // Clear the chat area
     taChat.clear();
 
     // Print the empty error message to chat
     Printer.printText(taChat, Instructions.emptySequence, Instructions.printSpeed);
+  }
+
+  /** Print the message where the wrong tab is opened. */
+  private void printWrongTabOpened() {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print the empty error message to chat
+    Printer.printText(taChat, Instructions.wrongTabOpened, Instructions.printSpeed);
+  }
+
+  /** Print the message when program is getting a hint for the user. */
+  private void printGettingHint() {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print getting the hint message to the chat
+    Printer.printText(taChat, Instructions.gettingHint, Instructions.printSpeed);
+  }
+
+  /** Print the hint message to the chat. */
+  private void printHint(String hint) {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print getting the hint message to the chat
+    Printer.printText(taChat, hint, Instructions.printSpeed);
+  }
+
+  /** Complete the loading bar. This should be called when the hint is generated by GPT. */
+  private void completeLoadingBar() {
+    // Stop the loading bar timeline
+    loadingTime.stop();
+
+    // Update the progress label to 100%
+    lblProgress.setText("100%");
+
+    // Complete the loading bar
+    paLoadingBar.setPrefWidth(160);
+  }
+
+  /**
+   * Resize a label for the given size.
+   *
+   * @param label the label to be resized.
+   * @param size the new font size.
+   */
+  private void resizeLabelFontSize(Label label, int size) {
+    // Create a new font with the given size
+    Font newFont = new Font(size);
+
+    // Set the label to the new font
+    label.setFont(newFont);
   }
 }

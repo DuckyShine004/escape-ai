@@ -46,8 +46,16 @@ public class Instructions {
 
   public static final String emptySequence =
       "Critical error: no sequence detected! \n\n"
-          + "Click on the line numbers to create a sequence... \n\n"
+          + "Click a line number to create a sequence... \n\n"
           + "Analyze the code carefully...";
+
+  public static final String wrongTabOpened =
+      "Critical error: wrong tab opened... \n\n" + "Please navigate to the 'password' tab...";
+
+  public static final String gettingHint =
+      "Analyzing pseudocode... \n\n"
+          + "Searching for errors... \n\n"
+          + "Running code analyzer... \n\n";
 
   public static final double printSpeed = 0.010;
 

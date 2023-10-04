@@ -2,20 +2,20 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
 /** The HintManager class will help keep the hint counter the same */
 public class HintManager {
+  private static List<Node> hintNodes;
   private static List<Label> hintLabels;
-  private static List<Polygon> hintPolygons;
 
   public static void initialize() {
     // Initialize fields
     hintLabels = new ArrayList<Label>();
-    hintPolygons = new ArrayList<Polygon>();
+    hintNodes = new ArrayList<Node>();
   }
 
   /** Initialize the hints. This should initialize the hint counter label. */
@@ -28,7 +28,7 @@ public class HintManager {
 
     // If the difficulty is hard, disable the hint button
     if (GameState.gameDifficulty == Difficulty.HARD) {
-      disableHintButtons();
+      disableHints();
     }
 
     // Initialize the hint counter label
@@ -40,14 +40,14 @@ public class HintManager {
    * updated globally.
    *
    * @param label the label to be added to the list of labels.
-   * @param polygon the polygon to be added to the list of polygons.
+   * @param node the node to be added to the list of nodes.
    */
-  public static void addHintComponents(Label label, Polygon polygon) {
+  public static void addHintComponents(Label label, Node node) {
     // Add the label to the list of labels
     hintLabels.add(label);
 
-    // Add the button to the list of buttons
-    hintPolygons.add(polygon);
+    // Add the node to the list of nodes
+    hintNodes.add(node);
   }
 
   /** Set the hint counter label to infinity (only in easy mode). */
@@ -81,23 +81,23 @@ public class HintManager {
 
     // If we have no more hints left, disable the hint buttons
     if (GameState.hintCounter == 0) {
-      disableHintButtons();
+      disableHints();
     }
   }
 
   /** Enable all hint buttons. */
-  public static void enableHintButtons() {
+  public static void enableHints() {
     // Disable all hint buttons
-    for (Polygon pgHint : hintPolygons) {
-      pgHint.setDisable(false);
+    for (Node hint : hintNodes) {
+      hint.setDisable(false);
     }
   }
 
   /** Disable all hint buttons */
-  public static void disableHintButtons() {
+  public static void disableHints() {
     // Disable all hint buttons
-    for (Polygon pgHint : hintPolygons) {
-      pgHint.setDisable(true);
+    for (Node hint : hintNodes) {
+      hint.setDisable(true);
     }
   }
 }

@@ -375,7 +375,7 @@ public class ChatManager {
     }
 
     // Enable all hint buttons
-    HintManager.enableHintButtons();
+    HintManager.enableHints();
   }
 
   /** set a question mark and thinking indicator */
@@ -411,7 +411,7 @@ public class ChatManager {
     }
 
     // Disable all hint buttonss
-    HintManager.disableHintButtons();
+    HintManager.disableHints();
   }
 
   /** Clear all current text areas. */

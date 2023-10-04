@@ -92,13 +92,16 @@
             </Pane>
             <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
-                  <Glow level="0.5" />
-               </effect></TextArea>
+                  <Glow level="0.6" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
          </children>
       </Pane>
       <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
-            <Label layoutX="54.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT" textFill="WHITE">
+            <Label fx:id="lblHint" layoutX="54.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -152,7 +155,7 @@
       </Pane>
       <Pane fx:id="paPasswordComponent" layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
-            <Pane fx:id="paLine0" layoutY="51.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine0" layoutY="51.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -161,10 +164,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine1" layoutY="73.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine1" layoutY="73.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -173,10 +176,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine2" layoutY="95.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine2" layoutY="95.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -185,10 +188,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine3" layoutY="117.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine3" layoutY="117.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -197,10 +200,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine4" layoutY="139.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine4" layoutY="139.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -209,10 +212,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine5" layoutY="161.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine5" layoutY="161.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -221,10 +224,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine6" layoutY="183.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine6" layoutY="183.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -233,10 +236,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine7" layoutY="205.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine7" layoutY="205.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -245,10 +248,10 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
-            <Pane fx:id="paLine8" layoutY="227.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+            <Pane fx:id="paLine8" layoutY="227.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0" visible="false">
                <effect>
                   <InnerShadow>
                      <input>
@@ -257,7 +260,7 @@
                   </InnerShadow>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Pane>
             <Pane fx:id="paLineOverlay0" layoutX="35.0" layoutY="51.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
@@ -452,6 +455,51 @@
                   </Glow>
                </effect>
             </Line>
+            <Pane fx:id="paLineClick0" layoutY="51.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick1" layoutY="73.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick2" layoutY="95.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick3" layoutY="117.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick4" layoutY="139.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick5" layoutY="161.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick6" layoutY="183.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick7" layoutY="205.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineClick8" layoutY="227.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" prefHeight="22.0" prefWidth="365.0" style="-fx-background-color: transparent;" translateY="-5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
          </children>
       </Pane>
       <Canvas fx:id="cvsMatrixRain" disable="true" height="405.0" layoutX="340.0" layoutY="40.0" visible="false" width="365.0">
@@ -537,6 +585,16 @@
          <font>
             <Font size="16.0" />
          </font>
+      </Label>
+      <Label layoutX="5.0" layoutY="187.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT PROCESSING" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label fx:id="lblProgress" layoutX="285.0" layoutY="187.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="0%" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
       </Label>
       <Label layoutX="5.0" layoutY="205.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="USE HINT OR ANALYZE SEQUENCE" textFill="WHITE">
          <effect>
@@ -686,5 +744,24 @@
             </Glow>
          </effect>
       </Line>
+      <Line endX="160.0" layoutX="120.0" layoutY="195.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="280.0" layoutY="190.0" stroke="WHITE">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Pane fx:id="paLoadingBar" layoutX="120.0" layoutY="190.0" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: rgb(130,240,130);">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <Glow />
+               </input>
+            </InnerShadow>
+         </effect>
+      </Pane>
    </children>
 </Pane>
