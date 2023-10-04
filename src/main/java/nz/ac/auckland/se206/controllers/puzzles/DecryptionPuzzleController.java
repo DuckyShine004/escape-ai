@@ -140,6 +140,9 @@ public class DecryptionPuzzleController {
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
+    // Add the hint counter components
+    HintManager.addHintComponents(lblHintCounter, paHint);
+
     // Initialize the memory component
     initializeMemory();
 
