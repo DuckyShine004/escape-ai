@@ -50,6 +50,26 @@ public class DecryptionPuzzleController {
   @FXML private Pane paLine7;
   @FXML private Pane paLine8;
 
+  @FXML private Pane paLineOverlay0;
+  @FXML private Pane paLineOverlay1;
+  @FXML private Pane paLineOverlay2;
+  @FXML private Pane paLineOverlay3;
+  @FXML private Pane paLineOverlay4;
+  @FXML private Pane paLineOverlay5;
+  @FXML private Pane paLineOverlay6;
+  @FXML private Pane paLineOverlay7;
+  @FXML private Pane paLineOverlay8;
+
+  @FXML private Pane paLineClick0;
+  @FXML private Pane paLineClick1;
+  @FXML private Pane paLineClick2;
+  @FXML private Pane paLineClick3;
+  @FXML private Pane paLineClick4;
+  @FXML private Pane paLineClick5;
+  @FXML private Pane paLineClick6;
+  @FXML private Pane paLineClick7;
+  @FXML private Pane paLineClick8;
+
   @FXML private Pane paBack;
   @FXML private Pane paHint;
   @FXML private Pane paEmpty;
