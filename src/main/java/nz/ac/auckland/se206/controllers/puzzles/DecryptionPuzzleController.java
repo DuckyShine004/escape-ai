@@ -27,6 +27,7 @@ import nz.ac.auckland.se206.constants.Algorithm;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
+import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.constants.Sequence;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -34,6 +35,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
@@ -272,6 +274,11 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Check if something is already printing
+    if (GameState.isPrinting) {
+      return;
+    }
+
     // Get a user hint
     getUserHint();
   }
@@ -281,6 +288,17 @@ public class DecryptionPuzzleController {
   private void onAnalyzeClicked() {
     // Check if the puzzle has been solved
     if (GameState.isDecryptionSolved) {
+      return;
+    }
+
+    // Check if something is already printing
+    if (GameState.isPrinting) {
+      return;
+    }
+
+    // If the sequence is empty print an error message
+    if (lblSequence.getText().isEmpty()) {
+      printEmptySequence();
       return;
     }
 
@@ -954,6 +972,9 @@ public class DecryptionPuzzleController {
 
   /** Handle the event when user correctly inputs the sequence. */
   private void handleCorrectUserSequence() {
+    // Print the correct sequence message to the chat
+    printCorrectSequence();
+
     // Set cursor to default for all line panes
     for (Pane pane : paLines) {
       pane.setCursor(Cursor.DEFAULT);
@@ -968,6 +989,45 @@ public class DecryptionPuzzleController {
 
   /** Handle the event when user incorrectly inputs the sequence. */
   private void handleIncorrectUserSequence() {
-    System.out.println("INCORRECT");
+    // Print the incorrect sequence message to the chat
+    printIncorrectSequence();
+  }
+
+  private void printCorrectSequence() {
+    // Initialize the message to print
+    String message;
+
+    // Clear the chat area
+    taChat.clear();
+
+    // Formulate the message
+    message = "Analyzing sequence: " + lblSequence.getText() + "\n\n";
+    message += Instructions.correctSequence;
+
+    // Print the correct sequence message to the chat
+    Printer.printText(taChat, message, Instructions.printSpeed);
+  }
+
+  private void printIncorrectSequence() {
+    // Initialize the message to print
+    String message;
+
+    // Clear the chat area
+    taChat.clear();
+
+    // Formulate the message
+    message = "Analyzing sequence: " + lblSequence.getText() + "\n\n";
+    message += Instructions.incorrectSequence;
+
+    // Print the correct sequence message to the chat
+    Printer.printText(taChat, message, Instructions.printSpeed);
+  }
+
+  private void printEmptySequence() {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print the empty error message to chat
+    Printer.printText(taChat, Instructions.emptySequence, Instructions.printSpeed);
   }
 }

@@ -90,7 +90,10 @@
                   <DropShadow />
                </effect>
             </Pane>
-            <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
+            <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+               <effect>
+                  <Glow level="0.5" />
+               </effect></TextArea>
          </children>
       </Pane>
       <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
@@ -412,11 +415,17 @@
                <effect>
                   <Glow level="0.5" />
                </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </TextArea>
             <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </TextArea>
             <Label fx:id="lblPrefixSequence" layoutX="10.0" layoutY="252.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="CURRENT SEQUENCE:" textFill="#ff5e5e">
                <effect>
@@ -537,7 +546,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM" textFill="WHITE">
+      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM AND SEQUENCE ANALYZER" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
