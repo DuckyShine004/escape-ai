@@ -49,6 +49,11 @@ public class Instructions {
           + "Click a line number to create a sequence... \n\n"
           + "Analyze the code carefully...";
 
+  public static final String gettingHint =
+      "Analyzing pseudocode... \n\n"
+          + "Searching for errors... \n\n"
+          + "Running code analyzer... \n\n";
+
   public static final double printSpeed = 0.010;
 
   public static boolean isInstructionsPrinted = false;

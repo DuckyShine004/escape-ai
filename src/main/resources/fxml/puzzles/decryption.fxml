@@ -734,5 +734,25 @@
             </Glow>
          </effect>
       </Line>
+      <Label layoutX="5.0" layoutY="187.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT PROCESSING" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Line endX="160.0" layoutX="120.0" layoutY="195.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="280.0" layoutY="190.0" stroke="WHITE">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Label layoutX="285.0" layoutY="187.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="0%" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
    </children>
 </Pane>

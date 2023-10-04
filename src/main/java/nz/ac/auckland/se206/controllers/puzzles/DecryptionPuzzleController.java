@@ -306,6 +306,9 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Print getting hint message but also handle concurrency
+    printGettingHint();
+
     // Get a user hint
     getUserHint();
   }
@@ -825,7 +828,7 @@ public class DecryptionPuzzleController {
     String gptOutput = gptMessage.getContent();
 
     // Append the result to the text area
-    taChat.appendText("ai> " + gptOutput + "\n\n");
+    printHint(gptOutput);
 
     // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
@@ -1115,5 +1118,23 @@ public class DecryptionPuzzleController {
 
     // Print the empty error message to chat
     Printer.printText(taChat, Instructions.emptySequence, Instructions.printSpeed);
+  }
+
+  /** Print the message when program is getting a hint for the user. */
+  private void printGettingHint() {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print getting the hint message to the chat
+    Printer.printText(taChat, Instructions.gettingHint, Instructions.printSpeed);
+  }
+
+  /** Print the hint message to the chat. */
+  private void printHint(String hint) {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print getting the hint message to the chat
+    Printer.printText(taChat, hint, Instructions.printSpeed);
   }
 }
