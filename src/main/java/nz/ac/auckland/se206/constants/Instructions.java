@@ -38,6 +38,17 @@ public class Instructions {
           + "=================================================== \n"
           + "> Awaiting user response... ";
 
+  public static final String correctSequence =
+      "Searching sequence database... \n\n" + "Results found: 1 \n\n" + "Sequence is correct!";
+
+  public static final String incorrectSequence =
+      "Searching sequence database... \n\n" + "Results found: 0 \n\n" + "Sequence is incorrect!";
+
+  public static final String emptySequence =
+      "Critical error: no sequence detected! \n\n"
+          + "Click on the line numbers to create a sequence... \n\n"
+          + "Analyze the code carefully...";
+
   public static final double printSpeed = 0.010;
 
   public static boolean isInstructionsPrinted = false;

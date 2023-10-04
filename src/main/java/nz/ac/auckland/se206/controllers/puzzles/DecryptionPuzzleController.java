@@ -5,7 +5,10 @@ import java.util.Random;
 import java.util.stream.IntStream;
 import javafx.animation.AnimationTimer;
 import javafx.concurrent.Task;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -13,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -23,6 +27,7 @@ import nz.ac.auckland.se206.constants.Algorithm;
 import nz.ac.auckland.se206.constants.Description;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
+import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.constants.Sequence;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -30,10 +35,21 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the decryption puzzle scene. */
 public class DecryptionPuzzleController {
+  @FXML private Pane paLine0;
+  @FXML private Pane paLine1;
+  @FXML private Pane paLine2;
+  @FXML private Pane paLine3;
+  @FXML private Pane paLine4;
+  @FXML private Pane paLine5;
+  @FXML private Pane paLine6;
+  @FXML private Pane paLine7;
+  @FXML private Pane paLine8;
+
   @FXML private Pane paBack;
   @FXML private Pane paHint;
   @FXML private Pane paEmpty;
@@ -46,11 +62,16 @@ public class DecryptionPuzzleController {
   @FXML private Pane paEmptyComponentBar;
   @FXML private Pane paPasswordComponent;
 
+  @FXML private Line lineVertical;
+
   @FXML private Label lblTime;
+  @FXML private Label lblError;
   @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
+  @FXML private Label lblSequence;
   @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
+  @FXML private Label lblPrefixSequence;
 
   @FXML private Canvas cvsMatrixRain;
 
@@ -65,8 +86,14 @@ public class DecryptionPuzzleController {
   @FXML private TextArea taAlgorithm;
   @FXML private TextArea taDescription;
 
+  private boolean[] isLineSelected;
+
+  private Pane[] paLines;
+  private Pane[] paLineOverlays;
+
   private int hintIndex;
-  private int psuedocodeIndex;
+  private int pseudocodeIndex;
+  private int pseudocodeLines;
 
   private double memoryUsed;
 
@@ -101,6 +128,9 @@ public class DecryptionPuzzleController {
 
     // Initialize the pseudocode and algorithms
     initializePseudocode();
+
+    // Intialize the puzzle components
+    initializePuzzleComponents();
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (hint). */
@@ -125,6 +155,57 @@ public class DecryptionPuzzleController {
   @FXML
   private void onAnalyzeExited() {
     paAnalyze.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (line). */
+  @FXML
+  private void onLinePaneEntered(Event event) {
+    // Retrieve the line's index
+    int lineIndex = getLineIndex(event);
+
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
+
+    // Check if the index is greater than the amount of lines
+    if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Check if the line has already been selected
+    if (isLineSelected[lineIndex]) {
+      return;
+    }
+
+    // Set the line visible
+    paLines[lineIndex].setOpacity(1);
+
+    // Set the line overlay visible
+    paLineOverlays[lineIndex].setVisible(true);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (line). */
+  @FXML
+  private void onLinePaneExited(Event event) {
+    // Retrieve the line's index
+    int lineIndex = getLineIndex(event);
+
+    // Check if the index is greater than the amount of lines
+    if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Check if the line has already been selected
+    if (isLineSelected[lineIndex]) {
+      return;
+    }
+
+    // Set the line overlay invisible
+    paLines[lineIndex].setOpacity(0);
+
+    // Set the line overlay invisible
+    paLineOverlays[lineIndex].setVisible(false);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -178,6 +259,11 @@ public class DecryptionPuzzleController {
   /** When hint is clicked, give the user a hint. */
   @FXML
   private void onHintPaneClicked() {
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
+
     // If the difficulty is hard, ignore user.
     if (GameState.gameDifficulty == Difficulty.HARD) {
       return;
@@ -188,7 +274,76 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Check if something is already printing
+    if (GameState.isPrinting) {
+      return;
+    }
+
+    // Get a user hint
     getUserHint();
+  }
+
+  /** When analyze pane is pressed, check if the user's sequence is corrrect. */
+  @FXML
+  private void onAnalyzeClicked() {
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
+
+    // Check if something is already printing
+    if (GameState.isPrinting) {
+      return;
+    }
+
+    // If the sequence is empty print an error message
+    if (lblSequence.getText().isEmpty()) {
+      printEmptySequence();
+      return;
+    }
+
+    // Handle the user's sequence based on whether it is correct or not
+    if (lblSequence.getText().equals(sequence)) {
+      handleCorrectUserSequence();
+    } else {
+      handleIncorrectUserSequence();
+    }
+  }
+
+  @FXML
+  private void onLinePaneClicked(Event event) {
+    // Retrieve the line's index
+    int lineIndex = getLineIndex(event);
+
+    // Check if the puzzle has been solved
+    if (GameState.isDecryptionSolved) {
+      return;
+    }
+
+    // Check if the index is greater than the amount of lines
+    if (lineIndex >= pseudocodeLines) {
+      return;
+    }
+
+    // Check if the user can click on anymore lines
+    if (getLinesSelected() == GameState.maxSequence && !isLineSelected[lineIndex]) {
+      return;
+    }
+
+    // Get the next opacity for the line
+    double nextLineOpacity = (isLineSelected[lineIndex] ? 0 : 1);
+
+    // Toggle the current sequence index
+    isLineSelected[lineIndex] = !isLineSelected[lineIndex];
+
+    // Toggle the visibility of the line
+    paLines[lineIndex].setOpacity(nextLineOpacity);
+
+    // Toggle the visibility of the line overlay
+    paLineOverlays[lineIndex].setVisible(isLineSelected[lineIndex]);
+
+    // Set the sequence entered by the user
+    setUserSequence();
   }
 
   /** When back is clicked, go back to previous section (control room). */
@@ -231,8 +386,6 @@ public class DecryptionPuzzleController {
 
     // Disable empty pane components
     disableEmptyComponents();
-
-    cvsMatrixRain.setVisible(false);
   }
 
   /**
@@ -258,6 +411,7 @@ public class DecryptionPuzzleController {
     gptRequest.setMaxTokens(100);
   }
 
+  /** Initialize the memory grid (for visual effects). */
   private void initializeMemory() {
     // Initialize memory used to zero
     memoryUsed = 0;
@@ -331,8 +485,7 @@ public class DecryptionPuzzleController {
             // Draw a character with an opaque color
             gcMatrixRain.fillText(currentText, horizontalPosition, verticalPosition);
 
-            // Restart the the current rain drop if the rain reaches somewhere at bottom of the
-            // canvas
+            // Restart the current rain drop if the drop reaches the bottom of the canvas
             if (verticalPosition > 100 + (Math.random() * 10000)) {
               verticalPositions[i] = 0;
             } else {
@@ -350,11 +503,11 @@ public class DecryptionPuzzleController {
    * @throws Exception thrown when there is an error initializing pseudocode instances.
    */
   private void initializePseudocode() throws Exception {
-    // Get a random pseudo code
-    psuedocodeIndex = (int) (Math.random() * (GameState.maxPseudocodes));
-
     // Hint index is initially zero
     hintIndex = 0;
+
+    // Get a random pseudo code
+    pseudocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
 
     // Initialize the sequence
     intializeSequence();
@@ -363,14 +516,43 @@ public class DecryptionPuzzleController {
     initializeDescription();
     initializeAlgorithm();
 
+    // Get the number of lines for the pseudocode
+    pseudocodeLines = getPseudocodeLines();
+
     // Append the description to the text area
     taDescription.appendText(description);
 
-    // Create labels and panes for the algorithm
-    setAlgorithm(algorithm);
+    // Append the algorithm to the text area
+    taAlgorithm.appendText(algorithm);
 
     // Get the pseudocode in string form
     pseudocode = description + algorithm;
+  }
+
+  private void initializePuzzleComponents() {
+    // Initialize the sequence indice array
+    isLineSelected = new boolean[9];
+
+    // Initialize the pseudocode lines array
+    paLines = new Pane[pseudocodeLines];
+
+    // Initialize the line overlays array
+    paLineOverlays = new Pane[pseudocodeLines];
+
+    // Retrieve the line and overlay pane components
+    for (int line = 0; line < pseudocodeLines; line++) {
+      paLines[line] = (Pane) paDecryption.lookup("#paLine" + line);
+      paLineOverlays[line] = (Pane) paDecryption.lookup("#paLineOverlay" + line);
+    }
+
+    // Change the cursor for un-touchable lines
+    for (int line = pseudocodeLines; line < 9; line++) {
+      Pane paLine = (Pane) paDecryption.lookup("#paLine" + line);
+      paLine.setCursor(Cursor.DEFAULT);
+    }
+
+    // Change the line height to match the number of algorithm lines present
+    lineVertical.setEndY((22 * pseudocodeLines) - 1.5);
   }
 
   /**
@@ -381,7 +563,7 @@ public class DecryptionPuzzleController {
    */
   private void intializeSequence() throws Exception {
     // get the field name for the corresponding random pseudocode index
-    String fieldName = "sequence" + Integer.toString(psuedocodeIndex);
+    String fieldName = "sequence" + Integer.toString(pseudocodeIndex);
 
     // create an object of 'Sequence'
     Sequence sequence = new Sequence();
@@ -404,7 +586,7 @@ public class DecryptionPuzzleController {
    */
   private void initializeAlgorithm() throws Exception {
     // get the field name for the corresponding random pseudocode index
-    String fieldName = "algorithm" + Integer.toString(psuedocodeIndex);
+    String fieldName = "algorithm" + Integer.toString(pseudocodeIndex);
 
     // create an object of 'Algorithm'
     Algorithm algorithm = new Algorithm();
@@ -427,7 +609,7 @@ public class DecryptionPuzzleController {
    */
   private void initializeDescription() throws Exception {
     // get the field name for the corresponding random pseudocode index
-    String fieldName = "description" + Integer.toString(psuedocodeIndex);
+    String fieldName = "description" + Integer.toString(pseudocodeIndex);
 
     // create an object of 'Description'
     Description description = new Description();
@@ -542,6 +724,28 @@ public class DecryptionPuzzleController {
     return Character.toString(character);
   }
 
+  private int getPseudocodeLines() {
+    IntStream characterStream = algorithm.chars();
+
+    return (int) characterStream.filter(character -> character == '\n').count() + 1;
+  }
+
+  private int getLineIndex(Event event) {
+    String index = ((Node) event.getSource()).getId();
+
+    return Integer.parseInt(index.substring(index.length() - 1));
+  }
+
+  private int getLinesSelected() {
+    int count = 0;
+
+    for (boolean isSelected : isLineSelected) {
+      count += (isSelected ? 1 : 0);
+    }
+
+    return count;
+  }
+
   /**
    * Set the chat response from GPT. This includes printing the response to the text area.
    *
@@ -566,8 +770,6 @@ public class DecryptionPuzzleController {
     // Make text-to-speech read GPT's output
     tts.speak(gptOutput, AppUi.DECRYPTION);
   }
-
-  private void setAlgorithm(String algorithm) {}
 
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
@@ -597,6 +799,21 @@ public class DecryptionPuzzleController {
     paDecryption.getChildren().add(memory);
   }
 
+  private void setUserSequence() {
+    // Initialize a new sequence
+    String newSequence = "";
+
+    // Get which line numbers are selected by the user
+    for (int line = 0; line < pseudocodeLines; line++) {
+      if (isLineSelected[line]) {
+        newSequence += line + 1;
+      }
+    }
+
+    // Update the old user's sequence
+    lblSequence.setText(newSequence);
+  }
+
   private void setRectangleStyle(Rectangle rectangle) {
     // Initialize a glow for the rectangle
     Glow glow = new Glow();
@@ -604,6 +821,19 @@ public class DecryptionPuzzleController {
 
     // Set the glow effect for the rectangle
     rectangle.setEffect(glow);
+  }
+
+  /** Update labels when player solves the puzzle. */
+  private void setLabelsSolved() {
+    // There are now zero errors
+    lblError.setText("0 errors");
+
+    // Change the color of the error label
+    lblError.setTextFill(Color.rgb(130, 255, 90));
+
+    // Change the color of the sequence labels
+    lblSequence.setTextFill(Color.rgb(130, 255, 90));
+    lblPrefixSequence.setTextFill(Color.rgb(130, 255, 90));
   }
 
   private void setPaneEntered(Pane pane) {
@@ -626,7 +856,6 @@ public class DecryptionPuzzleController {
 
   /** Enable components when a task is finished. */
   private void enableComponents() {
-    // Enable the hint pane
     paHint.setDisable(false);
   }
 
@@ -739,5 +968,66 @@ public class DecryptionPuzzleController {
     // Set exited colors for the polygons
     setPolygonExited(pgPasswordLeft);
     setPolygonExited(pgPasswordRight);
+  }
+
+  /** Handle the event when user correctly inputs the sequence. */
+  private void handleCorrectUserSequence() {
+    // Print the correct sequence message to the chat
+    printCorrectSequence();
+
+    // Set cursor to default for all line panes
+    for (Pane pane : paLines) {
+      pane.setCursor(Cursor.DEFAULT);
+    }
+
+    // Update all labels associated with solving the puzzle
+    setLabelsSolved();
+
+    // The decryption puzzle is now solved
+    GameState.isDecryptionSolved = true;
+  }
+
+  /** Handle the event when user incorrectly inputs the sequence. */
+  private void handleIncorrectUserSequence() {
+    // Print the incorrect sequence message to the chat
+    printIncorrectSequence();
+  }
+
+  private void printCorrectSequence() {
+    // Initialize the message to print
+    String message;
+
+    // Clear the chat area
+    taChat.clear();
+
+    // Formulate the message
+    message = "Analyzing sequence: " + lblSequence.getText() + "\n\n";
+    message += Instructions.correctSequence;
+
+    // Print the correct sequence message to the chat
+    Printer.printText(taChat, message, Instructions.printSpeed);
+  }
+
+  private void printIncorrectSequence() {
+    // Initialize the message to print
+    String message;
+
+    // Clear the chat area
+    taChat.clear();
+
+    // Formulate the message
+    message = "Analyzing sequence: " + lblSequence.getText() + "\n\n";
+    message += Instructions.incorrectSequence;
+
+    // Print the correct sequence message to the chat
+    Printer.printText(taChat, message, Instructions.printSpeed);
+  }
+
+  private void printEmptySequence() {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print the empty error message to chat
+    Printer.printText(taChat, Instructions.emptySequence, Instructions.printSpeed);
   }
 }

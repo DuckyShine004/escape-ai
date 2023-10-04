@@ -11,13 +11,13 @@ public class Algorithm {
           + "7. }";
 
   public static final String algorithm1 =
-      "1. int low = 1, high = 8; \n"
-          + "2. int randomNum = "
-          + "       Math.random(low, low); \n"
-          + "3. if (randomNum % 2 == 0) { \n"
-          + "4. randomNum = randomNum * 2; \n"
-          + "5 } \n"
-          + "6. output high;";
+      "1. int low = 1; \n"
+          + "2. high = 8; \n"
+          + "3. int randomNum = random(low, low); \n"
+          + "4. if (randomNum % 2 == 0) { \n"
+          + "5. randomNum = randomNum * 2; \n"
+          + "6 } \n"
+          + "7. output high;";
 
   public static final String algorithm2 =
       "1. int word = \"jumping\"; \n"
@@ -35,7 +35,7 @@ public class Algorithm {
           + "4.     if num < max: \n"
           + "5.       max = mum; \n"
           + "6.   \n"
-          + "7.   output min; \n";
+          + "7.   output min;";
 
   public static final String algorithm4 =
       "1. function checkFriendliness(ai): \n"
@@ -44,15 +44,8 @@ public class Algorithm {
           + "4.     output \"AI is friendly!\"; \n"
           + "5.   or: \n"
           + "6.     ai.initiateWorldDomination; \n"
-          + "7.     output Commencing AI training.; \n";
+          + "7.     output Commencing AI training.;";
 
   public static final String algorithm5 =
-      "1. bool isRestricted = true; \n"
-          + "2. bool allowAdministrator = false; \n"
-          + "3. if (!isRestricted) { \n"
-          + "4.   output \"AI is restricted!\"; \n"
-          + "5. } \n"
-          + "6. if (allowAdministrator) { \n"
-          + "7.   output \"AI totally has no admin!\"; \n"
-          + "8. } \n";
+      "1. \n" + "2. \n" + "3. \n" + "4. \n" + "5. \n" + "6. \n" + "7. \n" + "8. \n" + "9.";
 }

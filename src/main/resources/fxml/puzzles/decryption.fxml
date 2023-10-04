@@ -90,7 +90,10 @@
                   <DropShadow />
                </effect>
             </Pane>
-            <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true" />
+            <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+               <effect>
+                  <Glow level="0.5" />
+               </effect></TextArea>
          </children>
       </Pane>
       <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
@@ -111,7 +114,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseClicked="#onAnalyzeClicked" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Label layoutX="38.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="ANALYZE" textFill="WHITE">
                <font>
@@ -149,6 +152,159 @@
       </Pane>
       <Pane fx:id="paPasswordComponent" layoutX="340.0" layoutY="40.0" prefHeight="405.0" prefWidth="365.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
+            <Pane fx:id="paLine0" layoutY="51.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine1" layoutY="73.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine2" layoutY="95.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine3" layoutY="117.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine4" layoutY="139.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine5" layoutY="161.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine6" layoutY="183.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine7" layoutY="205.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLine8" layoutY="227.0" onMouseClicked="#onLinePaneClicked" onMouseEntered="#onLinePaneEntered" onMouseExited="#onLinePaneExited" opacity="0.0" prefHeight="22.0" prefWidth="35.0" style="-fx-background-color: rgb(255,140,140);" translateY="-5.0">
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <Glow level="0.05" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay0" layoutX="35.0" layoutY="51.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay1" layoutX="35.0" layoutY="73.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay2" layoutX="35.0" layoutY="95.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay3" layoutX="35.0" layoutY="117.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay4" layoutX="35.0" layoutY="139.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay5" layoutX="35.0" layoutY="161.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay6" layoutX="35.0" layoutY="183.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay7" layoutX="35.0" layoutY="205.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paLineOverlay8" layoutX="35.0" layoutY="227.0" opacity="0.9" prefHeight="22.0" prefWidth="330.0" style="-fx-background-color: rgb(70,70,80);" translateY="-5.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Pane>
             <Pane prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: rgb(219,175,146);">
                <effect>
                   <InnerShadow>
@@ -190,7 +346,7 @@
                   </InnerShadow>
                </effect>
                <children>
-                  <Label layoutX="72.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
+                  <Label fx:id="lblError" layoutX="72.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -255,16 +411,47 @@
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="25.0" prefHeight="280.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="40.0" prefHeight="260.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </TextArea>
-            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </TextArea>
+            <Label fx:id="lblPrefixSequence" layoutX="10.0" layoutY="252.0" styleClass="custom-bold-label" stylesheets="@../../css/puzzles/decryption.css" text="CURRENT SEQUENCE:" textFill="#ff5e5e">
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblSequence" layoutX="180.0" layoutY="252.5" styleClass="timer-bold-label" stylesheets="@../../css/puzzles/decryption.css" textFill="#ff5e5e">
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Line fx:id="lineVertical" endY="197.0" layoutX="34.0" layoutY="47.0" stroke="#48494f" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.5">
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
          </children>
       </Pane>
       <Canvas fx:id="cvsMatrixRain" disable="true" height="405.0" layoutX="340.0" layoutY="40.0" visible="false" width="365.0">
@@ -359,7 +546,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM" textFill="WHITE">
+      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM AND SEQUENCE ANALYZER" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
