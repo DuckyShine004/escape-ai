@@ -178,10 +178,8 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // Set the line visible
-    paLines[lineIndex].setOpacity(1);
-
-    // Set the line overlay visible
+    // Set the current selected line visible
+    paLines[lineIndex].setVisible(true);
     paLineOverlays[lineIndex].setVisible(true);
   }
 
@@ -201,10 +199,8 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // Set the line overlay invisible
-    paLines[lineIndex].setOpacity(0);
-
-    // Set the line overlay invisible
+    // Set the current selected line invisible
+    paLines[lineIndex].setVisible(false);
     paLineOverlays[lineIndex].setVisible(false);
   }
 
@@ -330,16 +326,11 @@ public class DecryptionPuzzleController {
       return;
     }
 
-    // Get the next opacity for the line
-    double nextLineOpacity = (isLineSelected[lineIndex] ? 0 : 1);
-
     // Toggle the current sequence index
     isLineSelected[lineIndex] = !isLineSelected[lineIndex];
 
-    // Toggle the visibility of the line
-    paLines[lineIndex].setOpacity(nextLineOpacity);
-
-    // Toggle the visibility of the line overlay
+    // Toggle the visibility of the current line selected
+    paLines[lineIndex].setVisible(isLineSelected[lineIndex]);
     paLineOverlays[lineIndex].setVisible(isLineSelected[lineIndex]);
 
     // Set the sequence entered by the user
@@ -545,10 +536,10 @@ public class DecryptionPuzzleController {
       paLineOverlays[line] = (Pane) paDecryption.lookup("#paLineOverlay" + line);
     }
 
-    // Change the cursor for un-touchable lines
+    // Change the cursor for un-touchable lines and overlays
     for (int line = pseudocodeLines; line < 9; line++) {
-      Pane paLine = (Pane) paDecryption.lookup("#paLine" + line);
-      paLine.setCursor(Cursor.DEFAULT);
+      Pane paLineClick = (Pane) paDecryption.lookup("#paLineClick" + line);
+      paLineClick.setCursor(Cursor.DEFAULT);
     }
 
     // Change the line height to match the number of algorithm lines present
@@ -976,8 +967,9 @@ public class DecryptionPuzzleController {
     printCorrectSequence();
 
     // Set cursor to default for all line panes
-    for (Pane pane : paLines) {
-      pane.setCursor(Cursor.DEFAULT);
+    for (int line = 0; line < pseudocodeLines; line++) {
+      paLines[line].setCursor(Cursor.DEFAULT);
+      paLineOverlays[line].setCursor(Cursor.DEFAULT);
     }
 
     // Update all labels associated with solving the puzzle

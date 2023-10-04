@@ -46,7 +46,7 @@ public class Instructions {
 
   public static final String emptySequence =
       "Critical error: no sequence detected! \n\n"
-          + "Click on the line numbers to create a sequence... \n\n"
+          + "Click a line number to create a sequence... \n\n"
           + "Analyze the code carefully...";
 
   public static final double printSpeed = 0.010;
