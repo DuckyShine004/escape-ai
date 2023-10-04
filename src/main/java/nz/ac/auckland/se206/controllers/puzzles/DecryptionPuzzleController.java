@@ -198,8 +198,8 @@ public class DecryptionPuzzleController {
     // Retrieve the line's index
     int lineIndex = getLineIndex(event);
 
-    // Check if the puzzle has been solved
-    if (GameState.isDecryptionSolved) {
+    // Check if the password tab is open
+    if (!isPasswordTabOpen) {
       return;
     }
 
@@ -314,6 +314,12 @@ public class DecryptionPuzzleController {
       return;
     }
 
+    // Check if the password tab is open, if not, print error message
+    if (!isPasswordTabOpen) {
+      printWrongTabOpened();
+      return;
+    }
+
     // Print getting hint message but also handle concurrency
     printGettingHint();
 
@@ -331,6 +337,12 @@ public class DecryptionPuzzleController {
 
     // Check if something is already printing
     if (GameState.isPrinting) {
+      return;
+    }
+
+    // Check if the password tab is open, if not print error message
+    if (!isPasswordTabOpen) {
+      printWrongTabOpened();
       return;
     }
 
@@ -1171,6 +1183,14 @@ public class DecryptionPuzzleController {
 
     // Print the empty error message to chat
     Printer.printText(taChat, Instructions.emptySequence, Instructions.printSpeed);
+  }
+
+  private void printWrongTabOpened() {
+    // Clear the chat area
+    taChat.clear();
+
+    // Print the empty error message to chat
+    Printer.printText(taChat, Instructions.wrongTabOpened, Instructions.printSpeed);
   }
 
   /** Print the message when program is getting a hint for the user. */

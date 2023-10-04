@@ -49,6 +49,9 @@ public class Instructions {
           + "Click a line number to create a sequence... \n\n"
           + "Analyze the code carefully...";
 
+  public static final String wrongTabOpened =
+      "Critical error: wrong tab opened... \n\n" + "Please navigate to the 'password' tab...";
+
   public static final String gettingHint =
       "Analyzing pseudocode... \n\n"
           + "Searching for errors... \n\n"
