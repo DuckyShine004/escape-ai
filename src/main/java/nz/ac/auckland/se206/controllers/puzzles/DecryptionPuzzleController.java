@@ -3,7 +3,10 @@ package nz.ac.auckland.se206.controllers.puzzles;
 import java.lang.reflect.Field;
 import java.util.Random;
 import java.util.stream.IntStream;
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -77,6 +81,7 @@ public class DecryptionPuzzleController {
   @FXML private Pane paPassword;
   @FXML private Pane paDecryption;
   @FXML private Pane paMatrixRain;
+  @FXML private Pane paLoadingBar;
   @FXML private Pane paBackOverlay;
   @FXML private Pane paEmptyComponent;
   @FXML private Pane paEmptyComponentBar;
@@ -88,6 +93,7 @@ public class DecryptionPuzzleController {
   @FXML private Label lblError;
   @FXML private Label lblEmpty;
   @FXML private Label lblMemory;
+  @FXML private Label lblProgress;
   @FXML private Label lblSequence;
   @FXML private Label lblPassword;
   @FXML private Label lblHintCounter;
@@ -123,6 +129,8 @@ public class DecryptionPuzzleController {
   private String algorithm;
   private String pseudocode;
   private String description;
+
+  private Timeline loadingTime;
 
   private ChatCompletionRequest gptRequest;
 
@@ -588,6 +596,28 @@ public class DecryptionPuzzleController {
     lineVertical.setEndY((22 * pseudocodeLines) - 1.5);
   }
 
+  private void initializeLoadingBar() {
+    // Reset the progress label to zero percent
+    lblProgress.setText("0%");
+
+    // Reset the loading bar
+    paLoadingBar.setPrefWidth(0);
+
+    // Create a timeline for the loading bar
+    loadingTime =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(50),
+                event -> {
+                  // Update the loading bar
+                  updateLoadingBar();
+                }));
+
+    // Start the animation for the loading bar
+    loadingTime.setCycleCount(Animation.INDEFINITE);
+    loadingTime.play();
+  }
+
   /**
    * Initialize the string sequence for the corresponding random pseudocode index.
    *
@@ -661,10 +691,13 @@ public class DecryptionPuzzleController {
    * @param isHint the flag for if the user input is a hint.
    */
   private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
-    // add user input to GPT's user input history
+    // Initialize the loading bar
+    initializeLoadingBar();
+
+    // Add user input to GPT's user input history
     gptRequest.addMessage(entityMessage);
 
-    // create a concurrent task for handling GPT response
+    // Create a concurrent task for handling GPT response
     Task<Void> gptTask =
         new Task<Void>() {
           @Override
@@ -681,15 +714,17 @@ public class DecryptionPuzzleController {
           disableComponents();
         });
 
-    // If the task succeeds, then enable components
+    // If the task succeeds, then enable components and finish loading bar
     gptTask.setOnSucceeded(
         event -> {
+          completeLoadingBar();
           enableComponents();
         });
 
-    // If the task fails, then enable components
+    // If the task fails, then enable components and finish loading bar
     gptTask.setOnFailed(
         event -> {
+          completeLoadingBar();
           enableComponents();
         });
 
@@ -1055,6 +1090,25 @@ public class DecryptionPuzzleController {
     setPolygonExited(pgPasswordRight);
   }
 
+  /**
+   * Update the loading bar. This method is to animate the process of loading the hint for the user.
+   */
+  private void updateLoadingBar() {
+    // Update the width of the loading bar
+    double width = paLoadingBar.getWidth() + 1;
+    paLoadingBar.setPrefWidth(width);
+
+    // Check if we are at 100% of the width
+    if (width == 160) {
+      completeLoadingBar();
+      return;
+    }
+
+    // Update the progress label
+    int progress = (int) ((width / 160.0) * 100.0);
+    lblProgress.setText(progress + "%");
+  }
+
   /** Handle the event when user correctly inputs the sequence. */
   private void handleCorrectUserSequence() {
     // Print the correct sequence message to the chat
@@ -1075,7 +1129,6 @@ public class DecryptionPuzzleController {
 
   /** Handle the event when user incorrectly inputs the sequence. */
   private void handleIncorrectUserSequence() {
-    // Print the incorrect sequence message to the chat
     printIncorrectSequence();
   }
 
@@ -1136,5 +1189,17 @@ public class DecryptionPuzzleController {
 
     // Print getting the hint message to the chat
     Printer.printText(taChat, hint, Instructions.printSpeed);
+  }
+
+  /** Complete the loading bar. This should be called when the hint is generated by GPT. */
+  private void completeLoadingBar() {
+    // Stop the loading bar timeline
+    loadingTime.stop();
+
+    // Update the progress label to 100%
+    lblProgress.setText("100%");
+
+    // Complete the loading bar
+    paLoadingBar.setPrefWidth(160);
   }
 }
