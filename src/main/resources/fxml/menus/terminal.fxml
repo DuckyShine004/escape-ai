@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.AmbientLight?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.PointLight?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Sphere?>
 <?import javafx.scene.text.Font?>
 
-<Pane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: rgb(20,20,23);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.TerminalController">
+<Pane fx:id="paTerminal" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: rgb(20,20,23);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.TerminalController">
    <children>
       <Polygon fill="#1d1e25" layoutX="414.0" layoutY="430.0" points="-9.0, -55.333343505859375, -9.0, -36.666656494140625, 11.0, -55.333343505859375" stroke="#1d1e25" strokeType="INSIDE" />
-      <Pane layoutX="5.0" layoutY="25.0" prefHeight="350.0" prefWidth="420.0" style="-fx-background-color: rgb(29,30,37);" />
+      <Pane layoutX="5.0" layoutY="25.0" prefHeight="350.0" prefWidth="420.0" style="-fx-background-color: rgb(29,30,37);">
+         <children>
+            <TextArea fx:id="taTerminal" disable="true" editable="false" focusTraversable="false" layoutY="25.0" prefHeight="360.0" prefWidth="425.0" styleClass="custom-text-area" stylesheets="@../../css/menus/terminal.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </TextArea>
+         </children>
+      </Pane>
       <Pane layoutX="5.0" layoutY="374.0" prefHeight="21.0" prefWidth="400.0" style="-fx-background-color: rgb(29,30,37);" />
       <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="445.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="245.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
@@ -69,12 +89,94 @@
             <DropShadow />
          </effect>
       </Pane>
+      <Pane layoutX="5.0" layoutY="25.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: rgb(219,175,146);">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <DropShadow>
+                     <input>
+                        <Glow />
+                     </input>
+                  </DropShadow>
+               </input>
+            </InnerShadow>
+         </effect>
+         <children>
+            <Label layoutX="7.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~/root/">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="instructions">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="205.0" layoutY="25.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: black;">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <DropShadow>
+                     <input>
+                        <Glow />
+                     </input>
+                  </DropShadow>
+               </input>
+            </InnerShadow>
+         </effect>
+         <children>
+            <Label layoutX="145.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="buffers" textFill="#50aaff">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <Glow level="0.9" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
       <Label layoutX="5.0" layoutY="3.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="INSTRUCTION" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
       </Label>
       <Label layoutX="382.0" layoutY="3.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="SYSTEM" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="440.0" layoutY="3.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="TIMER" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="670.0" layoutY="3.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="SYSTEM" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label fx:id="lblTime" layoutX="534.0" layoutY="20.0" styleClass="timer-label" stylesheets="@../../css/puzzles/decryption.css" text="Label" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
+      </Label>
+      <Label layoutX="440.0" layoutY="57.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="WORLD VIEW" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="633.0" layoutY="62.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="NEW ZEALAND" textFill="#96979d">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -94,7 +196,7 @@
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endX="424.0" layoutX="3.0" layoutY="400.0" stroke="#616267">
+      <Line endX="405.0" layoutX="3.0" layoutY="400.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
@@ -104,7 +206,7 @@
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endY="10.0" layoutX="428.0" layoutY="395.0" stroke="#616267">
+      <Line endY="10.0" layoutX="408.0" layoutY="395.0" rotate="45.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
@@ -136,14 +238,6 @@
             </Glow>
          </effect>
       </Line>
-      <TextArea fx:id="taTerminal" disable="true" editable="false" focusTraversable="false" prefHeight="380.0" prefWidth="425.0" styleClass="custom-text-area" stylesheets="@../../css/menus/terminal.css">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <effect>
-            <Glow level="0.6" />
-         </effect>
-      </TextArea>
       <Line endX="425.0" endY="375.0" startX="405.0" startY="395.0" stroke="#48494f" strokeWidth="2.0">
          <effect>
             <Glow level="0.8">
@@ -153,5 +247,77 @@
             </Glow>
          </effect>
       </Line>
+      <Line endX="280.0" layoutX="436.0" layoutY="20.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="436.0" layoutY="15.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="717.0" layoutY="15.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endX="280.0" layoutX="436.0" layoutY="60.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="436.0" layoutY="55.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="717.0" layoutY="55.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Ellipse fill="#6ab3f6" layoutX="576.0" layoutY="285.0" radiusX="60.0" radiusY="4.0" stroke="#6ab3f6" strokeType="INSIDE">
+         <effect>
+            <GaussianBlur radius="25.0">
+               <input>
+                  <Glow level="0.8" />
+               </input>
+            </GaussianBlur>
+         </effect>
+      </Ellipse>
+      <Ellipse fill="#ffffff80" layoutX="576.0" layoutY="285.0" radiusX="40.0" radiusY="5.0" stroke="#ffffff80" strokeType="INSIDE">
+         <effect>
+            <GaussianBlur radius="20.0">
+               <input>
+                  <Glow level="1.0" />
+               </input>
+            </GaussianBlur>
+         </effect>
+      </Ellipse>
+      <Circle fill="#50aaff1a" layoutX="576.0" layoutY="178.0" radius="80.0" stroke="#50aaff1a" strokeType="INSIDE">
+         <effect>
+            <GaussianBlur radius="63.0">
+               <input>
+                  <Glow />
+               </input>
+            </GaussianBlur>
+         </effect>
+      </Circle>
+      <Sphere fx:id="sphGlobe" drawMode="LINE" layoutX="576.0" layoutY="178.0" radius="80.0">
+         <effect>
+            <Bloom />
+         </effect>
+      </Sphere>
+      <AmbientLight layoutX="457.0" layoutY="135.0" lightOn="true">
+         <color>
+            <Color red="0.7843137383460999" green="0.9019607901573181" blue="0.9725490212440491" />
+         </color>
+      </AmbientLight>
+      <PointLight layoutX="682.0" layoutY="82.0" lightOn="true">
+         <color>
+            <Color green="0.699999988079071" blue="1.0" />
+         </color>
+      </PointLight>
    </children>
 </Pane>

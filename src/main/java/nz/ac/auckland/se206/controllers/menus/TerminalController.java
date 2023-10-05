@@ -1,26 +1,51 @@
 package nz.ac.auckland.se206.controllers.menus;
 
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.MeshView;
+import javafx.scene.shape.Sphere;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.utilities.Printer;
+import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the terminal scene. */
 public class TerminalController {
   @FXML private Pane paBack;
   @FXML private Pane paNext;
   @FXML private Pane paSkip;
+  @FXML private Pane paTerminal;
+
+  @FXML private Label lblTime;
+
+  @FXML private Sphere sphGlobe;
 
   @FXML private TextArea taTerminal;
+
+  @FXML private MeshView mvwSphere;
 
   /** Initializes the terminal screen. */
   @FXML
   private void initialize() {
+    // Add the label to list of labels to be updated
+    Timer.addLabel(lblTime);
+
+    // Initialize the terminal
     initializeTerminal();
+
+    // Initialize the globe
+    initializeGlobe();
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -107,6 +132,30 @@ public class TerminalController {
   /** Initializes the bootup message. */
   private void initializeTerminal() {
     printToTextArea(taTerminal, Instructions.bootup, Instructions.printSpeed);
+  }
+
+  private void initializeGlobe() {
+    PhongMaterial globeMaterial = new PhongMaterial();
+
+    globeMaterial.setDiffuseColor(Color.WHITE);
+    globeMaterial.setDiffuseMap(new Image("images/earth.jpg"));
+
+    sphGlobe.setMaterial(globeMaterial);
+
+    updateSphereRotation(20);
+  }
+
+  private void updateSphereRotation(double speed) {
+    // Create a new transition animation for the globe rotation
+    RotateTransition rotateTransition = new RotateTransition(Duration.seconds(speed), sphGlobe);
+
+    // Rotate the globe
+    rotateTransition.setByAngle(360);
+    rotateTransition.setAxis(Rotate.Y_AXIS);
+
+    // Start the animation
+    rotateTransition.setCycleCount(Animation.INDEFINITE);
+    rotateTransition.play();
   }
 
   /**
