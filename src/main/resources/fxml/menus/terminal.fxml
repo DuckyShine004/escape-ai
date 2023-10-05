@@ -168,7 +168,7 @@
             <Glow level="0.7" />
          </effect>
       </Label>
-      <Label layoutX="440.0" layoutY="57.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="WORLD VIEW" textFill="WHITE">
+      <Label layoutX="440.0" layoutY="58.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="WORLD VIEW" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -176,7 +176,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="633.0" layoutY="62.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="NEW ZEALAND" textFill="#96979d">
+      <Label layoutX="633.0" layoutY="63.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="NEW ZEALAND" textFill="#96979d">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -277,6 +277,21 @@
             <Glow level="0.2" />
          </effect>
       </Line>
+      <Line endX="280.0" layoutX="436.0" layoutY="315.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="436.0" layoutY="310.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endY="10.0" layoutX="717.0" layoutY="310.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
       <Ellipse fill="#6ab3f6" layoutX="576.0" layoutY="285.0" radiusX="60.0" radiusY="4.0" stroke="#6ab3f6" strokeType="INSIDE">
          <effect>
             <GaussianBlur radius="25.0">
@@ -319,5 +334,61 @@
             <Color green="0.699999988079071" blue="1.0" />
          </color>
       </PointLight>
+      <Label fx:id="lblYear" layoutX="440.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="YEAR" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMonth" layoutX="440.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="DEC" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDay" layoutX="475.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="31" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="510.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="OPERATING SYSTEM" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOperatingSystem" layoutX="510.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="LINUX" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="675.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="RAM" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOperatingSystem1" layoutX="675.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="?" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

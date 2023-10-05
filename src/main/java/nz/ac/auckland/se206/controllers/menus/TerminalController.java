@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206.controllers.menus;
 
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
@@ -27,7 +31,11 @@ public class TerminalController {
   @FXML private Pane paSkip;
   @FXML private Pane paTerminal;
 
+  @FXML private Label lblDay;
   @FXML private Label lblTime;
+  @FXML private Label lblYear;
+  @FXML private Label lblMonth;
+  @FXML private Label lblOperatingSystem;
 
   @FXML private Sphere sphGlobe;
 
@@ -46,6 +54,9 @@ public class TerminalController {
 
     // Initialize the globe
     initializeGlobe();
+
+    // Initialize all labels
+    initializeLabels();
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
@@ -134,6 +145,7 @@ public class TerminalController {
     printToTextArea(taTerminal, Instructions.bootup, Instructions.printSpeed);
   }
 
+  /** Initialize the spinning globe. */
   private void initializeGlobe() {
     PhongMaterial globeMaterial = new PhongMaterial();
 
@@ -145,6 +157,36 @@ public class TerminalController {
     updateSphereRotation(20);
   }
 
+  /** Initialize all labels used in the terminal scene. */
+  private void initializeLabels() {
+    // Initialize the date labels
+    initializeDateLabels();
+
+    // Initialize the operating system label
+    lblOperatingSystem.setText(System.getProperty("os.name").toUpperCase());
+  }
+
+  /** Initialize all date labels. */
+  private void initializeDateLabels() {
+    // Retrieve the local date
+    LocalDate date = LocalDate.now();
+
+    // Set the current day label
+    lblDay.setText(Integer.toString(date.getDayOfMonth()));
+
+    // Set the month label
+    String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+    lblMonth.setText(month.toUpperCase());
+
+    // Set the year label
+    lblYear.setText(Integer.toString(Year.now().getValue()));
+  }
+
+  /**
+   * Rotate the globe indefinitely.
+   *
+   * @param speed the speed at which the globe will be rotated.
+   */
   private void updateSphereRotation(double speed) {
     // Create a new transition animation for the globe rotation
     RotateTransition rotateTransition = new RotateTransition(Duration.seconds(speed), sphGlobe);
