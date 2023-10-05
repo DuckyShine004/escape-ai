@@ -14,9 +14,6 @@ public class TerminalController {
   @FXML private Pane paBack;
   @FXML private Pane paNext;
   @FXML private Pane paSkip;
-  @FXML private Pane paBackOverlay;
-  @FXML private Pane paNextOverlay;
-  @FXML private Pane paSkipOverlay;
 
   @FXML private TextArea taTerminal;
 
@@ -29,43 +26,62 @@ public class TerminalController {
   /** When the mouse is hovering over the pane, the overlay appears (back). */
   @FXML
   private void onBackPaneEntered() {
-    paBackOverlay.setVisible(true);
+    paBack.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (back). */
   @FXML
   private void onBackPaneExited() {
-    paBackOverlay.setVisible(false);
-  }
-
-  /** When the mouse is hovering over the pane, the overlay appears (next). */
-  @FXML
-  private void onNextPaneEntered() {
-    paNextOverlay.setVisible(true);
-  }
-
-  /** When the mouse is not hovering over the pane, the overlay disappears (next). */
-  @FXML
-  private void onNextPaneExited() {
-    paNextOverlay.setVisible(false);
+    paBack.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (skip). */
   @FXML
   private void onSkipPaneEntered() {
-    paSkipOverlay.setVisible(true);
+    paSkip.setStyle("-fx-background-color: rgb(29,30,37);");
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (skip). */
   @FXML
   private void onSkipPaneExited() {
-    paSkipOverlay.setVisible(false);
+    paSkip.setStyle("-fx-background-color: rgb(20,20,23);");
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (next). */
+  @FXML
+  private void onNextPaneEntered() {
+    paNext.setStyle("-fx-background-color: rgb(29,30,37);");
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (next). */
+  @FXML
+  private void onNextPaneExited() {
+    paNext.setStyle("-fx-background-color: rgb(20,20,23);");
   }
 
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
     App.setUi(AppUi.CONTROL);
+  }
+
+  /** When skip is clicked, skip the current dialogue. */
+  @FXML
+  private void onSkipPaneClicked() {
+    // if there is no printing event going on, exit out of the function call
+    if (!GameState.isPrinting) {
+      return;
+    }
+
+    // stop the printing
+    Printer.stop();
+
+    // retrieve the current printed letter position and message
+    int letterPosition = Printer.getCurrentLetterPosition();
+    String message = Printer.getCurrentMessage();
+
+    // print the remaining message to the text area
+    taTerminal.appendText(message.substring(letterPosition, message.length() - 1));
   }
 
   /** When next is clicked, move on to the next thing. */
@@ -86,25 +102,6 @@ public class TerminalController {
 
     // move on to the decryption puzzle
     App.setUi(AppUi.DECRYPTION);
-  }
-
-  /** When skip is clicked, skip the current dialogue. */
-  @FXML
-  private void onSkipPaneClicked() {
-    // if there is no printing event going on, exit out of the function call
-    if (!GameState.isPrinting) {
-      return;
-    }
-
-    // stop the printing
-    Printer.stop();
-
-    // retrieve the current printed letter position and message
-    int letterPosition = Printer.getCurrentLetterPosition();
-    String message = Printer.getCurrentMessage();
-
-    // print the remaining message to the text area
-    taTerminal.appendText(message.substring(letterPosition, message.length() - 1));
   }
 
   /** Initializes the bootup message. */

@@ -19,7 +19,6 @@
 /* Font styling */
 @font-face {
   font-family: Determination Mono Web;
-  font-size: 18;
   src: url("/../../fonts/jetbrains.ttf");
 }
 
@@ -30,7 +29,6 @@
 
 @font-face {
   font-family: DS-Digital;
-  font-size: 18;
   src: url("/../../fonts/timerBold.TTf");
 }
 
