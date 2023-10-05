@@ -36,7 +36,7 @@ public class Instructions {
           + "================================================ \n"
           + "~> Detect ALL errors in the code... \n"
           + "~> Select ALL incorrect lines... \n"
-          + "~> Sequence is read from TOP TO BOTTOM... \n"
+          + "~> Sequence is read from TOP to BOTTOM... \n"
           + "================================================ \n"
           + "~> Awaiting user response... ";
 

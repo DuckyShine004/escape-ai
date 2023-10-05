@@ -31,6 +31,7 @@ public class TerminalController {
   @FXML private Pane paBack;
   @FXML private Pane paNext;
   @FXML private Pane paSkip;
+  @FXML private Pane paWarning;
   @FXML private Pane paTerminal;
   @FXML private Pane paLoadingBar;
 
@@ -38,6 +39,7 @@ public class TerminalController {
   @FXML private Label lblTime;
   @FXML private Label lblYear;
   @FXML private Label lblMonth;
+  @FXML private Label lblLoading;
   @FXML private Label lblProgress;
   @FXML private Label lblOperatingSystem;
 
@@ -139,6 +141,13 @@ public class TerminalController {
 
     // print the instructions if it has not been printed yet
     if (!Instructions.isInstructionsPrinted) {
+      // Update the loading label
+      lblLoading.setText("LOADING:");
+
+      // Make the warning pane visible
+      paWarning.setVisible(true);
+
+      // Print the next instruction
       printToTextArea(taTerminal, Instructions.instructions, Instructions.printSpeed);
       Instructions.isInstructionsPrinted = true;
 

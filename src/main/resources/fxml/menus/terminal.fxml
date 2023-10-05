@@ -35,7 +35,7 @@
          </children>
       </Pane>
       <Pane layoutX="5.0" layoutY="374.0" prefHeight="21.0" prefWidth="400.0" style="-fx-background-color: rgb(29,30,37);" />
-      <Pane layoutX="5.0" layoutY="355.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black;">
+      <Pane fx:id="paWarning" layoutX="5.0" layoutY="355.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black;" visible="false">
          <effect>
             <InnerShadow>
                <input>
@@ -268,7 +268,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblMonth1" layoutX="5.0" layoutY="410.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="BOOTING:" textFill="WHITE">
+      <Label fx:id="lblLoading" layoutX="5.0" layoutY="410.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="BOOTING:" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
