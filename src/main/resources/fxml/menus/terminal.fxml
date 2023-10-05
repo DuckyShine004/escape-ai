@@ -35,6 +35,29 @@
          </children>
       </Pane>
       <Pane layoutX="5.0" layoutY="374.0" prefHeight="21.0" prefWidth="400.0" style="-fx-background-color: rgb(29,30,37);" />
+      <Pane layoutX="5.0" layoutY="355.0" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black;">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <DropShadow>
+                     <input>
+                        <Glow />
+                     </input>
+                  </DropShadow>
+               </input>
+            </InnerShadow>
+         </effect>
+         <children>
+            <Label layoutX="7.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="READ INSTRUCTIONS CAREFULLY" textFill="#ff5656">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <Glow level="0.9" />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
       <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="445.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="245.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
             <Label layoutX="26.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="EXIT CONTROL PANEL" textFill="WHITE">
@@ -237,6 +260,22 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <Label fx:id="lblProgress" layoutX="388.0" layoutY="410.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="100%" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMonth1" layoutX="5.0" layoutY="410.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="BOOTING:" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <Line endX="424.0" layoutX="3.0" layoutY="20.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
@@ -344,6 +383,25 @@
          </effect>
       </Line>
       <Line endY="10.0" layoutX="717.0" layoutY="310.0" stroke="#616267">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Line endX="280.0" layoutX="93.0" layoutY="422.0" stroke="#616267" strokeWidth="4.0">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
+      <Pane fx:id="paLoadingBar" layoutX="91.0" layoutY="417.0" prefHeight="10.0" prefWidth="285.0" style="-fx-background-color: rgb(130,240,130);">
+         <effect>
+            <InnerShadow>
+               <input>
+                  <Glow />
+               </input>
+            </InnerShadow>
+         </effect>
+      </Pane>
+      <Line endY="15.0" layoutX="376.0" layoutY="414.0" stroke="WHITE">
          <effect>
             <Glow level="0.2" />
          </effect>

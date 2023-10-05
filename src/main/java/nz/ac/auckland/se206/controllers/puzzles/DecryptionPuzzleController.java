@@ -612,6 +612,9 @@ public class DecryptionPuzzleController {
     resizeLabelFontSize(lblHint, 18);
   }
 
+  /**
+   * Initialize the loading bar for the decryption puzzle. Used to handle concurrency (visually).
+   */
   private void initializeLoadingBar() {
     // Reset the progress label to zero percent
     lblProgress.setText("0%");
