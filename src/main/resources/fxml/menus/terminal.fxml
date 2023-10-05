@@ -24,7 +24,7 @@
       <Polygon fill="#1d1e25" layoutX="414.0" layoutY="430.0" points="-9.0, -55.333343505859375, -9.0, -36.666656494140625, 11.0, -55.333343505859375" stroke="#1d1e25" strokeType="INSIDE" />
       <Pane layoutX="5.0" layoutY="25.0" prefHeight="350.0" prefWidth="420.0" style="-fx-background-color: rgb(29,30,37);">
          <children>
-            <TextArea fx:id="taTerminal" disable="true" editable="false" focusTraversable="false" layoutY="25.0" prefHeight="360.0" prefWidth="425.0" styleClass="custom-text-area" stylesheets="@../../css/menus/terminal.css">
+            <TextArea fx:id="taTerminal" disable="true" editable="false" focusTraversable="false" layoutY="25.0" prefHeight="360.0" prefWidth="430.0" styleClass="custom-text-area" stylesheets="@../../css/menus/terminal.css">
                <font>
                   <Font size="14.0" />
                </font>
@@ -37,7 +37,7 @@
       <Pane layoutX="5.0" layoutY="374.0" prefHeight="21.0" prefWidth="400.0" style="-fx-background-color: rgb(29,30,37);" />
       <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="445.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="30.0" prefWidth="245.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
-            <Label layoutX="34.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="EXIT CONTROL PANEL" textFill="WHITE">
+            <Label layoutX="26.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="EXIT CONTROL PANEL" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -55,7 +55,7 @@
       </Pane>
       <Pane fx:id="paSkip" focusTraversable="true" layoutX="255.0" layoutY="445.0" onMouseClicked="#onSkipPaneClicked" onMouseEntered="#onSkipPaneEntered" onMouseExited="#onSkipPaneExited" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/menus/terminal.css">
          <children>
-            <Label layoutX="25.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="SKIP" textFill="WHITE">
+            <Label layoutX="22.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="SKIP" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -180,6 +180,62 @@
          <effect>
             <Glow level="0.9" />
          </effect>
+      </Label>
+      <Label fx:id="lblYear" layoutX="440.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="YEAR" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMonth" layoutX="440.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="DEC" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDay" layoutX="475.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="31" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="510.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="OPERATING SYSTEM" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOperatingSystem" layoutX="510.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="LINUX" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="675.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="RAM" textFill="#96979d">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOperatingSystem1" layoutX="675.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="?" textFill="WHITE">
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
       </Label>
       <Line endX="424.0" layoutX="3.0" layoutY="20.0" stroke="#616267">
          <effect>
@@ -334,61 +390,5 @@
             <Color green="0.699999988079071" blue="1.0" />
          </color>
       </PointLight>
-      <Label fx:id="lblYear" layoutX="440.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="YEAR" textFill="#96979d">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblMonth" layoutX="440.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="DEC" textFill="WHITE">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblDay" layoutX="475.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="31" textFill="WHITE">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="510.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="OPERATING SYSTEM" textFill="#96979d">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblOperatingSystem" layoutX="510.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="LINUX" textFill="WHITE">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="675.0" layoutY="313.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="RAM" textFill="#96979d">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblOperatingSystem1" layoutX="675.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="?" textFill="WHITE">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

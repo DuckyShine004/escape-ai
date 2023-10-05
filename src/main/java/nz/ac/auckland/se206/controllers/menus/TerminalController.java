@@ -145,15 +145,22 @@ public class TerminalController {
     printToTextArea(taTerminal, Instructions.bootup, Instructions.printSpeed);
   }
 
-  /** Initialize the spinning globe. */
+  /**
+   * Initialize the spinning globe. This includes, setting texture and initializing rotation
+   * animation for the globe.
+   */
   private void initializeGlobe() {
+    // Create a phong material for the globe
     PhongMaterial globeMaterial = new PhongMaterial();
 
+    // Map texture and color to globe
     globeMaterial.setDiffuseColor(Color.WHITE);
     globeMaterial.setDiffuseMap(new Image("images/earth.jpg"));
 
+    // Apply the phong material to the globe
     sphGlobe.setMaterial(globeMaterial);
 
+    // Rotate the sphere - animation
     updateSphereRotation(20);
   }
 
