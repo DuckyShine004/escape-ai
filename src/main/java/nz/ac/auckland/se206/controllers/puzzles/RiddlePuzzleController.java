@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,13 +31,14 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the chat view. */
 public class RiddlePuzzleController {
-  @FXML private TextArea taChat;
+  @FXML private Label lblChat;
   @FXML private Button btnAnswer1;
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
 
   @FXML private Label lblTime;
   @FXML private Label lblHintCounter;
+  @FXML private Pane paChat;
   @FXML private Pane paBack;
   @FXML private Pane paNext;
   @FXML private Pane paBackOverlay;
@@ -50,9 +50,11 @@ public class RiddlePuzzleController {
   @FXML private Image questioningImage;
 
   private ChatCompletionRequest chatCompletionRequest;
+  private String chat;
   private String answer1;
   private String answer2;
   private String answer3;
+  private StringProperty chatProperty = new SimpleStringProperty();
   private StringProperty answer1Property = new SimpleStringProperty();
   private StringProperty answer2Property = new SimpleStringProperty();
   private StringProperty answer3Property = new SimpleStringProperty();
@@ -86,10 +88,14 @@ public class RiddlePuzzleController {
       e.printStackTrace();
     }
 
+    lblChat.textProperty().bind(chatProperty);
+
     // bind text properties to their buttons
     btnAnswer1.textProperty().bind(answer1Property);
     btnAnswer2.textProperty().bind(answer2Property);
     btnAnswer3.textProperty().bind(answer3Property);
+
+    chatProperty.set("Chat");
 
     // set the text of the buttons
     answer1Property.set("Answer 1");
@@ -115,12 +121,12 @@ public class RiddlePuzzleController {
   }
 
   /**
-   * Appends a chat message to the chat text area.
+   * Set chat property of label to new chat
    *
    * @param msg the chat message to append
    */
-  private void appendChatMessage(ChatMessage msg) {
-    taChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+  private void appendChatMessage(String chat) {
+    chatProperty.set(chat);
 
     GameState.isSpeaking = true;
     // doesn't need to check if it is currently speaking because it naturally flows given you cannot
@@ -182,18 +188,12 @@ public class RiddlePuzzleController {
 
     // If this is the first riddle, introduce the puzzle
     if (GameState.riddlesSolved == 0) {
-      ChatMessage intro =
-          new ChatMessage(
-              "assistant",
-              "Please help me solve these 3 riddles to update the vocabulary in my programming!");
-      appendChatMessage(intro);
+      appendChatMessage(
+          "Please help me solve these 3 riddles to update the vocabulary in my programming!");
     }
 
     // Generate a loading message
-    ChatMessage loading =
-        new ChatMessage(
-            "assistant", "Generating riddle " + (GameState.riddlesSolved + 1) + " of 3...");
-    appendChatMessage(loading);
+    appendChatMessage("Generating riddle " + (GameState.riddlesSolved + 1) + " of 3...");
 
     // Create a new thread to run the GPT model
     Task<Void> generateRiddle =
@@ -211,7 +211,6 @@ public class RiddlePuzzleController {
             ChatMessage gptResponse =
                 runGpt(new ChatMessage("user", GptPromptEngineering.getRiddlePuzzle(concept)));
             System.out.println(gptResponse.getContent());
-
             // If the response is from the assistant, process the output
             if (gptResponse != null && gptResponse.getRole().equals("assistant")) {
               processGptOutputForButtons(gptResponse.getContent(), concept);
@@ -224,6 +223,7 @@ public class RiddlePuzzleController {
             // Update the UI thread
             Platform.runLater(
                 () -> {
+                  appendChatMessage(chat);
                   answer1Property.set(answer1);
                   answer2Property.set(answer2);
                   answer3Property.set(answer3);
@@ -319,9 +319,9 @@ public class RiddlePuzzleController {
                           result.getChatMessage().getContent().indexOf(':') + 1,
                           result.getChatMessage().getContent().indexOf('^')));
         }
-        appendChatMessage(riddle);
+        chat = riddle.getContent();
       } else {
-        appendChatMessage(result.getChatMessage());
+        chat = result.getChatMessage().getContent();
       }
       return result.getChatMessage();
     } catch (ApiProxyException e) {
@@ -404,11 +404,9 @@ public class RiddlePuzzleController {
 
     // Generate a loading message
     if (getHint) {
-      ChatMessage loading = new ChatMessage("assistant", "Searching my database...");
-      appendChatMessage(loading);
+      appendChatMessage("Searching my database...");
     } else {
-      ChatMessage loading = new ChatMessage("assistant", "Analysing your input...");
-      appendChatMessage(loading);
+      appendChatMessage("Analysing your input...");
     }
 
     // Create a new thread to run the GPT model
@@ -423,10 +421,12 @@ public class RiddlePuzzleController {
             if (getHint) {
               responseMsg = runGpt(new ChatMessage("user", "Define: " + buttonText));
               System.out.println(responseMsg.getContent());
+              chat = responseMsg.getContent();
               getHint = false;
             } else {
               responseMsg = runGpt(new ChatMessage("user", "Is it " + buttonText));
               System.out.println(responseMsg.getContent());
+              chat = responseMsg.getContent();
             }
             // Update UI based on the response
             Platform.runLater(
@@ -446,12 +446,9 @@ public class RiddlePuzzleController {
                     // player
                     if (GameState.riddlesSolved == 3) {
                       navigateProperty.set("Exit Puzzle");
-                      ChatMessage outro =
-                          new ChatMessage(
-                              "assistant",
-                              "That is three riddles solved! Thank you for helping recalibrate my"
-                                  + " drives.");
-                      appendChatMessage(outro);
+                      chat += "\n" + 
+                          "That is three riddles solved! Thank you for helping recalibrate my"
+                              + " drives.";
                     }
                     // Set the navigate button to be enabled if the riddle is solved
                     paNext.setDisable(false);
@@ -474,6 +471,7 @@ public class RiddlePuzzleController {
                     }
                     pgHint.setDisable(false);
                   }
+                  appendChatMessage(chat);
                 });
             return null;
           }
@@ -504,8 +502,7 @@ public class RiddlePuzzleController {
     HintManager.updateHintCounter();
 
     // Generate a loading message
-    ChatMessage loading = new ChatMessage("assistant", "Select a word to get a hint for...");
-    appendChatMessage(loading);
+    appendChatMessage("Select a word to get a hint for...");
 
     getHint = true;
   }
