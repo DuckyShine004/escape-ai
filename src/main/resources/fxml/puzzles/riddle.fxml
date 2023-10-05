@@ -16,7 +16,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.RiddlePuzzleController">
   <children>
@@ -72,6 +75,15 @@
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
+      <ImageView fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
+         <image>
+            <Image url="@../../images/rooms/office.png" />
+         </image>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5A5A5A" height="432.0" layoutX="0.0" layoutY="44.0" opacity="0.8" width="720.0" />
       <Pane fx:id="paChat" layoutX="370.0" layoutY="150.0" prefHeight="200.0" prefWidth="350.0">
          <Label fx:id="lblChat" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
       </Pane>
