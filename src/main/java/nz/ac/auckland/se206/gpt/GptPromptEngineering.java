@@ -50,7 +50,7 @@ public class GptPromptEngineering {
   public static String getRiddlePuzzle(String concept) {
     // return the riddle prompt
     return "You are an AI trying to learn about how you should behave. I will ask you to generate a"
-        + " riddle up to 100 characters long with the answer" // ask to generate riddle
+        + " riddle up to 150 characters long with the answer" // ask to generate riddle
         + concept
         + ". Your response should start with 'Riddle:', and end the riddle with a '^'. Only after"
         + " the '^' is printed, list three options, each between a set of {} to the player to"

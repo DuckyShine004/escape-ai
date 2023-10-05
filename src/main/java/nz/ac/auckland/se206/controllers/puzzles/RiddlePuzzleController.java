@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers.puzzles;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -51,6 +52,7 @@ public class RiddlePuzzleController {
 
   private ChatCompletionRequest chatCompletionRequest;
   private String chat;
+  private String currentRiddle;
   private String answer1;
   private String answer2;
   private String answer3;
@@ -254,6 +256,7 @@ public class RiddlePuzzleController {
           protected void failed() {
             super.failed();
             System.out.println("Failed to load");
+            loadRiddle();
           }
         };
 
@@ -319,7 +322,8 @@ public class RiddlePuzzleController {
                           result.getChatMessage().getContent().indexOf(':') + 1,
                           result.getChatMessage().getContent().indexOf('^')));
         }
-        chat = riddle.getContent();
+        currentRiddle = riddle.getContent();
+        chat = currentRiddle;
       } else {
         chat = result.getChatMessage().getContent();
       }
@@ -446,13 +450,14 @@ public class RiddlePuzzleController {
                     // player
                     if (GameState.riddlesSolved == 3) {
                       navigateProperty.set("Exit Puzzle");
-                      chat += "\n" + 
+                      chat += "\n\n" + 
                           "That is three riddles solved! Thank you for helping recalibrate my"
                               + " drives.";
                     }
                     // Set the navigate button to be enabled if the riddle is solved
                     paNext.setDisable(false);
                   } else {
+                    chat += "\n\n" + "Remember, " + currentRiddle;
                     // If the answer is incorrect, enable the input buttons again for the other
                     // inputs
                     if (!btn1Pressed) {
