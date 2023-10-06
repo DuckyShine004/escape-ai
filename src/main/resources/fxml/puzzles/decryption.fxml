@@ -414,7 +414,7 @@
                   </Label>
                </children>
             </Pane>
-            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="40.0" prefHeight="260.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taAlgorithm" disable="true" editable="false" focusTraversable="false" layoutY="40.0" prefHeight="260.0" prefWidth="375.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
@@ -422,7 +422,7 @@
                   <Font size="16.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="375.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>

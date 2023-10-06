@@ -1,51 +1,82 @@
 package nz.ac.auckland.se206.constants;
 
+import nz.ac.auckland.se206.utilities.Number;
+
 public class Algorithm {
   public static final String algorithm0 =
-      "1. string width = 10; \n"
-          + "2. string height = 20; \n"
-          + "3. integer area = w * h; \n"
-          + "4. \n"
-          + "5. if (area > height) { \n"
-          + "6.     output \"NO\"; \n"
-          + "7. }";
+      "1. string width = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "2. string height = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "3. \n"
+          + "4. integer area = w * h; \n"
+          + "5. \n"
+          + "6. if (area > height) { \n"
+          + "7.     output \"NO\"; \n"
+          + "8. }";
 
   public static final String algorithm1 =
-      "1. int low = 1; \n"
-          + "2. high = 8; \n"
-          + "3. int randomNum = random(low, low); \n"
-          + "4. if (randomNum % 2 == 0) { \n"
-          + "5. randomNum = randomNum * 2; \n"
-          + "6 } \n"
-          + "7. output high;";
+      "1. integer a = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "2. string b = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "3. integer number = random(a, a); \n"
+          + "4. \n"
+          + "5. if (number % 2 == 0) { \n"
+          + "6.     number = number * 2; \n"
+          + "7. } \n"
+          + "8. \n"
+          + "9. output a + b;";
 
   public static final String algorithm2 =
-      "1. int word = \"jumping\"; \n"
-          + "2. if (!word.isVerb) { \n"
-          + "3.    word = word + \" cat\"; \n"
-          + "4. } else { \n"
-          + "5.   word = word - \" dog\"; \n"
-          + "6. } \n"
-          + "7. output cat;";
+      "1. integer word = \"jumping\"; \n"
+          + "2. \n"
+          + "3. if (word.isVerb) { \n"
+          + "4.     word = word + \"dog\"; \n"
+          + "5. } else { \n"
+          + "6.     word = word - \"cat\"; \n"
+          + "7. } \n"
+          + "8. \n"
+          + "9. output cat * dog;";
 
   public static final String algorithm3 =
-      "1. function findMaxValue(array): \n"
-          + "2.   String max = 0; \n"
-          + "3.   for each num in array: \n"
-          + "4.     if num < max: \n"
-          + "5.       max = mum; \n"
-          + "6.   \n"
-          + "7.   output min;";
+      "1. integer x = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "2. string y = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "3. string z = "
+          + Number.getRandomNumber()
+          + "; \n"
+          + "4. \n"
+          + "5. if (x + y + a < 50) { \n"
+          + "6.     output \"GREATER THAN\"; \n"
+          + "7. }";
 
   public static final String algorithm4 =
-      "1. function checkFriendliness(ai): \n"
-          + "2.   if !ai.isFriendly: \n"
-          + "3.     ai.givePraise; \n"
-          + "4.     output \"AI is friendly!\"; \n"
-          + "5.   or: \n"
-          + "6.     ai.initiateWorldDomination; \n"
-          + "7.     output Commencing AI training.;";
+      "1. function checkFriendliness(AI) { \n"
+          + "2.     if (AI.isFriendly) { \n"
+          + "3.         AI.train(); \n"
+          + "4.         output \"NOT FRIENDLY\"; \n"
+          + "5.     } else { \n"
+          + "6.         AI.praise(); \n"
+          + "7.         output \"FRIENDLY!\"; \n"
+          + "8.     } \n"
+          + "9. }";
 
   public static final String algorithm5 =
-      "1. \n" + "2. \n" + "3. \n" + "4. \n" + "5. \n" + "6. \n" + "7. \n" + "8. \n" + "9.";
+      "1. integer integer = string; \n"
+          + "2. boolean x = false; \n"
+          + "3. boolean y = true; \n"
+          + "4. string abcd = 10; \n"
+          + "5. \n"
+          + "6. if (x OR y) { \n"
+          + "7.     output \"TRUE\"; \n"
+          + "8. } \n"
+          + "9. qwueiropasdhfjklzxcvnm";
 }
