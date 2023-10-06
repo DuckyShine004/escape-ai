@@ -141,7 +141,7 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <Polygon fx:id="pgDesktop" fill="YELLOW" layoutX="340.0" layoutY="260.0" onMouseClicked="#onDesktopClicked" onMouseEntered="#onDesktopEntered" onMouseExited="#onDesktopExited" opacity="0.0" points="-52.000030517578125, 37.999969482421875, 65.333343505859375, 43.999969482421875, 61.333343505859375, -59.99998474121094, -54.000030517578125, -33.99998474121094, -52.000030517578125, 3.33331298828125" stroke="#ffffff00" strokeType="INSIDE">
+      <Polygon fx:id="pgDesktop" fill="YELLOW" layoutX="340.0" layoutY="260.0" onMouseClicked="#onDesktopClicked" onMouseEntered="#onDesktopEntered" onMouseExited="#onDesktopExited" opacity="0.0" points="86.83331298828125, -45.49998474121094, 21.83331298828125, -42.49998474121094, -88.16668701171875, -42.49998474121094, -142.83331298828125, -47.49998474121094, -142.83331298828125, 22.999969482421875, -88.16668701171875, 18.999969482421875, -88.16668701171875, 13.1, 21.83331298828125, 12.7, 86.83331298828125, 12.899993896484375" stroke="#ffffff00" strokeType="INSIDE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Polygon>
@@ -154,7 +154,7 @@
       <Button fx:id="btnRight" layoutX="656.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
       <TextArea fx:id="taChat" editable="false" layoutX="50.0" layoutY="65.0" prefHeight="335.0" prefWidth="450.0" styleClass="custom-text-area" stylesheets="@../../css/menus/chatArea.css" visible="false" wrapText="true" />
-      <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false" promptText="Enter message">
+      <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
          <effect>
             <Glow level="0.1" />
          </effect>
