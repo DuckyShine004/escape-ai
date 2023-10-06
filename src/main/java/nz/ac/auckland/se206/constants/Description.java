@@ -17,10 +17,10 @@ public class Description {
       "Algorithm outputs \"LESS THAN\" if sum of variables, x, y, and z is less than 50.";
 
   public static final String description4 =
-      "Algorithm checks if the AI is friendly. If it is, give it praise. Otherwise, train it."
+      "Function checks if the AI is friendly. If it is, give it praise. Otherwise, train it."
           + " Output the friendliness of the AI in each case.";
 
   public static final String description5 =
-      "The AI should be restricted with no admin access. The system should be alerted when the AI"
-          + " is not restricted, or gains admin access.";
+      "Algorithm checks if the bit-AND operation between two boolean variables, x and y, is true."
+          + " If it is, output \"TRUE\", otherwise, output \"FALSE\"";
 }

@@ -59,15 +59,24 @@ public class Algorithm {
           + "7. }";
 
   public static final String algorithm4 =
-      "1. function isFriendly(AI) { \n"
+      "1. function checkFriendliness(AI) { \n"
           + "2.     if (AI.isFriendly) { \n"
-          + "3.         AI.train; \n"
+          + "3.         AI.train(); \n"
           + "4.         output \"NOT FRIENDLY\"; \n"
           + "5.     } else { \n"
-          + "6.         AI.praise; \n"
+          + "6.         AI.praise(); \n"
           + "7.         output \"FRIENDLY!\"; \n"
           + "8.     } \n"
           + "9. }";
 
-  public static final String algorithm5 = "1. ";
+  public static final String algorithm5 =
+      "1. integer integer = string; \n"
+          + "2. boolean x = false; \n"
+          + "3. boolean y = true; \n"
+          + "4. string abcd = 10; \n"
+          + "5. \n"
+          + "6. if (x OR y) { \n"
+          + "7.     output \"TRUE\"; \n"
+          + "8. } \n"
+          + "9. qwueiropasdhfjklzxcvnm";
 }

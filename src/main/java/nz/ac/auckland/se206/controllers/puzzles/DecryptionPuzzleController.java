@@ -561,7 +561,7 @@ public class DecryptionPuzzleController {
 
     // Get a random pseudo code
     // pseudocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
-    pseudocodeIndex = 4;
+    pseudocodeIndex = 5;
 
     // Initialize the sequence
     intializeSequence();
