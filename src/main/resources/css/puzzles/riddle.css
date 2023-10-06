@@ -93,5 +93,18 @@
   -fx-min-width: 280px; /* Minimum width of the chat bubble, adjust as needed */
 }
 
+/* Font styling */
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/determination.ttf");
+}
+
+.eye-text {
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 24px;
+  -fx-background-color: transparent;
+}
+
+
 
 

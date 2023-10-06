@@ -1,21 +1,21 @@
 package nz.ac.auckland.se206.controllers.puzzles;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -33,6 +33,10 @@ import nz.ac.auckland.se206.utilities.Timer;
 /** Controller class for the chat view. */
 public class RiddlePuzzleController {
   @FXML private Label lblChat;
+  @FXML private Label lblEye1;
+  @FXML private Label lblEye2;
+  @FXML private Circle crcEye1;
+  @FXML private Circle crcEye2;
   @FXML private Button btnAnswer1;
   @FXML private Button btnAnswer2;
   @FXML private Button btnAnswer3;
@@ -46,9 +50,6 @@ public class RiddlePuzzleController {
   @FXML private Pane paNextOverlay;
 
   @FXML private Polygon pgHint;
-
-  @FXML private ImageView imgEmotion;
-  @FXML private Image questioningImage;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String chat;
@@ -65,8 +66,10 @@ public class RiddlePuzzleController {
   private boolean btn2Pressed = false;
   private boolean btn3Pressed = false;
   private boolean getHint = false;
+  private boolean isThinking = false;
   private int number1;
   private int number2;
+  private String eyes = "Nasser";
 
   private TextToSpeech tts;
 
@@ -82,13 +85,6 @@ public class RiddlePuzzleController {
 
     // Add the hint counter components
     HintManager.addHintComponents(lblHintCounter, pgHint);
-
-    try {
-      questioningImage =
-          new Image(new FileInputStream("src/main/resources/images/" + "questionmark" + ".png"));
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
 
     lblChat.textProperty().bind(chatProperty);
 
@@ -120,6 +116,38 @@ public class RiddlePuzzleController {
     }
 
     HintManager.initializeHintCounter();
+
+    Timeline timeline = new Timeline(new KeyFrame(
+            Duration.millis(109), // Duration between updates
+            new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    // Check the isThinking variable
+                    if (isThinking) {
+                      int randomNum = (int) (Math.random() * 3);
+                      char randomChar = ' ';
+                      if (randomNum == 0) {
+                        randomChar = (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
+                      } else if (randomNum == 1) {
+                        randomChar = (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
+                      } else if (randomNum == 2) {
+                        randomChar = (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
+                      }
+                      
+                      eyes = eyes.substring(1) + randomChar;
+                      // Update the label's text with the random character
+                      lblEye1.setText(eyes.substring(0, 3));
+                      lblEye2.setText(eyes.substring(3));
+                    }
+                }
+            }
+        ));
+
+        // Set the cycle count to INDEFINITE to keep the timeline running indefinitely
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        // Start the timeline
+        timeline.play();
   }
 
   /**
@@ -280,17 +308,22 @@ public class RiddlePuzzleController {
     newThread.start();
   }
 
-  /** set a question mark and thinking indicator */
+  /** starting thinking and set the thinking components to visible */
   private void startThinking() {
-    //
-    imgEmotion.setVisible(true);
-    imgEmotion.setImage(questioningImage);
+    lblEye1.setVisible(true);
+    lblEye2.setVisible(true);
+    crcEye1.setVisible(true);
+    crcEye2.setVisible(true);
+    isThinking = true;
   }
 
-  /** remove question mark and thinking indicator */
+  /** stop thinking and set the thinking components to not visible */
   private void stopThinking() {
-    //
-    imgEmotion.setVisible(false);
+    lblEye2.setVisible(false);
+    lblEye1.setVisible(false);
+    crcEye1.setVisible(false);
+    crcEye2.setVisible(false);
+    isThinking = false;
   }
 
   /**
