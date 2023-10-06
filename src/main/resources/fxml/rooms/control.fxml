@@ -186,7 +186,7 @@
       </Polygon>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
       <TextArea fx:id="taChat" editable="false" layoutX="50.0" layoutY="65.0" prefHeight="335.0" prefWidth="450.0" styleClass="custom-text-area" stylesheets="@../../css/menus/chatArea.css" visible="false" wrapText="true" />
-      <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false" promptText="Enter message">
+      <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
          <effect>
             <Glow level="0.1" />
          </effect>
