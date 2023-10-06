@@ -511,7 +511,7 @@ public class RiddlePuzzleController {
                     if (!btn3Pressed) {
                       btnAnswer3.setDisable(false);
                     }
-                    if (GameState.riddlesSolved != 0) {
+                    if (GameState.riddlesSolved != 3) {
                       paNext.setDisable(true);
                     } else {
                       paNext.setDisable(false);
