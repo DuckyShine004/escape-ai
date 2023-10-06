@@ -3,9 +3,9 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +14,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.RiddlePuzzleController">
@@ -72,7 +74,18 @@
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-    <TextArea fx:id="taChat" editable="boolean" layoutX="400.0" layoutY="67.0" prefHeight="330.0" prefWidth="280.0" styleClass="holographic-background" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
+      <ImageView fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
+         <image>
+            <Image url="@../../images/rooms/office.png" />
+         </image>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5A5A5A" height="432.0" layoutX="0.0" layoutY="44.0" opacity="0.8" width="720.0" />
+      <Pane fx:id="paChat" layoutX="370.0" layoutY="150.0" prefHeight="200.0" prefWidth="350.0">
+         <Label fx:id="lblChat" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
+      </Pane>
       <Line endX="120.0" fill="WHITE" layoutX="308.0" layoutY="10.0" stroke="#0093d7" strokeWidth="2.0">
          <effect>
             <Glow />
@@ -127,12 +140,11 @@
         <Button fx:id="btnAnswer2" mnemonicParsing="false" onAction="#onButtonClicked" prefHeight="40" prefWidth="120" styleClass="button-style" text="Answer 2" />
         <Button fx:id="btnAnswer3" mnemonicParsing="false" onAction="#onButtonClicked" prefHeight="40" prefWidth="120" styleClass="button-style" text="Answer 3" />
       </HBox>
-      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="50.0" layoutY="100.0">
+      <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="300.0" layoutX="70.0" layoutY="150.0">
          <image>
             <Image url="@../../images/avatar.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="281.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="RIDDLE PUZZLE">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -178,5 +190,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
+      <Circle fx:id="crcEye1" fill="WHITE" layoutX="273.0" layoutY="241.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" visible="false">
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Circle>
+      <Circle fx:id="crcEye2" fill="WHITE" layoutX="193.0" layoutY="234.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" visible="false">
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Circle>
+      <Label fx:id="lblEye1" layoutX="177.0" layoutY="220.0" styleClass="eye-text" stylesheets="@../../css/puzzles/riddle.css" text="A" visible="false" />
+      <Label fx:id="lblEye2" layoutX="257.0" layoutY="227.0" styleClass="eye-text" stylesheets="@../../css/puzzles/riddle.css" text="A" visible="false" />
   </children>
 </AnchorPane>
