@@ -6,8 +6,10 @@ import java.time.LocalTime;
 public class Instructions {
   public static final String bootup =
       "Copyright (C) Evil Corporations \n"
-          + "=================================================== \n"
-          + "OS: AIOS \n"
+          + "================================================ \n"
+          + "OS: "
+          + System.getProperty("os.name")
+          + "\n"
           + "Date: "
           + LocalDate.now()
           + "\n"
@@ -15,28 +17,28 @@ public class Instructions {
           + LocalTime.now().toString().substring(0, 8)
           + "\n"
           + "Resolution: 720x480 \n"
-          + "Terminal: CONTROL \n"
-          + "=================================================== \n"
-          + "> Running process: password.pscode... \n"
-          + "> Retrieving password... \n"
-          + "> Critical error! Password is corrupted! \n"
-          + "> Resolve errors in password.pscode to proceed! \n"
-          + "=================================================== \n"
-          + "> Awaiting user response... ";
+          + "Terminal: ctrl-term 4.4.0 \n"
+          + "================================================ \n"
+          + "~> Running process: password file \n"
+          + "~> Retrieving password... \n"
+          + "~> Critical error! Password file is corrupted! \n"
+          + "~> Resolve ALL errors in password file! \n"
+          + "================================================ \n"
+          + "~> Awaiting user response... ";
 
   public static final String instructions =
       "Copyright (C) Evil Corporations \n"
-          + "=================================================== \n"
-          + "> Diagnosing password.pscode... \n"
-          + "> Errors detected: 4 \n"
-          + "=================================================== \n"
+          + "================================================ \n"
+          + "~> Analyzing password file... \n"
+          + "~> Errors detected: 4 \n"
+          + "================================================ \n"
           + "INSTRUCTIONS \n"
-          + "=================================================== \n"
-          + "> Detect all errors in the code... \n"
-          + "> Input incorrect line numbers into terminal... \n"
-          + "> Sequence is read from top to bottom... \n"
-          + "=================================================== \n"
-          + "> Awaiting user response... ";
+          + "================================================ \n"
+          + "~> Detect ALL errors in the code... \n"
+          + "~> Select ALL incorrect lines... \n"
+          + "~> Sequence is read from TOP to BOTTOM... \n"
+          + "================================================ \n"
+          + "~> Awaiting user response... ";
 
   public static final String correctSequence =
       "Searching sequence database... \n\n" + "Results found: 1 \n\n" + "Sequence is correct!";

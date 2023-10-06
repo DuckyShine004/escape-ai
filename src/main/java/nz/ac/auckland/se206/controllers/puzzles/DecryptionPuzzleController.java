@@ -612,6 +612,9 @@ public class DecryptionPuzzleController {
     resizeLabelFontSize(lblHint, 18);
   }
 
+  /**
+   * Initialize the loading bar for the decryption puzzle. Used to handle concurrency (visually).
+   */
   private void initializeLoadingBar() {
     // Reset the progress label to zero percent
     lblProgress.setText("0%");
@@ -1141,10 +1144,11 @@ public class DecryptionPuzzleController {
     // Print the correct sequence message to the chat
     printCorrectSequence();
 
-    // Set cursor to default for all line panes
+    // Set cursor to default for all line panes and disable all lines
     for (int line = 0; line < pseudocodeLines; line++) {
-      paLines[line].setCursor(Cursor.DEFAULT);
-      paLineOverlays[line].setCursor(Cursor.DEFAULT);
+      Pane paLineClick = (Pane) paDecryption.lookup("#paLineClick" + line);
+      paLineClick.setCursor(Cursor.DEFAULT);
+      paLineClick.setDisable(true);
     }
 
     // Update all labels associated with solving the puzzle

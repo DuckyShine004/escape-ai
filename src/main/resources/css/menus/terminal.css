@@ -1,28 +1,37 @@
-/* For a red border style pane */
-.red-border-pane {
-  -fx-border-color: rgb(255, 0, 0);
-  -fx-border-width: 2px;
+/* For the hint pane */
+.hint-border-pane {
+  -fx-border-color: rgb(193, 193, 196);
+  -fx-border-width: 1px;
 }
 
-/* For a green border style pane */
-.green-border-pane {
-  -fx-border-color: rgb(0, 255, 0);
-  -fx-border-width: 2px;
+/* For the button pane */
+.button-border-pane {
+  -fx-border-color: rgb(132, 133, 136);
+  -fx-border-width: 1.5px;
 }
 
 /* Font styling */
 @font-face {
   font-family: Determination Mono Web;
-  src: url("/../../fonts/determination.ttf");
+  src: url("/../../fonts/jetbrains.ttf");
+}
+
+@font-face {
+  font-family: DS-Digital;
+  src: url("/../../fonts/timer.TTf");
+}
+
+/* Label with custom font */
+.custom-label {
+  -fx-font-family: "JetBrainsMono NF";
 }
 
 /* For the text area styling */
 .custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: rgb(0, 220, 0);
-  -fx-font-family: "Determination Mono Web";
-  -fx-font-size: 26;
+  -fx-text-inner-color: rgb(255, 255, 255);
+  -fx-font-family: "JetBrainsMono NF";
   -fx-opacity: 1;
 }
 

@@ -321,12 +321,12 @@
                   </InnerShadow>
                </effect>
                <children>
-                  <Label layoutX="7.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~/password/">
+                  <Label layoutX="7.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="~/password/">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="112.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="algorithm">
+                  <Label layoutX="112.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="algorithm">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -349,7 +349,7 @@
                   </InnerShadow>
                </effect>
                <children>
-                  <Label fx:id="lblError" layoutX="72.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
+                  <Label fx:id="lblError" layoutX="72.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="4 errors" textFill="#ff5656">
                      <font>
                         <Font size="16.0" />
                      </font>
