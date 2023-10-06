@@ -22,5 +22,5 @@ public class Description {
 
   public static final String description5 =
       "Algorithm checks if the bit-AND operation between two boolean variables, x and y, is true."
-          + " If it is, output \"TRUE\", otherwise, output \"FALSE\"";
+          + " If it is, output \"TRUE\".";
 }
