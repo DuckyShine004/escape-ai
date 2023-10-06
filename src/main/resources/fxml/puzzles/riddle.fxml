@@ -195,7 +195,7 @@
             <Glow level="0.65" />
          </effect>
       </Circle>
-      <Circle fx:id="crcEye2" fill="WHITE" layoutX="193.0" layoutY="234.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" visible="false" >
+      <Circle fx:id="crcEye2" fill="WHITE" layoutX="193.0" layoutY="234.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" visible="false">
          <effect>
             <Glow level="0.65" />
          </effect>

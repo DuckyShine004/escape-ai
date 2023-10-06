@@ -105,49 +105,63 @@ public class RiddlePuzzleController {
     btnAnswer2.setDisable(true);
     btnAnswer3.setDisable(true);
     pgHint.setDisable(true);
-    paNext.setDisable(true);
+    paNext.setDisable(false);
+
+    if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
+      paNext.setDisable(true);
+      loadRiddle();
+    } 
 
     // instantiate the tts
     this.tts = GameState.tts;
 
-    // only load the riddle when not in developer mode
-    if (!GameState.isDeveloperMode) {
-      loadRiddle();
+    // If this is the first riddle, introduce the puzzle
+    if (GameState.riddlesSolved == 0) {
+      appendChatMessage(
+          "I need help solving 3 riddles to update the vocabulary in my programming!"
+              + "\n\n"
+              + "I will give you a riddle about a concept, and you will have to guess the concept."
+              + "\n\n"
+              + "If you are ready, press the 'Next Riddle' button to begin!");
     }
 
     HintManager.initializeHintCounter();
 
-    Timeline timeline = new Timeline(new KeyFrame(
-            Duration.millis(109), // Duration between updates
-            new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(109), // Duration between updates
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
                     // Check the isThinking variable
                     if (isThinking) {
                       int randomNum = (int) (Math.random() * 3);
                       char randomChar = ' ';
                       if (randomNum == 0) {
-                        randomChar = (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
+                        randomChar =
+                            (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
                       } else if (randomNum == 1) {
-                        randomChar = (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
+                        randomChar =
+                            (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
                       } else if (randomNum == 2) {
-                        randomChar = (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
+                        randomChar =
+                            (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
                       }
-                      
+
                       eyes = eyes.substring(1) + randomChar;
                       // Update the label's text with the random character
                       lblEye1.setText(eyes.substring(0, 3));
                       lblEye2.setText(eyes.substring(3));
                     }
-                }
-            }
-        ));
+                  }
+                }));
 
-        // Set the cycle count to INDEFINITE to keep the timeline running indefinitely
-        timeline.setCycleCount(Timeline.INDEFINITE);
+    // Set the cycle count to INDEFINITE to keep the timeline running indefinitely
+    timeline.setCycleCount(Timeline.INDEFINITE);
 
-        // Start the timeline
-        timeline.play();
+    // Start the timeline
+    timeline.play();
   }
 
   /**
@@ -215,12 +229,6 @@ public class RiddlePuzzleController {
 
     // Set the number to be used in the next riddle
     String concept = concepts[randomNumber];
-
-    // If this is the first riddle, introduce the puzzle
-    if (GameState.riddlesSolved == 0) {
-      appendChatMessage(
-          "Please help me solve these 3 riddles to update the vocabulary in my programming!");
-    }
 
     // Generate a loading message
     appendChatMessage("Generating riddle " + (GameState.riddlesSolved + 1) + " of 3...");
@@ -483,14 +491,15 @@ public class RiddlePuzzleController {
                     // player
                     if (GameState.riddlesSolved == 3) {
                       navigateProperty.set("Exit Puzzle");
-                      chat += "\n\n" + 
-                          "That is three riddles solved! Thank you for helping recalibrate my"
+                      chat +=
+                          "\n\n"
+                              + "That is three riddles solved! Thank you for helping recalibrate my"
                               + " drives.";
                     }
                     // Set the navigate button to be enabled if the riddle is solved
                     paNext.setDisable(false);
                   } else {
-                    chat += "\n\n" + "Remember, " + currentRiddle;
+                    chat += "\n\n" + "Remember," + currentRiddle;
                     // If the answer is incorrect, enable the input buttons again for the other
                     // inputs
                     if (!btn1Pressed) {
@@ -582,6 +591,9 @@ public class RiddlePuzzleController {
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
+    if (GameState.riddlesSolved == 3) {
+      GameState.isRiddleResolved = true;
+    }
     App.setUi(AppUi.OFFICE);
   }
 
@@ -591,7 +603,9 @@ public class RiddlePuzzleController {
 
     tts.stop();
 
-    if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
+    if (GameState.riddlesSolved == 0
+        || GameState.riddlesSolved == 1
+        || GameState.riddlesSolved == 2) {
       // If the riddle is solved, load the next riddle and disable the buttons whilst the riddle is
       // loading
       loadRiddle();
