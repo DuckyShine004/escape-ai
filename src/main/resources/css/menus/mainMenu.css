@@ -1,3 +1,9 @@
+/* For the miscellaneous pane */
+.miscellaneous-border-pane {
+  -fx-border-color: rgb(120, 45, 45);
+  -fx-border-width: 1px;
+}
+
 .custom-border-pane {
   -fx-border-color: rgb(126, 87, 0);
   -fx-border-width: 2px;
@@ -6,4 +12,15 @@
 .transparent-border-pane {
   -fx-border-color: transparent;
   -fx-border-width: 2px;
+}
+
+/* Font styling */
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/jetbrains.ttf");
+}
+
+/* Label with custom font */
+.custom-label {
+  -fx-font-family: "JetBrainsMono NF";
 }

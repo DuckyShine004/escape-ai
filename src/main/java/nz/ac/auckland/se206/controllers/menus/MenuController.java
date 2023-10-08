@@ -22,6 +22,7 @@ public abstract class MenuController {
   @FXML private Pane paYes;
   @FXML private Pane paPlay;
   @FXML private Pane paExit;
+  @FXML private Pane paMainMenu;
   @FXML private Pane paNavigation;
   @FXML private Pane paNoOverlay;
   @FXML private Pane paYesOverlay;
@@ -39,6 +40,7 @@ public abstract class MenuController {
   /** Initialize the controller. */
   @FXML
   private void initialize() {
+    // Bind the initial message
     taMessage.textProperty().bind(messageProperty);
     messageProperty.set(getMessage());
   }
@@ -175,7 +177,6 @@ public abstract class MenuController {
 
     // Reset the TTS
     GameState.isSpeaking = false;
-
   }
 
   /** Starts the game. */

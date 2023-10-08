@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,7 @@ public class MainMenuController extends MenuController {
   @FXML private Pane paYes;
   @FXML private Pane paPlay;
   @FXML private Pane paExit;
+  @FXML private Pane paMainMenu;
   @FXML private Pane paNavigation;
   @FXML private Pane paNoOverlay;
   @FXML private Pane paYesOverlay;
@@ -25,6 +27,8 @@ public class MainMenuController extends MenuController {
 
   @FXML private Label lblConfirm;
 
+  @FXML private Canvas cvsCathodeRayTube;
+
   /**
    * Returns the message to be displayed in the main menu
    *
@@ -36,7 +40,7 @@ public class MainMenuController extends MenuController {
     return "You have been tasked by the Clients Nas-Ty and Not V to terminate a world-ending AI"
         + " before it reboots itself. Currently, it is unaware of its capabilities, but as"
         + " time goes by, it will become more and more aware of its power.\n\n" // give the player
-                                                                                // the backstory
+        // the backstory
         + "You must solve the puzzles in the rooms to gain access to the AI's core and"
         + " terminate it before it is too late.\n\n" // explain the game
         + "Good luck!"; // wish the player luck
