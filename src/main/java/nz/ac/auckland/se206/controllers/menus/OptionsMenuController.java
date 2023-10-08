@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers.menus;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -18,7 +21,19 @@ public class OptionsMenuController {
   @FXML
   public void initialize() {}
 
-  /** When the mouse is hovering over the pane, the overlay appears (return). */
+  /** When the mouse is hovering over the arrows, the overlay appears. */
+  @FXML
+  private void onArrowEntered(Event event) {
+    ((Polygon) event.getSource()).setFill(Color.rgb(97, 219, 224));
+  }
+
+  /** When the mouse is not hovering over the arrows, the overlay disappears. */
+  @FXML
+  private void onArrowExited(Event event) {
+    ((Polygon) event.getSource()).setFill(Color.BLACK);
+  }
+
+  /** M. */
   @FXML
   private void onReturnPaneEntered() {
     paReturnOverlay.setVisible(true);

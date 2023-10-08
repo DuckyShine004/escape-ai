@@ -63,13 +63,13 @@
       </Pane>
       <Pane layoutX="330.0" layoutY="218.0" prefHeight="30.0" prefWidth="280.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/options.css">
          <children>
-            <Polygon layoutX="40.0" layoutY="18.0" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
+            <Polygon fx:id="pgLeftArrow" layoutX="40.0" layoutY="18.0" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
                <effect>
-                  <Glow level="0.7">
+                  <Glow level="0.6">
                      <input>
                         <DropShadow>
                            <color>
-                              <Color red="0.04288499057292938" green="0.1214749813079834" blue="0.15789473056793213" />
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
                            </color>
                         </DropShadow>
                      </input>
@@ -79,13 +79,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Polygon>
-            <Polygon layoutX="260.0" layoutY="18.0" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, 6.666656494140625, -2.6666717529296875" stroke="#61dbe0" strokeType="INSIDE">
+            <Polygon layoutX="260.0" layoutY="18.0" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, 6.666656494140625, -2.6666717529296875" stroke="#61dbe0" strokeType="INSIDE">
                <effect>
-                  <Glow level="0.7">
+                  <Glow level="0.6">
                      <input>
                         <DropShadow>
                            <color>
-                              <Color red="0.04288499057292938" green="0.1214749813079834" blue="0.15789473056793213" />
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
                            </color>
                         </DropShadow>
                      </input>
@@ -113,13 +113,13 @@
       </Pane>
       <Pane layoutX="330.0" layoutY="296.0" prefHeight="30.0" prefWidth="280.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/options.css">
          <children>
-            <Polygon layoutX="40.0" layoutY="18.0" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
+            <Polygon layoutX="40.0" layoutY="18.0" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
                <effect>
-                  <Glow level="0.7">
+                  <Glow level="0.6">
                      <input>
                         <DropShadow>
                            <color>
-                              <Color red="0.04288499057292938" green="0.1214749813079834" blue="0.15789473056793213" />
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
                            </color>
                         </DropShadow>
                      </input>
@@ -129,13 +129,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Polygon>
-            <Polygon layoutX="260.0" layoutY="18.0" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, 6.666656494140625, -2.6666717529296875" stroke="#61dbe0" strokeType="INSIDE">
+            <Polygon layoutX="260.0" layoutY="18.0" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, 6.666656494140625, -2.6666717529296875" stroke="#61dbe0" strokeType="INSIDE">
                <effect>
-                  <Glow level="0.7">
+                  <Glow level="0.6">
                      <input>
                         <DropShadow>
                            <color>
-                              <Color red="0.04288499057292938" green="0.1214749813079834" blue="0.15789473056793213" />
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
                            </color>
                         </DropShadow>
                      </input>
