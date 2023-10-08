@@ -690,14 +690,6 @@
             </Pane>
          </children>
       </Pane>
-      <Label layoutX="20.0" layoutY="140.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="NAME OF GAME" textFill="#f9ff58">
-         <font>
-            <Font size="40.0" />
-         </font>
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-      </Label>
       <Label layoutX="50.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="1.0.0" textFill="#f85454">
          <effect>
             <Glow level="0.75" />
@@ -749,6 +741,14 @@
             </DropShadow>
          </effect>
       </Line>
+      <Label layoutX="20.0" layoutY="140.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="NAME OF GAME" textFill="#f9ff58">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
    </children>
    <effect>
       <InnerShadow blurType="GAUSSIAN" height="127.5" offsetY="10.0" radius="31.375" width="0.0">
