@@ -1,14 +1,13 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import java.io.IOException;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
@@ -22,103 +21,98 @@ public abstract class MenuController {
   @FXML private Pane paYes;
   @FXML private Pane paPlay;
   @FXML private Pane paExit;
+  @FXML private Pane paSelect;
+  @FXML private Pane paConfirm;
+  @FXML private Pane paMainMenu;
   @FXML private Pane paNavigation;
+  @FXML private Pane paQuitDialogue;
   @FXML private Pane paNoOverlay;
   @FXML private Pane paYesOverlay;
-  @FXML private Pane paPlayOverlay;
-  @FXML private Pane paExitOverlay;
-  @FXML private Pane paNavigationOverlay;
-  @FXML private TextArea taMessage;
 
   @FXML private Line lineConfirm;
 
   @FXML private Label lblConfirm;
 
-  private StringProperty messageProperty = new SimpleStringProperty("");
-
   /** Initialize the controller. */
   @FXML
-  private void initialize() {
-    taMessage.textProperty().bind(messageProperty);
-    messageProperty.set(getMessage());
-  }
-
-  // Define a getter for the StringProperty
-  public StringProperty mssageProperty() {
-    return messageProperty;
-  }
-
-  // Define a setter for the StringProperty
-  protected void setMessage(String message) {
-    messageProperty.set(message);
-  }
-
-  public abstract String getMessage();
+  private void initialize() {}
 
   /** When the mouse is hovering over the pane, the overlay appears (no). */
   @FXML
   private void onNoPaneEntered() {
-    paNoOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paConfirm.setLayoutX(203);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (no). */
   @FXML
   private void onNoPaneExited() {
-    paNoOverlay.setVisible(false);
+    paConfirm.setLayoutX(-320);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (yes). */
   @FXML
   private void onYesPaneEntered() {
-    paYesOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paConfirm.setLayoutX(77);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (yes). */
   @FXML
   private void onYesPaneExited() {
-    paYesOverlay.setVisible(false);
+    paConfirm.setLayoutX(-320);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (play). */
   @FXML
   private void onPlayPaneEntered() {
-    paPlayOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paSelect.setLayoutY(247.5);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (play). */
   @FXML
   private void onPlayPaneExited() {
-    paPlayOverlay.setVisible(false);
+    paSelect.setLayoutY(-30);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (exit). */
   @FXML
   private void onExitPaneEntered() {
-    paExitOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paSelect.setLayoutY(337.5);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (exit). */
   @FXML
   private void onExitPaneExited() {
-    paExitOverlay.setVisible(false);
+    paSelect.setLayoutY(-30);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (navigation). */
   @FXML
   private void onNavigationPaneEntered() {
-    paNavigationOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paSelect.setLayoutY(292.5);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (navigation). */
   @FXML
   private void onNavigationPaneExited() {
-    paNavigationOverlay.setVisible(false);
+    paSelect.setLayoutY(-30);
   }
 
   /** When no is clicked, do not exit the application. */
   @FXML
   private void onNoPaneClicked() {
-    disableExitComponents();
+    // Play the selection sound effect
+    AudioManager.loadAudio(Clip.SELECTION);
+
+    // Set the quit dialogue box visible
+    paQuitDialogue.setVisible(false);
+
+    // Disable the exit components
+    // disableExitComponents();
   }
 
   /** When yes is clicked, exit the application. */
@@ -130,17 +124,27 @@ public abstract class MenuController {
   /** When play is clicked, start the game. */
   @FXML
   private void onPlayPaneClicked() {
+    // Play the selection sound effect
+    AudioManager.loadAudio(Clip.SELECTION);
+
     // Disable the exit components
     disableExitComponents();
 
     // Start the game
     startGame();
+
+    // Reset the layout of the selection hitbox
+    paSelect.setLayoutY(-30);
   }
 
   /** When exit is clicked, exit the application. */
   @FXML
   private void onExitPaneClicked() {
-    enableExitComponents();
+    // Set the quit dialogue box visible
+    paQuitDialogue.setVisible(true);
+
+    // Enable the exit components
+    // enableExitComponents();
   }
 
   /** When settings is clicked, switch the scene to options scene. */
@@ -175,7 +179,6 @@ public abstract class MenuController {
 
     // Reset the TTS
     GameState.isSpeaking = false;
-
   }
 
   /** Starts the game. */
@@ -226,11 +229,6 @@ public abstract class MenuController {
 
     // Enable the yes pane
     paYes.setDisable(false);
-
-    // Remove visibility of the text area
-    taMessage.setVisible(false);
-
-    // TODO: Stop the timer
   }
 
   /** Disables the exit components of the menu. */
@@ -252,8 +250,5 @@ public abstract class MenuController {
 
     // Disable the yes pane
     paYes.setDisable(true);
-
-    // Enable visibility of the text area
-    taMessage.setVisible(true);
   }
 }

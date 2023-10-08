@@ -25,13 +25,6 @@ public class LosingScreenController extends MenuController {
 
   @FXML private Label lblConfirm;
 
-  @Override
-  public String getMessage() {
-    return "Mission failed!\n\n"
-               + "The AI has rebooted to its previous, rogue state. It is unknown what it will do"
-               + " next. Will it help human progress, or ultimately end? Only time will tell..";
-  }
-
   /** When back to main menu is clicked, go back to main menu */
   @Override
   @FXML

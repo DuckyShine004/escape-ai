@@ -1,9 +1,45 @@
-.custom-border-pane {
+/* For the miscellaneous pane */
+.miscellaneous-border-pane {
+  -fx-border-color: rgb(120, 45, 45);
+  -fx-border-width: 1px;
+}
+
+.select-border-pane {
   -fx-border-color: rgb(126, 87, 0);
-  -fx-border-width: 2px;
+  -fx-border-width: 1.5px;
 }
 
 .transparent-border-pane {
   -fx-border-color: transparent;
   -fx-border-width: 2px;
+}
+
+/* For the selection pane */
+.select-border-pane {
+  -fx-border-color: rgb(248, 84, 84);
+  -fx-border-width: 1px;
+}
+
+/* Font styling */
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/jetbrains.ttf");
+}
+
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/glitch.ttf");
+}
+
+/* Label with custom font */
+.custom-label {
+  -fx-font-family: "JetBrainsMono NF";
+}
+
+.custom-bold-label {
+  -fx-font-family: "JetBrainsMono NF Bold";
+}
+
+.custom-title {
+  -fx-font-family: "SDGlitchDemo Regular";
 }
