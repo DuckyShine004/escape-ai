@@ -54,7 +54,8 @@ public class ControlRoomController extends RoomController {
 
   /** Initializes the control room. */
   @FXML
-  private void initialize() {
+  protected void initialize() {
+    super.initialize();
     // Add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
 
@@ -253,4 +254,5 @@ public class ControlRoomController extends RoomController {
           "Why are you trying to access the control panel? Unfortunately, it is locked.");
     }
   }
+  
 }

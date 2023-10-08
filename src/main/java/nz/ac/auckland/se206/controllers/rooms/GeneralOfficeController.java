@@ -40,7 +40,8 @@ public class GeneralOfficeController extends RoomController {
 
   /** Initializes the general office. */
   @FXML
-  private void initialize() {
+  protected void initialize() {
+    super.initialize();
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
@@ -144,4 +145,5 @@ public class GeneralOfficeController extends RoomController {
     // Tell the player that the room has been completed
     ChatManager.getUserHint(true);
   }
+  
 }

@@ -18,6 +18,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
 <Pane fx:id="paBreaker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BreakerRoomController">
    <children>
@@ -154,7 +155,10 @@
          </cursor>
       </Pane>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
-      <TextArea fx:id="taChat" editable="false" layoutX="50.0" layoutY="65.0" prefHeight="335.0" prefWidth="450.0" styleClass="custom-text-area" stylesheets="@../../css/menus/chatArea.css" visible="false" wrapText="true" />
+      <VBox fx:id="vbChat" layoutX="100.0" layoutY="150.0" prefHeight="200.0" prefWidth="350.0" visible="false" spacing="10.0">
+         <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true"/>
+         <Label fx:id="lblPlayerChat" styleClass="chat-bubble1" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
+      </VBox>
       <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
          <effect>
             <Glow level="0.1" />

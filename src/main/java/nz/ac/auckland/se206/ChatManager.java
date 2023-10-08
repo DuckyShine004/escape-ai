@@ -417,9 +417,9 @@ public class ChatManager {
   /** Clear all current text areas. */
   public static void clearTextAreas() {
     // Clear all text areas
-    for (TextArea taChat : textAreas) {
+    /* for (TextArea taChat : textAreas) {
       taChat.clear();
-    }
+    } */
   }
 
   /** Clear all current text fields. */

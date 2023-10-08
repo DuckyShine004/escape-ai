@@ -43,7 +43,8 @@ public class BreakerRoomController extends RoomController {
 
   /** Initialize the breaker room. */
   @FXML
-  private void initialize() {
+  protected void initialize() {
+    super.initialize();
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
