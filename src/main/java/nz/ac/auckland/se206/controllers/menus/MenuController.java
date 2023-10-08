@@ -22,13 +22,11 @@ public abstract class MenuController {
   @FXML private Pane paYes;
   @FXML private Pane paPlay;
   @FXML private Pane paExit;
+  @FXML private Pane paSelect;
   @FXML private Pane paMainMenu;
   @FXML private Pane paNavigation;
   @FXML private Pane paNoOverlay;
   @FXML private Pane paYesOverlay;
-  @FXML private Pane paPlayOverlay;
-  @FXML private Pane paExitOverlay;
-  @FXML private Pane paNavigationOverlay;
   @FXML private TextArea taMessage;
 
   @FXML private Line lineConfirm;
@@ -40,7 +38,6 @@ public abstract class MenuController {
   /** Initialize the controller. */
   @FXML
   private void initialize() {
-    // Bind the initial message
     taMessage.textProperty().bind(messageProperty);
     messageProperty.set(getMessage());
   }
@@ -84,37 +81,37 @@ public abstract class MenuController {
   /** When the mouse is hovering over the pane, the overlay appears (play). */
   @FXML
   private void onPlayPaneEntered() {
-    paPlayOverlay.setVisible(true);
+    paSelect.setLayoutY(247.5);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (play). */
   @FXML
   private void onPlayPaneExited() {
-    paPlayOverlay.setVisible(false);
+    paSelect.setLayoutY(-30);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (exit). */
   @FXML
   private void onExitPaneEntered() {
-    paExitOverlay.setVisible(true);
+    paSelect.setLayoutY(337.5);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (exit). */
   @FXML
   private void onExitPaneExited() {
-    paExitOverlay.setVisible(false);
+    paSelect.setLayoutY(-30);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (navigation). */
   @FXML
   private void onNavigationPaneEntered() {
-    paNavigationOverlay.setVisible(true);
+    paSelect.setLayoutY(292.5);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (navigation). */
   @FXML
   private void onNavigationPaneExited() {
-    paNavigationOverlay.setVisible(false);
+    paSelect.setLayoutY(-30);
   }
 
   /** When no is clicked, do not exit the application. */
@@ -137,6 +134,9 @@ public abstract class MenuController {
 
     // Start the game
     startGame();
+
+    // Reset the layout of the selection hitbox
+    paSelect.setLayoutY(-30);
   }
 
   /** When exit is clicked, exit the application. */
@@ -230,8 +230,6 @@ public abstract class MenuController {
 
     // Remove visibility of the text area
     taMessage.setVisible(false);
-
-    // TODO: Stop the timer
   }
 
   /** Disables the exit components of the menu. */
