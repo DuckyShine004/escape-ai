@@ -22,8 +22,10 @@ public abstract class MenuController {
   @FXML private Pane paPlay;
   @FXML private Pane paExit;
   @FXML private Pane paSelect;
+  @FXML private Pane paConfirm;
   @FXML private Pane paMainMenu;
   @FXML private Pane paNavigation;
+  @FXML private Pane paQuitDialogue;
   @FXML private Pane paNoOverlay;
   @FXML private Pane paYesOverlay;
 
@@ -38,25 +40,27 @@ public abstract class MenuController {
   /** When the mouse is hovering over the pane, the overlay appears (no). */
   @FXML
   private void onNoPaneEntered() {
-    paNoOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paConfirm.setLayoutX(203);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (no). */
   @FXML
   private void onNoPaneExited() {
-    paNoOverlay.setVisible(false);
+    paConfirm.setLayoutX(-320);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (yes). */
   @FXML
   private void onYesPaneEntered() {
-    paYesOverlay.setVisible(true);
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
+    paConfirm.setLayoutX(77);
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (yes). */
   @FXML
   private void onYesPaneExited() {
-    paYesOverlay.setVisible(false);
+    paConfirm.setLayoutX(-320);
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (play). */
@@ -101,7 +105,14 @@ public abstract class MenuController {
   /** When no is clicked, do not exit the application. */
   @FXML
   private void onNoPaneClicked() {
-    disableExitComponents();
+    // Play the selection sound effect
+    AudioManager.loadAudio(Clip.SELECTION);
+
+    // Set the quit dialogue box visible
+    paQuitDialogue.setVisible(false);
+
+    // Disable the exit components
+    // disableExitComponents();
   }
 
   /** When yes is clicked, exit the application. */
@@ -129,7 +140,11 @@ public abstract class MenuController {
   /** When exit is clicked, exit the application. */
   @FXML
   private void onExitPaneClicked() {
-    enableExitComponents();
+    // Set the quit dialogue box visible
+    paQuitDialogue.setVisible(true);
+
+    // Enable the exit components
+    // enableExitComponents();
   }
 
   /** When settings is clicked, switch the scene to options scene. */

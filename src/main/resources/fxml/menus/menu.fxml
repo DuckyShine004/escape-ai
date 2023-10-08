@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
@@ -188,7 +187,7 @@
             </Pane>
             <Pane fx:id="paPlay" layoutX="20.0" layoutY="240.0" onMouseClicked="#onPlayPaneClicked" onMouseEntered="#onPlayPaneEntered" onMouseExited="#onPlayPaneExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
                <children>
-                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="NEW GAME" textFill="#77e7ed">
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="NEW GAME" textFill="#77e7ed">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -205,7 +204,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="35.0" stroke="#21d7e2">
+                  <Line endY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -214,7 +213,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2">
+                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -223,7 +222,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2">
+                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -232,7 +231,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2">
+                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -254,7 +253,7 @@
                   <Glow />
                </effect>
                <children>
-                  <Label layoutX="10.0" layoutY="4.0" text="SETTINGS" textFill="#77e7ed">
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="SETTINGS" textFill="#77e7ed">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -271,7 +270,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="35.0" stroke="#21d7e2">
+                  <Line endY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -280,7 +279,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2">
+                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -289,7 +288,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2">
+                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -298,7 +297,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2">
+                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -314,7 +313,7 @@
             </Pane>
             <Pane fx:id="paExit" layoutX="20.0" layoutY="330.0" onMouseClicked="#onExitPaneClicked" onMouseEntered="#onExitPaneEntered" onMouseExited="#onExitPaneExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
                <children>
-                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="QUIT GAME" textFill="#77e7ed">
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="QUIT GAME" textFill="#77e7ed">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -331,7 +330,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="35.0" stroke="#21d7e2">
+                  <Line endY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -340,7 +339,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2">
+                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -349,7 +348,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2">
+                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -358,7 +357,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2">
+                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -487,19 +486,218 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="paNo" disable="true" layoutX="400.0" layoutY="400.0" onMouseClicked="#onNoPaneClicked" onMouseEntered="#onNoPaneEntered" onMouseExited="#onNoPaneExited" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false">
-         <effect>
-            <Bloom />
-         </effect>
+      <Pane fx:id="paQuitDialogue" layoutX="300.0" layoutY="240.0" prefHeight="85.0" prefWidth="240.0" visible="false">
          <children>
-            <Pane fx:id="paNoOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="45.0" layoutY="4.0" text="No" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
+            <Pane fx:id="paConfirm" layoutX="-320.0" layoutY="70.0" prefHeight="10.0" prefWidth="10.0" styleClass="select-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <children>
+                  <Line endX="10.0" endY="10.0" fill="#f85454" stroke="#f85454">
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Line>
+                  <Line endY="10.0" fill="#f85454" startX="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </Pane>
+            <Pane prefHeight="60.0" prefWidth="240.0">
+               <children>
+                  <Label layoutX="30.0" layoutY="1.0" prefWidth="180.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="Are you sure you want to quit?" textAlignment="CENTER" textFill="#77e7ed" wrapText="true">
+                     <effect>
+                        <Glow level="0.6" />
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="240.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="225.0" fill="#21d7e2" layoutY="60.0" stroke="#21d7e2" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="60.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="45.0" fill="#21d7e2" layoutX="240.0" stroke="#21d7e2" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="240.0" endY="45.0" fill="#21d7e2" startX="225.0" startY="60.0" stroke="#21d7e2" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+            </Pane>
+            <Pane fx:id="paYes" layoutY="65.0" onMouseClicked="#onYesPaneClicked" onMouseEntered="#onYesPaneEntered" onMouseExited="#onYesPaneExited" prefHeight="20.0" prefWidth="100.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <children>
+                  <Label layoutX="5.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="CONFIRM" textFill="#f85454">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.6" />
+                     </effect>
+                  </Label>
+                  <Line endX="100.0" fill="#21d7e2" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="20.0" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="90.0" layoutY="20.0" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="10.0" layoutX="100.0" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="100.0" endY="10.0" opacity="0.75" startX="90.0" startY="20.0" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paNo" layoutX="125.0" layoutY="65.0" onMouseClicked="#onNoPaneClicked" onMouseEntered="#onNoPaneEntered" onMouseExited="#onNoPaneExited" prefHeight="20.0" prefWidth="100.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <children>
+                  <Label layoutX="5.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="CANCEL" textFill="#f85454">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.6" />
+                     </effect>
+                  </Label>
+                  <Line endX="100.0" fill="#21d7e2" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="20.0" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="90.0" layoutY="20.0" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="10.0" layoutX="100.0" opacity="0.75" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="100.0" endY="10.0" opacity="0.75" startX="90.0" startY="20.0" stroke="#21d7e2">
+                     <effect>
+                        <Glow level="0.1">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
          </children>
       </Pane>
+      <Label layoutX="20.0" layoutY="140.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="NAME OF GAME" textFill="#f9ff58">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
       <Label layoutX="50.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="1.0.0" textFill="#f85454">
          <effect>
             <Glow level="0.75" />
@@ -524,20 +722,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Line fx:id="lineConfirm" endX="60.0" endY="-3.0517578125E-5" layoutX="495.0" layoutY="370.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Label fx:id="lblConfirm" layoutX="455.0" layoutY="330.0" text="Are You Sure?" textFill="WHITE" visible="false">
-         <font>
-            <Font size="22.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <TextArea fx:id="taMessage" disable="true" editable="false" focusTraversable="false" layoutX="340.0" layoutY="130.0" prefHeight="300.0" prefWidth="370.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" text="{}" visible="false" wrapText="true" />
       <Line endY="480.0" fill="#6b1a1a" layoutX="40.0" opacity="0.8" stroke="#6b1a1a" strokeWidth="2.0">
          <effect>
             <DropShadow>
@@ -565,14 +749,6 @@
             </DropShadow>
          </effect>
       </Line>
-      <Label layoutX="20.0" layoutY="140.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="NAME OF GAME" textFill="#f9ff58">
-         <font>
-            <Font size="40.0" />
-         </font>
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-      </Label>
    </children>
    <effect>
       <InnerShadow blurType="GAUSSIAN" height="127.5" offsetY="10.0" radius="31.375" width="0.0">
