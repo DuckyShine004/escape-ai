@@ -222,9 +222,33 @@ public class OptionsMenuController {
     return (index == 2 ? 0 : index + 1);
   }
 
-  private void setTime() {}
+  private void setTime() {
+    switch (timeIndex) {
+      case 0:
+        setTimeTwoMinutes();
+        break;
+      case 1:
+        setTimeFourMinutes();
+        break;
+      default:
+        setTimeSixMinutes();
+        break;
+    }
+  }
 
-  private void setDifficulty() {}
+  private void setDifficulty() {
+    switch (difficultyIndex) {
+      case 0:
+        setDifficultyEasy();
+        break;
+      case 1:
+        setDifficultyMedium();
+        break;
+      default:
+        setDifficultyHard();
+        break;
+    }
+  }
 
   /** Set the game's difficulty to easy. */
   private void setDifficultyEasy() {

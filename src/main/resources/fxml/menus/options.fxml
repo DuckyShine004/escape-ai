@@ -47,7 +47,7 @@
             <Glow level="0.4" />
          </effect>
       </ImageView>
-      <ToggleButton fx:id="tbtnDeveloperMode" layoutX="300.0" layoutY="441.0" mnemonicParsing="false" onAction="#onDeveloperModeClicked" text="Switch to Developer Mode" />
+      <ToggleButton fx:id="tbtnDeveloperMode" layoutX="300.0" layoutY="441.0" mnemonicParsing="false" onAction="#onDeveloperModeClicked" text="Switch to Developer Mode" visible="false" />
       <Pane fx:id="paReturn" layoutX="268.0" layoutY="354.0" onMouseClicked="#onReturnPaneClicked" onMouseEntered="#onReturnPaneEntered" onMouseExited="#onReturnPaneExited" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
          <effect>
             <Bloom />
