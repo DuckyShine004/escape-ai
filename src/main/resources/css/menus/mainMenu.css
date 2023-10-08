@@ -4,11 +4,6 @@
   -fx-border-width: 1px;
 }
 
-.select-border-pane {
-  -fx-border-color: rgb(126, 87, 0);
-  -fx-border-width: 1.5px;
-}
-
 .transparent-border-pane {
   -fx-border-color: transparent;
   -fx-border-width: 2px;
@@ -24,6 +19,11 @@
 @font-face {
   font-family: Determination Mono Web;
   src: url("/../../fonts/jetbrains.ttf");
+}
+
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/jetbrainsBold.ttf");
 }
 
 @font-face {

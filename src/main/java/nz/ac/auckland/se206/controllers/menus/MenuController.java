@@ -128,7 +128,7 @@ public abstract class MenuController {
     AudioManager.loadAudio(Clip.SELECTION);
 
     // Disable the exit components
-    disableExitComponents();
+    // disableExitComponents();
 
     // Start the game
     startGame();

@@ -41,6 +41,9 @@
          <image>
             <Image url="@../../images/mouse.png" />
          </image>
+         <effect>
+            <Glow level="0.4" />
+         </effect>
       </ImageView>
       <Pane layoutX="40.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: #060d12;">
          <effect>
@@ -63,7 +66,7 @@
                      <light>
                         <Light.Distant>
                            <color>
-                              <Color red="0.3684210479259491" green="0.09779077023267746" blue="0.09779077023267746" opacity="0.7200000286102295" />
+                              <Color red="0.3686274588108063" green="0.09803921729326248" blue="0.09803921729326248" opacity="0.7200000286102295" />
                            </color>
                         </Light.Distant>
                      </light>
@@ -751,9 +754,9 @@
       </Label>
    </children>
    <effect>
-      <InnerShadow blurType="GAUSSIAN" height="127.5" offsetY="10.0" radius="31.375" width="0.0">
+      <InnerShadow blurType="GAUSSIAN" height="63.75" offsetY="10.0" radius="15.4375" width="0.0">
          <color>
-            <Color red="0.04410000145435333" green="0.11045999825000763" blue="0.20999999344348907" />
+            <Color red="0.04313725605607033" green="0.10980392247438431" blue="0.21176470816135406" />
          </color>
       </InnerShadow>
    </effect>
