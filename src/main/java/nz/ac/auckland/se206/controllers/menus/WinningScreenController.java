@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.constants.GameState;
 
 public class WinningScreenController extends MenuController {
   @FXML private Pane paNo;
@@ -25,11 +24,6 @@ public class WinningScreenController extends MenuController {
   @FXML private Line lineConfirm;
 
   @FXML private Label lblConfirm;
-
-  @Override
-  public String getMessage() {
-    return GameState.finalMessage;
-  }
 
   @Override
   @FXML

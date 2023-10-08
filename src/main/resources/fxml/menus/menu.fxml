@@ -19,11 +19,6 @@
 
 <Pane fx:id="paMainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #060d12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.MainMenuController">
    <children>
-      <ImageView fitHeight="98.0" fitWidth="20.0" layoutX="635.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/mouse.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="480.0" fitWidth="480.0" layoutX="280.0" opacity="0.7" pickOnBounds="true">
          <image>
             <Image url="@../../images/robotfigure.jpg" />
@@ -42,6 +37,11 @@
                </light>
             </Lighting>
          </effect>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="20.0" layoutX="635.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/mouse.png" />
+         </image>
       </ImageView>
       <Pane layoutX="40.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: #060d12;">
          <effect>
@@ -459,19 +459,6 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="paNo" disable="true" layoutX="400.0" layoutY="400.0" onMouseClicked="#onNoPaneClicked" onMouseEntered="#onNoPaneEntered" onMouseExited="#onNoPaneExited" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paNoOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="45.0" layoutY="4.0" text="No" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
       <Pane layoutX="580.0" layoutY="20.0" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
          <effect>
             <Glow level="0.8" />
@@ -494,6 +481,19 @@
          <children>
             <Pane fx:id="paYesOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
             <Label layoutX="44.0" layoutY="4.0" text="Yes" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paNo" disable="true" layoutX="400.0" layoutY="400.0" onMouseClicked="#onNoPaneClicked" onMouseEntered="#onNoPaneEntered" onMouseExited="#onNoPaneExited" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false">
+         <effect>
+            <Bloom />
+         </effect>
+         <children>
+            <Pane fx:id="paNoOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
+            <Label layoutX="45.0" layoutY="4.0" text="No" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
