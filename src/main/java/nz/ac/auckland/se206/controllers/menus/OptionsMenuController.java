@@ -1,13 +1,18 @@
 package nz.ac.auckland.se206.controllers.menus;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.util.Pair;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -18,10 +23,36 @@ public class OptionsMenuController {
   @FXML private Pane paOption;
   @FXML private Pane paReturnOverlay;
 
+  @FXML private Line lineEasy;
+  @FXML private Line lineHard;
+  @FXML private Line lineMedium;
+  @FXML private Line lineTwoMinutes;
+  @FXML private Line lineFourMinutes;
+  @FXML private Line lineSixMinutes;
+
+  @FXML private Label lblEasy;
+  @FXML private Label lblHard;
+  @FXML private Label lblMedium;
+  @FXML private Label lblTwoMinutes;
+  @FXML private Label lblFourMinutes;
+  @FXML private Label lblSixMinutes;
+
   @FXML private ToggleButton tbtnDeveloperMode;
 
+  private int timeIndex = 0;
+  private int difficultyIndex = 0;
+
+  private List<Pair<Label, Line>> timeComponents;
+  private List<Pair<Label, Line>> difficultyComponents;
+
   @FXML
-  public void initialize() {}
+  public void initialize() {
+    // Initialize the time components
+    initializeTimeComponents();
+
+    // Initialize the difficulty components
+    initializeDifficultyComponents();
+  }
 
   /** When the mouse is hovering over the arrows, the overlay appears. */
   @FXML
@@ -47,6 +78,72 @@ public class OptionsMenuController {
     paReturnOverlay.setVisible(false);
   }
 
+  /** When time left arrow is clicked, change the current time to a lower time. */
+  @FXML
+  private void onTimeLeftArrowClicked() {
+    // Disable the current components for the current index
+    disableComponent(timeComponents, timeIndex);
+
+    // Set the next time index
+    timeIndex = getPreviousIndex(timeIndex);
+
+    // Enable the new components for the new index
+    enableComponent(timeComponents, timeIndex);
+
+    // Set the time based on the current index
+    setTime();
+  }
+
+  /** When time right arrow is clicked, change the current time to a higher time. */
+  @FXML
+  private void onTimeRightArrowClicked() {
+    // Disable the current components for the current index
+    disableComponent(timeComponents, timeIndex);
+
+    // Set the next time index
+    timeIndex = getNextIndex(timeIndex);
+
+    // Enable the new components for the new index
+    enableComponent(timeComponents, timeIndex);
+
+    // Set the time based on the current index
+    setTime();
+  }
+
+  /** When difficulty left arrow is clicked, change the current difficulty to a lower difficulty. */
+  @FXML
+  private void onDifficultyLeftArrowClicked() {
+    // Disable the current components for the current index
+    disableComponent(difficultyComponents, difficultyIndex);
+
+    // Set the next difficulty index
+    difficultyIndex = getPreviousIndex(difficultyIndex);
+
+    // Enable the new components for the new index
+    enableComponent(difficultyComponents, difficultyIndex);
+
+    // Set the difficulty based on the current index
+    setDifficulty();
+  }
+
+  /**
+   * When difficulty right arrow is clicked, change the current difficulty to a higher difficulty.
+   */
+  @FXML
+  private void onDifficultyRightArrowClicked() {
+    // Disable the current components for the current index
+    disableComponent(difficultyComponents, difficultyIndex);
+
+    // Set the next difficulty index
+    difficultyIndex = getNextIndex(difficultyIndex);
+
+    // Enable the new components for the new index
+    enableComponent(difficultyComponents, difficultyIndex);
+
+    // Set the difficulty based on the current index
+    setDifficulty();
+  }
+
   /** When return is clicked, go back to the main menu. */
   @FXML
   private void onReturnPaneClicked() {
@@ -65,6 +162,69 @@ public class OptionsMenuController {
       App.setUi(AppUi.MENU);
     }
   }
+
+  /** When the switch to developer button is pressed, toggle the developer mode. */
+  @FXML
+  private void onDeveloperModeClicked() {
+    // Toggle the developer mode state
+    GameState.isDeveloperMode = !GameState.isDeveloperMode;
+
+    // Update the button text based on the new state
+    tbtnDeveloperMode.setText(
+        GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
+  }
+
+  /** Initialize the time components. */
+  private void initializeTimeComponents() {
+    // Initialize the time index
+    timeIndex = 0;
+
+    // Initialize an array of list
+    timeComponents = new ArrayList<>();
+
+    // Add the pair components to the time components
+    timeComponents.add(new Pair<Label, Line>(lblTwoMinutes, lineTwoMinutes));
+    timeComponents.add(new Pair<Label, Line>(lblFourMinutes, lineFourMinutes));
+    timeComponents.add(new Pair<Label, Line>(lblSixMinutes, lineSixMinutes));
+  }
+
+  /** Initialize the difficulty components. */
+  private void initializeDifficultyComponents() {
+    // Initialize the difficulty index
+    difficultyIndex = 0;
+
+    // Initialize an array of list
+    difficultyComponents = new ArrayList<>();
+
+    // Add the pair components to the difficulty components
+    difficultyComponents.add(new Pair<Label, Line>(lblEasy, lineEasy));
+    difficultyComponents.add(new Pair<Label, Line>(lblMedium, lineMedium));
+    difficultyComponents.add(new Pair<Label, Line>(lblHard, lineHard));
+  }
+
+  /**
+   * Return the previous index based on the current index.
+   *
+   * @param index the current index
+   * @return the previous index
+   */
+  private int getPreviousIndex(int index) {
+    return (index == 0 ? 2 : index - 1);
+  }
+
+  /**
+   * Return the next index based on the current index.
+   *
+   * @param index the current index
+   * @return the next index
+   */
+  private int getNextIndex(int index) {
+    return (index == 2 ? 0 : index + 1);
+  }
+
+  private void setTime() {}
+
+  private void setDifficulty() {}
 
   /** Set the game's difficulty to easy. */
   private void setDifficultyEasy() {
@@ -117,14 +277,33 @@ public class OptionsMenuController {
     GameState.maxTime = 240;
   }
 
-  /** When the switch to developer button is pressed, toggle the developer mode. */
-  @FXML
-  private void onDeveloperModeClicked() {
-    // Toggle the developer mode state
-    GameState.isDeveloperMode = !GameState.isDeveloperMode;
+  private void enableComponent(List<Pair<Label, Line>> components, int index) {
+    // Get the label
+    Label label = components.get(index).getKey();
 
-    // Update the button text based on the new state
-    tbtnDeveloperMode.setText(
-        GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
+    // Get the line
+    Line line = components.get(index).getValue();
+
+    // Set the label visible
+    label.setVisible(true);
+
+    // Set the stroke and fill for the line
+    line.setFill(Color.rgb(248, 84, 84));
+    line.setStroke(Color.rgb(248, 84, 84));
+  }
+
+  private void disableComponent(List<Pair<Label, Line>> components, int index) {
+    // Get the label
+    Label label = components.get(index).getKey();
+
+    // Get the line
+    Line line = components.get(index).getValue();
+
+    // Set the label invisible
+    label.setVisible(false);
+
+    // Set the stroke and fill for the line
+    line.setFill(Color.rgb(101, 40, 40));
+    line.setStroke(Color.rgb(101, 40, 40));
   }
 }
