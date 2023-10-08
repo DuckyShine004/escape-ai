@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.controllers.menus;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -13,7 +15,7 @@ import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
 public class OptionsMenuController {
   @FXML private Pane paReturn;
-  @FXML private Pane paMainMenu;
+  @FXML private Pane paOption;
   @FXML private Pane paReturnOverlay;
 
   @FXML private ToggleButton tbtnDeveloperMode;
@@ -33,7 +35,7 @@ public class OptionsMenuController {
     ((Polygon) event.getSource()).setFill(Color.BLACK);
   }
 
-  /** M. */
+  /** When the mouse is hovering over the pane, the overlay appears (return). */
   @FXML
   private void onReturnPaneEntered() {
     paReturnOverlay.setVisible(true);
@@ -51,33 +53,17 @@ public class OptionsMenuController {
     App.setUi(AppUi.MENU);
   }
 
-  /** When two minutes is clicked, set the time limit to two minutes. */
+  /**
+   * Check if there is a keyboard event. If there is a keyboard event, handle the event
+   * appropriately.
+   *
+   * @param keyEvent this event is generated when a key is pressed, released, or typed
+   */
   @FXML
-  private void onTwoMinutesPaneClicked() {
-    setTimeTwoMinutes();
-  }
-
-  /** When six minutes is clicked, set the time limit to six minutes. */
-  @FXML
-  private void onSixMinutesPaneClicked() {
-    setTimeSixMinutes();
-  }
-
-  /** When four minutes is clicked, set the time limit to four minutes. */
-  @FXML
-  private void onFourMinutesPaneClicked() {
-    setTimeFourMinutes();
-  }
-
-  /** When the switch to developer button is pressed, toggle the developer mode. */
-  @FXML
-  private void onDeveloperModeClicked() {
-    // Toggle the developer mode state
-    GameState.isDeveloperMode = !GameState.isDeveloperMode;
-
-    // Update the button text based on the new state
-    tbtnDeveloperMode.setText(
-        GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
+  private void onKeyPressed(KeyEvent keyEvent) {
+    if (keyEvent.getCode() == KeyCode.ESCAPE) {
+      App.setUi(AppUi.MENU);
+    }
   }
 
   /** Set the game's difficulty to easy. */
@@ -129,5 +115,16 @@ public class OptionsMenuController {
   private void setTimeFourMinutes() {
     // Set the time limit to two minutes
     GameState.maxTime = 240;
+  }
+
+  /** When the switch to developer button is pressed, toggle the developer mode. */
+  @FXML
+  private void onDeveloperModeClicked() {
+    // Toggle the developer mode state
+    GameState.isDeveloperMode = !GameState.isDeveloperMode;
+
+    // Update the button text based on the new state
+    tbtnDeveloperMode.setText(
+        GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
   }
 }
