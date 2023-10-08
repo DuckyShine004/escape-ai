@@ -178,6 +178,9 @@ public class App extends Application {
     // load the jetbrains terminal font - bold
     loadFont("jetbrainsBold", "ttf", 23);
 
+    // load the glitch font
+    loadFont("glitch", "ttf", 23);
+
     // load the timer font
     loadFont("timer", "TTF", 23);
 

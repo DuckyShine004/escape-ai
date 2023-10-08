@@ -20,7 +20,17 @@
   src: url("/../../fonts/jetbrains.ttf");
 }
 
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/glitch.ttf");
+}
+
 /* Label with custom font */
 .custom-label {
   -fx-font-family: "JetBrainsMono NF";
+}
+
+/* Title label */
+.custom-title {
+  -fx-font-family: "SDGlitchDemo Regular";
 }
