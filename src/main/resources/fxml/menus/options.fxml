@@ -1,278 +1,488 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #0c0807;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.OptionsMenuController">
+<Pane fx:id="paOption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #060d12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.OptionsMenuController">
    <children>
-      <Label layoutX="40.0" layoutY="20.0" text="Settings" textFill="WHITE">
+      <Button mnemonicParsing="false" onKeyPressed="#onKeyPressed" opacity="0.0" text="Button" />
+      <ImageView fitHeight="480.0" fitWidth="720.0" opacity="0.8" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/codebackground.jpg" />
+         </image>
+         <effect>
+            <Lighting specularConstant="0.4" specularExponent="40.0" surfaceScale="6.0">
+               <bumpInput>
+                  <Shadow height="255.0" radius="127.0" width="255.0" />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.3686274588108063" green="0.09803921729326248" blue="0.09803921729326248" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="20.0" layoutX="635.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/mouse.png" />
+         </image>
+         <effect>
+            <Glow level="0.4" />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="25.0" layoutX="525.0" layoutY="449.0" stroke="#8efbfd" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="25.0">
+         <effect>
+            <Glow level="0.8">
+               <input>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.07762075215578079" green="0.41309651732444763" blue="0.5350877046585083" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Rectangle>
+      <Pane layoutX="330.0" layoutY="218.0" prefHeight="30.0" prefWidth="280.0" styleClass="arrow-border-pane" stylesheets="@../../css/menus/options.css">
+         <children>
+            <Polygon layoutX="40.0" layoutY="18.0" onMouseClicked="#onDifficultyLeftArrowClicked" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.6">
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Polygon>
+            <Polygon layoutX="260.0" layoutY="18.0" onMouseClicked="#onDifficultyRightArrowClicked" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, 6.666656494140625, -2.6666717529296875" stroke="#61dbe0" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.6">
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Polygon>
+            <Label fx:id="lblEasy" layoutX="122.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="EASY" textFill="#50b4b7">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblMedium" layoutX="111.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="MEDIUM" textFill="#50b4b7" visible="false">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblHard" layoutX="122.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="HARD" textFill="#50b4b7" visible="false">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Line fx:id="lineEasy" endX="20.0" layoutX="105.0" layoutY="25.0" stroke="#f85454" strokeWidth="1.5" />
+            <Line fx:id="lineMedium" endX="20.0" layoutX="130.0" layoutY="25.0" stroke="#652828" strokeWidth="1.5" />
+            <Line fx:id="lineHard" endX="20.0" layoutX="155.0" layoutY="25.0" stroke="#652828" strokeWidth="1.5" />
+         </children>
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+      </Pane>
+      <Pane layoutX="330.0" layoutY="296.0" prefHeight="30.0" prefWidth="280.0" styleClass="arrow-border-pane" stylesheets="@../../css/menus/options.css">
+         <children>
+            <Polygon layoutX="40.0" layoutY="18.0" onMouseClicked="#onTimeLeftArrowClicked" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.6">
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Polygon>
+            <Polygon layoutX="260.0" layoutY="18.0" onMouseClicked="#onTimeRightArrowClicked" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, 6.666656494140625, -2.6666717529296875" stroke="#61dbe0" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.6">
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.041999999433755875" green="0.11760000139474869" blue="0.15000000596046448" opacity="0.800000011920929" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Polygon>
+            <Label fx:id="lblTwoMinutes" layoutX="130.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="2x" textFill="#50b4b7">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblFourMinutes" layoutX="130.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="4x" textFill="#50b4b7" visible="false">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblSixMinutes" layoutX="130.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="6x" textFill="#50b4b7" visible="false">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Line fx:id="lineTwoMinutes" endX="20.0" layoutX="105.0" layoutY="25.0" stroke="#f85454" strokeWidth="1.5" />
+            <Line fx:id="lineFourMinutes" endX="20.0" layoutX="130.0" layoutY="25.0" stroke="#652828" strokeWidth="1.5" />
+            <Line fx:id="lineSixMinutes" endX="20.0" layoutX="155.0" layoutY="25.0" stroke="#652828" strokeWidth="1.5" />
+         </children>
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+      </Pane>
+      <Pane layoutX="10.0" layoutY="450.0" opacity="0.75" prefHeight="20.0" prefWidth="60.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="3.0" layoutY="3.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="VTRZ-AL0-12939-sdj-218" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="11.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="AL-092          [ -- ]" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="75.0" layoutY="455.0" opacity="0.75" prefHeight="15.0" prefWidth="40.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="6.0" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="v.1289" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="550.0" layoutY="155.0" opacity="0.75" prefHeight="20.0" prefWidth="60.0" rotate="180.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="3.0" layoutY="3.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="VTRZ-AL0-12939-sdj-218" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="11.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="AL-092          [ -- ]" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paReturn" layoutX="110.0" layoutY="380.0" onMouseClicked="#onReturnPaneClicked" onMouseEntered="#onReturnPaneEntered" onMouseExited="#onReturnPaneExited" prefHeight="35.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+         <children>
+            <Pane fx:id="paReturnLeftOverlay" prefHeight="35.0" prefWidth="225.0" style="-fx-background-color: #030709;" />
+            <Pane fx:id="paReturnRightOverlay" layoutX="224.0" prefHeight="20.0" prefWidth="16.0" style="-fx-background-color: #030709;" />
+            <Polygon fx:id="pgReturnOverlay" fill="#030709" layoutX="78.0" layoutY="30.0" points="162.41342163085938, -11.66668701171875, 145.93936157226562, 6.0606689453125, 147.00003051757812, -12.5" stroke="#030709" strokeType="INSIDE" />
+            <Line fx:id="lineReturnTop" endX="240.0" fill="#21d7e2" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnLeft" endY="35.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnBottom" endX="225.0" layoutY="35.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnRight" endY="20.0" layoutX="240.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnDiagonal" endX="240.0" endY="20.0" startX="225.0" startY="35.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Label fx:id="lblReturn" layoutX="10.0" layoutY="4.0" opacity="0.9" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="RETURN TO MAIN MENU" textFill="#50b4b7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <Pane layoutX="525.0" layoutY="155.0" opacity="0.75" prefHeight="20.0" prefWidth="20.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+      </Pane>
+      <Pane layoutX="510.0" layoutY="155.0" opacity="0.75" prefHeight="20.0" prefWidth="10.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+      </Pane>
+      <Label alignment="CENTER" layoutX="270.0" layoutY="30.0" styleClass="custom-title" stylesheets="@../../css/menus/options.css" text="SETTINGS" textAlignment="CENTER" textFill="#f9ff58">
          <font>
             <Font size="60.0" />
+         </font>
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="110.0" layoutY="185.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/options.css" text="DIFFICULTY SELECTION" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
          </font>
          <effect>
             <Glow level="0.8" />
          </effect>
       </Label>
-      <ToggleButton fx:id="tbtnDeveloperMode" layoutX="549.0" layoutY="447.0" mnemonicParsing="false" onAction="#onDeveloperModeClicked" text="Switch to Developer Mode" />
-      <Pane layoutX="300.0" layoutY="120.0" prefHeight="280.0" prefWidth="400.0" style="-fx-background-color: #160D02;" styleClass="background-border-pane" stylesheets="@../../css/menus/options.css">
-         <children>
-            <Pane fx:id="paEasyOverlay" layoutX="165.0" layoutY="53.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Pane>
-            <Pane fx:id="paMediumOverlay" layoutX="230.0" layoutY="53.0" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Pane>
-            <Pane fx:id="paHardOverlay" layoutX="330.0" layoutY="53.0" prefHeight="30.0" prefWidth="57.5" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Pane>
-            <Pane fx:id="paTwoMinutesOverlay" layoutX="186.0" layoutY="88.0" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Pane>
-            <Pane fx:id="paFourMinutesOverlay" layoutX="287.0" layoutY="88.0" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Pane>
-            <Pane fx:id="paSixMinutesOverlay" layoutX="352.0" layoutY="88.0" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #2c231c;" stylesheets="@../../css/menus/options.css" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Pane>
-            <Label layoutX="171.0" layoutY="50.0" text="Easy" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="235.0" layoutY="50.0" text="Medium" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="335.0" layoutY="50.0" text="Hard" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="5.0" text="GAME" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="50.0" text="Difficulty" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="85.0" text="Time (minutes)" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="193.0" layoutY="85.0" text="x2" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="294.0" layoutY="85.0" text="x4" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="359.0" layoutY="85.0" text="x6" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Line endY="20.0" layoutX="79.0" layoutY="15.0" startY="4.0000152587890625" stroke="#7e5700">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line endX="20.0" layoutX="59.0" layoutY="36.0" stroke="#7e5700">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line fx:id="lineEasy" endX="45.0" layoutX="170.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line fx:id="lineMedium" endX="80.0" layoutX="235.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line fx:id="lineHard" endX="47.5" layoutX="335.0" layoutY="80.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line fx:id="lineTwoMinutes" endX="37.0" layoutX="178.0" layoutY="115.0" startX="15.0" stroke="#7e5700" strokeWidth="2.0">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line fx:id="lineFourMinutes" endX="37.0" layoutX="279.0" layoutY="115.0" startX="15.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-            <Line fx:id="lineSixMinutes" endX="37.0" layoutX="344.0" layoutY="115.0" startX="15.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Line>
-         </children>
+      <Label layoutX="130.0" layoutY="220.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="DIFFICULTY" textFill="#f85454">
          <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Pane layoutX="40.0" layoutY="120.0" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="216.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/options.css" />
-            <Label layoutX="14.0" layoutY="4.0" text="Game" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="paReturn" layoutX="40.0" layoutY="360.0" onMouseClicked="#onReturnPaneClicked" onMouseEntered="#onReturnPaneEntered" onMouseExited="#onReturnPaneExited" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paReturnOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="216.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/options.css" visible="false" />
-            <Label layoutX="14.0" layoutY="4.0" text="Return" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="paEasyTransparent" layoutX="465.0" layoutY="175.0" onMouseClicked="#onEasyPaneClicked" onMouseEntered="#onEasyPaneEntered" onMouseExited="#onEasyPaneExited" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: transparent;">
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Pane fx:id="paMediumTransparent" layoutX="535.0" layoutY="175.0" onMouseClicked="#onMediumPaneClicked" onMouseEntered="#onMediumPaneEntered" onMouseExited="#onMediumPaneExited" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: transparent;">
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Pane fx:id="paMediumTransparent1" layoutX="630.0" layoutY="175.0" onMouseClicked="#onHardPaneClicked" onMouseEntered="#onHardPaneEntered" onMouseExited="#onHardPaneExited" prefHeight="30.0" prefWidth="57.5" style="-fx-background-color: transparent;">
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Pane fx:id="paTwoMinutesTransparent" layoutX="486.0" layoutY="208.0" onMouseClicked="#onTwoMinutesPaneClicked" onMouseEntered="#onTwoMinutesPaneEntered" onMouseExited="#onTwoMinutesPaneExited" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: transparent;">
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Pane fx:id="paFourMinutesTransparent" layoutX="587.0" layoutY="208.0" onMouseClicked="#onFourMinutesPaneClicked" onMouseEntered="#onFourMinutesPaneEntered" onMouseExited="#onFourMinutesPaneExited" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: transparent;">
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Pane fx:id="paSixMinutesTransparent" layoutX="652.0" layoutY="208.0" onMouseClicked="#onSixMinutesPaneClicked" onMouseEntered="#onSixMinutesPaneEntered" onMouseExited="#onSixMinutesPaneExited" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: transparent;">
-         <effect>
-            <Bloom />
-         </effect>
-      </Pane>
-      <Label layoutX="300.0" layoutY="97.0" style="-fx-text-fill: grey;" text="Easy - unlimited hints | Medium - 5 hints | Hard - NO hints" textFill="WHITE">
-         <effect>
-            <Bloom threshold="0.0" />
+            <Glow level="0.8" />
          </effect>
          <font>
-            <Font size="15.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Line endY="30.0" layoutX="33.0" layoutY="378.0" stroke="#7e5700">
+      <Label layoutX="110.0" layoutY="265.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/options.css" text="TIME SELECTION" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
          <effect>
-            <Bloom />
+            <Glow level="0.8" />
+         </effect>
+      </Label>
+      <Label layoutX="130.0" layoutY="300.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="TIME IN MINUTES" textFill="#f85454">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="660.0" layoutY="450.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="SELECT" textFill="#f85454">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEasyComment" layoutX="110.0" layoutY="150.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="EASY: UNLIMITED HINTS" textFill="#f85454">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMediumComment" layoutX="110.0" layoutY="150.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="MEDIUM: 5 HINTS" textFill="#f85454" visible="false">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblHardComment" layoutX="110.0" layoutY="150.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="HARD: NO HINTS" textFill="#f85454" visible="false">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="102.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="LOREM IPSUM BLAH BLAH VISUAL TEXT HOW IS YOUR DAY GOING WOWWY WOW AMAZING DAY" textFill="#f85454">
+         <effect>
+            <Glow level="0.4" />
+         </effect>
+         <font>
+            <Font size="4.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="108.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="BRUH BRUH BRUH BRUH THIS IS SOME VERY LONG TEXT" textFill="#f85454">
+         <effect>
+            <Glow level="0.4" />
+         </effect>
+         <font>
+            <Font size="4.0" />
+         </font>
+      </Label>
+      <Label layoutX="529.0" layoutY="454.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/options.css" text="ESC" textFill="#8efbfd">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+      </Label>
+      <Label layoutX="560.0" layoutY="450.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="GO BACK" textFill="#f85454">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="-147.0" layoutY="275.0" opacity="0.5" rotate="90.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q" textFill="#ba4f4f">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Line endX="700.0" fill="#7b2a2a" layoutX="10.0" layoutY="100.0" opacity="0.5" stroke="#7b2a2a" strokeWidth="1.5">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="1.0" green="0.07407407462596893" blue="0.07407407462596893" />
+               </color>
+            </DropShadow>
          </effect>
       </Line>
-      <Line endX="30.0" layoutX="34.0" layoutY="408.0" stroke="#7e5700">
+      <Line endX="500.0" fill="#21d7e2" layoutX="110.0" layoutY="180.0" opacity="0.4" stroke="#21d7e2" strokeWidth="1.5">
          <effect>
-            <Bloom />
+            <Glow>
+               <input>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.1313352882862091" green="0.7455734014511108" blue="0.8684210777282715" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
          </effect>
       </Line>
-      <Line endY="30.0" layoutX="34.0" layoutY="138.0" stroke="#7e5700">
+      <Line endX="500.0" fill="#21d7e2" layoutX="110.0" layoutY="260.0" opacity="0.4" stroke="#21d7e2" strokeWidth="1.5">
          <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="30.0" layoutX="35.0" layoutY="168.0" stroke="#7e5700">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endY="30.0" layoutX="284.0" layoutY="386.0" stroke="#7e5700" strokeWidth="3.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="140.0" layoutX="285.0" layoutY="416.0" stroke="#7e5700" strokeWidth="3.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="60.0" layoutX="288.0" layoutY="412.0" stroke="#7e5700">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="20.0" layoutX="283.0" layoutY="421.0" stroke="#7e5700">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="5.0" layoutX="694.0" layoutY="405.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="5.0" layoutX="685.0" layoutY="405.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="5.0" layoutX="675.0" layoutY="405.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="25.0" layoutX="644.0" layoutY="405.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="10.0" layoutX="623.0" layoutY="405.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
+            <Glow>
+               <input>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.1313352882862091" green="0.7455734014511108" blue="0.8684210777282715" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
          </effect>
       </Line>
    </children>
+   <effect>
+      <InnerShadow height="255.0" offsetY="10.0" radius="63.25" width="0.0">
+         <color>
+            <Color red="0.38596490025520325" green="0.06194498762488365" blue="0.06194498762488365" />
+         </color>
+      </InnerShadow>
+   </effect>
 </Pane>

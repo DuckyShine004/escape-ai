@@ -4,6 +4,7 @@ import java.util.HashMap;
 import javafx.scene.media.AudioClip;
 
 public class AudioManager {
+
   public enum Clip {
     MAKING_SELECTION,
     SELECTION

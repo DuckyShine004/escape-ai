@@ -36,7 +36,7 @@ public class MainMenuController extends MenuController {
     AudioManager.loadAudio(Clip.SELECTION);
 
     // Disable the exit components
-    disableExitComponents();
+    // disableExitComponents();
 
     // Switch to the options scene
     App.setUi(AppUi.OPTIONS);
