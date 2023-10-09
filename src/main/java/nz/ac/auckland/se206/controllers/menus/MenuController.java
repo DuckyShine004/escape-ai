@@ -120,9 +120,6 @@ public abstract class MenuController {
     // Play the selection sound effect
     AudioManager.loadAudio(Clip.SELECTION);
 
-    // Disable the exit components
-    // disableExitComponents();
-
     // Reset the layout of the selection hitbox
     paSelect.setLayoutY(-30);
 
@@ -133,11 +130,7 @@ public abstract class MenuController {
   /** When exit is clicked, exit the application. */
   @FXML
   private void onExitPaneClicked() {
-    // Set the quit dialogue box visible
     paQuitDialogue.setVisible(true);
-
-    // Enable the exit components
-    // enableExitComponents();
   }
 
   /** When settings is clicked, switch the scene to options scene. */

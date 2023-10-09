@@ -18,20 +18,24 @@ public class BackstoryController {
   @FXML private Pane paSelect;
   @FXML private Pane paContinue;
 
+  /** Initialize the backstory controller. */
   @FXML
   private void initialize() {}
 
+  /** When the cursor is hovered over this pane, set the select icon visible. */
   @FXML
   private void onContinueEntered() {
     AudioManager.loadAudio(Clip.MAKING_SELECTION);
     paSelect.setVisible(true);
   }
 
+  /** When the cursor is not hovered over this pane, set the select icon invisible. */
   @FXML
   private void onContinueExited() {
     paSelect.setVisible(false);
   }
 
+  /** When the continue is clicked, start the game. */
   @FXML
   private void onContinueClicked() {
     AudioManager.loadAudio(Clip.SELECTION);

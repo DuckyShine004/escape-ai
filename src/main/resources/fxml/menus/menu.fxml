@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -472,19 +471,6 @@
                </effect>
                <font>
                   <Font size="8.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="paYes" disable="true" layoutX="530.0" layoutY="400.0" onMouseClicked="#onYesPaneClicked" onMouseEntered="#onYesPaneEntered" onMouseExited="#onYesPaneExited" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paYesOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="44.0" layoutY="4.0" text="Yes" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
                </font>
             </Label>
          </children>

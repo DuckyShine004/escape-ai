@@ -232,6 +232,9 @@ public class App extends Application {
     // show scene
     stage.show();
 
+    // Don't allow the player to resize the application window
+    stage.setResizable(false);
+
     // request control focus
     scene.getRoot().requestFocus();
 
