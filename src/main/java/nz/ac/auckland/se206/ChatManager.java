@@ -109,20 +109,6 @@ public class ChatManager {
     GameState.tts.speak(message, AppUi.OFFICE);
   }
 
-  /**
-   * Enable chat components. This should re-enable chat components if its previous state was
-   * disabled.
-   */
-  private static void enableChatComponents() {
-    // Enable text field components
-    for (TextField tfChat : textFields) {
-      tfChat.setEditable(true);
-    }
-
-    // Enable all hint buttons
-    HintManager.enableHints();
-  }
-
   /** set a question mark and thinking indicator */
   private static void startThinking() {
     //
@@ -146,17 +132,6 @@ public class ChatManager {
     for (TextField tfChat : textFields) {
       tfChat.setText("");
     }
-  }
-
-  /** Disable chat components. You can include the things you want to disable here. */
-  private static void disableChatComponents() {
-    // Disable text field components
-    for (TextField tfChat : textFields) {
-      tfChat.setEditable(false);
-    }
-
-    // Disable all hint buttonss
-    HintManager.disableHints();
   }
 
   /** Clear all current text areas. */
@@ -199,17 +174,5 @@ public class ChatManager {
 
     // Clear all the chat history
     clearChatHistory();
-  }
-
-  /**
-   * Remove the previous message in GPT's history. This is to ensure that the users won't be able to
-   * abuse the hint system.
-   */
-  private static void removePreviousMessage() {
-    // Get the current GPT messages
-    List<ChatMessage> gptMessages = gptRequest.getMessages();
-
-    // Remove last message sent
-    gptMessages.remove(gptMessages.size() - 1);
   }
 }
