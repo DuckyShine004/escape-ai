@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -73,6 +74,15 @@ public class App extends Application {
     Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + "." + extension), size);
   }
 
+  /** Initialize all audio clips to be used in the project */
+  private static void initializeAudio() {
+    // Initialize the making selection sound effect
+    AudioManager.addAudio(Clip.MAKING_SELECTION, "/sounds/making_selection.wav");
+
+    // Initialize the selection sound effect
+    AudioManager.addAudio(Clip.SELECTION, "/sounds/selection.mp3");
+  }
+
   /**
    * This method initialises the breaker scene
    *
@@ -121,12 +131,15 @@ public class App extends Application {
 
     // initialize the hint manager
     HintManager.initialize();
-
-    // main menue
+    
+    // main menu
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menus/menu"));
 
     // options in main menu
     SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menus/options"));
+
+    // backstory scene
+    SceneManager.addAppUi(AppUi.BACKSTORY, loadFxml("menus/backstory"));
 
     // terminal screen
     SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
@@ -175,6 +188,9 @@ public class App extends Application {
     // load the jetbrains terminal font - bold
     loadFont("jetbrainsBold", "ttf", 23);
 
+    // load the glitch font
+    loadFont("glitch", "ttf", 23);
+
     // load the timer font
     loadFont("timer", "TTF", 23);
 
@@ -194,6 +210,9 @@ public class App extends Application {
     // initialize new Text To Speach Instance
     GameState.tts = new TextToSpeech();
 
+    // Initialize audio clips
+    initializeAudio();
+
     // add scenes to sceneManager, along with the fonts to be used
     initalizeScenes();
     initializeFonts();
@@ -209,6 +228,9 @@ public class App extends Application {
 
     // show scene
     stage.show();
+
+    // Don't allow the player to resize the application window
+    stage.setResizable(false);
 
     // request control focus
     scene.getRoot().requestFocus();

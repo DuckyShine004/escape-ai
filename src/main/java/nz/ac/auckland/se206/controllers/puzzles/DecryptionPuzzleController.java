@@ -486,7 +486,7 @@ public class DecryptionPuzzleController {
   /** Intialize the matrix rain for the decryption puzzle. */
   private void initializeMatrixRain() {
     new AnimationTimer() {
-      // Keep track of when the previous fram was called
+      // Keep track of when the previous frame was called
       long lastTimerCall = 0;
 
       // Initialize the font size
@@ -502,7 +502,7 @@ public class DecryptionPuzzleController {
       // Initialize array to store each rain drop's last position
       int[] verticalPositions = new int[columns];
 
-      // Nanoseconds in a millisecond and get 50ms
+      // Nanoseconds in a millisecond and get 100ms
       long nanoseconds = 1000000;
       long animationDelay = nanoseconds * 100;
 
