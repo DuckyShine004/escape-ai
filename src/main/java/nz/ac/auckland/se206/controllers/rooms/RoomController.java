@@ -49,6 +49,7 @@ public abstract class RoomController {
   @FXML private Label lblAiChat;
   @FXML private Label lblPlayerChat;
   @FXML private Label lblOldestChat;
+  @FXML private Label lblAiChat2;
 
   @FXML private Rectangle recOpaque;
   @FXML private Polygon pgHint;
@@ -77,6 +78,7 @@ public abstract class RoomController {
     lblPlayerChat.textProperty().bind(playerChatProperty);
     playerChatProperty.set(GameState.currentPlayerMessage);
     lblOldestChat.textProperty().bind(oldestChatProperty);
+    lblAiChat2.textProperty().bind(aiChatProperty);
     initializeChat();
 
     Timeline timeline =
@@ -264,6 +266,7 @@ public abstract class RoomController {
       vbChat.setVisible(true);
       tfChat.setVisible(true);
       recOpaque.setVisible(true);
+      lblAiChat2.setVisible(false);
       if (GameState.currentAiMessage == "") {
         lblAiChat.setVisible(false);
         lblOldestChat.setVisible(false);
@@ -276,6 +279,7 @@ public abstract class RoomController {
       vbChat.setVisible(false);
       tfChat.setVisible(false);
       recOpaque.setVisible(false);
+      lblAiChat2.setVisible(true);
     }
   }
 
@@ -433,7 +437,7 @@ public abstract class RoomController {
 
   protected abstract String getRoomHint();
 
-    /**
+  /**
    * Updates chat GPT's persona when called. This should influence the GPT's response to the user.
    */
   public static void updateChatPersona() {
@@ -446,5 +450,4 @@ public abstract class RoomController {
     // get a response from GPT to setup the chat
     // getChatResponse(gptMessage, false);
   }
-  
 }
