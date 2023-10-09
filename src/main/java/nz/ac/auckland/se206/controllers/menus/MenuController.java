@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers.menus;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -8,13 +7,7 @@ import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
-import nz.ac.auckland.se206.ChatManager;
-import nz.ac.auckland.se206.HintManager;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.constants.Interactions;
-import nz.ac.auckland.se206.utilities.Timer;
 
 public abstract class MenuController {
   @FXML private Pane paNo;
@@ -130,11 +123,11 @@ public abstract class MenuController {
     // Disable the exit components
     // disableExitComponents();
 
-    // Start the game
-    startGame();
-
     // Reset the layout of the selection hitbox
     paSelect.setLayoutY(-30);
+
+    // Change scene to backstory
+    App.setUi(AppUi.BACKSTORY);
   }
 
   /** When exit is clicked, exit the application. */
@@ -150,65 +143,6 @@ public abstract class MenuController {
   /** When settings is clicked, switch the scene to options scene. */
   @FXML
   protected abstract void onNavigationPaneClicked();
-
-  /** This method will reset all the global fields in GameState. */
-  private void resetGlobalVariables() {
-    // Reset riddle puzzle solved
-    GameState.isRiddleResolved = false;
-
-    // Reset logic gate puzzle solved
-    GameState.isLogicGateSolved = false;
-
-    // Reset decryption puzzle solved
-    GameState.isDecryptionSolved = false;
-
-    // Reset global game solved
-    GameState.isSolved = false;
-
-    // Reset amount of riddles solved
-    GameState.riddlesSolved = 0;
-
-    // Reset the amount of hints user has
-    GameState.hintCounter = GameState.maxHints;
-
-    // Reset all interactions
-    Interactions.reset();
-
-    // Reset the chatting status
-    GameState.isChatting = false;
-
-    // Reset the TTS
-    GameState.isSpeaking = false;
-  }
-
-  /** Starts the game. */
-  private void startGame() {
-    resetGlobalVariables();
-
-    try {
-      SceneManager.onResetLevel();
-    } catch (IOException e) {
-      // on error print stack trace
-      e.printStackTrace();
-    }
-
-    // Set the timer's countdown time
-    Timer.setTime(GameState.maxTime);
-
-    // start the timer
-    if (!GameState.isDeveloperMode) {
-      Timer.play();
-    }
-
-    // Initialize the hint counter components
-    HintManager.initializeHintCounter();
-
-    // Clear the chat manager
-    ChatManager.reset();
-
-    // change scene to Room
-    App.setUi(AppUi.OFFICE);
-  }
 
   /** Enables the exit components of the menu. */
   private void enableExitComponents() {
