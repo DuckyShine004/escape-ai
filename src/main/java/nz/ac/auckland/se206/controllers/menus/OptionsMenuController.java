@@ -45,6 +45,7 @@ public class OptionsMenuController {
   private List<Pair<Label, Line>> timeComponents;
   private List<Pair<Label, Line>> difficultyComponents;
 
+  /** Initialize the options menu controller. */
   @FXML
   public void initialize() {
     // Initialize the time components
@@ -222,6 +223,7 @@ public class OptionsMenuController {
     return (index == 2 ? 0 : index + 1);
   }
 
+  /** Set the max time for the game. */
   private void setTime() {
     switch (timeIndex) {
       case 0:
@@ -236,6 +238,7 @@ public class OptionsMenuController {
     }
   }
 
+  /** Set the game's difficulty. */
   private void setDifficulty() {
     switch (difficultyIndex) {
       case 0:
@@ -286,21 +289,29 @@ public class OptionsMenuController {
     GameState.hintCounter = 5;
   }
 
+  /** Set the time limit to two minutes. */
   private void setTimeTwoMinutes() {
     // Set the time limit to two minutes
     GameState.maxTime = 120;
   }
 
+  /** Set the time limit to six minutes. */
   private void setTimeSixMinutes() {
     // Set the time limit to two minutes
     GameState.maxTime = 360;
   }
 
+  /** Set the time limit to four minutes. */
   private void setTimeFourMinutes() {
-    // Set the time limit to two minutes
     GameState.maxTime = 240;
   }
 
+  /**
+   * Disables all components inside of the input components list for the given index.
+   *
+   * @param components the components list.
+   * @param index the index for component to be disabled.
+   */
   private void enableComponent(List<Pair<Label, Line>> components, int index) {
     // Get the label
     Label label = components.get(index).getKey();
@@ -316,6 +327,12 @@ public class OptionsMenuController {
     line.setStroke(Color.rgb(248, 84, 84));
   }
 
+  /**
+   * Disables all components inside of the input components list for the given index.
+   *
+   * @param components the components list.
+   * @param index the index for component to be disabled.
+   */
   private void disableComponent(List<Pair<Label, Line>> components, int index) {
     // Get the label
     Label label = components.get(index).getKey();
