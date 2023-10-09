@@ -34,7 +34,8 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public abstract class RoomController {
-  @FXML private Pane paOffice;
+  @FXML private Pane paRoom;
+  @FXML private ImageView imgRoom;
 
   @FXML private Label lblTime;
 
@@ -48,7 +49,7 @@ public abstract class RoomController {
   @FXML private Label lblAiChat;
   @FXML private Label lblPlayerChat;
   @FXML private Label lblOldestChat;
-  @FXML private Label lblAiChat2;
+  @FXML protected Label lblAiChat2;
 
   @FXML private Rectangle recOpaque;
   @FXML private Polygon pgHint;
@@ -68,8 +69,9 @@ public abstract class RoomController {
 
   protected static boolean isThinking = false;
   protected static String eyes = "Nasser";
+  protected static boolean chatBubbleVisible = true;
 
-  /** Initialize the general office. */
+  /** Initialize the room. */
   @FXML
   protected void initialize() {
     lblAiChat.textProperty().bind(aiChatProperty);
@@ -80,41 +82,16 @@ public abstract class RoomController {
     lblAiChat2.textProperty().bind(aiChatProperty);
     initializeChat();
 
-    Timeline timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.millis(109), // Duration between updates
-                new EventHandler<ActionEvent>() {
-                  @Override
-                  public void handle(ActionEvent event) {
-                    // Check the isThinking variable
-                    if (isThinking) {
-                      int randomNum = (int) (Math.random() * 3);
-                      char randomChar = ' ';
-                      if (randomNum == 0) {
-                        randomChar =
-                            (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
-                      } else if (randomNum == 1) {
-                        randomChar =
-                            (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
-                      } else if (randomNum == 2) {
-                        randomChar =
-                            (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
-                      }
+    createNewTimeLine();
 
-                      eyes = eyes.substring(1) + randomChar;
-                      // Update the label's text with the random character
-                      lblEye1.setText(eyes.substring(0, 3));
-                      lblEye2.setText(eyes.substring(3));
-                    }
-                  }
-                }));
-
-    // Set the cycle count to INDEFINITE to keep the timeline running indefinitely
-    timeline.setCycleCount(Timeline.INDEFINITE);
-
-    // Start the timeline
-    timeline.play();
+    imgRoom.setOnMouseClicked(
+        event -> {
+          // Check if the event's target is not one of the labels
+          if (event.getTarget() != lblAiChat2 && GameState.isChatting == false) {
+            lblAiChat2.setVisible(false);
+            chatBubbleVisible = false;
+          }
+        });
   }
 
   /**
@@ -247,6 +224,46 @@ public abstract class RoomController {
     lblOldestChat.getStyleClass().add("chat-bubble1");
   }
 
+  /** Create a new timeline for updating the eye labels. */
+  private void createNewTimeLine() {
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(109), // Duration between updates
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Check the isThinking variable
+                    if (isThinking) {
+                      int randomNum = (int) (Math.random() * 3);
+                      char randomChar = ' ';
+                      if (randomNum == 0) {
+                        randomChar =
+                            (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
+                      } else if (randomNum == 1) {
+                        randomChar =
+                            (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
+                      } else if (randomNum == 2) {
+                        randomChar =
+                            (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
+                      }
+
+                      eyes = eyes.substring(1) + randomChar;
+                      // Update the label's text with the random character
+                      lblEye1.setText(eyes.substring(0, 3));
+                      lblEye2.setText(eyes.substring(3));
+                    }
+                  }
+                }));
+
+    // Set the cycle count to INDEFINITE to keep the timeline running indefinitely
+    timeline.setCycleCount(Timeline.INDEFINITE);
+
+    // Start the timeline
+    timeline.play();
+  }
+  
+
   @FXML
   protected void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
@@ -257,6 +274,7 @@ public abstract class RoomController {
       tfChat.setVisible(true);
       recOpaque.setVisible(true);
       lblAiChat2.setVisible(false);
+      chatBubbleVisible = false;
       if (GameState.currentAiMessage == "") {
         lblAiChat.setVisible(false);
         lblOldestChat.setVisible(false);
@@ -270,6 +288,7 @@ public abstract class RoomController {
       tfChat.setVisible(false);
       recOpaque.setVisible(false);
       lblAiChat2.setVisible(true);
+      chatBubbleVisible = true;
     }
   }
 
@@ -359,6 +378,7 @@ public abstract class RoomController {
 
   /**
    * Sets the most recent AI message
+   *
    * @param message
    */
   protected void setAiMessage(String message) {
@@ -374,6 +394,7 @@ public abstract class RoomController {
     lblOldestChat.getStyleClass().add("chat-bubble");
     if (GameState.isChatting == false) {
       lblAiChat2.setVisible(true);
+      chatBubbleVisible = true;
     }
   }
 

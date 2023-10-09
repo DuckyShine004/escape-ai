@@ -8,7 +8,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
@@ -20,7 +19,6 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class GeneralOfficeController extends RoomController {
-  @FXML private Pane paOffice;
 
   @FXML private Label lblTime;
   @FXML private Label lblHintCounter;

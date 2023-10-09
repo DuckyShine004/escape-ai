@@ -22,7 +22,6 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class ControlRoomController extends RoomController {
-  @FXML private Pane paControl;
   @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;

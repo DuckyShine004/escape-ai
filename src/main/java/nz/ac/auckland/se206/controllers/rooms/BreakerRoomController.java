@@ -21,7 +21,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the breaker room. */
 public class BreakerRoomController extends RoomController {
-  @FXML private Pane paBreaker;
+
   @FXML private Pane paCircuitBox;
 
   @FXML private Button btnHint;

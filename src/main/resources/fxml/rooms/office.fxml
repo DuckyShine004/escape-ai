@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="paOffice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.GeneralOfficeController">
+<Pane fx:id="paRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.GeneralOfficeController">
    <children>
       <Pane layoutX="11.0" layoutY="51.0" prefHeight="423.0" prefWidth="698.0" style="-fx-background-color: #4F4F4F;">
          <effect>
@@ -134,7 +134,7 @@
             <Glow level="0.65" />
          </effect>
       </Label>
-      <ImageView fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
+      <ImageView fx:id="imgRoom" fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
          <image>
             <Image url="@../../images/rooms/office.png" />
          </image>

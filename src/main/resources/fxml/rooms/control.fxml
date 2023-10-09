@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<Pane fx:id="paControl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
+<Pane fx:id="paRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
       <Pane layoutX="11.0" layoutY="51.0" prefHeight="423.0" prefWidth="698.0" style="-fx-background-color: #4F4F4F;">
          <effect>
@@ -95,7 +95,7 @@
             <Glow />
          </effect>
       </Line>
-      <ImageView fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
+      <ImageView fx:id="imgRoom" fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
          <image>
             <Image url="@../../images/rooms/control.png" />
          </image>
