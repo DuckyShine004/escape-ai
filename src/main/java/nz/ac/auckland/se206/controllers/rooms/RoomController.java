@@ -1,10 +1,14 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,9 +20,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.ChatManager;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
@@ -51,11 +56,18 @@ public abstract class RoomController {
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgAvatarShaddow;
   @FXML private ImageView imgEmotion;
+  @FXML private Label lblEye1;
+  @FXML private Label lblEye2;
+  @FXML private Circle crcEye1;
+  @FXML private Circle crcEye2;
 
   private static StringProperty aiChatProperty = new SimpleStringProperty();
   private static StringProperty playerChatProperty = new SimpleStringProperty();
   private static StringProperty oldestChatProperty = new SimpleStringProperty();
   private static ChatCompletionRequest gptRequest;
+
+  protected static boolean isThinking = false;
+  protected static String eyes = "Nasser";
 
   /** Initialize the general office. */
   @FXML
@@ -66,6 +78,42 @@ public abstract class RoomController {
     playerChatProperty.set(GameState.currentPlayerMessage);
     lblOldestChat.textProperty().bind(oldestChatProperty);
     initializeChat();
+
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(109), // Duration between updates
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Check the isThinking variable
+                    if (isThinking) {
+                      int randomNum = (int) (Math.random() * 3);
+                      char randomChar = ' ';
+                      if (randomNum == 0) {
+                        randomChar =
+                            (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
+                      } else if (randomNum == 1) {
+                        randomChar =
+                            (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
+                      } else if (randomNum == 2) {
+                        randomChar =
+                            (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
+                      }
+
+                      eyes = eyes.substring(1) + randomChar;
+                      // Update the label's text with the random character
+                      lblEye1.setText(eyes.substring(0, 3));
+                      lblEye2.setText(eyes.substring(3));
+                    }
+                  }
+                }));
+
+    // Set the cycle count to INDEFINITE to keep the timeline running indefinitely
+    timeline.setCycleCount(Timeline.INDEFINITE);
+
+    // Start the timeline
+    timeline.play();
   }
 
   /**
@@ -211,7 +259,6 @@ public abstract class RoomController {
   protected void onAiClicked(MouseEvent event) {
     GameState.muted = GameState.muted == false;
     GameState.tts.stop();
-    ChatManager.toggleAiMuted();
     GameState.isChatting = !GameState.isChatting;
     if (GameState.isChatting) {
       vbChat.setVisible(true);
@@ -232,14 +279,26 @@ public abstract class RoomController {
     }
   }
 
+  /** starting thinking and set the thinking components to visible */
   public void startThinking() {
     tfChat.setDisable(true);
     tfChat.setOpacity(0.5);
+    lblEye1.setVisible(true);
+    lblEye2.setVisible(true);
+    crcEye1.setVisible(true);
+    crcEye2.setVisible(true);
+    isThinking = true;
   }
 
+  /** stop thinking and set the thinking components to not visible */
   public void stopThinking() {
     tfChat.setDisable(false);
     tfChat.setOpacity(1);
+    lblEye2.setVisible(false);
+    lblEye1.setVisible(false);
+    crcEye1.setVisible(false);
+    crcEye2.setVisible(false);
+    isThinking = false;
   }
 
   @FXML
@@ -373,4 +432,19 @@ public abstract class RoomController {
   }
 
   protected abstract String getRoomHint();
+
+    /**
+   * Updates chat GPT's persona when called. This should influence the GPT's response to the user.
+   */
+  public static void updateChatPersona() {
+    // initialize the chat message field
+    ChatMessage gptMessage;
+
+    // initialize GPT chat message object
+    gptMessage = new ChatMessage("assistant", GptPromptEngineering.updateBackstory());
+
+    // get a response from GPT to setup the chat
+    // getChatResponse(gptMessage, false);
+  }
+  
 }

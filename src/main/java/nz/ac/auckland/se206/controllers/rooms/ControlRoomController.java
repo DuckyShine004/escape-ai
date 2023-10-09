@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -246,8 +245,8 @@ public class ControlRoomController extends RoomController {
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
-      ChatManager.updateChatResponse(
-          "Why are you trying to access the control panel? Unfortunately, it is locked.");
+      /* ChatManager.updateChatResponse(
+          "Why are you trying to access the control panel? Unfortunately, it is locked."); */
     }
   }
   

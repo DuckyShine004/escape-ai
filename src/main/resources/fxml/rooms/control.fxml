@@ -19,6 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
 <Pane fx:id="paControl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
@@ -213,5 +214,17 @@
          </image>
       </ImageView>
       <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="133.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
+      <Circle fx:id="crcEye1" fill="WHITE" layoutX="142.0" layoutY="384.0" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Circle>
+      <Circle fx:id="crcEye2" fill="WHITE" layoutX="101.0" layoutY="379.0" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Circle>
+      <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
+      <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
    </children>
 </Pane>

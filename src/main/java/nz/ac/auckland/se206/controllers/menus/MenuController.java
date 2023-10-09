@@ -9,7 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -205,9 +204,6 @@ public abstract class MenuController {
 
     // Initialize the hint counter components
     HintManager.initializeHintCounter();
-
-    // Clear the chat manager
-    ChatManager.reset();
 
     // change scene to Room
     App.setUi(AppUi.OFFICE);

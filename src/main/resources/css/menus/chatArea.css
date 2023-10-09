@@ -133,3 +133,9 @@
   -fx-min-width: 380px; /* Minimum width of the chat bubble, adjust as needed */
 }
 
+.eye-text {
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 17px;
+  -fx-background-color: transparent;
+}
+
