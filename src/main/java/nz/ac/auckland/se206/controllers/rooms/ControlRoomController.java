@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
@@ -61,11 +62,6 @@ public class ControlRoomController extends RoomController {
 
     // Add the hint counter components
     HintManager.addHintComponents(lblHintCounter, pgHint);
-
-    // Add the text area and text field to the list of chat components
-    ChatManager.addChatComponents(taChat, tfChat);
-
-    ChatManager.addAiInstance(imgAvatar, imgEmotion);
   }
 
   /**
@@ -169,7 +165,7 @@ public class ControlRoomController extends RoomController {
 
 
   @FXML
-  private void onHintClicked(MouseEvent mouseEvent) {
+  public void onHintClicked(MouseEvent mouseEvent) {
     // If the difficulty is hard, ignore user.
     if (GameState.gameDifficulty == Difficulty.HARD) {
       return;
@@ -190,13 +186,13 @@ public class ControlRoomController extends RoomController {
 
     // If the control panel has not been clicked on yet
     if (!Interactions.isControlPanelClicked) {
-      ChatManager.getUserHint(false);
+      getUserHint(false);
       return;
     }
 
     // If the control keyboard has not been clicked on yet
     if (!Interactions.isControlKeyboardClicked) {
-      ChatManager.getUserHint(false);
+      getUserHint(false);
       return;
     }
 
@@ -204,7 +200,7 @@ public class ControlRoomController extends RoomController {
     pgHint.setDisable(true);
 
     // Tell the player that the room has been completed
-    ChatManager.getUserHint(true);
+    getUserHint(true);
   }
 
   /** On mouse clicked, if the control panel is pressed, then switch to the terminal scene. */
@@ -235,7 +231,7 @@ public class ControlRoomController extends RoomController {
                   + " self.");
 
       // Append the user's response to the text area
-      ChatManager.getChatResponse(terminationMessage, false);
+      getChatResponse(terminationMessage, false);
 
       // Set game is solved to true
       GameState.isSolved = true;
@@ -255,4 +251,8 @@ public class ControlRoomController extends RoomController {
     }
   }
   
+  @Override
+  protected String getRoomHint() {
+    return GptPromptEngineering.getControlRoomHint();
+  }
 }

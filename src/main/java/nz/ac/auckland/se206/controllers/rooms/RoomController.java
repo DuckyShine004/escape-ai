@@ -16,10 +16,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.GameState.Difficulty;
+import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -43,6 +46,7 @@ public abstract class RoomController {
   @FXML private Label lblOldestChat;
 
   @FXML private Rectangle recOpaque;
+  @FXML private Polygon pgHint;
 
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgAvatarShaddow;
@@ -315,4 +319,58 @@ public abstract class RoomController {
       vbChat.getChildren().addAll(lblOldestChat, lblAiChat, lblPlayerChat);
     }
   }
+
+  @FXML
+  public void onHintClicked(MouseEvent mouseEvent) {
+    // If the difficulty is hard, ignore user.
+    if (GameState.gameDifficulty == Difficulty.HARD) {
+      return;
+    }
+
+    // If the number of remaining hints is zero
+    if (GameState.hintCounter == 0) {
+      return;
+    }
+
+    // Toggle the AI
+    if (!GameState.isChatting) {
+      onAiClicked(mouseEvent);
+    }
+
+    // Update the hint counter
+    HintManager.updateHintCounter();
+
+    // Append the request for a hint as a message
+    setUserResponse("Hint please!");
+
+    // If the desktop has not been clicked on yet
+    if (!Interactions.isDesktopClicked) {
+      getUserHint(false);
+      return;
+    }
+
+    // Disable the hints button
+    pgHint.setDisable(true);
+
+    // Tell the player that the room has been completed
+    getUserHint(true);
+  }
+
+  /** Generate a GPT hint response. GPT should give a hint for the current room the user is in. */
+  public void getUserHint(Boolean isRoomSolved) {
+    // Get the hint based on the current room and whether the room is solved
+    String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
+
+    // Initialize a user hint message compatible for GPT to analyze
+    ChatMessage userHintMessage = new ChatMessage("assistant", hint);
+
+    // Get GPT's response
+    getChatResponse(userHintMessage, true);
+  }
+
+  private static String getNoMoreHints() {
+    return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
+  }
+
+  protected abstract String getRoomHint();
 }
