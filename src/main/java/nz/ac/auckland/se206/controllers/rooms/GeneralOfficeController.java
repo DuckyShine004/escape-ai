@@ -107,9 +107,23 @@ public class GeneralOfficeController extends RoomController {
     }
   }
 
+  @FXML
+  @Override
+  public void onHintClicked(MouseEvent mouseEvent) {
+    super.onHintClicked(mouseEvent);
+
+    // If the desktop has not been clicked on yet
+    if (!Interactions.isDesktopClicked) {
+      getUserHint(false);
+      return;
+    }
+
+    // Tell the player that the room has been completed
+    getUserHint(true);
+  }
+
   @Override
   protected String getRoomHint() {
     return GptPromptEngineering.getOfficeRoomHint();
   }
-  
 }

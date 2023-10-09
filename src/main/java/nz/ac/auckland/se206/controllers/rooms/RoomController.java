@@ -27,7 +27,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
-import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -235,6 +234,9 @@ public abstract class RoomController {
           lblAiChat.setVisible(true);
           lblOldestChat.getStyleClass().remove("chat-bubble1");
           lblOldestChat.getStyleClass().add("chat-bubble");
+          if(GameState.isChatting == false) {
+            lblAiChat2.setVisible(true);
+          }
         });
   }
 
@@ -395,28 +397,14 @@ public abstract class RoomController {
       return;
     }
 
-    // Toggle the AI
-    if (!GameState.isChatting) {
-      onAiClicked(mouseEvent);
-    }
-
     // Update the hint counter
     HintManager.updateHintCounter();
 
     // Append the request for a hint as a message
     setUserResponse("Hint please!");
 
-    // If the desktop has not been clicked on yet
-    if (!Interactions.isDesktopClicked) {
-      getUserHint(false);
-      return;
-    }
-
     // Disable the hints button
     pgHint.setDisable(true);
-
-    // Tell the player that the room has been completed
-    getUserHint(true);
   }
 
   /** Generate a GPT hint response. GPT should give a hint for the current room the user is in. */
