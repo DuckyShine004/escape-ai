@@ -224,19 +224,7 @@ public abstract class RoomController {
     // Update the AI chat label on the FX application thread
     Platform.runLater(
         () -> {
-          swapLabelsOrder();
-          if (GameState.currentAiMessage != "" && GameState.currentPlayerMessage != "") {
-            oldestChatProperty.set(GameState.currentAiMessage);
-            lblOldestChat.setVisible(true);
-          }
-          GameState.currentAiMessage = gptOutput;
-          aiChatProperty.set(GameState.currentAiMessage);
-          lblAiChat.setVisible(true);
-          lblOldestChat.getStyleClass().remove("chat-bubble1");
-          lblOldestChat.getStyleClass().add("chat-bubble");
-          if(GameState.isChatting == false) {
-            lblAiChat2.setVisible(true);
-          }
+          setAiMessage(gptOutput);
         });
   }
 
@@ -367,6 +355,26 @@ public abstract class RoomController {
 
     // Enable all hint buttonss
     HintManager.enableHints();
+  }
+
+  /**
+   * Sets the most recent AI message
+   * @param message
+   */
+  protected void setAiMessage(String message) {
+    swapLabelsOrder();
+    if (GameState.currentAiMessage != "" && GameState.currentPlayerMessage != "") {
+      oldestChatProperty.set(GameState.currentAiMessage);
+      lblOldestChat.setVisible(true);
+    }
+    GameState.currentAiMessage = message;
+    aiChatProperty.set(GameState.currentAiMessage);
+    lblAiChat.setVisible(true);
+    lblOldestChat.getStyleClass().remove("chat-bubble1");
+    lblOldestChat.getStyleClass().add("chat-bubble");
+    if (GameState.isChatting == false) {
+      lblAiChat2.setVisible(true);
+    }
   }
 
   // Method to swap the order of the labels

@@ -225,8 +225,8 @@ public class ControlRoomController extends RoomController {
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
-      /* ChatManager.updateChatResponse(
-          "Why are you trying to access the control panel? Unfortunately, it is locked."); */
+      setUserResponse("Let me access the control panel!");
+      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control panel.");
     }
   }
   
