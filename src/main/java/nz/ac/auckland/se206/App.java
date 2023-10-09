@@ -77,7 +77,7 @@ public class App extends Application {
   /** Initialize all audio clips to be used in the project */
   private static void initializeAudio() {
     // Initialize the making selection sound effect
-    AudioManager.addAudio(Clip.MAKING_SELECTION, "/sounds/making_selection.mp3");
+    AudioManager.addAudio(Clip.MAKING_SELECTION, "/sounds/making_selection.wav");
 
     // Initialize the selection sound effect
     AudioManager.addAudio(Clip.SELECTION, "/sounds/selection.mp3");

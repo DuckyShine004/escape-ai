@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -14,6 +13,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.util.Pair;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
@@ -27,17 +28,18 @@ public class OptionsMenuController {
   @FXML private Line lineHard;
   @FXML private Line lineMedium;
   @FXML private Line lineTwoMinutes;
-  @FXML private Line lineFourMinutes;
   @FXML private Line lineSixMinutes;
+  @FXML private Line lineFourMinutes;
 
   @FXML private Label lblEasy;
   @FXML private Label lblHard;
   @FXML private Label lblMedium;
   @FXML private Label lblTwoMinutes;
-  @FXML private Label lblFourMinutes;
   @FXML private Label lblSixMinutes;
-
-  @FXML private ToggleButton tbtnDeveloperMode;
+  @FXML private Label lblFourMinutes;
+  @FXML private Label lblEasyComment;
+  @FXML private Label lblHardComment;
+  @FXML private Label lblMediumComment;
 
   private int timeIndex = 0;
   private int difficultyIndex = 0;
@@ -58,6 +60,7 @@ public class OptionsMenuController {
   /** When the mouse is hovering over the arrows, the overlay appears. */
   @FXML
   private void onArrowEntered(Event event) {
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
     ((Polygon) event.getSource()).setFill(Color.rgb(97, 219, 224));
   }
 
@@ -70,6 +73,7 @@ public class OptionsMenuController {
   /** When the mouse is hovering over the pane, the overlay appears (return). */
   @FXML
   private void onReturnPaneEntered() {
+    AudioManager.loadAudio(Clip.MAKING_SELECTION);
     paReturnOverlay.setVisible(true);
   }
 
@@ -82,6 +86,9 @@ public class OptionsMenuController {
   /** When time left arrow is clicked, change the current time to a lower time. */
   @FXML
   private void onTimeLeftArrowClicked() {
+    // Play the selection audio
+    AudioManager.loadAudio(Clip.SELECTION);
+
     // Disable the current components for the current index
     disableComponent(timeComponents, timeIndex);
 
@@ -98,6 +105,9 @@ public class OptionsMenuController {
   /** When time right arrow is clicked, change the current time to a higher time. */
   @FXML
   private void onTimeRightArrowClicked() {
+    // Play the selection audio
+    AudioManager.loadAudio(Clip.SELECTION);
+
     // Disable the current components for the current index
     disableComponent(timeComponents, timeIndex);
 
@@ -114,6 +124,9 @@ public class OptionsMenuController {
   /** When difficulty left arrow is clicked, change the current difficulty to a lower difficulty. */
   @FXML
   private void onDifficultyLeftArrowClicked() {
+    // Play the selection audio
+    AudioManager.loadAudio(Clip.SELECTION);
+
     // Disable the current components for the current index
     disableComponent(difficultyComponents, difficultyIndex);
 
@@ -132,6 +145,9 @@ public class OptionsMenuController {
    */
   @FXML
   private void onDifficultyRightArrowClicked() {
+    // Play the selection audio
+    AudioManager.loadAudio(Clip.SELECTION);
+
     // Disable the current components for the current index
     disableComponent(difficultyComponents, difficultyIndex);
 
@@ -148,6 +164,7 @@ public class OptionsMenuController {
   /** When return is clicked, go back to the main menu. */
   @FXML
   private void onReturnPaneClicked() {
+    AudioManager.loadAudio(Clip.SELECTION);
     App.setUi(AppUi.MENU);
   }
 
@@ -159,20 +176,14 @@ public class OptionsMenuController {
    */
   @FXML
   private void onKeyPressed(KeyEvent keyEvent) {
-    if (keyEvent.getCode() == KeyCode.ESCAPE) {
-      App.setUi(AppUi.MENU);
+    // Check if the escape key has been pressed
+    if (keyEvent.getCode() != KeyCode.ESCAPE) {
+      return;
     }
-  }
 
-  /** When the switch to developer button is pressed, toggle the developer mode. */
-  @FXML
-  private void onDeveloperModeClicked() {
-    // Toggle the developer mode state
-    GameState.isDeveloperMode = !GameState.isDeveloperMode;
-
-    // Update the button text based on the new state
-    tbtnDeveloperMode.setText(
-        GameState.isDeveloperMode ? "Exit Developer Mode" : "Switch to Developer Mode");
+    // Play the selection audio and switch back to main menu
+    AudioManager.loadAudio(Clip.SELECTION);
+    App.setUi(AppUi.MENU);
   }
 
   /** Initialize the time components. */
@@ -240,6 +251,9 @@ public class OptionsMenuController {
 
   /** Set the game's difficulty. */
   private void setDifficulty() {
+    // Reset all comments
+    resetDifficultyComments();
+
     switch (difficultyIndex) {
       case 0:
         setDifficultyEasy();
@@ -263,6 +277,9 @@ public class OptionsMenuController {
 
     // Set the amount of hints to infinity
     GameState.hintCounter = Integer.MAX_VALUE;
+
+    // Change the difficulty comment label
+    lblEasyComment.setVisible(true);
   }
 
   /** Set the game's difficulty to hard. */
@@ -275,6 +292,9 @@ public class OptionsMenuController {
 
     // Set the amount of hints to zero
     GameState.hintCounter = 0;
+
+    // Change the difficulty comment label
+    lblHardComment.setVisible(true);
   }
 
   /** Set the game's difficulty to medium. */
@@ -287,6 +307,9 @@ public class OptionsMenuController {
 
     // Set the amount of hints to 5
     GameState.hintCounter = 5;
+
+    // Change the difficulty comment label
+    lblMediumComment.setVisible(true);
   }
 
   /** Set the time limit to two minutes. */
@@ -346,5 +369,15 @@ public class OptionsMenuController {
     // Set the stroke and fill for the line
     line.setFill(Color.rgb(101, 40, 40));
     line.setStroke(Color.rgb(101, 40, 40));
+  }
+
+  /**
+   * Reset all difficulty comments. These comments provide the player some insight for the
+   * difficulty picked.
+   */
+  private void resetDifficultyComments() {
+    lblEasyComment.setVisible(false);
+    lblHardComment.setVisible(false);
+    lblMediumComment.setVisible(false);
   }
 }

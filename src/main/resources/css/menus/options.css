@@ -1,7 +1,6 @@
 /* For the miscellaneous pane */
 .miscellaneous-border-pane {
   -fx-border-color: rgb(120, 45, 45);
-  -fx-background-color: rgb(3, 7, 9);
   -fx-border-width: 1px;
 }
 
@@ -20,6 +19,7 @@
 /* For the arrow pane */
 .arrow-border-pane {
   -fx-border-color: rgb(155, 56, 56);
+  -fx-background-color: rgb(3, 7, 9);
   -fx-border-width: 1px;
 }
 
