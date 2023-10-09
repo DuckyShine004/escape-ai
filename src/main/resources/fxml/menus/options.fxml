@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -49,7 +48,7 @@
             <Glow level="0.4" />
          </effect>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="25.0" layoutX="525.0" layoutY="449.0" stroke="#a0ebed" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="25.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="25.0" layoutX="525.0" layoutY="449.0" stroke="#8efbfd" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="25.0">
          <effect>
             <Glow level="0.8">
                <input>
@@ -62,19 +61,6 @@
             </Glow>
          </effect>
       </Rectangle>
-      <Pane fx:id="paReturn" layoutX="268.0" layoutY="354.0" onMouseClicked="#onReturnPaneClicked" onMouseEntered="#onReturnPaneEntered" onMouseExited="#onReturnPaneExited" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paReturnOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="216.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/options.css" visible="false" />
-            <Label layoutX="14.0" layoutY="4.0" text="Return" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
       <Pane layoutX="330.0" layoutY="218.0" prefHeight="30.0" prefWidth="280.0" styleClass="arrow-border-pane" stylesheets="@../../css/menus/options.css">
          <children>
             <Polygon layoutX="40.0" layoutY="18.0" onMouseClicked="#onDifficultyLeftArrowClicked" onMouseEntered="#onArrowEntered" onMouseExited="#onArrowExited" points="-10.333343505859375, 5.3333282470703125, -10.333343505859375, -11.999984741210938, -27.000030517578125, -2.9999847412109375" stroke="#61dbe0" strokeType="INSIDE">
@@ -268,6 +254,72 @@
             </Label>
          </children>
       </Pane>
+      <Pane fx:id="paReturn" layoutX="110.0" layoutY="380.0" onMouseClicked="#onReturnPaneClicked" onMouseEntered="#onReturnPaneEntered" onMouseExited="#onReturnPaneExited" prefHeight="35.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+         <children>
+            <Pane fx:id="paReturnLeftOverlay" prefHeight="35.0" prefWidth="225.0" style="-fx-background-color: #030709;" />
+            <Pane fx:id="paReturnRightOverlay" layoutX="224.0" prefHeight="20.0" prefWidth="16.0" style="-fx-background-color: #030709;" />
+            <Polygon fx:id="pgReturnOverlay" fill="#030709" layoutX="78.0" layoutY="30.0" points="162.41342163085938, -11.66668701171875, 145.93936157226562, 6.0606689453125, 147.00003051757812, -12.5" stroke="#030709" strokeType="INSIDE" />
+            <Line fx:id="lineReturnTop" endX="240.0" fill="#21d7e2" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnLeft" endY="35.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnBottom" endX="225.0" layoutY="35.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnRight" endY="20.0" layoutX="240.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line fx:id="lineReturnDiagonal" endX="240.0" endY="20.0" startX="225.0" startY="35.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Label fx:id="lblReturn" layoutX="10.0" layoutY="4.0" opacity="0.9" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="RETURN TO MAIN MENU" textFill="#50b4b7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
       <Pane layoutX="525.0" layoutY="155.0" opacity="0.75" prefHeight="20.0" prefWidth="20.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
          <effect>
             <Glow level="0.8" />
@@ -366,7 +418,7 @@
             <Font size="4.0" />
          </font>
       </Label>
-      <Label layoutX="529.0" layoutY="454.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/options.css" text="ESC" textFill="#94e1e4">
+      <Label layoutX="529.0" layoutY="454.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/options.css" text="ESC" textFill="#8efbfd">
          <font>
             <Font size="10.0" />
          </font>

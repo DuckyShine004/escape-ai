@@ -22,24 +22,33 @@ import nz.ac.auckland.se206.constants.GameState.Difficulty;
 public class OptionsMenuController {
   @FXML private Pane paReturn;
   @FXML private Pane paOption;
-  @FXML private Pane paReturnOverlay;
+  @FXML private Pane paReturnLeftOverlay;
+  @FXML private Pane paReturnRightOverlay;
 
   @FXML private Line lineEasy;
   @FXML private Line lineHard;
   @FXML private Line lineMedium;
+  @FXML private Line lineReturnTop;
+  @FXML private Line lineReturnLeft;
   @FXML private Line lineTwoMinutes;
   @FXML private Line lineSixMinutes;
   @FXML private Line lineFourMinutes;
+  @FXML private Line lineReturnRight;
+  @FXML private Line lineReturnBottom;
+  @FXML private Line lineReturnDiagonal;
 
   @FXML private Label lblEasy;
   @FXML private Label lblHard;
   @FXML private Label lblMedium;
+  @FXML private Label lblReturn;
   @FXML private Label lblTwoMinutes;
   @FXML private Label lblSixMinutes;
   @FXML private Label lblFourMinutes;
   @FXML private Label lblEasyComment;
   @FXML private Label lblHardComment;
   @FXML private Label lblMediumComment;
+
+  @FXML private Polygon pgReturnOverlay;
 
   private int timeIndex = 0;
   private int difficultyIndex = 0;
@@ -74,13 +83,13 @@ public class OptionsMenuController {
   @FXML
   private void onReturnPaneEntered() {
     AudioManager.loadAudio(Clip.MAKING_SELECTION);
-    paReturnOverlay.setVisible(true);
+    enableReturnOverlay();
   }
 
   /** When the mouse is not hovering over the pane, the overlay disappears (return). */
   @FXML
   private void onReturnPaneExited() {
-    paReturnOverlay.setVisible(false);
+    disableReturnOverlay();
   }
 
   /** When time left arrow is clicked, change the current time to a lower time. */
@@ -329,6 +338,27 @@ public class OptionsMenuController {
     GameState.maxTime = 240;
   }
 
+  /** Enables the return pane overlay. */
+  private void enableReturnOverlay() {
+    // Change the color of the label
+    lblReturn.setTextFill(Color.rgb(3, 7, 9));
+
+    // Change the color of the panes
+    paReturnLeftOverlay.setStyle("-fx-background-color: rgb(80, 180, 180);");
+    paReturnRightOverlay.setStyle("-fx-background-color: rgb(80, 180, 180);");
+
+    // Change the fill and stroke of the polygon
+    pgReturnOverlay.setFill(Color.rgb(80, 180, 180));
+    pgReturnOverlay.setStroke(Color.rgb(80, 180, 180));
+
+    // Change the color of the lines
+    lineReturnTop.setStroke(Color.rgb(80, 180, 180));
+    lineReturnLeft.setStroke(Color.rgb(80, 180, 180));
+    lineReturnRight.setStroke(Color.rgb(80, 180, 180));
+    lineReturnBottom.setStroke(Color.rgb(80, 180, 180));
+    lineReturnDiagonal.setStroke(Color.rgb(80, 180, 180));
+  }
+
   /**
    * Disables all components inside of the input components list for the given index.
    *
@@ -348,6 +378,26 @@ public class OptionsMenuController {
     // Set the stroke and fill for the line
     line.setFill(Color.rgb(248, 84, 84));
     line.setStroke(Color.rgb(248, 84, 84));
+  }
+
+  private void disableReturnOverlay() {
+    // Change the color of the label
+    lblReturn.setTextFill(Color.rgb(80, 180, 183));
+
+    // Change the color of the panes
+    paReturnLeftOverlay.setStyle("-fx-background-color: rgb(3, 7, 9);");
+    paReturnRightOverlay.setStyle("-fx-background-color: rgb(3, 7, 9);");
+
+    // Change the fill and stroke of the polygon
+    pgReturnOverlay.setFill(Color.rgb(3, 7, 9));
+    pgReturnOverlay.setStroke(Color.rgb(3, 7, 9));
+
+    // Change the color of the lines
+    lineReturnTop.setStroke(Color.rgb(248, 84, 84));
+    lineReturnLeft.setStroke(Color.rgb(248, 84, 84));
+    lineReturnRight.setStroke(Color.rgb(248, 84, 84));
+    lineReturnBottom.setStroke(Color.rgb(248, 84, 84));
+    lineReturnDiagonal.setStroke(Color.rgb(248, 84, 84));
   }
 
   /**
