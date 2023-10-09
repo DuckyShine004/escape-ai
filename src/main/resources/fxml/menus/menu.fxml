@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -190,7 +189,7 @@
             </Pane>
             <Pane fx:id="paPlay" layoutX="20.0" layoutY="240.0" onMouseClicked="#onPlayPaneClicked" onMouseEntered="#onPlayPaneEntered" onMouseExited="#onPlayPaneExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
                <children>
-                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="NEW GAME" textFill="#77e7ed">
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="NEW GAME" textFill="#f85454">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -198,7 +197,7 @@
                         <Glow level="0.8" />
                      </effect>
                   </Label>
-                  <Line endX="190.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="190.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -207,7 +206,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="35.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -216,7 +215,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="175.0" fill="#aafffe" layoutY="35.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -225,7 +224,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="20.0" fill="#aafffe" layoutX="190.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -234,7 +233,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="190.0" endY="20.0" fill="#aafffe" startX="175.0" startY="35.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -256,7 +255,7 @@
                   <Glow />
                </effect>
                <children>
-                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="SETTINGS" textFill="#77e7ed">
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="SETTINGS" textFill="#f85454">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -264,7 +263,7 @@
                         <Glow level="0.8" />
                      </effect>
                   </Label>
-                  <Line endX="190.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="190.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -273,7 +272,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="35.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -282,7 +281,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="175.0" fill="#aafffe" layoutY="35.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -291,7 +290,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="20.0" fill="#aafffe" layoutX="190.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -300,7 +299,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="190.0" endY="20.0" fill="#aafffe" startX="175.0" startY="35.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -316,7 +315,7 @@
             </Pane>
             <Pane fx:id="paExit" layoutX="20.0" layoutY="330.0" onMouseClicked="#onExitPaneClicked" onMouseEntered="#onExitPaneEntered" onMouseExited="#onExitPaneExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
                <children>
-                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="QUIT GAME" textFill="#77e7ed">
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="QUIT GAME" textFill="#f85454">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -324,7 +323,7 @@
                         <Glow level="0.8" />
                      </effect>
                   </Label>
-                  <Line endX="190.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="190.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -333,7 +332,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="35.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -342,7 +341,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="175.0" layoutY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="175.0" fill="#aafffe" layoutY="35.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -351,7 +350,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" layoutX="190.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="20.0" fill="#aafffe" layoutX="190.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -360,7 +359,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="190.0" endY="20.0" startX="175.0" startY="35.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="190.0" endY="20.0" fill="#aafffe" startX="175.0" startY="35.0" stroke="#aafffe" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -472,19 +471,6 @@
                </effect>
                <font>
                   <Font size="8.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="paYes" disable="true" layoutX="530.0" layoutY="400.0" onMouseClicked="#onYesPaneClicked" onMouseEntered="#onYesPaneEntered" onMouseExited="#onYesPaneExited" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paYesOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="44.0" layoutY="4.0" text="Yes" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
                </font>
             </Label>
          </children>

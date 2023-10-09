@@ -10,6 +10,7 @@ public class SceneManager {
   public enum AppUi {
     MENU,
     OPTIONS,
+    BACKSTORY,
     CONTROL,
     DECRYPTION,
     BREAKER,

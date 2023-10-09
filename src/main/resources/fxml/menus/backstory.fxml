@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #060d12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.BackstoryController">
+   <effect>
+      <InnerShadow height="255.0" offsetY="10.0" radius="68.5">
+         <color>
+            <Color red="0.34210526943206787" green="0.05596166476607323" blue="0.05596166476607323" />
+         </color>
+      </InnerShadow>
+   </effect>
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="720.0" opacity="0.45" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/coding.png" />
+         </image>
+         <effect>
+            <Lighting diffuseConstant="1.2" specularConstant="0.5" specularExponent="15.0" surfaceScale="0.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.08338747918605804" green="0.17106346786022186" blue="0.19298245012760162" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="20.0" layoutX="635.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/mouse.png" />
+         </image>
+         <effect>
+            <Glow level="0.6" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="480.0" layoutX="120.0" layoutY="130.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/headquarters.jpg" />
+         </image>
+         <effect>
+            <InnerShadow height="100.0" radius="49.5" width="100.0" />
+         </effect>
+      </ImageView>
+      <Pane layoutX="670.0" layoutY="165.0" opacity="0.75" prefHeight="20.0" prefWidth="60.0" rotate="90.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="3.0" layoutY="3.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="VTRZ-AL0-12939-sdj-218" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="11.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="AL-092          [ -- ]" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paContinue" layoutX="120.0" layoutY="410.0" onMouseClicked="#onContinueClicked" onMouseEntered="#onContinueEntered" onMouseExited="#onContinueExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <children>
+            <Pane fx:id="paSelect" layoutX="150.0" layoutY="7.0" opacity="0.85" prefHeight="20.0" prefWidth="20.0" visible="false">
+               <children>
+                  <Line endX="5.0" fill="#f85454" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutY="15.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutX="15.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="20.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutX="15.0" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="20.0" layoutY="15.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutY="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutX="15.0" layoutY="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="10.0" layoutY="15.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Pane>
+            <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="CONTINUE" textFill="#f85454">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Label>
+            <Line endX="190.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line endY="35.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line endX="175.0" fill="#aafffe" layoutY="35.0" stroke="#aafffe" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line endY="20.0" fill="#aafffe" layoutX="190.0" stroke="#aafffe" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+            <Line endX="190.0" endY="20.0" fill="#aafffe" startX="175.0" startY="35.0" stroke="#aafffe" strokeWidth="1.5">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+         </children>
+         <effect>
+            <Glow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <Pane layoutX="120.0" layoutY="130.0" prefHeight="200.0" prefWidth="480.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/backstory.css">
+         <effect>
+            <Glow level="0.6" />
+         </effect>
+      </Pane>
+      <Pane layoutX="600.0" layoutY="130.0" prefHeight="190.0" prefWidth="10.0" style="-fx-background-color: #f85454;">
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <DropShadow radius="16.3275" width="46.31">
+                     <color>
+                        <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Pane>
+      <Pane layoutX="690.0" layoutY="120.0" opacity="0.75" prefHeight="20.0" prefWidth="20.0" rotate="90.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+      </Pane>
+      <Pane layoutX="695.0" layoutY="100.0" opacity="0.75" prefHeight="20.0" prefWidth="10.0" rotate="90.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+      </Pane>
+      <Pane layoutX="115.0" layoutY="170.0" prefHeight="155.0" prefWidth="5.0" style="-fx-background-color: #f85454;">
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <DropShadow radius="16.3275" width="46.31">
+                     <color>
+                        <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Pane>
+      <Polygon fill="#f85454" layoutX="635.0" layoutY="330.0" points="-35.66668701171875, -3.0517578125E-5, -24.99993896484375, -10.000030517578125, -35.66668701171875, -10.000030517578125" stroke="#f85454" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <DropShadow radius="16.3275" width="46.31">
+                     <color>
+                        <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Polygon>
+      <Polygon fill="#f85454" layoutX="645.0" layoutY="340.0" points="-523.0, -15.333343505859375, -525.0, -10.000030517578125, -529.6666259765625, -15.333343505859375" stroke="#f85454" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <DropShadow radius="16.3275" width="46.31">
+                     <color>
+                        <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Polygon>
+      <Polygon fill="#f85454" layoutX="655.0" layoutY="350.0" points="-535.0, -191.3333282470703, -535.0, -178.6666717529297, -540.0, -179.99998474121094" stroke="#f85454" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <DropShadow radius="16.3275" width="46.31">
+                     <color>
+                        <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Polygon>
+      <Label alignment="CENTER" layoutX="250.0" layoutY="30.0" styleClass="custom-title" stylesheets="@../../css/menus/options.css" text="BACKSTORY" textAlignment="CENTER" textFill="#f9ff58">
+         <font>
+            <Font size="60.0" />
+         </font>
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="660.0" layoutY="450.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="SELECT" textFill="#f85454">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="340.0" prefWidth="490.0" styleClass="custom-label" stylesheets="@../../css/menus/backstory.css" text="Your objective is simple, infiltrate and terminate a world-ending AI before it reboots itself. Humanity's fate rest upon your hands, good luck." textFill="#aafffe" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <Glow level="0.9" />
+         </effect>
+      </Label>
+      <Label layoutX="-165.0" layoutY="285.0" opacity="0.5" rotate="90.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q 7 R 8 R" textFill="#ba4f4f">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="93.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="LOREM IPSUM BLAH BLAH VISUAL TEXT HOW IS YOUR DAY GOING WOWWY WOW AMAZING DAY" textFill="#f85454">
+         <effect>
+            <Glow level="0.4" />
+         </effect>
+         <font>
+            <Font size="4.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="88.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS JUST SOME REALLY LONG TEXT" textFill="#f85454">
+         <effect>
+            <Glow level="0.4" />
+         </effect>
+         <font>
+            <Font size="4.0" />
+         </font>
+      </Label>
+      <Line endX="700.0" fill="#ce5f5f" layoutX="10.0" layoutY="100.0" opacity="0.5" stroke="#ce5f5f" strokeWidth="1.5">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="1.0" green="0.07407407462596893" blue="0.07407407462596893" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Line>
+      <Line endY="140.0" layoutX="600.0" layoutY="160.0" />
+   </children>
+</Pane>

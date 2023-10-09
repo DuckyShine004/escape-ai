@@ -1,0 +1,40 @@
+/* For the miscellaneous pane */
+.miscellaneous-border-pane {
+  -fx-border-color: #f85454;
+  -fx-border-width: 2px;
+}
+
+/* For the transparent pane */
+.transparent-border-pane {
+  -fx-border-color: transparent;
+  -fx-border-width: 2px;
+}
+
+/* Font styling */
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/jetbrains.ttf");
+}
+
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/jetbrainsBold.ttf");
+}
+
+@font-face {
+  font-family: Determination Mono Web;
+  src: url("/../../fonts/glitch.ttf");
+}
+
+/* Label with custom font */
+.custom-label {
+  -fx-font-family: "JetBrainsMono NF";
+}
+
+.custom-bold-label {
+  -fx-font-family: "JetBrainsMono NF Bold";
+}
+
+.custom-title {
+  -fx-font-family: "SDGlitchDemo Regular";
+}

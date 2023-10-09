@@ -479,9 +479,9 @@
       </Line>
    </children>
    <effect>
-      <InnerShadow height="255.0" offsetY="10.0" radius="63.25" width="0.0">
+      <InnerShadow height="127.5" offsetY="10.0" radius="31.375" width="0.0">
          <color>
-            <Color red="0.38596490025520325" green="0.06194498762488365" blue="0.06194498762488365" />
+            <Color red="0.3843137323856354" green="0.062745101749897" blue="0.062745101749897" />
          </color>
       </InnerShadow>
    </effect>

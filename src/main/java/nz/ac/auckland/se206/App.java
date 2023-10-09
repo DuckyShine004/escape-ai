@@ -135,11 +135,14 @@ public class App extends Application {
     // initialize the chat manager
     ChatManager.initialize();
 
-    // main menue
+    // main menu
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menus/menu"));
 
     // options in main menu
     SceneManager.addAppUi(AppUi.OPTIONS, loadFxml("menus/options"));
+
+    // backstory scene
+    SceneManager.addAppUi(AppUi.BACKSTORY, loadFxml("menus/backstory"));
 
     // terminal screen
     SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
@@ -228,6 +231,9 @@ public class App extends Application {
 
     // show scene
     stage.show();
+
+    // Don't allow the player to resize the application window
+    stage.setResizable(false);
 
     // request control focus
     scene.getRoot().requestFocus();
