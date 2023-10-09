@@ -176,6 +176,12 @@ public abstract class MenuController {
     // Reset the TTS
     GameState.isSpeaking = false;
 
+    // Reset the AI message
+    GameState.currentAiMessage = "";
+
+    // Reset the player message
+    GameState.currentPlayerMessage = "";
+
   }
 
   /** Starts the game. */

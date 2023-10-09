@@ -186,7 +186,8 @@
          </cursor>
       </Polygon>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
-      <VBox fx:id="vbChat" layoutX="100.0" layoutY="150.0" prefHeight="200.0" prefWidth="350.0" visible="false" spacing="10.0">
+      <VBox fx:id="vbChat" layoutX="100.0" layoutY="80.0" prefHeight="300.0" prefWidth="350.0" visible="false" spacing="10.0">
+         <Label fx:id="lblOldestChat" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
          <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true"/>
          <Label fx:id="lblPlayerChat" styleClass="chat-bubble1" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
       </VBox>

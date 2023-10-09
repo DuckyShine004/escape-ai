@@ -40,6 +40,7 @@ public abstract class RoomController {
   @FXML private VBox vbChat;
   @FXML private Label lblAiChat;
   @FXML private Label lblPlayerChat;
+  @FXML private Label lblOldestChat;
 
   @FXML private Rectangle recOpaque;
 
@@ -49,6 +50,7 @@ public abstract class RoomController {
 
   private static StringProperty aiChatProperty = new SimpleStringProperty();
   private static StringProperty playerChatProperty = new SimpleStringProperty();
+  private static StringProperty oldestChatProperty = new SimpleStringProperty();
   private static ChatCompletionRequest gptRequest;
 
   /** Initialize the general office. */
@@ -58,6 +60,7 @@ public abstract class RoomController {
     aiChatProperty.set(GameState.currentAiMessage);
     lblPlayerChat.textProperty().bind(playerChatProperty);
     playerChatProperty.set(GameState.currentPlayerMessage);
+    lblOldestChat.textProperty().bind(oldestChatProperty);
     initializeChat();
   }
 
@@ -168,10 +171,16 @@ public abstract class RoomController {
     // Update the AI chat label on the FX application thread
     Platform.runLater(
         () -> {
+          swapLabelsOrder();
+          if (GameState.currentAiMessage != "" && GameState.currentPlayerMessage != "") {
+            oldestChatProperty.set(GameState.currentAiMessage);
+            lblOldestChat.setVisible(true);
+          }
           GameState.currentAiMessage = gptOutput;
           aiChatProperty.set(GameState.currentAiMessage);
-          swapLabelsOrder();
           lblAiChat.setVisible(true);
+          lblOldestChat.getStyleClass().remove("chat-bubble1");
+          lblOldestChat.getStyleClass().add("chat-bubble");
         });
   }
 
@@ -181,11 +190,17 @@ public abstract class RoomController {
    * @param message the message to be appended to the text area.
    */
   public void setUserResponse(String message) {
+    swapLabelsOrder();
+    if (GameState.currentPlayerMessage != "" && GameState.currentAiMessage != "") {
+      oldestChatProperty.set(GameState.currentPlayerMessage);
+      lblOldestChat.setVisible(true);
+    }
     GameState.currentPlayerMessage = message;
     playerChatProperty.set(GameState.currentPlayerMessage);
     tfChat.clear();
-    swapLabelsOrder();
     lblPlayerChat.setVisible(true);
+    lblOldestChat.getStyleClass().remove("chat-bubble");
+    lblOldestChat.getStyleClass().add("chat-bubble1");
   }
 
   @FXML
@@ -200,9 +215,11 @@ public abstract class RoomController {
       recOpaque.setVisible(true);
       if (GameState.currentAiMessage == "") {
         lblAiChat.setVisible(false);
+        lblOldestChat.setVisible(false);
       }
       if (GameState.currentPlayerMessage == "") {
         lblPlayerChat.setVisible(false);
+        lblOldestChat.setVisible(false);
       }
     } else {
       vbChat.setVisible(false);
@@ -289,13 +306,13 @@ public abstract class RoomController {
     int aiChatIndex = vbChat.getChildren().indexOf(lblAiChat);
 
     // Remove both labels from the VBox
-    vbChat.getChildren().removeAll(lblAiChat, lblPlayerChat);
+    vbChat.getChildren().removeAll(lblOldestChat, lblAiChat, lblPlayerChat);
 
     // Swap the order of the labels
-    if (aiChatIndex == 0) {
-      vbChat.getChildren().addAll(lblPlayerChat, lblAiChat);
+    if (aiChatIndex == 1) {
+      vbChat.getChildren().addAll(lblOldestChat, lblPlayerChat, lblAiChat);
     } else {
-      vbChat.getChildren().addAll(lblAiChat, lblPlayerChat);
+      vbChat.getChildren().addAll(lblOldestChat, lblAiChat, lblPlayerChat);
     }
   }
 }
