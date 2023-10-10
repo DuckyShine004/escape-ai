@@ -1,85 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #0c0807;" fx:controller="nz.ac.auckland.se206.controllers.menus.LosingScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #0c0807;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.LosingScreenController">
    <children>
-      <Label layoutX="40.0" layoutY="20.0" text="You" textFill="WHITE">
+      <Line endY="480.0" fill="#6b1a1a" layoutX="40.0" opacity="0.8" stroke="#6b1a1a" strokeWidth="2.0">
          <effect>
-            <Glow level="0.8" />
-         </effect>
-         <font>
-            <Font size="60.0" />
-         </font>
-      </Label>
-      <Label layoutX="190.0" layoutY="20.0" text="lost!" textFill="WHITE">
-         <effect>
-            <Glow level="0.8" />
-         </effect>
-         <font>
-            <Font name="System Bold" size="60.0" />
-         </font>
-      </Label>
-      <Line endX="30.0" layoutX="30.0" layoutY="30.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
+            <DropShadow>
+               <input>
+                  <Glow level="0.4" />
+               </input>
+               <color>
+                  <Color red="0.5607843399047852" green="0.15294118225574493" blue="0.15294118225574493" />
+               </color>
+            </DropShadow>
          </effect>
       </Line>
-      <Line endX="-9.99998950958252" endY="30.0" layoutX="40.0" layoutY="31.0" startX="-9.99998950958252" stroke="#7e5700" strokeWidth="2.0">
+      <Line endY="480.0" fill="#6b1a1a" layoutX="280.0" opacity="0.8" stroke="#6b1a1a" strokeWidth="2.0">
          <effect>
-            <Bloom />
+            <DropShadow>
+               <input>
+                  <Glow level="0.4" />
+               </input>
+               <color>
+                  <Color red="0.5607843399047852" green="0.15294118225574493" blue="0.15294118225574493" />
+               </color>
+            </DropShadow>
          </effect>
       </Line>
-      <Line endX="220.0" layoutX="140.0" layoutY="100.0" startX="-100.0" stroke="#7e5700" strokeWidth="3.0">
+      <ImageView fitHeight="98.0" fitWidth="20.0" layoutX="635.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/mouse.png" />
+         </image>
          <effect>
-            <Bloom />
+            <Glow level="0.4" />
          </effect>
-      </Line>
-      <Pane fx:id="paPlay" layoutX="40.0" layoutY="300.0" onMouseClicked="#onPlayPaneClicked" onMouseEntered="#onPlayPaneEntered" onMouseExited="#onPlayPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paPlayOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="14.0" layoutY="4.0" text="Play Again" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-       <Pane fx:id="paNavigation" layoutX="40.0" layoutY="350.0" onMouseClicked="#onNavigationPaneClicked" onMouseEntered="#onNavigationPaneEntered" onMouseExited="#onNavigationPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paNavigationOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="14.0" layoutY="4.0" text="Return to Main Menu" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="paExit" layoutX="40.0" layoutY="400.0" onMouseClicked="#onExitPaneClicked" onMouseEntered="#onExitPaneEntered" onMouseExited="#onExitPaneExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Bloom />
-         </effect>
-         <children>
-            <Pane fx:id="paExitOverlay" layoutX="2.0" layoutY="2.0" prefHeight="36.0" prefWidth="236.0" style="-fx-background-color: #201303;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false" />
-            <Label layoutX="14.0" layoutY="4.0" text="Exit Game" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      </ImageView>
       <Pane fx:id="paNo" disable="true" layoutX="400.0" layoutY="400.0" onMouseClicked="#onNoPaneClicked" onMouseEntered="#onNoPaneEntered" onMouseExited="#onNoPaneExited" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent;" styleClass="custom-border-pane" stylesheets="@../../css/menus/mainMenu.css" visible="false">
          <effect>
             <Bloom />
@@ -106,36 +77,387 @@
             </Label>
          </children>
       </Pane>
-      <Line endX="-9.99998950958252" endY="30.0" layoutX="40.0" layoutY="420.0" startX="-9.99998950958252" stroke="#7e5700">
+      <Pane layoutX="40.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: #060d12;">
          <effect>
-            <Bloom />
+            <InnerShadow blurType="TWO_PASS_BOX" height="0.0" offsetX="10.0" radius="39.5" width="160.0">
+               <color>
+                  <Color red="0.25999999046325684" green="0.049400001764297485" blue="0.049400001764297485" opacity="0.8045685291290283" />
+               </color>
+            </InnerShadow>
          </effect>
-      </Line>
-      <Line endX="30.0" endY="-3.0517578125E-5" layoutX="30.0" layoutY="450.0" stroke="#7e5700">
+         <children>
+            <ImageView fitHeight="480.0" fitWidth="240.0" opacity="0.8" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/codebackground.jpg" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="40.0">
+                     <bumpInput>
+                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.3686274588108063" green="0.09803921729326248" blue="0.09803921729326248" opacity="0.7200000286102295" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Pane fx:id="paSelect" layoutX="170.0" layoutY="-30.0" opacity="0.85" prefHeight="20.0" prefWidth="20.0">
+               <children>
+                  <Line endX="5.0" fill="#f85454" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutY="15.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutX="15.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="20.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutX="15.0" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="20.0" layoutY="15.0" stroke="#f85454" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutY="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="5.0" fill="#f85454" layoutX="15.0" layoutY="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="5.0" fill="#f85454" layoutX="10.0" layoutY="15.0" stroke="#f85454">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Pane>
+            <Pane fx:id="paPlay" layoutX="20.0" layoutY="240.0" onMouseClicked="#onPlayPaneClicked" onMouseEntered="#onPlayPaneEntered" onMouseExited="#onPlayPaneExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <children>
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="PLAY AGAIN" textFill="#ff4a54">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.8" />
+                     </effect>
+                  </Label>
+                  <Line endX="190.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="35.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="175.0" fill="#74c0c3" layoutY="35.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="20.0" fill="#74c0c3" layoutX="190.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="190.0" endY="20.0" fill="#74c0c3" startX="175.0" startY="35.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paMenu" layoutX="20.0" layoutY="285.0" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="MAIN MENU" textFill="#ff4a54">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.8" />
+                     </effect>
+                  </Label>
+                  <Line endX="190.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="35.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="175.0" fill="#74c0c3" layoutY="35.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="20.0" fill="#74c0c3" layoutX="190.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="190.0" endY="20.0" fill="#74c0c3" startX="175.0" startY="35.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="paExit" layoutX="20.0" layoutY="330.0" onMouseClicked="#onExitPaneClicked" onMouseEntered="#onExitPaneEntered" onMouseExited="#onExitPaneExited" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: transparent;" styleClass="transparent-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <children>
+                  <Label layoutX="10.0" layoutY="4.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="QUIT GAME" textFill="#ff4a54">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.8" />
+                     </effect>
+                  </Label>
+                  <Line endX="190.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="35.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="175.0" fill="#74c0c3" layoutY="35.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endY="20.0" fill="#74c0c3" layoutX="190.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+                  <Line endX="190.0" endY="20.0" fill="#74c0c3" startX="175.0" startY="35.0" stroke="#74c0c3" strokeWidth="1.5">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Label layoutX="10.0" layoutY="390.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS AN EASSTER EGG LOL" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="440.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="LOREM IPSUM BLAH BLAH VISUAL TEXT" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="446.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="WOWWY WOW WO" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="100.0" fitWidth="180.0" layoutX="-60.0" layoutY="100.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/globe.png" />
+         </image>
          <effect>
-            <Bloom />
+            <Glow level="0.8">
+               <input>
+                  <Lighting diffuseConstant="1.2" specularConstant="0.1">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="1.0" green="0.5092592835426331" blue="0.5092592835426331" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
          </effect>
-      </Line>
-      <Line endX="10.0" layoutX="200.0" layoutY="450.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endX="60.0" endY="-3.0517578125E-5" layoutX="220.0" layoutY="450.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endY="45.0" layoutX="30.0" layoutY="365.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
-      <Line endY="10.0" layoutX="30.0" layoutY="345.0" stroke="#7e5700" strokeWidth="2.0">
-         <effect>
-            <Bloom />
-         </effect>
-      </Line>
+      </ImageView>
       <Line fx:id="lineConfirm" endX="60.0" endY="-3.0517578125E-5" layoutX="495.0" layoutY="370.0" stroke="#7e5700" strokeWidth="2.0" visible="false">
          <effect>
             <Bloom />
@@ -149,6 +471,276 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <TextArea fx:id="taMessage" disable="true" editable="false" focusTraversable="false" layoutX="360.0" layoutY="140.0" prefHeight="273.0" prefWidth="300.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" text="{}" wrapText="true" />
+      <Label layoutX="660.0" layoutY="450.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="SELECT" textFill="#ff4a54">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="130.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="MISSION FAILED" textFill="#ff4a54">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <effect>
+            <Glow level="0.9">
+               <input>
+                  <DropShadow height="55.27" radius="35.7025" width="89.54">
+                     <color>
+                        <Color red="0.4912280738353729" green="0.11825861036777496" blue="0.11825861036777496" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </Glow>
+         </effect>
+      </Label>
+      <Pane layoutX="330.0" layoutY="220.0" prefHeight="210.0" prefWidth="340.0">
+         <children>
+            <Pane layoutY="20.0" prefHeight="120.0" prefWidth="340.0" styleClass="losing-border-pane" stylesheets="@../../css/menus/backstory.css">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <Label layoutX="10.0" layoutY="5.0" opacity="0.8" prefWidth="320.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="Mission failed! The AI has rebooted to its previous rogue state. The world is on the brink of annihilation..." textFill="#ff4a54" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.6" />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="15.0" prefWidth="200.0" style="-fx-background-color: #f85454;">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="0.3803921639919281" blue="0.3803921639919281" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+               <children>
+                  <Label layoutX="5.0" layoutY="-1.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="CRITICAL ERROR" />
+               </children>
+            </Pane>
+            <Pane layoutX="280.0" layoutY="185.0" opacity="0.6" prefHeight="25.0" prefWidth="60.0" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+               <children>
+                  <Label layoutX="3.0" layoutY="3.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="VTRZ-AL0-12939-sdj-218" textFill="#f85454">
+                     <effect>
+                        <Glow level="0.4" />
+                     </effect>
+                     <font>
+                        <Font size="4.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="3.0" layoutY="10.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="AL-092          [ -- ]" textFill="#f85454">
+                     <effect>
+                        <Glow level="0.4" />
+                     </effect>
+                     <font>
+                        <Font size="4.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="paConfirm" layoutX="83.0" layoutY="192.0" opacity="0.69" prefHeight="10.0" prefWidth="10.0" styleClass="select-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <children>
+                  <Line endX="10.0" endY="10.0" fill="#f85454" stroke="#f85454">
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Line>
+                  <Line endY="10.0" fill="#f85454" startX="10.0" stroke="#f85454">
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Line>
+               </children>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </Pane>
+            <Pane layoutX="-5.0" layoutY="20.0" prefHeight="80.0" prefWidth="5.0" style="-fx-background-color: #f85454;">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow radius="16.3275" width="46.31">
+                           <color>
+                              <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+               <children>
+                  <Line endY="50.0" layoutX="3.0" layoutY="5.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="101.0" layoutY="185.0" opacity="0.6" prefHeight="25.0" prefWidth="180.0" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
+               <effect>
+                  <Glow />
+               </effect>
+            </Pane>
+            <Pane layoutX="121.0" layoutY="193.0" prefHeight="10.0" prefWidth="140.0" style="-fx-background-color: #f85454;">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="0.3803921639919281" blue="0.3803921639919281" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Pane>
+            <Pane layoutX="61.1" layoutY="195.9" opacity="0.4" prefHeight="5.0" prefWidth="15.0" style="-fx-background-color: #f85454;">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="0.364705890417099" blue="0.364705890417099" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Pane>
+            <Pane layoutX="340.0" layoutY="40.0" prefHeight="80.0" prefWidth="5.0" style="-fx-background-color: #f85454;">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow radius="16.3275" width="46.31">
+                           <color>
+                              <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Pane>
+            <Polygon fill="#f85454" layoutX="524.0" layoutY="115.0" points="-523.0, -15.333343505859375, -523.0, -7.750030517578125, -529.6666259765625, -15.333343505859375" stroke="#f85454" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow radius="16.3275" width="46.31">
+                           <color>
+                              <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Polygon>
+            <Polygon fill="#f85454" layoutX="23.0" layoutY="196.0" opacity="0.4" points="15.999969482421875, 4.583343505859375, 37.999969482421875, 4.583343505859375, 37.999969482421875, -3.083343505859375" stroke="#f85454" strokeType="INSIDE">
+               <effect>
+                  <Glow>
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="0.364705890417099" blue="0.364705890417099" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Polygon>
+            <Polygon fill="#f85454" layoutX="862.0" layoutY="135.0" points="-523.0, -15.333343505859375, -523.0, -7.750030517578125, -516.9999389648438, -15.000030517578125" stroke="#f85454" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow radius="16.3275" width="46.31">
+                           <color>
+                              <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Polygon>
+            <Polygon fill="#f85454" layoutX="862.0" layoutY="55.0" points="-523.0, -15.333343505859375, -522.9999389648438, -22.083343505859375, -516.6666870117188, -15.333343505859375" stroke="#f85454" strokeType="INSIDE">
+               <effect>
+                  <Glow level="0.2">
+                     <input>
+                        <DropShadow radius="16.3275" width="46.31">
+                           <color>
+                              <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Polygon>
+            <Label layoutY="145.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS SOME TEXT THAT IS IRRELEVANT" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutY="150.0" opacity="0.5" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS ALSO SOME TEXT" textFill="#fd4343">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="150.0" opacity="0.2" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS SOME TEXT THAT IS IRRELEVANT" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutY="156.0" opacity="0.5" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="SOME VISUAL TEXT" textFill="#fd4343">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="145.0" opacity="0.2" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS SOME TEXT THAT IS IRRELEVANT SUPER TO THE GAME IN BLAH BLAH" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="156.0" opacity="0.2" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS SOME TEXT THAT IS IRRELEVANT SUPER TO THE GAME IN BLAH BLAH THIS IS EVEN LONGER LOL" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Line endX="70.0" layoutX="31.0" layoutY="185.5" opacity="0.6" stroke="#f85454" />
+            <Line endX="70.0" layoutX="31.0" layoutY="209.5" opacity="0.6" stroke="#f85454" />
+            <Line endY="15.0" layoutX="339.5" layoutY="170.0" opacity="0.6" stroke="#f85454" />
+            <Line endX="308.5" layoutX="31.0" layoutY="170.0" opacity="0.6" stroke="#f85454" />
+            <Line endX="208.5" layoutX="130.0" layoutY="178.0" opacity="0.4" stroke="#d04848" />
+         </children>
+      </Pane>
    </children>
+   <effect>
+      <InnerShadow height="255.0" offsetY="10.0" radius="68.5">
+         <color>
+            <Color red="0.09502924233675003" green="0.15175437927246094" blue="0.2368421107530594" />
+         </color>
+      </InnerShadow>
+   </effect>
 </Pane>
