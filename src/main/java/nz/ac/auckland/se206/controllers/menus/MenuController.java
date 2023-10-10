@@ -5,8 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.HintManager;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -138,90 +136,6 @@ public abstract class MenuController {
   /** When settings is clicked, switch the scene to options scene. */
   @FXML
   protected abstract void onNavigationPaneClicked();
-
-  /** This method will reset all the global fields in GameState. */
-  private void resetGlobalVariables() {
-    // Reset riddle puzzle solved
-    GameState.isRiddleResolved = false;
-
-    // Reset logic gate puzzle solved
-    GameState.isLogicGateSolved = false;
-
-    // Reset decryption puzzle solved
-    GameState.isDecryptionSolved = false;
-
-    // Reset global game solved
-    GameState.isSolved = false;
-
-    // Reset amount of riddles solved
-    GameState.riddlesSolved = 0;
-
-    // Reset the amount of hints user has
-    GameState.hintCounter = GameState.maxHints;
-
-    // Reset all interactions
-    Interactions.reset();
-
-    // Reset the chatting status
-    GameState.isChatting = false;
-
-    // Reset the TTS
-    GameState.isSpeaking = false;
-
-    // Reset the AI message
-    GameState.currentAiMessage = "";
-
-    // Reset the player message
-    GameState.currentPlayerMessage = "";
-
-  }
-
-  /** Starts the game. */
-  private void startGame() {
-    resetGlobalVariables();
-
-    try {
-      SceneManager.onResetLevel();
-    } catch (IOException e) {
-      // on error print stack trace
-      e.printStackTrace();
-    }
-
-    // Set the timer's countdown time
-    Timer.setTime(GameState.maxTime);
-
-    // start the timer
-    if (!GameState.isDeveloperMode) {
-      Timer.play();
-    }
-
-    // Initialize the hint counter components
-    HintManager.initializeHintCounter();
-
-    // change scene to Room
-    App.setUi(AppUi.OFFICE);
-  }
-
-  /** Enables the exit components of the menu. */
-  private void enableExitComponents() {
-    // Set the underline visible
-    lineConfirm.setVisible(true);
-
-    // Set the confirmation label visible
-    lblConfirm.setVisible(true);
-
-    // Set the no pane visible
-    paNo.setVisible(true);
-
-    // Set the yes pane visible
-    paYes.setVisible(true);
-
-    // Enable the no pane
-    paNo.setDisable(false);
-
-    // Enable the yes pane
-    paYes.setDisable(false);
-  }
 
   /** Disables the exit components of the menu. */
   protected void disableExitComponents() {
