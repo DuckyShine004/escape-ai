@@ -131,10 +131,7 @@ public class App extends Application {
 
     // initialize the hint manager
     HintManager.initialize();
-
-    // initialize the chat manager
-    ChatManager.initialize();
-
+    
     // main menu
     SceneManager.addAppUi(AppUi.MENU, loadFxml("menus/menu"));
 

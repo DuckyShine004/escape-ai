@@ -75,4 +75,11 @@ public class GameState {
 
   /** Overlay opacity for the room interactions. */
   public static float overlayCapacity = 0.4f;
+
+  /** The current AI message. */
+  public static String currentAiMessage = "";
+
+  /** The current player message. */
+  public static String currentPlayerMessage = "";
+  
 }

@@ -18,8 +18,10 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<Pane fx:id="paBreaker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BreakerRoomController">
+<Pane fx:id="paRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BreakerRoomController">
    <children>
       <Pane layoutX="11.0" layoutY="51.0" prefHeight="423.0" prefWidth="698.0" style="-fx-background-color: #4F4F4F;">
          <effect>
@@ -133,7 +135,7 @@
             <Glow level="0.65" />
          </effect>
       </Label>
-      <ImageView fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
+      <ImageView fx:id="imgRoom" fitHeight="415.0" fitWidth="690.0" layoutX="15.0" layoutY="55.0">
          <image>
             <Image url="@../../images/rooms/breaker.png" />
          </image>
@@ -154,8 +156,12 @@
          </cursor>
       </Pane>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
-      <TextArea fx:id="taChat" editable="false" layoutX="50.0" layoutY="65.0" prefHeight="335.0" prefWidth="450.0" styleClass="custom-text-area" stylesheets="@../../css/menus/chatArea.css" visible="false" wrapText="true" />
-      <TextField fx:id="tfChat" layoutX="50.0" layoutY="400.0" prefHeight="25.0" prefWidth="450.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
+      <VBox fx:id="vbChat" layoutX="250.0" layoutY="80.0" prefHeight="300.0" prefWidth="380.0" visible="false" spacing="10.0">
+         <Label fx:id="lblOldestChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
+         <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true"/>
+         <Label fx:id="lblPlayerChat" styleClass="chat-bubble1" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
+      </VBox>
+      <TextField fx:id="tfChat" layoutX="250.0" layoutY="400.0" prefHeight="25.0" prefWidth="380.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
          <effect>
             <Glow level="0.1" />
          </effect>
@@ -163,7 +169,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="537.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
+     <ImageView fx:id="imgAvatarShaddow" fitHeight="171.0" fitWidth="177.0" layoutX="27.0" layoutY="330.0" onMouseClicked="#onAiClicked" opacity="0.4" styleClass="imageView" visible="false">
          <image>
             <Image url="@../../images/avataroutline.png" />
          </image>
@@ -171,11 +177,24 @@
             <ColorAdjust />
          </effect>
       </ImageView>
-      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="550.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
+      <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
          <image>
             <Image url="@../../images/mutedavatar.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="643.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="133.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
+      <Circle fx:id="crcEye1" fill="WHITE" layoutX="142.0" layoutY="384.0" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Circle>
+      <Circle fx:id="crcEye2" fill="WHITE" layoutX="101.0" layoutY="379.0" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <Glow level="0.65" />
+         </effect>
+      </Circle>
+      <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
+      <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
+      <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" visible="false" opacity="0.75"/>
    </children>
 </Pane>

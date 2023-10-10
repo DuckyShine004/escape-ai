@@ -12,18 +12,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class ControlRoomController extends RoomController {
-  @FXML private Pane paControl;
   @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;
@@ -54,17 +52,13 @@ public class ControlRoomController extends RoomController {
 
   /** Initializes the control room. */
   @FXML
-  private void initialize() {
+  protected void initialize() {
+    super.initialize();
     // Add the label to list of labels to be updated.
     Timer.addLabel(lblTime);
 
     // Add the hint counter components
     HintManager.addHintComponents(lblHintCounter, pgHint);
-
-    // Add the text area and text field to the list of chat components
-    ChatManager.addChatComponents(taChat, tfChat);
-
-    ChatManager.addAiInstance(imgAvatar, imgEmotion);
   }
 
   /**
@@ -168,42 +162,23 @@ public class ControlRoomController extends RoomController {
 
 
   @FXML
-  private void onHintClicked(MouseEvent mouseEvent) {
-    // If the difficulty is hard, ignore user.
-    if (GameState.gameDifficulty == Difficulty.HARD) {
-      return;
-    }
-
-    // If the number of remaining hints is zero
-    if (GameState.hintCounter == 0) {
-      return;
-    }
-
-    // Toggle the AI
-    if (!GameState.isChatting) {
-      onAiClicked(mouseEvent);
-    }
-
-    // Update the hint counter
-    HintManager.updateHintCounter();
+  public void onHintClicked(MouseEvent mouseEvent) {
+    super.onHintClicked(mouseEvent);
 
     // If the control panel has not been clicked on yet
     if (!Interactions.isControlPanelClicked) {
-      ChatManager.getUserHint(false);
+      getUserHint(false);
       return;
     }
 
     // If the control keyboard has not been clicked on yet
     if (!Interactions.isControlKeyboardClicked) {
-      ChatManager.getUserHint(false);
+      getUserHint(false);
       return;
     }
 
-    // Disable the hints button
-    pgHint.setDisable(true);
-
     // Tell the player that the room has been completed
-    ChatManager.getUserHint(true);
+    getUserHint(true);
   }
 
   /** On mouse clicked, if the control panel is pressed, then switch to the terminal scene. */
@@ -234,7 +209,7 @@ public class ControlRoomController extends RoomController {
                   + " self.");
 
       // Append the user's response to the text area
-      ChatManager.getChatResponse(terminationMessage, false);
+      getChatResponse(terminationMessage, false);
 
       // Set game is solved to true
       GameState.isSolved = true;
@@ -249,8 +224,13 @@ public class ControlRoomController extends RoomController {
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
-      ChatManager.updateChatResponse(
-          "Why are you trying to access the control panel? Unfortunately, it is locked.");
+      setUserResponse("Let me access the control panel!");
+      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control panel.");
     }
+  }
+  
+  @Override
+  protected String getRoomHint() {
+    return GptPromptEngineering.getControlRoomHint();
   }
 }

@@ -8,20 +8,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.constants.Interactions;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class GeneralOfficeController extends RoomController {
-  @FXML private Pane paOffice;
 
   @FXML private Label lblTime;
   @FXML private Label lblHintCounter;
@@ -40,17 +37,13 @@ public class GeneralOfficeController extends RoomController {
 
   /** Initializes the general office. */
   @FXML
-  private void initialize() {
+  protected void initialize() {
+    super.initialize();
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
 
     // Add the hint counter components
     HintManager.addHintComponents(lblHintCounter, pgHint);
-
-    // Add the text area and text field to the list of chat components
-    ChatManager.addChatComponents(taChat, tfChat);
-
-    ChatManager.addAiInstance(imgAvatar, imgEmotion);
   }
 
   /**
@@ -113,35 +106,22 @@ public class GeneralOfficeController extends RoomController {
   }
 
   @FXML
+  @Override
   public void onHintClicked(MouseEvent mouseEvent) {
-    // If the difficulty is hard, ignore user.
-    if (GameState.gameDifficulty == Difficulty.HARD) {
-      return;
-    }
-
-    // If the number of remaining hints is zero
-    if (GameState.hintCounter == 0) {
-      return;
-    }
-
-    // Toggle the AI
-    if (!GameState.isChatting) {
-      onAiClicked(mouseEvent);
-    }
-
-    // Update the hint counter
-    HintManager.updateHintCounter();
+    super.onHintClicked(mouseEvent);
 
     // If the desktop has not been clicked on yet
     if (!Interactions.isDesktopClicked) {
-      ChatManager.getUserHint(false);
+      getUserHint(false);
       return;
     }
 
-    // Disable the hints button
-    pgHint.setDisable(true);
-
     // Tell the player that the room has been completed
-    ChatManager.getUserHint(true);
+    getUserHint(true);
+  }
+
+  @Override
+  protected String getRoomHint() {
+    return GptPromptEngineering.getOfficeRoomHint();
   }
 }

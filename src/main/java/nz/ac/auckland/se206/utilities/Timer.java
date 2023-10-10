@@ -7,9 +7,9 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.controllers.rooms.RoomController;
 
 /** The timer class keeps track of the time left for the player. */
 public class Timer {
@@ -126,7 +126,7 @@ public class Timer {
 
     // At 30 seconds remaining, GPT will switch personas
     if (time == GameState.criticalTime) {
-      ChatManager.updateChatPersona();
+      RoomController.updateChatPersona();
     }
   }
 

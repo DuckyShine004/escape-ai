@@ -621,23 +621,4 @@ public class RiddlePuzzleController {
       GameState.isRiddleResolved = true;
     }
   }
-
-  /**
-   * Update all things related to timing here. Such an example is using animation timer to update
-   * the timer text on each frame.
-   */
-  // private void updateScene() {
-  //   AnimationTimer animationTimer =
-  //       new AnimationTimer() {
-  //         // This method is called every frame (~60 times per second)
-  //         @Override
-  //         public void handle(long time) {
-  //           // Update the timer text
-  //           lblTime.setText(Timer.getTime());
-  //         }
-  //       };
-
-  //   // Start the animation timer
-  //   animationTimer.start();
-  // }
 }
