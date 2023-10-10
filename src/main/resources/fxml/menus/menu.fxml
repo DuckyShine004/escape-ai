@@ -687,7 +687,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="-245.0" layoutY="240.0" opacity="0.5" rotate="90.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q 7 R 8 S 9 T 0 U 1 V 2 W 3 X 4 Y 5 Z 6" textFill="#ba4f4f">
+      <Label layoutX="-240.0" layoutY="241.0" opacity="0.5" rotate="90.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q 7 R 8 S 9 T 0 U 1 V 2 W 3 X 4 Y 5 Z 6" textFill="#ba4f4f">
          <effect>
             <Glow level="0.8" />
          </effect>
