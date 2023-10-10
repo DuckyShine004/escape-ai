@@ -4,6 +4,11 @@
   -fx-border-width: 2px;
 }
 
+.losing-border-pane {
+  -fx-border-color: #f85454;
+  -fx-border-width: 1.5px;
+}
+
 /* For the transparent pane */
 .transparent-border-pane {
   -fx-border-color: transparent;

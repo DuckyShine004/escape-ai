@@ -6,7 +6,6 @@ import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
-import nz.ac.auckland.se206.ChatManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -63,9 +62,6 @@ public class BackstoryController {
 
     // Initialize the hint counter components
     HintManager.initializeHintCounter();
-
-    // Clear the chat manager
-    ChatManager.reset();
 
     // Change scene to office
     App.setUi(AppUi.OFFICE);
