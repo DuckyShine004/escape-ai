@@ -38,6 +38,52 @@
             </Lighting>
          </effect>
       </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="120.0" layoutX="585.0" layoutY="10.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/danger.png" />
+         </image>
+         <effect>
+            <Glow level="0.4">
+               <input>
+                  <Lighting diffuseConstant="1.2" surfaceScale="6.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.5701754093170166" green="0.330842524766922" blue="0.330842524766922" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="590.0" layoutY="45.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/brainscan.png" />
+         </image>
+         <effect>
+            <Glow level="0.6">
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.5964912176132202" green="0.1417587250471115" blue="0.1417587250471115" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
       <Line endY="480.0" fill="#6b1a1a" layoutX="40.0" opacity="0.8" stroke="#6b1a1a" strokeWidth="2.0">
          <effect>
             <DropShadow>
@@ -543,6 +589,29 @@
                   <Line endY="50.0" layoutX="3.0" layoutY="5.0" />
                </children>
             </Pane>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="205.0" layoutY="-2.0" opacity="0.6" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/warning.png" />
+               </image>
+               <effect>
+                  <Glow level="0.6">
+                     <input>
+                        <Lighting diffuseConstant="1.2" surfaceScale="4.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.9649122953414917" green="0.7236841917037964" blue="0.7236841917037964" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect>
+            </ImageView>
             <Pane layoutX="101.0" layoutY="185.0" opacity="0.6" prefHeight="25.0" prefWidth="180.0" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
                <effect>
                   <Glow />
@@ -1000,6 +1069,18 @@
             </Label>
          </children>
       </Pane>
+      <Line endX="110.0" fill="#6b1a1a" layoutX="590.0" layoutY="159.0" opacity="0.6" stroke="#6b1a1a" strokeWidth="2.0">
+         <effect>
+            <DropShadow>
+               <input>
+                  <Glow level="0.8" />
+               </input>
+               <color>
+                  <Color red="0.719298243522644" green="0.24642625451087952" blue="0.24642625451087952" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Line>
    </children>
    <effect>
       <InnerShadow height="255.0" offsetY="10.0" radius="68.5">
