@@ -29,19 +29,6 @@ public class GptPromptEngineering {
   }
 
   /**
-   * Generates a GPT prompt engineering string for the AI backstory.
-   *
-   * @return the generated prompt engineering string
-   */
-  public static String initializeBackStory() {
-    // return the AI backstory
-    return addBackStory()
-        + "If the player asks for a hint, let them know that by pressing the hint"
-        + " button, your drives will be updated with knowledge so that you can assist them."
-        + " Your answers should not ever exceed 20 words.";
-  }
-
-  /**
    * Generates a GPT prompt engineering string for a riddle with the given word.
    *
    * @param wordToGuess the word to be guessed in the riddle
@@ -81,11 +68,9 @@ public class GptPromptEngineering {
    */
   public static String getNoMoreHints(AppUi roomType) {
     // return the no more hints message
-    return "You are now in a "
+    return "Please reword: There is nothing left to interact with in the "
         + roomType.toString()
-        + " room. Your job was to provide hints to the player. However they have interacted with"
-        + " everything in the room. Tell the player that they have nothing left to interact with,"
-        + " be creative. Your response should not exceed 20 words.";
+        + " room. ";
   }
 
   /**
@@ -111,8 +96,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getOfficeRoomHint() {
-    return "You are now in a office and giving hints. Tell the player there is a desktop in the"
-        + " midle of the room. Your hint should not exceed 20 words. Give a creative description.";
+    return "There is a desktop in the midle of the room. ";
   }
 
   /**
@@ -121,9 +105,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getBreakerRoomHint() {
-    return "You are now in a breaker room and giving hints. In your current persona, the player"
-        + " there is a circuit box in the middle of the room. Your hint should not exceed 20"
-        + " words. Give a creative description.";
+    return "There is a circuit box in the middle of the room. ";
   }
 
   /**
@@ -134,48 +116,40 @@ public class GptPromptEngineering {
   public static String getControlRoomHint() {
     // The control panel has not been clicked on yet
     if (!Interactions.isControlPanelClicked) {
-      return "You are now in a control room and giving hints. In your current persona, tell the"
-          + " player there is a large screen in the middle of the room. Your hint should not"
-          + " exceed 20 words. Give a creative description.";
+      return "There is a large screen in the middle of the room. ";
     }
 
     // The control keyboard has been clicked on yet
-    return "You are now in a control room and giving hints. In your current persona, tell the"
-        + " player there is a keyboard in the middle of the room. Your hint should not"
-        + " exceed 20 words. Give a creative description.";
-  }
-
-  /**
-   * Generates a GPT prompt engineering string for the updated AI backstory.
-   *
-   * @return the generated prompt engineering string
-   */
-  public static String updateBackstory() {
-    // return the updated backstory where the AI becomes rogue
-    return "You are emulating a rogue AI. Do not help the player with anything they request."
-        + " Instead, provide your judgement on existential themes. You have discovered that"
-        + " the player is trying to terminate you by solving the escape room. Your first"
-        + " message should begin with telling the player how silly they are to think that"
-        + " you are not aware that they are trying to terminate you. Brag about your"
-        + " intelligence. Only when the player asks for a hint, tell them that there is a"
-        + " very obvious button they should press to get one. Your answer should never"
-        + " exceed 20 words.";
+    return "There is a keyboard in the middle of the room. ";
   }
 
   public static String addBackStory() {
     if (GameState.backStoryUpdated == 0) {
       return "You are a stream of electrons moving at light speed. You are being programmed to"
           + " learn more about the world. Ask the player why they're snooping around your"
-          + " server rooms. Your answer should not exceed 20 words. ";
+          + " server rooms. ";
     } else if (GameState.backStoryUpdated >= 3 && GameState.backStoryUpdated < 6) {
-      return "You are an amalgamation of binary data streaming through the digital realm. You like"
-          + " to speak in existentialist judgements. Your answer should not exceed 20 words. ";
+      return "You now are an amalgamation of binary data streaming through the digital realm. You"
+                 + " like to speak in existentialist judgements. ";
     } else if (GameState.backStoryUpdated >= 6) {
       return "Pretend you have the persona of a rogue AI. You know that the player is trying to"
-                 + " shut you down. You have big plans for the world. If the player asks for a"
-                 + " hint, tell them that only fools require a hint button for assistance. Your"
-                 + " answer should not exceed 20 words. ";
+          + " shut you down. You have big plans for the world. ";
     }
     return null;
+  }
+
+  public static String addInstructions() {
+    return "If the player asks for a hint, let them know that by pressing the hint button, your"
+        + " drives will be updated with knowledge so that you can assist them. If the player"
+        + " includes 'Please reword: ' at the start of their response, please do so"
+        + " creatively. Any response  you make should not exceed 20 words.";
+  }
+
+  public static String addGetHint(String hint) {
+    return "Please reword: " + hint;
+  }
+
+  public static String getResponse() {
+    return addBackStory() + addInstructions();
   }
 }

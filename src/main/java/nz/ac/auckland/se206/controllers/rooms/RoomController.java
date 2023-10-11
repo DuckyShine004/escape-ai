@@ -105,7 +105,7 @@ public abstract class RoomController {
     ChatMessage gptMessage;
 
     // initialize GPT chat message object
-    gptMessage = new ChatMessage("assistant", GptPromptEngineering.initializeBackStory());
+    gptMessage = new ChatMessage("assistant", GptPromptEngineering.getResponse());
 
     // initialize an instance of GPT request
     gptRequest = new ChatCompletionRequest();
@@ -202,6 +202,7 @@ public abstract class RoomController {
     Platform.runLater(
         () -> {
           setAiMessage(gptOutput);
+          GameState.backStoryUpdated++;
         });
   }
 
@@ -211,7 +212,6 @@ public abstract class RoomController {
    * @param message the message to be appended to the text area.
    */
   public void setUserResponse(String message) {
-    GameState.backStoryUpdated++;
     swapLabelsOrder();
     if (GameState.currentPlayerMessage != "" && GameState.currentAiMessage != "") {
       oldestChatProperty.set(GameState.currentPlayerMessage);
@@ -353,13 +353,15 @@ public abstract class RoomController {
     ChatMessage userMessage;
 
     // create a new instance of user chat message object
-    userMessage =
-        new ChatMessage(
-            "user",
-            GptPromptEngineering.addBackStory()
-                + "This is what the player says to you: "
-                + userInput);
-
+    if (GameState.backStoryUpdated % 3 == 0) {
+      userMessage =
+          new ChatMessage(
+              "user", GptPromptEngineering.getResponse() + "The player says: " + userInput);
+    } else {
+      userMessage =
+          new ChatMessage(
+              "user", userInput);
+    }
     setUserResponse(userInput);
 
     getChatResponse(userMessage, false);
@@ -447,7 +449,8 @@ public abstract class RoomController {
     String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
 
     // Initialize a user hint message compatible for GPT to analyze
-    ChatMessage userHintMessage = new ChatMessage("assistant", GptPromptEngineering.addBackStory() + hint);
+    ChatMessage userHintMessage =
+        new ChatMessage("assistant", GptPromptEngineering.addGetHint(hint));
 
     // Get GPT's response
     getChatResponse(userHintMessage, true);
@@ -458,5 +461,4 @@ public abstract class RoomController {
   }
 
   protected abstract String getRoomHint();
-
 }
