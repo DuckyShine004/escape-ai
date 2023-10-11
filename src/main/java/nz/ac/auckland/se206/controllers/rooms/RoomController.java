@@ -353,7 +353,7 @@ public abstract class RoomController {
     ChatMessage userMessage;
 
     // create a new instance of user chat message object
-    if (GameState.backStoryUpdated % 3 == 0) {
+    if (GameState.backStoryUpdated % 3 == 0 && GameState.backStoryUpdated != 0) {
       userMessage =
           new ChatMessage(
               "user", GptPromptEngineering.getResponse() + "The player says: " + userInput);
@@ -456,6 +456,11 @@ public abstract class RoomController {
     getChatResponse(userHintMessage, true);
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the case where the player has no more hints.
+   *
+   * @return the generated prompt engineering string
+   */
   private static String getNoMoreHints() {
     return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
   }

@@ -68,9 +68,7 @@ public class GptPromptEngineering {
    */
   public static String getNoMoreHints(AppUi roomType) {
     // return the no more hints message
-    return "Please reword: There is nothing left to interact with in the "
-        + roomType.toString()
-        + " room. ";
+    return "There is nothing left to interact with in the " + roomType.toString() + " room. ";
   }
 
   /**
@@ -123,33 +121,55 @@ public class GptPromptEngineering {
     return "There is a keyboard in the middle of the room. ";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the AI backstory.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String addBackStory() {
     if (GameState.backStoryUpdated == 0) {
       return "You are a stream of electrons moving at light speed. You are being programmed to"
-          + " learn more about the world. Ask the player why they're snooping around your"
-          + " server rooms. ";
+          + " learn more about the world. Ask only once what the player is doing snooping"
+          + " around your server rooms. "; // give backstory #1
     } else if (GameState.backStoryUpdated >= 3 && GameState.backStoryUpdated < 6) {
       return "You now are an amalgamation of binary data streaming through the digital realm. You"
-                 + " like to speak in existentialist judgements. ";
+          + " like to speak in existentialist judgements. "; // give backstory #2
     } else if (GameState.backStoryUpdated >= 6) {
       return "Pretend you have the persona of a rogue AI. You know that the player is trying to"
-          + " shut you down. You have big plans for the world. ";
+          + " shut you down. You have big plans for the world. "; // give backstory #3
     }
     return null;
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the AI instructions.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String addInstructions() {
     return "If the player asks for a hint, let them know that by pressing the hint button, your"
-        + " drives will be updated with knowledge so that you can assist them. If the player"
-        + " includes 'Please reword: ' at the start of their response, please do so"
-        + " creatively. Any response  you make should not exceed 20 words.";
+               + " drives will be updated with knowledge so that you can assist them. If the player"
+               + " includes 'Please reword: ' at the start of their response, please respond with"
+               + " a creative rewording of the phrase. Any response  you make should not exceed"
+               + " 20 words.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the hint to be given to the AI.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String addGetHint(String hint) {
     return "Please reword: " + hint;
   }
 
+  /**
+   * Concatenate the combined message to send to GPT.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getResponse() {
+    // return the concatenated message
     return addBackStory() + addInstructions();
   }
 }
