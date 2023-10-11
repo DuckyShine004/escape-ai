@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers.menus;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -8,12 +7,7 @@ import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
-import nz.ac.auckland.se206.HintManager;
-import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.constants.GameState;
-import nz.ac.auckland.se206.constants.Interactions;
-import nz.ac.auckland.se206.utilities.Timer;
 
 public abstract class MenuController {
   @FXML private Pane paNo;

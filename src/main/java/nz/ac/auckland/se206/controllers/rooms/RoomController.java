@@ -211,6 +211,7 @@ public abstract class RoomController {
    * @param message the message to be appended to the text area.
    */
   public void setUserResponse(String message) {
+    GameState.backStoryUpdated++;
     swapLabelsOrder();
     if (GameState.currentPlayerMessage != "" && GameState.currentAiMessage != "") {
       oldestChatProperty.set(GameState.currentPlayerMessage);
@@ -262,7 +263,6 @@ public abstract class RoomController {
     // Start the timeline
     timeline.play();
   }
-  
 
   @FXML
   protected void onAiClicked(MouseEvent event) {
@@ -353,7 +353,12 @@ public abstract class RoomController {
     ChatMessage userMessage;
 
     // create a new instance of user chat message object
-    userMessage = new ChatMessage("user", userInput);
+    userMessage =
+        new ChatMessage(
+            "user",
+            GptPromptEngineering.addBackStory()
+                + "This is what the player says to you: "
+                + userInput);
 
     setUserResponse(userInput);
 
@@ -442,7 +447,7 @@ public abstract class RoomController {
     String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
 
     // Initialize a user hint message compatible for GPT to analyze
-    ChatMessage userHintMessage = new ChatMessage("assistant", hint);
+    ChatMessage userHintMessage = new ChatMessage("assistant", GptPromptEngineering.addBackStory() + hint);
 
     // Get GPT's response
     getChatResponse(userHintMessage, true);
@@ -454,17 +459,4 @@ public abstract class RoomController {
 
   protected abstract String getRoomHint();
 
-  /**
-   * Updates chat GPT's persona when called. This should influence the GPT's response to the user.
-   */
-  public static void updateChatPersona() {
-    // initialize the chat message field
-    ChatMessage gptMessage;
-
-    // initialize GPT chat message object
-    gptMessage = new ChatMessage("assistant", GptPromptEngineering.updateBackstory());
-
-    // get a response from GPT to setup the chat
-    // getChatResponse(gptMessage, false);
-  }
 }
