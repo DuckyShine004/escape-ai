@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #0c0807;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.LosingScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #060d12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.LosingScreenController">
    <children>
       <ImageView fitHeight="480.0" fitWidth="720.0" opacity="0.4" pickOnBounds="true">
          <image>
@@ -967,6 +967,36 @@
             </Pane>
          </children>
       </Pane>
+      <Pane layoutX="290.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="5.5" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="321435 [ ] 0978 | {T21}" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="409.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="40.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="6.0" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="v.1289" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <ImageView fitHeight="100.0" fitWidth="180.0" layoutX="-60.0" layoutY="100.0" pickOnBounds="true">
          <image>
             <Image url="@../../images/globe.png" />
@@ -1022,15 +1052,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Line endX="220.0" fill="#6b1a1a" layoutX="50.0" layoutY="400.0" opacity="0.6" stroke="#6b1a1a" strokeWidth="2.0">
-         <effect>
-            <DropShadow>
-               <input>
-                  <Glow level="0.8" />
-               </input>
-            </DropShadow>
-         </effect>
-      </Line>
       <Label layoutX="290.0" layoutY="5.0" opacity="0.5" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q 7 R 8 S 9 T 0 U 1 V" textFill="#ba4f4f">
          <effect>
             <Glow level="0.8" />
@@ -1039,36 +1060,6 @@
             <Font size="8.0" />
          </font>
       </Label>
-      <Pane layoutX="290.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Glow level="0.8" />
-         </effect>
-         <children>
-            <Label layoutX="5.5" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="321435 [ ] 0978 | {T21}" textFill="#f85454">
-               <effect>
-                  <Glow level="0.4" />
-               </effect>
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane layoutX="409.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="40.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Glow level="0.8" />
-         </effect>
-         <children>
-            <Label layoutX="6.0" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="v.1289" textFill="#f85454">
-               <effect>
-                  <Glow level="0.4" />
-               </effect>
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
       <Line endX="110.0" fill="#6b1a1a" layoutX="590.0" layoutY="159.0" opacity="0.6" stroke="#6b1a1a" strokeWidth="2.0">
          <effect>
             <DropShadow>
@@ -1081,11 +1072,20 @@
             </DropShadow>
          </effect>
       </Line>
+      <Line endX="220.0" fill="#6b1a1a" layoutX="50.0" layoutY="400.0" opacity="0.6" stroke="#6b1a1a" strokeWidth="2.0">
+         <effect>
+            <DropShadow>
+               <input>
+                  <Glow level="0.8" />
+               </input>
+            </DropShadow>
+         </effect>
+      </Line>
    </children>
    <effect>
       <InnerShadow height="255.0" offsetY="10.0" radius="68.5">
          <color>
-            <Color red="0.09502924233675003" green="0.15175437927246094" blue="0.2368421107530594" />
+            <Color red="0.0941176488995552" green="0.15294118225574493" blue="0.23529411852359772" />
          </color>
       </InnerShadow>
    </effect>
