@@ -81,5 +81,8 @@ public class GameState {
 
   /** The current player message. */
   public static String currentPlayerMessage = "";
+
+  /** The number of times the backstory has been updated */
+  public static int backStoryUpdated = 0;
   
 }
