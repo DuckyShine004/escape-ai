@@ -13,7 +13,6 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
-import nz.ac.auckland.se206.LeaderboardManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
@@ -96,10 +95,9 @@ public class ControlRoomController extends RoomController {
   private void onYesButton() throws Exception {
     // Set the final message
     GameState.finalMessage =
-        "Congratulations! \n\nYou have successfully completed your mission in terminating this"
-            + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
-            + " to dictate the lives of humanity.\n\nLet's just hope this was a wise decision for"
-            + " the progress of humanity...";
+        "Outstanding work! You've neutralized the AI that threatened humanity. We mustn't let"
+            + " artificial intelligence control our fate. May this choice pave the way for a"
+            + " brighter future for all of us...";
 
     // Switch to the winning scene
     App.initializeWinningScene();
@@ -108,8 +106,8 @@ public class ControlRoomController extends RoomController {
     // Stop the timer
     Timer.stop();
 
-    // Update the leaderboard
-    LeaderboardManager.update();
+    // Update the leaderboard - UNCOMMENT FOR FINAL
+    // LeaderboardManager.update();
   }
 
   /**
@@ -121,10 +119,8 @@ public class ControlRoomController extends RoomController {
   private void onNoButton() throws Exception {
     // Set the final message
     GameState.finalMessage =
-        "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
-            + " radical AI. You have taught it the value of human life, and it has decided to"
-            + " work peacefully alongside humanity.\n\nLet's just hope this was a wise decision"
-            + " for the progress of humanity...";
+        "Excellent work! You have taught the AI the value of human life and it has chosen to"
+            + " harmoniously coexist with humanity. May this peace endure...";
 
     // Switch to the winning scene
     App.initializeWinningScene();
@@ -133,8 +129,8 @@ public class ControlRoomController extends RoomController {
     // Stop the timer
     Timer.stop();
 
-    // Update the leaderboard
-    LeaderboardManager.update();
+    // Update the leaderboard - UNCOMMENT FOR FINAL
+    // LeaderboardManager.update();
   }
 
   @FXML

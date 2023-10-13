@@ -132,7 +132,7 @@
                </effect>
             </Polygon>
             <Line endY="170.0" layoutX="360.0" layoutY="30.0" />
-            <TextArea fx:id="taMessage" editable="false" layoutY="240.0" prefHeight="120.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/menus/mainMenu.css" wrapText="true">
+            <TextArea fx:id="taMessage" disable="true" editable="false" layoutX="-10.0" layoutY="240.0" prefHeight="140.0" prefWidth="380.0" styleClass="custom-text-area" stylesheets="@../../css/menus/mainMenu.css" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>

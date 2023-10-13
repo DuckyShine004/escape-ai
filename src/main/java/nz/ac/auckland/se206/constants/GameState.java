@@ -25,8 +25,6 @@ public class GameState {
 
   public static boolean isChatting = false;
 
-  public static int infinity = Integer.MAX_VALUE;
-
   /** Game difficulty, starts in easy */
   public static Difficulty gameDifficulty = Difficulty.EASY;
 
