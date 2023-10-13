@@ -84,5 +84,4 @@ public class GameState {
 
   /** The number of times the backstory has been updated */
   public static int backStoryUpdated = 0;
-  
 }

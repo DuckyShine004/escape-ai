@@ -92,13 +92,12 @@ public class ControlRoomController extends RoomController {
    * @throws IOException
    */
   @FXML
-  private void onYesButton() throws IOException {
+  private void onYesButton() throws Exception {
     // Set the final message
     GameState.finalMessage =
-        "Congratulations! \n\nYou have successfully completed your mission in terminating this"
-            + " ruthless, humanity-ending AI. We cannot let artifical intelligence be the one"
-            + " to dictate the lives of humanity.\n\nLet's just hope this was a wise decision for"
-            + " the progress of humanity...";
+        "Outstanding work! You've neutralized the AI that threatened humanity. We mustn't let"
+            + " artificial intelligence control our fate. May this choice pave the way for a"
+            + " brighter future for all of us...";
 
     // Switch to the winning scene
     App.initializeWinningScene();
@@ -106,21 +105,22 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Update the leaderboard - UNCOMMENT FOR FINAL
+    // LeaderboardManager.update();
   }
 
   /**
    * On no clicked, if the button is pressed, then switch to the winning scene.
    *
-   * @throws IOException
+   * @throws Exception
    */
   @FXML
-  private void onNoButton() throws IOException {
+  private void onNoButton() throws Exception {
     // Set the final message
     GameState.finalMessage =
-        "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
-            + " radical AI. You have taught it the value of human life, and it has decided to"
-            + " work peacefully alongside humanity.\n\nLet's just hope this was a wise decision"
-            + " for the progress of humanity...";
+        "Excellent work! You have taught the AI the value of human life and it has chosen to"
+            + " harmoniously coexist with humanity. May this peace endure...";
 
     // Switch to the winning scene
     App.initializeWinningScene();
@@ -128,6 +128,9 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Update the leaderboard - UNCOMMENT FOR FINAL
+    // LeaderboardManager.update();
   }
 
   @FXML
@@ -159,7 +162,6 @@ public class ControlRoomController extends RoomController {
   private void onControlKeyboardExited() {
     pgControlKeyboard.setOpacity(0);
   }
-
 
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
@@ -225,15 +227,14 @@ public class ControlRoomController extends RoomController {
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
-      setUserResponse("Let me access the control keyboard!");
-      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control keyboard.");
+      setUserResponse("Let me access the control panel!");
+      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control panel.");
     }
   }
 
-
   /**
    * Gets the room hint for the user.
-   * 
+   *
    * @return the room hint for the user
    */
   @Override

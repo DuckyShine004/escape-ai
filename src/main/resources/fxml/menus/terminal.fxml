@@ -26,7 +26,7 @@
          <children>
             <TextArea fx:id="taTerminal" disable="true" editable="false" focusTraversable="false" layoutY="25.0" prefHeight="360.0" prefWidth="430.0" styleClass="custom-text-area" stylesheets="@../../css/menus/terminal.css">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <effect>
                   <Glow level="0.5" />
@@ -252,7 +252,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblOperatingSystem1" layoutX="675.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="?" textFill="WHITE">
+      <Label fx:id="lblOperatingSystem1" layoutX="675.0" layoutY="333.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="128" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>

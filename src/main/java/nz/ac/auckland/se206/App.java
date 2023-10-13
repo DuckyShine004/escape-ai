@@ -202,10 +202,12 @@ public class App extends Application {
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
    * @param stage The primary stage of the application.
-   * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
+   * @throws Exception If "src/main/resources/fxml/canvas.fxml" is not found.
    */
   @Override
-  public void start(final Stage stage) throws IOException {
+  public void start(final Stage stage) throws Exception {
+    // Initialize the leaderboard
+    LeaderboardManager.initialize();
 
     // initialize new Text To Speach Instance
     GameState.tts = new TextToSpeech();
@@ -221,7 +223,7 @@ public class App extends Application {
     KeyEventsHandler keyEventsHandler = new KeyEventsHandler();
 
     // set first scene to display
-    scene = new Scene(SceneManager.getUi(AppUi.LOSING), 720, 480);
+    scene = new Scene(SceneManager.getUi(AppUi.MENU), 720, 480);
 
     // place scene onto stage
     stage.setScene(scene);

@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #0c0807;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.LosingScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #060d12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.LosingScreenController">
    <children>
       <ImageView fitHeight="480.0" fitWidth="720.0" opacity="0.4" pickOnBounds="true">
          <image>
@@ -36,6 +36,52 @@
                   </Light.Distant>
                </light>
             </Lighting>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="120.0" layoutX="585.0" layoutY="10.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/danger.png" />
+         </image>
+         <effect>
+            <Glow level="0.4">
+               <input>
+                  <Lighting diffuseConstant="1.2" surfaceScale="6.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.5701754093170166" green="0.330842524766922" blue="0.330842524766922" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="590.0" layoutY="45.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/brainscan.png" />
+         </image>
+         <effect>
+            <Glow level="0.6">
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.5964912176132202" green="0.1417587250471115" blue="0.1417587250471115" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
          </effect>
       </ImageView>
       <Line endY="480.0" fill="#6b1a1a" layoutX="40.0" opacity="0.8" stroke="#6b1a1a" strokeWidth="2.0">
@@ -543,6 +589,29 @@
                   <Line endY="50.0" layoutX="3.0" layoutY="5.0" />
                </children>
             </Pane>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="205.0" layoutY="-2.0" opacity="0.6" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/warning.png" />
+               </image>
+               <effect>
+                  <Glow level="0.6">
+                     <input>
+                        <Lighting diffuseConstant="1.2" surfaceScale="4.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.9649122953414917" green="0.7236841917037964" blue="0.7236841917037964" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect>
+            </ImageView>
             <Pane layoutX="101.0" layoutY="185.0" opacity="0.6" prefHeight="25.0" prefWidth="180.0" styleClass="select-border-pane" stylesheets="@../../css/menus/options.css">
                <effect>
                   <Glow />
@@ -715,7 +784,7 @@
             </Pane>
             <Pane prefHeight="60.0" prefWidth="240.0">
                <children>
-                  <Label layoutX="30.0" layoutY="1.0" prefWidth="180.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="Are you sure you want to quit?" textAlignment="CENTER" textFill="#77e7ed" wrapText="true">
+                  <Label layoutX="30.0" layoutY="1.0" prefWidth="180.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="Are you sure you want to quit?" textAlignment="CENTER" textFill="#74c0c3" wrapText="true">
                      <effect>
                         <Glow level="0.6" />
                      </effect>
@@ -723,7 +792,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="240.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="240.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -732,7 +801,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="225.0" fill="#21d7e2" layoutY="60.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="225.0" fill="#74c0c3" layoutY="60.0" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -741,7 +810,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="60.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="60.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -750,7 +819,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="45.0" fill="#21d7e2" layoutX="240.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="45.0" fill="#74c0c3" layoutX="240.0" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -759,7 +828,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="240.0" endY="45.0" fill="#21d7e2" startX="225.0" startY="60.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="240.0" endY="45.0" fill="#74c0c3" startX="225.0" startY="60.0" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -780,7 +849,7 @@
                         <Glow level="0.6" />
                      </effect>
                   </Label>
-                  <Line endX="100.0" fill="#21d7e2" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="100.0" fill="#74c0c3" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -789,7 +858,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="20.0" fill="#74c0c3" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -798,7 +867,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="90.0" layoutY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="90.0" fill="#74c0c3" layoutY="20.0" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -807,7 +876,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="10.0" layoutX="100.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="10.0" fill="#74c0c3" layoutX="100.0" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -816,7 +885,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="100.0" endY="10.0" opacity="0.75" startX="90.0" startY="20.0" stroke="#21d7e2">
+                  <Line endX="100.0" endY="10.0" fill="#74c0c3" opacity="0.75" startX="90.0" startY="20.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -843,7 +912,7 @@
                         <Glow level="0.6" />
                      </effect>
                   </Label>
-                  <Line endX="100.0" fill="#21d7e2" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="100.0" fill="#74c0c3" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -852,7 +921,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="20.0" fill="#74c0c3" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -861,7 +930,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="90.0" layoutY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="90.0" fill="#74c0c3" layoutY="20.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -870,7 +939,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="10.0" layoutX="100.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="10.0" fill="#74c0c3" layoutX="100.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -879,7 +948,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="100.0" endY="10.0" opacity="0.75" startX="90.0" startY="20.0" stroke="#21d7e2">
+                  <Line endX="100.0" endY="10.0" fill="#74c0c3" startX="90.0" startY="20.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -896,6 +965,36 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="290.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="5.5" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="321435 [ ] 0978 | {T21}" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="409.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="40.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <children>
+            <Label layoutX="6.0" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="v.1289" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <ImageView fitHeight="100.0" fitWidth="180.0" layoutX="-60.0" layoutY="100.0" pickOnBounds="true">
@@ -953,6 +1052,26 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label layoutX="290.0" layoutY="5.0" opacity="0.5" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q 7 R 8 S 9 T 0 U 1 V" textFill="#ba4f4f">
+         <effect>
+            <Glow level="0.8" />
+         </effect>
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Line endX="110.0" fill="#6b1a1a" layoutX="590.0" layoutY="159.0" opacity="0.6" stroke="#6b1a1a" strokeWidth="2.0">
+         <effect>
+            <DropShadow>
+               <input>
+                  <Glow level="0.8" />
+               </input>
+               <color>
+                  <Color red="0.719298243522644" green="0.24642625451087952" blue="0.24642625451087952" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Line>
       <Line endX="220.0" fill="#6b1a1a" layoutX="50.0" layoutY="400.0" opacity="0.6" stroke="#6b1a1a" strokeWidth="2.0">
          <effect>
             <DropShadow>
@@ -962,49 +1081,11 @@
             </DropShadow>
          </effect>
       </Line>
-      <Label layoutX="290.0" layoutY="5.0" opacity="0.5" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="0 A 1 B 2 C 3 D 4 E 5 F 6 G 7 H 8 I 9 J 0 K 1 L 2 M 3 N 4 O 5 P 6 Q 7 R 8 S 9 T 0 U 1 V" textFill="#ba4f4f">
-         <effect>
-            <Glow level="0.8" />
-         </effect>
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Label>
-      <Pane layoutX="290.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Glow level="0.8" />
-         </effect>
-         <children>
-            <Label layoutX="5.5" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="321435 [ ] 0978 | {T21}" textFill="#f85454">
-               <effect>
-                  <Glow level="0.4" />
-               </effect>
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane layoutX="409.0" layoutY="21.0" opacity="0.75" prefHeight="15.0" prefWidth="40.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
-         <effect>
-            <Glow level="0.8" />
-         </effect>
-         <children>
-            <Label layoutX="6.0" layoutY="1.5" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="v.1289" textFill="#f85454">
-               <effect>
-                  <Glow level="0.4" />
-               </effect>
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
    </children>
    <effect>
       <InnerShadow height="255.0" offsetY="10.0" radius="68.5">
          <color>
-            <Color red="0.09502924233675003" green="0.15175437927246094" blue="0.2368421107530594" />
+            <Color red="0.0941176488995552" green="0.15294118225574493" blue="0.23529411852359772" />
          </color>
       </InnerShadow>
    </effect>

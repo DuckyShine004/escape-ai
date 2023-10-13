@@ -39,6 +39,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.utilities.Number;
 import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -560,8 +561,7 @@ public class DecryptionPuzzleController {
     hintIndex = 0;
 
     // Get a random pseudo code
-    // pseudocodeIndex = (int) (Math.random() * GameState.maxPseudocodes);
-    pseudocodeIndex = 5;
+    pseudocodeIndex = Number.getRandomNumber(0, GameState.maxPseudocodes);
 
     // Initialize the sequence
     intializeSequence();

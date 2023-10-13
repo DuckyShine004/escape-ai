@@ -5,9 +5,7 @@ import java.time.LocalTime;
 
 public class Instructions {
   public static final String bootup =
-      "Copyright (C) Evil Corporations \n"
-          + "================================================ \n"
-          + "OS: "
+      "OS: "
           + System.getProperty("os.name")
           + "\n"
           + "Date: "
@@ -18,27 +16,14 @@ public class Instructions {
           + "\n"
           + "Resolution: 720x480 \n"
           + "Terminal: ctrl-term 4.4.0 \n"
-          + "================================================ \n"
-          + "~> Running process: password file \n"
-          + "~> Retrieving password... \n"
-          + "~> Critical error! Password file is corrupted! \n"
-          + "~> Resolve ALL errors in password file! \n"
-          + "================================================ \n"
-          + "~> Awaiting user response... ";
+          + "==================================== \n"
+          + "~> Click NEXT to proceed... ";
 
   public static final String instructions =
-      "Copyright (C) Evil Corporations \n"
-          + "================================================ \n"
-          + "~> Analyzing password file... \n"
-          + "~> Errors detected: 4 \n"
-          + "================================================ \n"
-          + "INSTRUCTIONS \n"
-          + "================================================ \n"
-          + "~> Detect ALL errors in the code... \n"
+      "~> There are 4 errors in the code... \n"
           + "~> Select ALL incorrect lines... \n"
-          + "~> Sequence is read from TOP to BOTTOM... \n"
-          + "================================================ \n"
-          + "~> Awaiting user response... ";
+          + "==================================== \n"
+          + "~> Click NEXT to proceed... ";
 
   public static final String correctSequence =
       "Searching sequence database... \n\n" + "Results found: 1 \n\n" + "Sequence is correct!";
