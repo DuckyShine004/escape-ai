@@ -81,5 +81,4 @@ public class GameState {
 
   /** The current player message. */
   public static String currentPlayerMessage = "";
-  
 }

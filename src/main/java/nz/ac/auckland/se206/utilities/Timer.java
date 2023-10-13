@@ -18,6 +18,7 @@ public class Timer {
   private static int minutes;
   private static int seconds;
   private static int time;
+  private static int timeTaken;
 
   private static List<Label> labels;
 
@@ -27,6 +28,9 @@ public class Timer {
    * @param time the input time. This should be 2, 4, or 6 minutes only (in seconds).
    */
   public static void initialize() {
+    // Initially, time taken is zero
+    timeTaken = 0;
+
     // Create a new arraylist of labels
     labels = new ArrayList<Label>();
 
@@ -104,12 +108,29 @@ public class Timer {
     return time;
   }
 
+  public static int getTimeTaken() {
+    return timeTaken;
+  }
+
+  public static String getTimeTakenMessage(int time) {
+    // Initialize fields
+    int minutes = time / 60;
+    int seconds = time % 60;
+
+    // Get the digits based on the current time taken
+    String minuteDigit = (minutes < 10 ? "0" + String.valueOf(minutes) : String.valueOf(minutes));
+    String secondDigit = (seconds < 10 ? "0" + String.valueOf(seconds) : String.valueOf(seconds));
+
+    return minuteDigit + ":" + secondDigit;
+  }
+
   /**
    * Updates the timer and the text associated with it. This method is called inside of the timeline
    * method, which is inside of the initialize method.
    */
   public static void update() {
     time -= 1;
+    timeTaken++;
 
     minutes = time / 60;
     seconds = time % 60;
@@ -117,6 +138,8 @@ public class Timer {
     for (Label label : labels) {
       label.setText(getTime());
     }
+
+    // Update the time taken for the player
 
     // Check if the timer has timed out
     if (isTimedOut()) {

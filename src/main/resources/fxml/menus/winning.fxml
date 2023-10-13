@@ -132,7 +132,7 @@
                </effect>
             </Polygon>
             <Line endY="170.0" layoutX="360.0" layoutY="30.0" />
-            <TextArea layoutY="240.0" prefHeight="120.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/menus/mainMenu.css" text="sdfsdfdsfsdfsf" wrapText="true">
+            <TextArea fx:id="taMessage" editable="false" layoutY="240.0" prefHeight="120.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/menus/mainMenu.css" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
@@ -613,6 +613,38 @@
                   <Font size="4.0" />
                </font>
             </Label>
+            <Label layoutX="10.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="TIME TAKEN: " textFill="#f85454">
+               <effect>
+                  <Glow level="0.75" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="420.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="BEST TIME:" textFill="#f85454">
+               <effect>
+                  <Glow level="0.75" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTimeTaken" layoutX="100.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="--:--" textFill="#f85454">
+               <effect>
+                  <Glow level="0.75" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTimeBest" layoutX="90.0" layoutY="420.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="--:--" textFill="#f85454">
+               <effect>
+                  <Glow level="0.75" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="paQuitDialogue" layoutX="310.0" layoutY="250.0" prefHeight="85.0" prefWidth="240.0" visible="false">
@@ -847,14 +879,6 @@
                </input>
             </Glow>
          </effect>
-      </Label>
-      <Label layoutX="50.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="TIME TAKEN: " textFill="#f85454">
-         <effect>
-            <Glow level="0.75" />
-         </effect>
-         <font>
-            <Font size="14.0" />
-         </font>
       </Label>
    </children>
    <effect>
