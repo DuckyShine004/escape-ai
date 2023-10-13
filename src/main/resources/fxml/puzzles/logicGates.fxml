@@ -19,7 +19,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" styleClass="anchor-pane" stylesheets="@../../css/puzzles/logicGates.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.LogicGatePuzzleController">
    <children>
-      <GridPane gridLinesVisible="true" layoutX="-15.0" layoutY="-15.0" opacity="0.1" styleClass="custom-grid-pane" stylesheets="@../../css/index.css">
+      <GridPane gridLinesVisible="true" layoutX="786.0" layoutY="97.0" opacity="0.1" prefHeight="466.0" prefWidth="20.0" styleClass="custom-grid-pane" stylesheets="@../../css/index.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
@@ -162,7 +162,7 @@
                         <Pane fx:id="pneInput14" layoutX="415.0" layoutY="152.0" prefHeight="10.0" prefWidth="46.0" />
                         <Pane fx:id="pneInput142" layoutX="449.0" layoutY="160.0" prefHeight="50.0" prefWidth="12.0" />
                         <ImageView fx:id="imgSolvedLight" fitHeight="78.0" fitWidth="84.0" layoutX="417.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgHelpToDo" fitHeight="50.0" fitWidth="55.0" layoutX="342.0" layoutY="10.0" onMouseClicked="#onGetToDoHelp" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgHelpToDo" fitHeight="50.0" fitWidth="55.0" layoutX="342.0" layoutY="10.0" onMouseClicked="#onGetToDoHelp" pickOnBounds="true" preserveRatio="true" visible="false">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor></ImageView>
@@ -218,12 +218,12 @@
             </VBox>
          </children>
       </HBox>
-      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="202.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" wrapText="true">
+      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.                              Your goal is to turn the light green.                                 " wrapText="true">
          <font>
-            <Font size="24.0" />
+            <Font size="42.0" />
          </font>
       </TextArea>
-      <TextField fx:id="tfTextInput" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" />
+      <TextField fx:id="tfTextInput" editable="false" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" visible="false" />
       <Line endY="25.0" fill="WHITE" layoutX="10.0" layoutY="15.0" stroke="#0093d7" strokeWidth="6.0">
          <effect>
             <Glow />

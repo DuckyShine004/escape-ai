@@ -35,7 +35,7 @@
 .gpt-text-area {
   -fx-text-fill: #00FFFF; 
   -fx-font-family: "Monospace", sans-serif;
-  -fx-font-size: 12px;
+  -fx-font-size: 14px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
   -fx-min-width: 100%; 
@@ -61,7 +61,7 @@
 .input-text-field {
   -fx-text-fill: #00FFFF; 
   -fx-font-family: "Monospace", sans-serif;
-  -fx-font-size: 12px;
+  -fx-font-size: 15px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
   -fx-min-width: 100%; 
