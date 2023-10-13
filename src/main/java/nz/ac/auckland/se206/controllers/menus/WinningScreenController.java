@@ -28,8 +28,8 @@ public class WinningScreenController extends MenuController {
   @FXML private TextArea taMessage;
 
   private StringProperty spMessage;
-  private StringProperty spTimeBest;
-  private StringProperty spTimeTaken;
+  public static StringProperty spTimeBest;
+  public static StringProperty spTimeTaken;
 
   /** Initialize the winning screen controller. */
   @FXML
