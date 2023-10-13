@@ -19,6 +19,25 @@
 
 <Pane fx:id="paWinningScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #060d12;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.menus.WinningScreenController">
    <children>
+      <ImageView fitHeight="480.0" fitWidth="480.0" layoutX="240.0" opacity="0.7" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/robot_left_side_view.png" />
+         </image>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.1" specularExponent="30.0" surfaceScale="1.0">
+               <bumpInput>
+                  <InnerShadow height="255.0" radius="127.0" width="255.0" />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.14035087823867798" green="0.14035087823867798" blue="0.14035087823867798" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
       <ImageView fitHeight="98.0" fitWidth="20.0" layoutX="635.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/mouse.png" />
@@ -588,6 +607,49 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+               <children>
+                  <Label layoutX="5.5" layoutY="1.5" opacity="0.6" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="GJJ-ZLM-2023 [] | {}" textFill="#f85454">
+                     <effect>
+                        <Glow level="0.4" />
+                     </effect>
+                     <font>
+                        <Font size="8.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="30.0" opacity="0.75" prefHeight="20.0" prefWidth="60.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+               <children>
+                  <Label layoutX="3.0" layoutY="3.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="VTRZ-AL0-12939-sdj-218" textFill="#f85454">
+                     <effect>
+                        <Glow level="0.4" />
+                     </effect>
+                     <font>
+                        <Font size="4.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="3.0" layoutY="11.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="AL-092          [ -- ]" textFill="#f85454">
+                     <effect>
+                        <Glow level="0.4" />
+                     </effect>
+                     <font>
+                        <Font size="4.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="75.0" layoutY="30.0" opacity="0.75" prefHeight="20.0" prefWidth="20.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
             </Pane>
             <Label layoutX="10.0" layoutY="390.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS AN EASSTER EGG LOL" textFill="#f85454">
                <effect>
