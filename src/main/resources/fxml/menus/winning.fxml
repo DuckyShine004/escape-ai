@@ -621,7 +621,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="11.0" layoutY="420.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="BEST TIME:" textFill="#f85454">
+            <Label layoutX="11.0" layoutY="420.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="PREVIOUS BEST:" textFill="#f85454">
                <effect>
                   <Glow level="0.75" />
                </effect>
@@ -629,7 +629,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblTimeTaken" layoutX="100.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="--:--" textFill="#f85454">
+            <Label fx:id="lblTimeTaken" layoutX="190.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="--:--" textFill="#f85454">
                <effect>
                   <Glow level="0.75" />
                </effect>
@@ -637,7 +637,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblTimeBest" layoutX="90.0" layoutY="420.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="--:--" textFill="#f85454">
+            <Label fx:id="lblTimeBest" layoutX="190.0" layoutY="420.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="--:--" textFill="#f85454">
                <effect>
                   <Glow level="0.75" />
                </effect>

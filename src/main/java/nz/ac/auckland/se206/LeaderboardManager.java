@@ -1,42 +1,62 @@
 package nz.ac.auckland.se206;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class LeaderboardManager {
-  private static String filePath = "";
+  private static int timeBest;
+  private static int timeTaken;
 
-  private static String timeTaken;
-  private static String timeBest;
+  public static String timeBestMessage;
+  public static String timeTakenMessage;
 
-  private static Scanner scanner;
-
-  public static void initialize() throws IOException {
-    scanner = new Scanner(Paths.get(filePath));
+  public static void initialize() throws Exception {
+    // Initialize the scanner
+    Scanner scanner = new Scanner(Paths.get(getFilePath()));
 
     // Set the best time
     String[] tokens = scanner.nextLine().split(" ");
-    timeBest = Timer.getTimeTakenMessage(Integer.parseInt(tokens[1]));
+    timeBest = Integer.parseInt(tokens[0]);
+
+    // Set the best time label
+    timeBestMessage = (timeBest <= 360) ? Timer.getTimeTakenMessage(timeBest) : "--:--";
+
+    update();
+
+    // Close the scanner
+    scanner.close();
   }
 
-  public static String getTimeTaken() {
-    return timeTaken;
+  private static String getFilePath() {
+    String filePath = App.class.getResource("/text/leaderboard.txt").toString();
+
+    return filePath.substring(6, filePath.length());
   }
 
-  public static String getTimeBest() {
-    return timeBest;
-  }
+  public static void update() throws Exception {
+    // Get the current time
+    timeTaken = Timer.getTimeTaken();
 
-  public static void update() throws IOException {
-    // Initialize fields
-    int timeCurrent;
-    int timePrevious;
+    System.out.println(timeTaken);
 
-    String[] tokens = scanner.nextLine().split(" ");
-    timeBest = Timer.getTimeTakenMessage(Integer.parseInt(tokens[1]));
+    // Check if the current time or the previous time is better
+    timeBest = Math.min(timeTaken, timeBest);
 
-    timeTaken = Timer.getTimeTakenMessage(Timer.getTimeTaken());
+    // Update the time messages
+    timeBestMessage = (timeBest <= 360) ? Timer.getTimeTakenMessage(timeBest) : "--:--";
+    timeTakenMessage = Timer.getTimeTakenMessage(timeTaken);
+
+    System.out.println(timeTakenMessage);
+
+    // Initialize the scanner and write to the file
+    try (FileWriter fileWriter = new FileWriter(getFilePath())) {
+      fileWriter.write(timeBest);
+      System.out.println("Data has been written to the file.");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

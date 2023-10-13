@@ -13,6 +13,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
+import nz.ac.auckland.se206.LeaderboardManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
@@ -92,7 +93,7 @@ public class ControlRoomController extends RoomController {
    * @throws IOException
    */
   @FXML
-  private void onYesButton() throws IOException {
+  private void onYesButton() throws Exception {
     // Set the final message
     GameState.finalMessage =
         "Congratulations! \n\nYou have successfully completed your mission in terminating this"
@@ -106,15 +107,18 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Update the leaderboard
+    LeaderboardManager.update();
   }
 
   /**
    * On no clicked, if the button is pressed, then switch to the winning scene.
    *
-   * @throws IOException
+   * @throws Exception
    */
   @FXML
-  private void onNoButton() throws IOException {
+  private void onNoButton() throws Exception {
     // Set the final message
     GameState.finalMessage =
         "Congratulations! \n\nYou have successfully completed your mission in pacifying this"
@@ -128,6 +132,9 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Update the leaderboard
+    LeaderboardManager.update();
   }
 
   @FXML
@@ -159,7 +166,6 @@ public class ControlRoomController extends RoomController {
   private void onControlKeyboardExited() {
     pgControlKeyboard.setOpacity(0);
   }
-
 
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
@@ -228,7 +234,7 @@ public class ControlRoomController extends RoomController {
       setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control panel.");
     }
   }
-  
+
   @Override
   protected String getRoomHint() {
     return GptPromptEngineering.getControlRoomHint();

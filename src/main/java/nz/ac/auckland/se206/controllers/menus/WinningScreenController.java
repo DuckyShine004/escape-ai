@@ -76,11 +76,11 @@ public class WinningScreenController extends MenuController {
 
   private void initializeTimeLabels() {
     // Best time by the player
-    spTimeBest = new SimpleStringProperty(LeaderboardManager.getTimeBest());
+    spTimeBest = new SimpleStringProperty(LeaderboardManager.timeBestMessage);
     lblTimeBest.textProperty().bind(spTimeBest);
 
     // Time taken by the player
-    spTimeTaken = new SimpleStringProperty(LeaderboardManager.getTimeTaken());
+    spTimeTaken = new SimpleStringProperty(LeaderboardManager.timeTakenMessage);
     lblTimeTaken.textProperty().bind(spTimeTaken);
   }
 }
