@@ -105,7 +105,7 @@ public abstract class RoomController {
     ChatMessage gptMessage;
 
     // initialize GPT chat message object
-    gptMessage = new ChatMessage("assistant", GptPromptEngineering.initializeBackStory());
+    gptMessage = new ChatMessage("assistant", GptPromptEngineering.getResponse());
 
     // initialize an instance of GPT request
     gptRequest = new ChatCompletionRequest();
@@ -202,6 +202,7 @@ public abstract class RoomController {
     Platform.runLater(
         () -> {
           setAiMessage(gptOutput);
+          GameState.backStoryUpdated++;
         });
   }
 
@@ -262,7 +263,6 @@ public abstract class RoomController {
     // Start the timeline
     timeline.play();
   }
-  
 
   @FXML
   protected void onAiClicked(MouseEvent event) {
@@ -353,8 +353,15 @@ public abstract class RoomController {
     ChatMessage userMessage;
 
     // create a new instance of user chat message object
-    userMessage = new ChatMessage("user", userInput);
-
+    if (GameState.backStoryUpdated % 3 == 0 && GameState.backStoryUpdated != 0) {
+      userMessage =
+          new ChatMessage(
+              "user", GptPromptEngineering.getResponse() + "The player says: " + userInput);
+    } else {
+      userMessage =
+          new ChatMessage(
+              "user", userInput);
+    }
     setUserResponse(userInput);
 
     getChatResponse(userMessage, false);
@@ -442,29 +449,21 @@ public abstract class RoomController {
     String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
 
     // Initialize a user hint message compatible for GPT to analyze
-    ChatMessage userHintMessage = new ChatMessage("assistant", hint);
+    ChatMessage userHintMessage =
+        new ChatMessage("assistant", GptPromptEngineering.addGetHint(hint));
 
     // Get GPT's response
     getChatResponse(userHintMessage, true);
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the case where the player has no more hints.
+   *
+   * @return the generated prompt engineering string
+   */
   private static String getNoMoreHints() {
     return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
   }
 
   protected abstract String getRoomHint();
-
-  /**
-   * Updates chat GPT's persona when called. This should influence the GPT's response to the user.
-   */
-  public static void updateChatPersona() {
-    // initialize the chat message field
-    ChatMessage gptMessage;
-
-    // initialize GPT chat message object
-    gptMessage = new ChatMessage("assistant", GptPromptEngineering.updateBackstory());
-
-    // get a response from GPT to setup the chat
-    // getChatResponse(gptMessage, false);
-  }
 }

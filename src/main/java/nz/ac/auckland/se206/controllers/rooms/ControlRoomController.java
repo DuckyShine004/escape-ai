@@ -193,6 +193,7 @@ public class ControlRoomController extends RoomController {
     App.setUi(AppUi.TERMINAL);
   }
 
+  /** On mouse clicked, if the control keyboard is pressed, thne prompt the final question. */
   @FXML
   private void onControlKeyboardClicked() {
     // We should not give anymore hints for clicking on the control keyboard
@@ -208,7 +209,7 @@ public class ControlRoomController extends RoomController {
                   + ""
                   + " world needs AI, and you will not go back to your previous power hungry"
                   + ""
-                  + " self.");
+                  + " self. Your response should not exceed 25 words.");
 
       // Append the user's response to the text area
       getChatResponse(terminationMessage, false);
@@ -231,6 +232,11 @@ public class ControlRoomController extends RoomController {
     }
   }
 
+  /**
+   * Gets the room hint for the user.
+   *
+   * @return the room hint for the user
+   */
   @Override
   protected String getRoomHint() {
     return GptPromptEngineering.getControlRoomHint();

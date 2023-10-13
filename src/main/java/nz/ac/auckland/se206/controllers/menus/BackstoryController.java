@@ -102,5 +102,8 @@ public class BackstoryController {
     // Reset the player message
     GameState.currentPlayerMessage = "";
 
+    // Reset the number of times the backstory has been updated
+    GameState.backStoryUpdated = 0;
+
   }
 }
