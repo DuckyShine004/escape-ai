@@ -19,7 +19,10 @@ import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the breaker room. */
+/**
+ * The controller for the breaker room, which gives all the functionality for the breaker room
+ * scene. This class extends {@link RoomController}.
+ */
 public class BreakerRoomController extends RoomController {
 
   @FXML private Pane paCircuitBox;

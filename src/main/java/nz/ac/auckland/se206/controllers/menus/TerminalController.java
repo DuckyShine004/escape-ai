@@ -26,7 +26,10 @@ import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the terminal scene. */
+/**
+ * The controller for the terminal screen for the decryption puzzle, which gives the user the
+ * instructions for the puzzle.
+ */
 public class TerminalController {
   @FXML private Pane paBack;
   @FXML private Pane paNext;

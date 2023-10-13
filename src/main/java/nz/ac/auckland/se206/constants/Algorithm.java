@@ -2,6 +2,10 @@ package nz.ac.auckland.se206.constants;
 
 import nz.ac.auckland.se206.utilities.Number;
 
+/**
+ * This constants class contains the database of psuedocodes that could be randomly drawn form for the decryption puzzle. The algorithms are stored as
+ * strings.
+ */
 public class Algorithm {
   public static final String algorithm0 =
       "1. string width = "

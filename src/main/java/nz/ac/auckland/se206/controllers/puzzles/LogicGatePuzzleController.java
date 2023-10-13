@@ -32,6 +32,10 @@ import nz.ac.auckland.se206.utilities.LogicGate;
 import nz.ac.auckland.se206.utilities.Timer;
 import nz.ac.auckland.se206.utilities.Wire;
 
+/**
+ * The controller for the logic gate puzzle, which gives all the functionality for the logic gate
+ * puzzle.
+ */
 public class LogicGatePuzzleController {
   @FXML private Label lblTimer;
   @FXML private Label lblHintCounter;

@@ -3,6 +3,10 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import javafx.scene.media.AudioClip;
 
+/**
+ * This manager clas contains methods for storing and playing audio clips that are used throughout
+ * the game.
+ */
 public class AudioManager {
 
   public enum Clip {

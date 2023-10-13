@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 
+/**
+ * This class represents a logic gate, which is used in the logic gate puzzle. It contains the logic
+ * gate type, the image of the gate, and the image of the gate's truth table.
+ */
 public class LogicGate {
 
   // logic gate enum type

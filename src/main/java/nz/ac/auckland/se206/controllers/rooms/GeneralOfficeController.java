@@ -17,7 +17,10 @@ import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the control room scene. */
+/**
+ * The controller for the office room, which gives all the functionality for the office room
+ * scene. This class extends {@link RoomController}.
+ */
 public class GeneralOfficeController extends RoomController {
 
   @FXML private Label lblTime;

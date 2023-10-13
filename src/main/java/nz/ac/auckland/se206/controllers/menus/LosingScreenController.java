@@ -7,6 +7,10 @@ import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * The controller for the losing screen, which handles offers the user to play again or return to
+ * main menu. This class extends {@link MenuController}.
+ */
 public class LosingScreenController extends MenuController {
   @FXML private Pane paNo;
   @FXML private Pane paYes;

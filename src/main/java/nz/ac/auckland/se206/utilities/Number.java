@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.utilities;
 
 import java.util.Random;
 
+/** This utility class contains methods for generating random numbers between 0 and 100. */
 public class Number {
   private static final int low = 0;
   private static final int high = 100;

@@ -5,6 +5,10 @@ import java.util.HashMap;
 import javafx.scene.Parent;
 import nz.ac.auckland.se206.constants.GameState;
 
+/**
+ * This manager class contains methods for storing and switching between the different scenes in the
+ * game.
+ */
 public class SceneManager {
   // UI fxml files the app can switch between
   public enum AppUi {

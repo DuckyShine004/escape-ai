@@ -7,6 +7,10 @@ import java.util.Scanner;
 import nz.ac.auckland.se206.controllers.menus.WinningScreenController;
 import nz.ac.auckland.se206.utilities.Timer;
 
+/**
+ * This manager class contains methods for storing and updating the leaderboard seen at the end of
+ * the game.
+ */
 public class LeaderboardManager {
   private static int timeBest;
   private static int timeTaken;

@@ -13,6 +13,10 @@ import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.utilities.Timer;
 
+/**
+ * The controller for the backstory screen, which gives the user the backstory for the game before
+ * the game begins.
+ */
 public class BackstoryController {
   @FXML private Pane paSelect;
   @FXML private Pane paContinue;
@@ -104,6 +108,5 @@ public class BackstoryController {
 
     // Reset the number of times the backstory has been updated
     GameState.backStoryUpdated = 0;
-
   }
 }

@@ -7,6 +7,10 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 
+/**
+ * This utility class contains a method to handle when key events are pressed by the player. These
+ * key events are those that occur globally.
+ */
 public class KeyEventsHandler implements EventHandler<KeyEvent> {
   @Override
   public void handle(KeyEvent event) {

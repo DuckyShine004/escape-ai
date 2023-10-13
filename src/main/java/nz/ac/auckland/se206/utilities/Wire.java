@@ -2,6 +2,10 @@ package nz.ac.auckland.se206.utilities;
 
 import javafx.scene.layout.Pane;
 
+/**
+ * This utility class creates the wire object to be used in the logic gate puzzle, with a method to
+ * change the colour of the wire.
+ */
 public class Wire {
   private Pane wire;
   private Pane bendWire;

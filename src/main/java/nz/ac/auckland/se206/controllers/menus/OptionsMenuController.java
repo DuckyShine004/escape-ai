@@ -19,6 +19,10 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
+/**
+ * The controller for the options menu, which gives the player the option to switch between the
+ * different difficulties and time limits.
+ */
 public class OptionsMenuController {
   @FXML private Pane paReturn;
   @FXML private Pane paOption;

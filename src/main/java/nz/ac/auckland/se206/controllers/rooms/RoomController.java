@@ -33,6 +33,10 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+/**
+ * The abstract controller for a generic room, which implements all the methods shared between the
+ * breaker room, control room, and office room.
+ */
 public abstract class RoomController {
   @FXML private Pane paRoom;
   @FXML private ImageView imgRoom;
@@ -358,9 +362,7 @@ public abstract class RoomController {
           new ChatMessage(
               "user", GptPromptEngineering.getResponse() + "The player says: " + userInput);
     } else {
-      userMessage =
-          new ChatMessage(
-              "user", userInput);
+      userMessage = new ChatMessage("user", userInput);
     }
     setUserResponse(userInput);
 

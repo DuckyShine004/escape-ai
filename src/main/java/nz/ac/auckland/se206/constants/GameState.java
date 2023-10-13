@@ -4,7 +4,10 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
-/** Represents the state of the game. */
+/**
+ * This constants class stores the global variables present in the game. These constants should all
+ * be reset when playing the game again.
+ */
 public class GameState {
 
   public enum Difficulty {

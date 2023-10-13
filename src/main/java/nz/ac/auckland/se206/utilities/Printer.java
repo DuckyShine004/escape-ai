@@ -6,6 +6,10 @@ import javafx.scene.control.TextArea;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.constants.GameState;
 
+/**
+ * This utility class contains a method to print text onto the text area, letter by letter, used
+ * prominently in the terminal controller and decryption puzzle controller.
+ */
 public class Printer {
   private static Timeline printTextEvent;
 

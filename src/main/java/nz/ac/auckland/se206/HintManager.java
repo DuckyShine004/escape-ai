@@ -7,7 +7,10 @@ import javafx.scene.control.Label;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 
-/** The HintManager class will help keep the hint counter the same */
+/**
+ * This manager class contains methods for managing the hints in the game, including storing hints,
+ * the number of hints available to the player, and the changing of the hint counter.
+ */
 public class HintManager {
   private static List<Node> hintNodes;
   private static List<Label> hintLabels;

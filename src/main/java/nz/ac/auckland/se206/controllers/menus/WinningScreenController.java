@@ -13,6 +13,10 @@ import nz.ac.auckland.se206.LeaderboardManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 
+/**
+ * The controller for the winning screen, which handles offers the user to play again or return to
+ * main menu. This class extends {@link MenuController}.
+ */
 public class WinningScreenController extends MenuController {
   @FXML private Pane paNo;
   @FXML private Pane paYes;

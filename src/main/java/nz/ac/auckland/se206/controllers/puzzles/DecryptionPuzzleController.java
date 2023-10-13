@@ -43,7 +43,10 @@ import nz.ac.auckland.se206.utilities.Number;
 import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the decryption puzzle scene. */
+/**
+ * The controller for the decryption puzzle, which contains all the functionality for the decryption
+ * puzzle.
+ */
 public class DecryptionPuzzleController {
   @FXML private Pane paLine0;
   @FXML private Pane paLine1;

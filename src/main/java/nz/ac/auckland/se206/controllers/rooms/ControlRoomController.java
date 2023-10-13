@@ -20,7 +20,10 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the control room scene. */
+/**
+ * The controller for the controll room, which gives all the functionality for the control room
+ * scene. This class extends {@link RoomController}.
+ */
 public class ControlRoomController extends RoomController {
   @FXML private Pane paControlPanel;
 

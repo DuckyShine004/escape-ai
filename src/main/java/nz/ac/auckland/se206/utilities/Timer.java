@@ -9,7 +9,10 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-/** The timer class keeps track of the time left for the player. */
+/**
+ * This utility class keeps track globally across all scenes the time the player has left in the
+ * round of the game.
+ */
 public class Timer {
   private static Timeline timer;
 

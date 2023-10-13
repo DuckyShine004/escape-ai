@@ -30,7 +30,10 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the chat view. */
+/**
+ * The controller for the riddle puzzle, which gives all functionality and implementation for the
+ * riddle puzzle.
+ */
 public class RiddlePuzzleController {
   @FXML private Label lblChat;
   @FXML private Label lblEye1;
@@ -110,7 +113,7 @@ public class RiddlePuzzleController {
     if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
       paNext.setDisable(true);
       loadRiddle();
-    } 
+    }
 
     // instantiate the tts
     this.tts = GameState.tts;
