@@ -784,7 +784,7 @@
             </Pane>
             <Pane prefHeight="60.0" prefWidth="240.0">
                <children>
-                  <Label layoutX="30.0" layoutY="1.0" prefWidth="180.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="Are you sure you want to quit?" textAlignment="CENTER" textFill="#77e7ed" wrapText="true">
+                  <Label layoutX="30.0" layoutY="1.0" prefWidth="180.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="Are you sure you want to quit?" textAlignment="CENTER" textFill="#74c0c3" wrapText="true">
                      <effect>
                         <Glow level="0.6" />
                      </effect>
@@ -792,7 +792,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="240.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="240.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -801,7 +801,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="225.0" fill="#21d7e2" layoutY="60.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="225.0" fill="#74c0c3" layoutY="60.0" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -810,7 +810,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="60.0" fill="#21d7e2" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="60.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -819,7 +819,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="45.0" fill="#21d7e2" layoutX="240.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endY="45.0" fill="#74c0c3" layoutX="240.0" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -828,7 +828,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="240.0" endY="45.0" fill="#21d7e2" startX="225.0" startY="60.0" stroke="#21d7e2" strokeWidth="1.5">
+                  <Line endX="240.0" endY="45.0" fill="#74c0c3" startX="225.0" startY="60.0" stroke="#74c0c3" strokeWidth="1.5">
                      <effect>
                         <Glow>
                            <input>
@@ -849,7 +849,7 @@
                         <Glow level="0.6" />
                      </effect>
                   </Label>
-                  <Line endX="100.0" fill="#21d7e2" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="100.0" fill="#74c0c3" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -858,7 +858,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="20.0" fill="#74c0c3" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -867,7 +867,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="90.0" layoutY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="90.0" fill="#74c0c3" layoutY="20.0" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -876,7 +876,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="10.0" layoutX="100.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="10.0" fill="#74c0c3" layoutX="100.0" opacity="0.75" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -885,7 +885,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="100.0" endY="10.0" opacity="0.75" startX="90.0" startY="20.0" stroke="#21d7e2">
+                  <Line endX="100.0" endY="10.0" fill="#74c0c3" opacity="0.75" startX="90.0" startY="20.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -912,7 +912,7 @@
                         <Glow level="0.6" />
                      </effect>
                   </Label>
-                  <Line endX="100.0" fill="#21d7e2" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="100.0" fill="#74c0c3" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -921,7 +921,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="20.0" fill="#74c0c3" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -930,7 +930,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="90.0" layoutY="20.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endX="90.0" fill="#74c0c3" layoutY="20.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -939,7 +939,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endY="10.0" layoutX="100.0" opacity="0.75" stroke="#21d7e2">
+                  <Line endY="10.0" fill="#74c0c3" layoutX="100.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>
@@ -948,7 +948,7 @@
                         </Glow>
                      </effect>
                   </Line>
-                  <Line endX="100.0" endY="10.0" opacity="0.75" startX="90.0" startY="20.0" stroke="#21d7e2">
+                  <Line endX="100.0" endY="10.0" fill="#74c0c3" startX="90.0" startY="20.0" stroke="#74c0c3">
                      <effect>
                         <Glow level="0.1">
                            <input>

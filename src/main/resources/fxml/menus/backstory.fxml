@@ -208,7 +208,7 @@
                   <Glow level="0.8" />
                </effect>
             </Label>
-            <Line endX="190.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
+            <Line endX="190.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
                <effect>
                   <Glow>
                      <input>
@@ -217,7 +217,7 @@
                   </Glow>
                </effect>
             </Line>
-            <Line endY="35.0" fill="#aafffe" stroke="#aafffe" strokeWidth="1.5">
+            <Line endY="35.0" fill="#74c0c3" stroke="#74c0c3" strokeWidth="1.5">
                <effect>
                   <Glow>
                      <input>
@@ -226,7 +226,7 @@
                   </Glow>
                </effect>
             </Line>
-            <Line endX="175.0" fill="#aafffe" layoutY="35.0" stroke="#aafffe" strokeWidth="1.5">
+            <Line endX="175.0" fill="#74c0c3" layoutY="35.0" stroke="#74c0c3" strokeWidth="1.5">
                <effect>
                   <Glow>
                      <input>
@@ -235,7 +235,7 @@
                   </Glow>
                </effect>
             </Line>
-            <Line endY="20.0" fill="#aafffe" layoutX="190.0" stroke="#aafffe" strokeWidth="1.5">
+            <Line endY="20.0" fill="#74c0c3" layoutX="190.0" stroke="#74c0c3" strokeWidth="1.5">
                <effect>
                   <Glow>
                      <input>
@@ -244,7 +244,7 @@
                   </Glow>
                </effect>
             </Line>
-            <Line endX="190.0" endY="20.0" fill="#aafffe" startX="175.0" startY="35.0" stroke="#aafffe" strokeWidth="1.5">
+            <Line endX="190.0" endY="20.0" fill="#74c0c3" startX="175.0" startY="35.0" stroke="#74c0c3" strokeWidth="1.5">
                <effect>
                   <Glow>
                      <input>
@@ -357,7 +357,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="120.0" layoutY="340.0" prefWidth="490.0" styleClass="custom-label" stylesheets="@../../css/menus/backstory.css" text="Your objective is simple, infiltrate and terminate a world-ending AI before it reboots itself. Humanity's fate rest upon your hands, good luck." textFill="#aafffe" wrapText="true">
+      <Label layoutX="120.0" layoutY="340.0" prefWidth="490.0" styleClass="custom-label" stylesheets="@../../css/menus/backstory.css" text="Your objective is simple, infiltrate and terminate a world-ending AI before it reboots itself. Humanity's fate rest upon your hands, good luck." textFill="#93f3f6" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>

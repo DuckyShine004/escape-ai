@@ -1,35 +1,52 @@
 package nz.ac.auckland.se206.controllers.menus;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class WinningScreenController extends MenuController {
   @FXML private Pane paNo;
   @FXML private Pane paYes;
-  @FXML private Pane paPlayAgain;
   @FXML private Pane paExit;
+  @FXML private Pane paPlay;
   @FXML private Pane paNavigation;
-  @FXML private Pane paNoOverlay;
-  @FXML private Pane paYesOverlay;
-  @FXML private Pane paPlayAgainOverlay;
-  @FXML private Pane paExitOverlay;
-  @FXML private Pane paNavigationOverlay;
-  @FXML private TextArea taMessage;
+  @FXML private Pane paBackground;
+  @FXML private Pane paQuitDialogue;
 
-  @FXML private Line lineConfirm;
+  /** Initialize the winning screen controller. */
+  @FXML
+  private void initialize() {}
 
-  @FXML private Label lblConfirm;
+  /** When no is clicked, do not exit the application. */
+  @FXML
+  private void onNoPaneClicked() {
+    // Play the selection sound effect
+    AudioManager.loadAudio(Clip.SELECTION);
+
+    // Toggle both the background and quit dialogue panes
+    paBackground.setVisible(true);
+    paQuitDialogue.setVisible(false);
+  }
+
+  /** When exit is clicked, exit the application. */
+  @FXML
+  private void onExitPaneClicked() {
+    // Play the selection sound effect
+    AudioManager.loadAudio(Clip.SELECTION);
+
+    // Toggle both the background and quit dialogue panes
+    paBackground.setVisible(false);
+    paQuitDialogue.setVisible(true);
+  }
 
   @Override
   @FXML
   protected void onNavigationPaneClicked() {
-    // Disable the exit components
-    disableExitComponents();
+    // Play the selection sound effect
+    AudioManager.loadAudio(Clip.SELECTION);
 
     // Switch to the options scene
     App.setUi(AppUi.MENU);
