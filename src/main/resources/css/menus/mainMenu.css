@@ -44,3 +44,34 @@
 .custom-title {
   -fx-font-family: "SDGlitchDemo Regular";
 }
+
+/* For the text area styling */
+.custom-text-area {
+  -fx-text-alignment: top-left;
+  -fx-background-color: rgba(255, 255, 255, 0);
+  -fx-text-inner-color: #93f3f6;
+  -fx-font-family: "JetBrainsMono NF";
+  -fx-opacity: 1;
+}
+
+.custom-text-area .scroll-bar:horizontal:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
+
+.custom-text-area .scroll-bar:vertical:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
+
+.custom-text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane .content {
+  -fx-background-color: transparent;
+}

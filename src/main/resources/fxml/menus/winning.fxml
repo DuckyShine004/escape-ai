@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -131,6 +132,14 @@
                </effect>
             </Polygon>
             <Line endY="170.0" layoutX="360.0" layoutY="30.0" />
+            <TextArea layoutY="240.0" prefHeight="120.0" prefWidth="365.0" styleClass="custom-text-area" stylesheets="@../../css/menus/mainMenu.css" text="sdfsdfdsfsdfsf" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <Glow level="0.9" />
+               </effect>
+            </TextArea>
          </children>
       </Pane>
       <Pane fx:id="paSelect" layoutX="170.0" layoutY="-20.0" opacity="0.85" prefHeight="20.0" prefWidth="20.0">
@@ -838,6 +847,14 @@
                </input>
             </Glow>
          </effect>
+      </Label>
+      <Label layoutX="50.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="TIME TAKEN: " textFill="#f85454">
+         <effect>
+            <Glow level="0.75" />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
    </children>
    <effect>
