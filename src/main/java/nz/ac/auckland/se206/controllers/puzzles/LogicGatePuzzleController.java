@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -104,6 +109,8 @@ public class LogicGatePuzzleController {
 
   // glass screen covereing end gate
   @FXML private ImageView imgGlassScreen;
+
+  @FXML private ProgressBar pgbGptThinking;
 
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
@@ -328,6 +335,7 @@ public class LogicGatePuzzleController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+
             // set GPT's response
             System.out.println(this.toString());
             setChatResponse();
@@ -340,14 +348,13 @@ public class LogicGatePuzzleController {
 
     gptTask.setOnRunning(
         event -> {
-          if (!firstMessage) {
-            taGptText.appendText("Hmm... Let me think...\n\n");
-          }
+          startLoadingBar();
         });
 
     // set text field to enabled on failed
     gptTask.setOnFailed(
         event -> {
+          pgbGptThinking.setVisible(false);
           if (item != null) {
             firstMessage = false;
 
@@ -362,6 +369,7 @@ public class LogicGatePuzzleController {
     // set text field to enabled on succeeded
     gptTask.setOnSucceeded(
         event -> {
+          pgbGptThinking.setVisible(false);
           if (item != null) {
             firstMessage = false;
 
@@ -375,6 +383,19 @@ public class LogicGatePuzzleController {
 
     // start the thread
     gptThread.start();
+  }
+
+  private void startLoadingBar() {
+    // Set the initial visibility
+    pgbGptThinking.setVisible(true);
+    pgbGptThinking.setProgress(0);
+
+    Timeline task =
+        new Timeline(
+            new KeyFrame(Duration.ZERO, new KeyValue(pgbGptThinking.progressProperty(), 0)),
+            new KeyFrame(Duration.seconds(2), new KeyValue(pgbGptThinking.progressProperty(), 1)));
+
+    task.play();
   }
 
   /**
