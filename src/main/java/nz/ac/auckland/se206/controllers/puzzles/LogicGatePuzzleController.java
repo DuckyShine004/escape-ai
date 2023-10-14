@@ -80,19 +80,13 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgInput7;
 
   // remaining wires with constituent pairs for wire bending
-  @FXML private Pane pneInput8;
-
-  @FXML private Pane pneInput9;
-
-  @FXML private Pane pneInput10;
-
-  @FXML private Pane pneInput11;
-
-  @FXML private Pane pneInput12;
-
-  @FXML private Pane pneInput13;
-
-  @FXML private Pane pneInput14; // end gate
+  @FXML private ImageView imgWire1;
+  @FXML private ImageView imgWire2;
+  @FXML private ImageView imgWire3;
+  @FXML private ImageView imgWire4;
+  @FXML private ImageView imgWire5;
+  @FXML private ImageView imgWire6;
+  @FXML private ImageView imgWire7;
 
   @FXML private ImageView imgSolvedLight;
 
@@ -741,17 +735,17 @@ public class LogicGatePuzzleController {
     displayInputImages();
 
     // second column
-    logicInSection.add(new Wire(this.pneInput8));
-    logicInSection.add(new Wire(this.pneInput9));
-    logicInSection.add(new Wire(this.pneInput10));
-    logicInSection.add(new Wire(this.pneInput11));
+    logicInSection.add(new Wire(this.imgWire1));
+    logicInSection.add(new Wire(this.imgWire2));
+    logicInSection.add(new Wire(this.imgWire3));
+    logicInSection.add(new Wire(this.imgWire4));
 
     // third column
-    logicInSection.add(new Wire(this.pneInput12));
-    logicInSection.add(new Wire(this.pneInput13));
+    logicInSection.add(new Wire(this.imgWire5));
+    logicInSection.add(new Wire(this.imgWire6));
 
     // fourth column
-    logicInSection.add(new Wire(this.pneInput14));
+    logicInSection.add(new Wire(this.imgWire7));
 
     // set solved light to red / off
     imgSolvedLight.setImage(redLight);

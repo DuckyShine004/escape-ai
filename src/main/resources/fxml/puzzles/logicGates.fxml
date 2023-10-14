@@ -132,7 +132,7 @@
                               <ImageView fx:id="imgInput7" fitHeight="20.0" fitWidth="20.0" layoutX="-9.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </Pane>
-                        <Pane fx:id="pneAnswerGate4" layoutX="200.0" layoutY="73.0" opacity="0.8" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate4" layoutX="200.0" layoutY="70.0" opacity="0.8" prefHeight="50.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate4" fitHeight="45.0" fitWidth="80.0" onMouseClicked="#onGate4Clicked" onMouseEntered="#onGate4Enter" onMouseExited="#onGate4Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -148,25 +148,20 @@
                                  </cursor></ImageView>
                            </children>
                         </Pane>
-                        <Pane fx:id="pneInput8" layoutX="96.0" layoutY="51.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pneInput82" layoutX="195.0" layoutY="57.0" prefHeight="26.0" prefWidth="12.0" />
-                        <Pane fx:id="pneInput9" layoutX="96.0" layoutY="126.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pneInput92" layoutX="195.0" layoutY="101.0" prefHeight="30.0" prefWidth="12.0" />
-                        <Pane fx:id="pneInput10" layoutX="96.0" layoutY="188.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pneInput102" layoutX="195.0" layoutY="191.0" prefHeight="26.0" prefWidth="12.0" />
-                        <Pane fx:id="pneInput11" layoutX="96.0" layoutY="248.0" prefHeight="10.0" prefWidth="111.0" />
-                        <Pane fx:id="pneInput112" layoutX="195.0" layoutY="228.0" prefHeight="26.0" prefWidth="12.0" />
-                        <Pane fx:id="pneInput12" layoutX="274.0" layoutY="86.0" prefHeight="10.0" prefWidth="80.0" />
-                        <Pane fx:id="pneInput122" layoutX="342.0" layoutY="96.0" prefHeight="50.0" prefWidth="12.0" />
-                        <Pane fx:id="pneInput13" layoutX="274.0" layoutY="216.0" prefHeight="10.0" prefWidth="80.0" />
-                        <Pane fx:id="pneInput132" layoutX="342.0" layoutY="164.0" prefHeight="52.0" prefWidth="12.0" />
-                        <Pane fx:id="pneInput14" layoutX="415.0" layoutY="152.0" prefHeight="10.0" prefWidth="46.0" />
-                        <Pane fx:id="pneInput142" layoutX="449.0" layoutY="160.0" prefHeight="50.0" prefWidth="12.0" />
                         <ImageView fx:id="imgSolvedLight" fitHeight="78.0" fitWidth="84.0" layoutX="417.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgHelpToDo" fitHeight="50.0" fitWidth="55.0" layoutX="342.0" layoutY="10.0" onMouseClicked="#onGetToDoHelp" pickOnBounds="true" preserveRatio="true" visible="false">
                            <cursor>
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor></ImageView>
+                        <ImageView fx:id="imgWire1" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="12.5" />
+                        <ImageView fx:id="imgWire2" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="-18.0" />
+                        <ImageView fx:id="imgWire3" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" rotate="12.5" />
+                        <ImageView fx:id="imgWire4" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" rotate="-12.5" />
+                        <ImageView fx:id="imgWire5" fitHeight="26.0" fitWidth="118.0" layoutX="271.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" rotate="12.5" />
+                        <ImageView fx:id="imgWire6" fitHeight="26.0" fitWidth="118.0" layoutX="271.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true" rotate="-12.5" />
+                        <ImageView fx:id="imgWire7" fitHeight="26.0" fitWidth="110.0" layoutX="404.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" rotate="58.1" />
+                        <ImageView fx:id="imgWire11" fitHeight="26.0" fitWidth="110.0" layoutX="105.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
+                        <ImageView fx:id="imgWire111" fitHeight="26.0" fitWidth="110.0" layoutX="115.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
                      </children>
                   </Pane>
                   <Pane prefHeight="115.0" prefWidth="500.0">
