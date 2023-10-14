@@ -25,8 +25,6 @@ public class ControlRoomController extends RoomController {
   @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;
-  @FXML private Label lblQuestion1;
-  @FXML private Label lblQuestion2;
   @FXML private Label lblHintCounter;
 
   @FXML private Button btnNo;
@@ -219,8 +217,6 @@ public class ControlRoomController extends RoomController {
 
       // Make visible all final question components
       recBlur.setVisible(GameState.isSolved);
-      lblQuestion1.setVisible(GameState.isSolved);
-      lblQuestion2.setVisible(GameState.isSolved);
       imgButton.setVisible(GameState.isSolved);
       btnYes.setVisible(GameState.isSolved);
       btnNo.setVisible(GameState.isSolved);

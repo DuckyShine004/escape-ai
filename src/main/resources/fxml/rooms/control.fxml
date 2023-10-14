@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -14,6 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
@@ -102,12 +104,14 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <ImageView fx:id="imgButton" fitHeight="150.0" fitWidth="150.0" layoutX="145.0" layoutY="214.0" onMouseClicked="#onAiClicked" styleClass="imageView" visible="false">
-         <image>
-            <Image url="@../../images/redubutton.png" />
-         </image>
-      </ImageView>
-      <Rectangle fx:id="recBlur" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="400.0" layoutX="12.0" layoutY="65.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" visible="false" width="400.0" />
+      <Rectangle fx:id="recBlur" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="415.0" layoutX="15.0" layoutY="55.0" opacity="0.6" stroke="TRANSPARENT" strokeType="INSIDE" width="690.0">
+         <effect>
+            <InnerShadow height="255.0" radius="127.0" width="255.0">
+               <color>
+                  <Color red="0.5" green="0.13734567165374756" blue="0.13734567165374756" />
+               </color>
+            </InnerShadow>
+         </effect></Rectangle>
       <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="CONTROL ROOM">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -148,28 +152,14 @@
             <Glow level="0.65" />
          </effect>
       </Label>
-      <Label fx:id="lblQuestion1" layoutX="72.0" layoutY="122.0" prefHeight="46.0" prefWidth="300.0" text="WILL YOU PRESS" visible="false">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblQuestion2" layoutX="92.0" layoutY="168.0" prefHeight="46.0" prefWidth="240.0" text="THE BUTTON?" visible="false">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnYes" layoutX="92.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onYesButton" prefHeight="20.0" prefWidth="70.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="YES" visible="false">
+      <Button fx:id="btnLeft" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="btnNo" layoutX="217.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onNoButton" prefHeight="20.0" prefWidth="70.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="NO" visible="false">
+         </cursor></Button>
+      <Button fx:id="btnRight" layoutX="650.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="btnLeft" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
-      <Button fx:id="btnRight" layoutX="650.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
+         </cursor></Button>
       <Pane fx:id="paControlPanel" layoutX="211.0" layoutY="70.0" onMouseClicked="#onControlPanelClicked" onMouseEntered="#onControlPanelEntered" onMouseExited="#onControlPanelExited" opacity="0.0" prefHeight="143.0" prefWidth="297.0" style="-fx-background-color: #FFFF00;">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -226,5 +216,83 @@
       <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
       <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
       <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" opacity="0.75" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" visible="false" wrapText="true" />
+      <Pane layoutX="220.0" layoutY="80.0" prefHeight="380.0" prefWidth="400.0">
+         <children>
+            <Pane layoutX="354.0" layoutY="44.0" prefHeight="18.0" prefWidth="40.0" style="-fx-background-color: black;" />
+            <Polygon layoutX="363.0" layoutY="52.0" points="-8.8333740234375, -7.499992370605469, 32.5606689453125, -5.939353942871094, -8.0606689453125, -33.06066131591797" stroke="BLACK" strokeType="INSIDE" />
+            <Pane layoutX="15.0" layoutY="60.0" prefHeight="320.0" prefWidth="380.0" style="-fx-background-color: black;" styleClass="losing-border-pane" stylesheets="@../../css/menus/backstory.css">
+               <children>
+                  <ImageView fx:id="imgButton" fitHeight="150.0" fitWidth="150.0" layoutX="112.5" layoutY="80.0" onMouseClicked="#onAiClicked" styleClass="imageView">
+                     <image>
+                        <Image url="@../../images/redubutton.png" />
+                     </image>
+                     <effect>
+                        <DropShadow height="71.61" radius="45.525" width="112.49">
+                           <color>
+                              <Color red="0.6578947305679321" green="0.23960363864898682" blue="0.23960363864898682" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+                  <Label layoutX="70.0" layoutY="25.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="PRESS THE BUTTON?" textFill="#ff4a54">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.8" />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="20.0" prefHeight="40.0" prefWidth="340.0" style="-fx-background-color: black;">
+               <children>
+                  <Label layoutX="10.0" layoutY="8.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="WARNING" textFill="#f9ff58">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.6" />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="btnYes" layoutX="30.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#onYesButton" prefHeight="20.0" prefWidth="160.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="YES">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Button>
+            <Button fx:id="btnNo" layoutX="220.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#onNoButton" prefHeight="20.0" prefWidth="160.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="NO">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Button>
+            <Line endY="15.0" layoutX="394.5" layoutY="45.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endY="40.0" layoutX="15.5" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endX="340.0" layoutX="16.0" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endX="378.5" endY="45.0" layoutX="16.0" startX="340.0" startY="20.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+         </children>
+      </Pane>
    </children>
 </Pane>
