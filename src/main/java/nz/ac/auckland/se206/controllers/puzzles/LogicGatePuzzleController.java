@@ -81,25 +81,18 @@ public class LogicGatePuzzleController {
 
   // remaining wires with constituent pairs for wire bending
   @FXML private Pane pneInput8;
-  @FXML private Pane pneInput82;
 
   @FXML private Pane pneInput9;
-  @FXML private Pane pneInput92;
 
   @FXML private Pane pneInput10;
-  @FXML private Pane pneInput102;
 
   @FXML private Pane pneInput11;
-  @FXML private Pane pneInput112;
 
   @FXML private Pane pneInput12;
-  @FXML private Pane pneInput122;
 
   @FXML private Pane pneInput13;
-  @FXML private Pane pneInput132;
 
   @FXML private Pane pneInput14; // end gate
-  @FXML private Pane pneInput142;
 
   @FXML private ImageView imgSolvedLight;
 
@@ -184,9 +177,6 @@ public class LogicGatePuzzleController {
   // next 2 positions are resulting from second layer
   // final value is calulated, and if true, puzzle is solved
   private List<Boolean> logicTrail;
-
-  private String onLogicColour = "00ff00"; // green
-  private String offLogicColour = "ff0000"; // red
 
   // This is the number of first column gates
   // x
@@ -751,17 +741,17 @@ public class LogicGatePuzzleController {
     displayInputImages();
 
     // second column
-    logicInSection.add(new Wire(this.pneInput8, this.pneInput82));
-    logicInSection.add(new Wire(this.pneInput9, this.pneInput92));
-    logicInSection.add(new Wire(this.pneInput10, this.pneInput102));
-    logicInSection.add(new Wire(this.pneInput11, this.pneInput112));
+    logicInSection.add(new Wire(this.pneInput8));
+    logicInSection.add(new Wire(this.pneInput9));
+    logicInSection.add(new Wire(this.pneInput10));
+    logicInSection.add(new Wire(this.pneInput11));
 
     // third column
-    logicInSection.add(new Wire(this.pneInput12, this.pneInput122));
-    logicInSection.add(new Wire(this.pneInput13, this.pneInput132));
+    logicInSection.add(new Wire(this.pneInput12));
+    logicInSection.add(new Wire(this.pneInput13));
 
     // fourth column
-    logicInSection.add(new Wire(this.pneInput14, this.pneInput142));
+    logicInSection.add(new Wire(this.pneInput14));
 
     // set solved light to red / off
     imgSolvedLight.setImage(redLight);
@@ -775,16 +765,16 @@ public class LogicGatePuzzleController {
 
     for (int i = 0; i < logicInSection.size(); i++) {
 
-      String colour;
+      Boolean colour;
 
       if (logicTrail.get(i + 8) == true) {
 
         // set colour to Green
-        colour = onLogicColour;
+        colour = true;
       } else {
 
         // set colour to Red
-        colour = offLogicColour;
+        colour = false;
       }
 
       // set background of pane to colour

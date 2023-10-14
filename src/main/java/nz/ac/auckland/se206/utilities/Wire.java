@@ -4,15 +4,12 @@ import javafx.scene.layout.Pane;
 
 public class Wire {
   private Pane wire;
-  private Pane bendWire;
+
+  private String onLogicColour = "00ff00"; // green
+  private String offLogicColour = "ff0000"; // red
 
   public Wire(Pane wire) {
     this.wire = wire;
-  }
-
-  public Wire(Pane wire, Pane bendWire) {
-    this.wire = wire;
-    this.bendWire = bendWire;
   }
 
   /**
@@ -20,13 +17,13 @@ public class Wire {
    *
    * @param colour
    */
-  public void setBackground(String colour) {
+  public void setBackground(Boolean colour) {
     // set background colour
-    wire.setStyle("-fx-background-color: #" + colour);
-
-    // if bend Wire exists
-    if (bendWire != null) {
-      bendWire.setStyle("-fx-background-color: #" + colour);
+    if (colour) {
+      wire.setStyle("-fx-background-color: #" + onLogicColour);
+    } else {
+      wire.setStyle("-fx-background-color: #" + offLogicColour);
     }
+
   }
 }
