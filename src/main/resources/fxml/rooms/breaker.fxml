@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Glow?>
@@ -14,12 +13,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
 <Pane fx:id="paRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.BreakerRoomController">
    <children>
@@ -148,17 +147,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <Button fx:id="btnLeft" layoutX="15.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
-      <Button fx:id="btnRight" layoutX="656.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
+      <Button fx:id="btnLeft" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
+      <Button fx:id="btnRight" layoutX="650.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
       <Pane fx:id="paCircuitBox" layoutX="275.0" layoutY="68.0" onMouseClicked="#onCircuitBoxClicked" onMouseEntered="#onCircuitBoxEntered" onMouseExited="#onCircuitBoxExited" opacity="0.0" prefHeight="210.0" prefWidth="245.0" style="-fx-background-color: #FFFF00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
-      <VBox fx:id="vbChat" layoutX="250.0" layoutY="80.0" prefHeight="300.0" prefWidth="380.0" visible="false" spacing="10.0">
+      <VBox fx:id="vbChat" layoutX="250.0" layoutY="80.0" prefHeight="300.0" prefWidth="380.0" spacing="10.0" visible="false">
          <Label fx:id="lblOldestChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
-         <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true"/>
+         <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
          <Label fx:id="lblPlayerChat" styleClass="chat-bubble1" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
       </VBox>
       <TextField fx:id="tfChat" layoutX="250.0" layoutY="400.0" prefHeight="25.0" prefWidth="380.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
@@ -193,8 +192,8 @@
             <Glow level="0.65" />
          </effect>
       </Circle>
-      <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
-      <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
-      <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" visible="false" opacity="0.75"/>
+      <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
+      <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
+      <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" opacity="0.75" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" visible="false" wrapText="true" />
    </children>
 </Pane>
