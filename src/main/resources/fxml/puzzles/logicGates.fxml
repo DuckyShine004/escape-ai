@@ -155,8 +155,8 @@
                            </cursor></ImageView>
                         <ImageView fx:id="imgWire1" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="12.5" />
                         <ImageView fx:id="imgWire2" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="-18.0" />
-                        <ImageView fx:id="imgWire3" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" rotate="12.5" />
-                        <ImageView fx:id="imgWire4" fitHeight="26.0" fitWidth="118.0" layoutX="95.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" rotate="-12.5" />
+                        <ImageView fx:id="imgWire3" fitHeight="26.0" fitWidth="118.0" layoutX="91.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" rotate="9.5" />
+                        <ImageView fx:id="imgWire4" fitHeight="26.0" fitWidth="118.0" layoutX="91.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" rotate="-12.4" />
                         <ImageView fx:id="imgWire5" fitHeight="26.0" fitWidth="118.0" layoutX="271.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" rotate="12.5" />
                         <ImageView fx:id="imgWire6" fitHeight="26.0" fitWidth="118.0" layoutX="271.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true" rotate="-12.5" />
                         <ImageView fx:id="imgWire7" fitHeight="26.0" fitWidth="110.0" layoutX="404.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" rotate="58.1" />
