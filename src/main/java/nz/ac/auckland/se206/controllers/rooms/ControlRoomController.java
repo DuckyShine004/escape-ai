@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
 public class ControlRoomController extends RoomController {
+  @FXML private Pane paButton;
   @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;
@@ -216,10 +217,8 @@ public class ControlRoomController extends RoomController {
       GameState.isSolved = true;
 
       // Make visible all final question components
-      recBlur.setVisible(GameState.isSolved);
-      imgButton.setVisible(GameState.isSolved);
-      btnYes.setVisible(GameState.isSolved);
-      btnNo.setVisible(GameState.isSolved);
+      recBlur.setVisible(true);
+      paButton.setVisible(true);
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
