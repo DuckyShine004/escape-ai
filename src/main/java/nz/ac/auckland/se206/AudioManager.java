@@ -5,7 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class AudioManager {
@@ -30,8 +29,7 @@ public class AudioManager {
     audioMap.get(clip).play();
   }
 
-  private static void initializeTimedSound(
-      Timeline timeline, Clip clip, double delay, int duration) {
+  private static Timeline getTimedSound(Timeline timeline, Clip clip, double delay) {
     timeline =
         new Timeline(
             new KeyFrame(
@@ -40,18 +38,28 @@ public class AudioManager {
                   loadAudio(clip);
                 }));
 
-    // Play the heart beat sound effect for the remaining time
-    timeline.setCycleCount(duration);
+    return timeline;
   }
 
   public static void playHeartBeat() {
-    initializeTimedSound(heartBeat, Clip.HEART_BEAT, 2, Timer.getIntegerTime());
+    // Initialize the heart beat sound effect
+    heartBeat = getTimedSound(heartBeat, Clip.HEART_BEAT, 2);
+
+    // Set the cycle and play the sound effect
+    heartBeat.setCycleCount(Timer.getIntegerTime());
     heartBeat.play();
   }
 
   public static void playDialogue() {
-    initializeTimedSound(dialogue, Clip.DIALOGUE, Instructions.printSpeed, 0);
+    dialogue = getTimedSound(dialogue, Clip.DIALOGUE, 0.1);
+
+    // Set the cycle and play the sound effect
+    dialogue.setCycleCount(Timeline.INDEFINITE);
     dialogue.play();
+  }
+
+  public static void pauseDialogue() {
+    dialogue.pause();
   }
 
   public static void stopHeartBeat() {

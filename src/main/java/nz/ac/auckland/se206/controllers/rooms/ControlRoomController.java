@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.HintManager;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
@@ -197,9 +198,14 @@ public class ControlRoomController extends RoomController {
 
   /** On mouse clicked, if the control panel is pressed, then switch to the terminal scene. */
   @FXML
-  private void onControlPanelClicked() {
+  private void onControlPanelClicked() throws IOException {
     // We should not give anymore hints for clicking on the control panel
     Interactions.isControlPanelClicked = true;
+
+    // Initialize the terminal if player has not clicked on it before
+    if (SceneManager.getUi(AppUi.TERMINAL) == null) {
+      App.initializeTerminalScene();
+    }
 
     // Switch to terminal puzzle scene
     App.setUi(AppUi.TERMINAL);
