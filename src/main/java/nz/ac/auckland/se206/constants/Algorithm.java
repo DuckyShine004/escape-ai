@@ -70,13 +70,13 @@ public class Algorithm {
           + "9. }";
 
   public static final String algorithm5 =
-      "1. integer integer = string; \n"
-          + "2. boolean x = false; \n"
-          + "3. boolean y = true; \n"
-          + "4. string abcd = 10; \n"
+      "1. string a = \"ant\"; \n"
+          + "2. string b x = \"cat\"; \n"
+          + "3. integer c = \"10\"; \n"
+          + "4. string d = 10; \n"
           + "5. \n"
-          + "6. if (x OR y) { \n"
-          + "7.     output \"TRUE\"; \n"
+          + "6. if (a.isInsect()) { \n"
+          + "7.     output b;"
           + "8. } \n"
-          + "9. qwueiropasdhfjklzxcvnm";
+          + "9. output b + a";
 }
