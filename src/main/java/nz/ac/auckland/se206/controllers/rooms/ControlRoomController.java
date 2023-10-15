@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /** Controller class for the control room scene. */
@@ -218,7 +219,7 @@ public class ControlRoomController extends RoomController {
     Interactions.isControlKeyboardClicked = true;
 
     // If all puzzles are solved, then we can terminate the AI
-    if (GameState.isRiddleResolved && GameState.isLogicGateSolved && GameState.isDecryptionSolved) {
+    if (KeyEventsHandler.isAllPuzzleSolved()) {
       // Play the heart beat sound effect
       AudioManager.playHeartBeat();
 

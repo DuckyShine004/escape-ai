@@ -39,6 +39,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Number;
 import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
@@ -1144,8 +1145,18 @@ public class DecryptionPuzzleController {
     // Print the correct sequence message to the chat
     printCorrectSequence();
 
-    // Print the puzzle solve message afterwards
-    Printer.printDecryptionPuzzleFinished(taChat, Instructions.DecryptionPuzzleSolved);
+    // Update all labels associated with solving the puzzle
+    setLabelsSolved();
+
+    // The decryption puzzle is now solved
+    GameState.isDecryptionSolved = true;
+
+    // Print the puzzle solve message based on what the puzzle game state is
+    if (KeyEventsHandler.isAllPuzzleSolved()) {
+      Printer.printDecryptionPuzzleFinished(taChat, Instructions.allPuzzleSolved);
+    } else {
+      Printer.printDecryptionPuzzleFinished(taChat, Instructions.decryptionPuzzleSolved);
+    }
 
     // Set cursor to default for all line panes and disable all lines
     for (int line = 0; line < pseudocodeLines; line++) {
@@ -1153,12 +1164,6 @@ public class DecryptionPuzzleController {
       paLineClick.setCursor(Cursor.DEFAULT);
       paLineClick.setDisable(true);
     }
-
-    // Update all labels associated with solving the puzzle
-    setLabelsSolved();
-
-    // The decryption puzzle is now solved
-    GameState.isDecryptionSolved = true;
   }
 
   /** Handle the event when user incorrectly inputs the sequence. */

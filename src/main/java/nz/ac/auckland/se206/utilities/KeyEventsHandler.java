@@ -15,4 +15,15 @@ public class KeyEventsHandler implements EventHandler<KeyEvent> {
       App.setUi(AppUi.MENU);
     }
   }
+
+  /**
+   * Return a boolean value based on whether all the puzzles are solved.
+   *
+   * @return a boolean value based on whether all the puzzles are solved.
+   */
+  public static boolean isAllPuzzleSolved() {
+    return GameState.isDecryptionSolved
+        && GameState.isRiddleResolved
+        && GameState.isLogicGateSolved;
+  }
 }

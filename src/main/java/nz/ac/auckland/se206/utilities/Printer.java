@@ -102,13 +102,17 @@ public class Printer {
    * @param message the message to be printed
    */
   public static void printDecryptionPuzzleFinished(TextArea textArea, String message) {
+    // Initialize a pause transition
     PauseTransition pause = new PauseTransition(Duration.seconds(2));
 
+    // Print the final message on finish
     pause.setOnFinished(
         event -> {
+          textArea.clear();
           printText(textArea, message, Instructions.printSpeed);
         });
 
+    // Sleep for the duration specified
     pause.play();
   }
 }
