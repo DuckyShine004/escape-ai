@@ -3,23 +3,27 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
 <Pane fx:id="paRoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.rooms.ControlRoomController">
    <children>
@@ -103,12 +107,14 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <ImageView fx:id="imgButton" fitHeight="150.0" fitWidth="150.0" layoutX="145.0" layoutY="214.0" onMouseClicked="#onAiClicked" styleClass="imageView" visible="false">
-         <image>
-            <Image url="@../../images/redubutton.png" />
-         </image>
-      </ImageView>
-      <Rectangle fx:id="recBlur" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="400.0" layoutX="12.0" layoutY="65.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" visible="false" width="400.0" />
+      <Rectangle fx:id="recBlur" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="415.0" layoutX="15.0" layoutY="55.0" opacity="0.6" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="690.0">
+         <effect>
+            <InnerShadow height="255.0" radius="127.0" width="255.0">
+               <color>
+                  <Color red="0.5" green="0.13734567165374756" blue="0.13734567165374756" />
+               </color>
+            </InnerShadow>
+         </effect></Rectangle>
       <Label layoutX="21.0" layoutY="8.0" prefHeight="32.0" prefWidth="210.0" styleClass="title-text" stylesheets="@../../css/menus/topBar.css" text="CONTROL ROOM">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -149,28 +155,14 @@
             <Glow level="0.65" />
          </effect>
       </Label>
-      <Label fx:id="lblQuestion1" layoutX="72.0" layoutY="122.0" prefHeight="46.0" prefWidth="300.0" text="WILL YOU PRESS" visible="false">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblQuestion2" layoutX="92.0" layoutY="168.0" prefHeight="46.0" prefWidth="240.0" text="THE BUTTON?" visible="false">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnYes" layoutX="92.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onYesButton" prefHeight="20.0" prefWidth="70.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="YES" visible="false">
+      <Button fx:id="btnLeft" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="btnNo" layoutX="217.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onNoButton" prefHeight="20.0" prefWidth="70.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="NO" visible="false">
+         </cursor></Button>
+      <Button fx:id="btnRight" layoutX="650.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="btnLeft" layoutX="15.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="52.0" prefWidth="38.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
-      <Button fx:id="btnRight" layoutX="656.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="52.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
+         </cursor></Button>
       <Pane fx:id="paControlPanel" layoutX="211.0" layoutY="70.0" onMouseClicked="#onControlPanelClicked" onMouseEntered="#onControlPanelEntered" onMouseExited="#onControlPanelExited" opacity="0.0" prefHeight="143.0" prefWidth="297.0" style="-fx-background-color: #FFFF00;">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -187,9 +179,367 @@
          </cursor>
       </Polygon>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
-     <VBox fx:id="vbChat" layoutX="250.0" layoutY="80.0" prefHeight="300.0" prefWidth="380.0" visible="false" spacing="10.0">
+      <Pane fx:id="paButton" layoutX="160.0" layoutY="65.0" prefHeight="380.0" prefWidth="400.0" visible="false">
+         <children>
+            <Pane layoutX="354.0" layoutY="44.0" prefHeight="18.0" prefWidth="40.0" style="-fx-background-color: black;" />
+            <Polygon layoutX="363.0" layoutY="52.0" points="-8.8333740234375, -7.499992370605469, 32.5606689453125, -5.939353942871094, -8.0606689453125, -33.06066131591797" stroke="BLACK" strokeType="INSIDE" />
+            <Pane layoutX="15.0" layoutY="60.0" prefHeight="320.0" prefWidth="380.0" style="-fx-background-color: black;" styleClass="losing-border-pane" stylesheets="@../../css/menus/backstory.css">
+               <children>
+                  <ImageView fx:id="imgButton" fitHeight="150.0" fitWidth="150.0" layoutX="112.5" layoutY="80.0" onMouseClicked="#onAiClicked" styleClass="imageView">
+                     <image>
+                        <Image url="@../../images/redubutton.png" />
+                     </image>
+                     <effect>
+                        <DropShadow height="71.61" radius="45.525" width="112.49">
+                           <color>
+                              <Color red="0.6578947305679321" green="0.23960363864898682" blue="0.23960363864898682" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../images/warn.png" />
+                     </image>
+                     <effect>
+                        <Glow level="0.4" />
+                     </effect>
+                  </ImageView>
+                  <Label layoutX="50.0" layoutY="2.0" styleClass="custom-bold-label" stylesheets="@../../css/menus/mainMenu.css" text="PRESS THE BUTTON?" textFill="#ff4a54">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.8" />
+                     </effect>
+                  </Label>
+                  <Pane layoutX="9.0" layoutY="50.0" opacity="0.75" prefHeight="60.0" prefWidth="34.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
+                     <effect>
+                        <Glow level="0.8" />
+                     </effect>
+                     <children>
+                        <Label layoutX="3.0" layoutY="3.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="ABC-DEF" textFill="#f85454">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                           <font>
+                              <Font size="4.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="3.0" layoutY="10.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="GH" textFill="#f85454">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                           <font>
+                              <Font size="4.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="3.0" layoutY="17.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="ASHD" textFill="#f85454">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                           <font>
+                              <Font size="4.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="3.0" layoutY="43.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="ASHD-SDH" textFill="#f85454">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                           <font>
+                              <Font size="4.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="3.0" layoutY="50.0" opacity="0.4" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="ADF" textFill="#f85454">
+                           <effect>
+                              <Glow level="0.4" />
+                           </effect>
+                           <font>
+                              <Font size="4.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="-10.0" layoutY="-41.0" prefHeight="200.0" prefWidth="10.0" style="-fx-background-color: #f85454;">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                     <children>
+                        <Line endY="180.0" layoutX="7.0" layoutY="10.0" strokeWidth="1.5" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="380.0" layoutY="120.0" prefHeight="200.0" prefWidth="10.0" style="-fx-background-color: #f85454;">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                     <children>
+                        <Line endY="180.0" layoutX="3.0" layoutY="10.0" strokeWidth="1.5" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="375.0" layoutY="40.0" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: #f85454;">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Pane>
+                  <Polygon fill="#f85454" layoutX="520.0" layoutY="179.0" points="-520.0, -20.000030517578125, -520.0, -8.833343505859375, -528.5, -20.000030517578125" stroke="#f85454" strokeType="INSIDE">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Polygon>
+                  <Polygon fill="#f85454" layoutX="530.0" layoutY="189.0" points="-150.0, -69.0, -140.0, -69.0, -150.0, -83.83332824707031" stroke="#f85454" strokeType="INSIDE">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Polygon>
+                  <Polygon fill="#f85454" layoutX="713.0" layoutY="160.0" points="-333.0, 26.5, -333.0, 18.0, -338.0, 18.0" stroke="#f85454" strokeType="INSIDE">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Polygon>
+                  <Polygon fill="#f85454" layoutX="722.0" layoutY="112.0" points="-342.1666259765625, -80.83332824707031, -347.0, -70.83332824707031, -342.1666259765625, -70.83332824707031" stroke="#f85454" strokeType="INSIDE">
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <DropShadow radius="16.3275" width="46.31">
+                                 <color>
+                                    <Color red="1.0" green="0.37962964177131653" blue="0.37962964177131653" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Polygon>
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="20.0" prefHeight="40.0" prefWidth="340.0" style="-fx-background-color: black;">
+               <children>
+                  <Label layoutX="10.0" layoutY="8.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="WARNING" textFill="#f9ff58">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.6" />
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fitHeight="320.0" fitWidth="380.0" layoutX="15.0" layoutY="60.0" opacity="0.2" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/codebackground.jpg" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="1.2">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.6578947305679321" green="0.20305393636226654" blue="0.20305393636226654" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <Button fx:id="btnYes" layoutX="30.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#onYesButton" prefHeight="20.0" prefWidth="160.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="YES">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Button>
+            <Button fx:id="btnNo" layoutX="220.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#onNoButton" prefHeight="20.0" prefWidth="160.0" styleClass="choice-button" stylesheets="@../../css/index.css" text="NO">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Button>
+            <Label layoutX="24.0" layoutY="174.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS SOMETHING LOL INTERESATING" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="182.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS TEXT" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="202.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS IS SOMETHING AT LEAST" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="210.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="LOREM IPSUM" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="219.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="LOREM IPSUM IS SOMETHING LATIN" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="227.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="THIS TEXT IS NOT cool" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="252.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="WOW LOOK AT THIS TEXT SO INSPIRING lol" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="260.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="OK FINE HERE ARE SOME NUMBERS" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="268.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="123-3456 [] - {}" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="290.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="OK HERE IS SOME REWALLY LONG TEXT BEFORE I END IT OFF" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="298.0" opacity="0.3" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="REALLY NOW THIS IS THE LAST PIECE OF TEXT I WILL WRITE SO DON'T EXPECT MORE" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
+            <Label layoutX="315.0" layoutY="165.0" opacity="0.3" rotate="90.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="H E R E I S S O M E V E R T" textFill="#ba4f4f">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+            <Line endY="15.0" layoutX="394.5" layoutY="45.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endY="40.0" layoutX="15.5" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endX="340.0" layoutX="16.0" layoutY="20.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endX="378.5" endY="45.0" layoutX="16.0" startX="340.0" startY="20.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8" />
+               </effect>
+            </Line>
+            <Line endX="245.0" layoutX="65.0" layoutY="100.0" stroke="#f85454" strokeWidth="1.5">
+               <effect>
+                  <Glow level="0.8">
+                     <input>
+                        <DropShadow height="77.45" radius="46.0125" width="108.6">
+                           <color>
+                              <Color red="0.7368420958518982" green="0.6754385828971863" blue="0.6754385828971863" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </Glow>
+               </effect>
+            </Line>
+         </children>
+      </Pane>
+     <VBox fx:id="vbChat" layoutX="250.0" layoutY="80.0" prefHeight="300.0" prefWidth="380.0" spacing="10.0" visible="false">
          <Label fx:id="lblOldestChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
-         <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true"/>
+         <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
          <Label fx:id="lblPlayerChat" styleClass="chat-bubble1" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
       </VBox>
       <TextField fx:id="tfChat" layoutX="250.0" layoutY="400.0" prefHeight="25.0" prefWidth="380.0" promptText="Enter message" styleClass="custom-text-field" stylesheets="@../../css/menus/chatArea.css" visible="false">
@@ -212,6 +562,9 @@
          <image>
             <Image url="@../../images/mutedavatar.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="133.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
       <Circle fx:id="crcEye1" fill="WHITE" layoutX="142.0" layoutY="384.0" radius="16.0" stroke="BLACK" strokeType="INSIDE">
@@ -224,8 +577,8 @@
             <Glow level="0.65" />
          </effect>
       </Circle>
-      <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
-      <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A"/>
-      <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" visible="false" opacity="0.75"/>
+      <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
+      <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
+      <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" opacity="0.75" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" visible="false" wrapText="true" />
    </children>
 </Pane>

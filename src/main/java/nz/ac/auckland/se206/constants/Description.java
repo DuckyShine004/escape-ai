@@ -21,6 +21,6 @@ public class Description {
           + " Output the friendliness of the AI in each case.";
 
   public static final String description5 =
-      "Algorithm checks if the bit-AND operation between two boolean variables, x and y, is true."
-          + " If it is, output \"TRUE\".";
+      "Algorithm outputs word a, if it is an insect. Lastly, output the concatenation of words,"
+          + " a and b in this order.";
 }

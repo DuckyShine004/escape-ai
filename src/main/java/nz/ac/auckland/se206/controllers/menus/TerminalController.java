@@ -20,6 +20,7 @@ import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Instructions;
@@ -106,6 +107,10 @@ public class TerminalController {
   /** When back is clicked, go back to previous section (control room). */
   @FXML
   private void onBackPaneClicked() {
+    // Pause the dialogue
+    AudioManager.pauseDialogue();
+
+    // Switch to the control room
     App.setUi(AppUi.CONTROL);
   }
 

@@ -5,6 +5,7 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextArea;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Instructions;
 
@@ -23,6 +24,10 @@ public class Printer {
    * @param speed the speed at which the letters will be printed
    */
   public static void printText(TextArea textArea, String message, double speed) {
+    // Play the printing dialogue sound effect
+    AudioManager.playDialogue();
+
+    // Initialize pointers
     currentLetterPosition = 0;
     currentMessage = message;
 
@@ -58,6 +63,7 @@ public class Printer {
         e -> {
           GameState.isPrinting = false;
           printTextEvent.getKeyFrames().removeAll();
+          AudioManager.stopDialogue();
         });
   }
 
@@ -65,6 +71,7 @@ public class Printer {
   public static void stop() {
     GameState.isPrinting = false;
     printTextEvent.stop();
+    AudioManager.stopDialogue();
   }
 
   /**
