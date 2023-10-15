@@ -1,10 +1,12 @@
 package nz.ac.auckland.se206.utilities;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextArea;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Instructions;
 
 public class Printer {
   private static Timeline printTextEvent;
@@ -83,5 +85,23 @@ public class Printer {
    */
   public static String getCurrentMessage() {
     return currentMessage;
+  }
+
+  /**
+   * Print the puzzle solved message to the text area when the decryption puzzle is successfully
+   * solved by the player.
+   *
+   * @param textArea the passed in text area
+   * @param message the message to be printed
+   */
+  public static void printDecryptionPuzzleFinished(TextArea textArea, String message) {
+    PauseTransition pause = new PauseTransition(Duration.seconds(2));
+
+    pause.setOnFinished(
+        event -> {
+          printText(textArea, message, Instructions.printSpeed);
+        });
+
+    pause.play();
   }
 }

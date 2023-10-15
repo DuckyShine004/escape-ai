@@ -1145,6 +1145,9 @@ public class DecryptionPuzzleController {
     // Print the correct sequence message to the chat
     printCorrectSequence();
 
+    // Print the puzzle solve message afterwards
+    Printer.printDecryptionPuzzleFinished(taChat, Instructions.DecryptionPuzzleSolved);
+
     // Set cursor to default for all line panes and disable all lines
     for (int line = 0; line < pseudocodeLines; line++) {
       Pane paLineClick = (Pane) paDecryption.lookup("#paLineClick" + line);

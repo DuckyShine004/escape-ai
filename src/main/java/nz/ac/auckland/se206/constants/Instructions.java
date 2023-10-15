@@ -28,6 +28,9 @@ public class Instructions {
   public static final String correctSequence =
       "Searching sequence database... \n\n" + "Results found: 1 \n\n" + "Sequence is correct!";
 
+  public static final String DecryptionPuzzleSolved =
+      "File debugged correctly... \n\n Getting control keyboard status...\n\n Status: accessible";
+
   public static final String incorrectSequence =
       "Searching sequence database... \n\n" + "Results found: 0 \n\n" + "Sequence is incorrect!";
 
