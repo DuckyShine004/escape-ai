@@ -88,11 +88,6 @@ public class ControlRoomController extends RoomController {
     App.setUi(AppUi.OFFICE);
   }
 
-  @FXML
-  private void onPlayPuzzleButton() {
-    App.setUi(AppUi.TERMINAL);
-  }
-
   /**
    * On yes clicked, if the button is pressed, then switch to the winning scene.
    *
@@ -205,6 +200,11 @@ public class ControlRoomController extends RoomController {
     // Initialize the terminal if player has not clicked on it before
     if (SceneManager.getUi(AppUi.TERMINAL) == null) {
       App.initializeTerminalScene();
+    }
+
+    // If the dialogue is paused, play it
+    if (AudioManager.isDialoguePlaying()) {
+      AudioManager.resumeDialogue();
     }
 
     // Switch to terminal puzzle scene

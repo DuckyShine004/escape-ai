@@ -41,6 +41,10 @@ public class AudioManager {
     return timeline;
   }
 
+  public static boolean isDialoguePlaying() {
+    return dialogue.getStatus() == Timeline.Status.PAUSED;
+  }
+
   public static void playHeartBeat() {
     // Initialize the heart beat sound effect
     heartBeat = getTimedSound(heartBeat, Clip.HEART_BEAT, 2);
@@ -60,6 +64,10 @@ public class AudioManager {
 
   public static void pauseDialogue() {
     dialogue.pause();
+  }
+
+  public static void resumeDialogue() {
+    dialogue.play();
   }
 
   public static void stopHeartBeat() {
