@@ -179,7 +179,7 @@
          </cursor>
       </Polygon>
       <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
-      <Pane fx:id="paButton" layoutX="220.0" layoutY="80.0" prefHeight="380.0" prefWidth="400.0" visible="false">
+      <Pane fx:id="paButton" layoutX="160.0" layoutY="65.0" prefHeight="380.0" prefWidth="400.0" visible="false">
          <children>
             <Pane layoutX="354.0" layoutY="44.0" prefHeight="18.0" prefWidth="40.0" style="-fx-background-color: black;" />
             <Polygon layoutX="363.0" layoutY="52.0" points="-8.8333740234375, -7.499992370605469, 32.5606689453125, -5.939353942871094, -8.0606689453125, -33.06066131591797" stroke="BLACK" strokeType="INSIDE" />
@@ -562,6 +562,9 @@
          <image>
             <Image url="@../../images/mutedavatar.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imgEmotion" fitHeight="60.0" fitWidth="50.0" layoutX="133.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
       <Circle fx:id="crcEye1" fill="WHITE" layoutX="142.0" layoutY="384.0" radius="16.0" stroke="BLACK" strokeType="INSIDE">

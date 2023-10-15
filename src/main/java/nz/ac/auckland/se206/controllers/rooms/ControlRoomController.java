@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -26,7 +27,12 @@ public class ControlRoomController extends RoomController {
   @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;
+  @FXML private Label lblEye1;
+  @FXML private Label lblEye2;
   @FXML private Label lblHintCounter;
+
+  @FXML private Circle crcEye1;
+  @FXML private Circle crcEye2;
 
   @FXML private Button btnNo;
   @FXML private Button btnYes;
@@ -219,6 +225,21 @@ public class ControlRoomController extends RoomController {
       // Make visible all final question components
       recBlur.setVisible(true);
       paButton.setVisible(true);
+
+      // Make AI invisible
+      imgAvatar.setVisible(false);
+      crcEye1.setOpacity(0);
+      crcEye2.setOpacity(0);
+      lblEye1.setOpacity(0);
+      lblEye2.setOpacity(0);
+
+      // Make the side buttons invisible
+      btnLeft.setVisible(false);
+      btnRight.setVisible(false);
+
+      // Make the AI speech invisible and disable it
+      lblAiChat2.setOpacity(0);
+      lblAiChat2.setDisable(true);
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
