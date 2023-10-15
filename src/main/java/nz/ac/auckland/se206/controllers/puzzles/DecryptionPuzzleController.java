@@ -471,8 +471,8 @@ public class DecryptionPuzzleController {
     memoryUsed = 0;
 
     // Create a grid of memory cells
-    for (double y = 0; y < 5; y++) {
-      for (double x = 0; x < 15; x++) {
+    for (double y = 0; y < 8; y++) {
+      for (double x = 0; x < 30; x++) {
         setMemoryLocation(x, y, 5, 5);
       }
     }
@@ -481,7 +481,7 @@ public class DecryptionPuzzleController {
     memoryUsed = getMemoryUsed();
 
     // Set the memory used text
-    lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
+    lblMemory.setText("USING " + memoryUsed + " OUT OF 128 GiB");
   }
 
   /** Intialize the matrix rain for the decryption puzzle. */
@@ -786,7 +786,7 @@ public class DecryptionPuzzleController {
    */
   private double getMemoryUsed() {
     // Get the ratio of memory used
-    memoryUsed = (memoryUsed / 75) * 32;
+    memoryUsed = (memoryUsed / 240) * 128;
 
     // Get the memory used to 2 decimal places
     String roundedMemoryUsed = String.format("%.2f", memoryUsed);
@@ -900,8 +900,8 @@ public class DecryptionPuzzleController {
    */
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
-    double horizontalOffset = 5;
-    double verticalOffset = 85;
+    double horizontalOffset = 12;
+    double verticalOffset = 90;
 
     // Intialize the padding
     double padding = 5;

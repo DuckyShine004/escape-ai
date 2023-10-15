@@ -90,7 +90,7 @@
                   <DropShadow />
                </effect>
             </Pane>
-            <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taChat" disable="true" editable="false" prefHeight="150.0" prefWidth="315.0" styleClass="description-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.6" />
                </effect>
@@ -99,7 +99,7 @@
                </font></TextArea>
          </children>
       </Pane>
-      <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="235.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paHint" focusTraversable="true" layoutX="5.0" layoutY="250.0" onMouseClicked="#onHintPaneClicked" onMouseEntered="#onHintPaneEntered" onMouseExited="#onHintPaneExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Label fx:id="lblHint" layoutX="54.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT" textFill="WHITE">
                <font>
@@ -117,7 +117,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="235.0" onMouseClicked="#onAnalyzeClicked" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
+      <Pane fx:id="paAnalyze" focusTraversable="true" layoutX="170.0" layoutY="250.0" onMouseClicked="#onAnalyzeClicked" onMouseEntered="#onAnalyzeEntered" onMouseExited="#onAnalyzeExited" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/puzzles/decryption.css">
          <children>
             <Label layoutX="38.0" layoutY="1.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="ANALYZE" textFill="WHITE">
                <font>
@@ -422,7 +422,7 @@
                   <Font size="16.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="375.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+            <TextArea fx:id="taDescription" disable="true" editable="false" focusTraversable="false" layoutY="305.0" prefHeight="135.0" prefWidth="375.0" styleClass="description-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
                <effect>
                   <Glow level="0.5" />
                </effect>
@@ -570,7 +570,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblMemory" layoutX="5.0" layoutY="135.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="USING x OUT OF 32 GiB" textFill="#96979d">
+      <Label fx:id="lblMemory" layoutX="5.0" layoutY="180.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="USING x OUT OF 32 GiB" textFill="#96979d">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -578,33 +578,12 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="5.0" layoutY="148.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="PROCESSES RUNNING" textFill="WHITE">
-         <effect>
-            <Glow level="0.7" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="5.0" layoutY="187.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT PROCESSING" textFill="WHITE">
+      <Label layoutX="5.0" layoutY="210.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT PROCESSING:" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
       </Label>
-      <Label fx:id="lblProgress" layoutX="285.0" layoutY="187.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="0%" textFill="WHITE">
-         <effect>
-            <Glow level="0.9" />
-         </effect>
-      </Label>
-      <Label layoutX="5.0" layoutY="205.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="USE HINT OR ANALYZE SEQUENCE" textFill="WHITE">
-         <effect>
-            <Glow level="0.7" />
-         </effect>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="5.0" layoutY="269.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT SYSTEM AND SEQUENCE ANALYZER" textFill="WHITE">
+      <Label fx:id="lblProgress" layoutX="290.0" layoutY="210.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="0%" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -654,22 +633,7 @@
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endX="319.0" layoutX="3.0" layoutY="206.0" stroke="#616267">
-         <effect>
-            <Glow level="0.2" />
-         </effect>
-      </Line>
-      <Line endY="10.0" layoutX="3.0" layoutY="201.0" stroke="#616267">
-         <effect>
-            <Glow level="0.2" />
-         </effect>
-      </Line>
-      <Line endY="10.0" layoutX="322.0" layoutY="201.0" stroke="#616267">
-         <effect>
-            <Glow level="0.2" />
-         </effect>
-      </Line>
-      <Line endX="155.0" layoutX="3.0" layoutY="60.0" stroke="#616267">
+      <Line endX="317.0" layoutX="3.0" layoutY="60.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
@@ -679,22 +643,22 @@
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endY="10.0" layoutX="158.0" layoutY="55.0" stroke="#616267">
+      <Line endY="10.0" layoutX="320.0" layoutY="55.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endX="319.0" layoutX="3.0" layoutY="150.0" stroke="#616267">
+      <Line endX="319.0" layoutX="3.0" layoutY="195.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endY="10.0" layoutX="3.0" layoutY="145.0" stroke="#616267">
+      <Line endY="10.0" layoutX="3.0" layoutY="190.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endY="10.0" layoutX="322.0" layoutY="145.0" stroke="#616267">
+      <Line endY="10.0" layoutX="322.0" layoutY="190.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
@@ -744,17 +708,12 @@
             </Glow>
          </effect>
       </Line>
-      <Line endX="160.0" layoutX="120.0" layoutY="195.0" stroke="#616267">
+      <Line endX="160.0" layoutX="125.0" layoutY="219.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Line endY="10.0" layoutX="280.0" layoutY="190.0" stroke="WHITE">
-         <effect>
-            <Glow level="0.2" />
-         </effect>
-      </Line>
-      <Pane fx:id="paLoadingBar" layoutX="120.0" layoutY="190.0" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: rgb(130,240,130);">
+      <Pane fx:id="paLoadingBar" layoutX="125.0" layoutY="214.0" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: rgb(130,240,130);">
          <effect>
             <InnerShadow>
                <input>
@@ -763,5 +722,10 @@
             </InnerShadow>
          </effect>
       </Pane>
+      <Line endY="10.0" layoutX="285.0" layoutY="214.0" stroke="WHITE">
+         <effect>
+            <Glow level="0.2" />
+         </effect>
+      </Line>
    </children>
 </Pane>
