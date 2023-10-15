@@ -5,15 +5,18 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.utilities.Timer;
 
 public class AudioManager {
+  private static Timeline dialogue;
   private static Timeline heartBeat;
 
   public enum Clip {
     MAKING_SELECTION,
     SELECTION,
-    HEART_BEAT
+    HEART_BEAT,
+    DIALOGUE
   }
 
   private static HashMap<Clip, AudioClip> audioMap = new HashMap<>();
@@ -27,21 +30,35 @@ public class AudioManager {
     audioMap.get(clip).play();
   }
 
-  public static void playHeartBeat() {
-    heartBeat =
+  private static void initializeTimedSound(
+      Timeline timeline, Clip clip, double delay, int duration) {
+    timeline =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(2),
+                Duration.seconds(delay),
                 event -> {
-                  loadAudio(Clip.HEART_BEAT);
+                  loadAudio(clip);
                 }));
 
     // Play the heart beat sound effect for the remaining time
-    heartBeat.setCycleCount(Timer.getIntegerTime());
+    timeline.setCycleCount(duration);
+  }
+
+  public static void playHeartBeat() {
+    initializeTimedSound(heartBeat, Clip.HEART_BEAT, 2, Timer.getIntegerTime());
     heartBeat.play();
+  }
+
+  public static void playDialogue() {
+    initializeTimedSound(dialogue, Clip.DIALOGUE, Instructions.printSpeed, 0);
+    dialogue.play();
   }
 
   public static void stopHeartBeat() {
     heartBeat.stop();
+  }
+
+  public static void stopDialogue() {
+    dialogue.stop();
   }
 }

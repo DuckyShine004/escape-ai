@@ -84,6 +84,9 @@ public class App extends Application {
 
     // Initialize the heart beat sound effect
     AudioManager.addAudio(Clip.HEART_BEAT, "/sounds/heart_beat.wav");
+
+    // Initialize the dialogue sound effect
+    AudioManager.addAudio(Clip.HEART_BEAT, "/sounds/dialogue.mp3");
   }
 
   /**
