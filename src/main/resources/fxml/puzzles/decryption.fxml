@@ -578,12 +578,12 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="5.0" layoutY="210.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT PROCESSING:" textFill="WHITE">
+      <Label layoutX="5.0" layoutY="213.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="HINT PROCESSING:" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
       </Label>
-      <Label fx:id="lblProgress" layoutX="290.0" layoutY="210.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="0%" textFill="WHITE">
+      <Label fx:id="lblProgress" layoutX="290.0" layoutY="213.0" styleClass="custom-label" stylesheets="@../../css/puzzles/decryption.css" text="0%" textFill="WHITE">
          <effect>
             <Glow level="0.9" />
          </effect>
@@ -708,12 +708,12 @@
             </Glow>
          </effect>
       </Line>
-      <Line endX="160.0" layoutX="125.0" layoutY="219.0" stroke="#616267">
+      <Line endX="160.0" layoutX="125.0" layoutY="222.0" stroke="#616267">
          <effect>
             <Glow level="0.2" />
          </effect>
       </Line>
-      <Pane fx:id="paLoadingBar" layoutX="125.0" layoutY="214.0" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: rgb(130,240,130);">
+      <Pane fx:id="paLoadingBar" layoutX="125.0" layoutY="217.0" prefHeight="10.0" prefWidth="0.0" style="-fx-background-color: rgb(130,240,130);">
          <effect>
             <InnerShadow>
                <input>
@@ -722,7 +722,7 @@
             </InnerShadow>
          </effect>
       </Pane>
-      <Line endY="10.0" layoutX="285.0" layoutY="214.0" stroke="WHITE">
+      <Line endY="10.0" layoutX="285.0" layoutY="217.0" stroke="WHITE">
          <effect>
             <Glow level="0.2" />
          </effect>

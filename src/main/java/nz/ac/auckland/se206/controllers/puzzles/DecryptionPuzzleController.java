@@ -708,9 +708,8 @@ public class DecryptionPuzzleController {
    * Generate a response from GPT.
    *
    * @param entityMessage the chat message to be sent to GPT.
-   * @param isHint the flag for if the user input is a hint.
    */
-  private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
+  private void getChatResponse(ChatMessage entityMessage) {
     // Initialize the loading bar
     initializeLoadingBar();
 
@@ -757,6 +756,7 @@ public class DecryptionPuzzleController {
 
   /** Generate a GPT response. GPT should give a hint for the current pseudocode. */
   private void getUserHint() {
+    System.out.println(hintIndex);
     // Initialize a new instance of gpt
     initializeChat();
 
@@ -764,7 +764,7 @@ public class DecryptionPuzzleController {
     HintManager.updateHintCounter();
 
     // Get the incorrect line number for the following pseudocode and hint index
-    int lineNumber = Integer.valueOf(sequence.charAt(hintIndex));
+    int lineNumber = Character.getNumericValue(sequence.charAt(hintIndex));
 
     // Get the hint prompt for GPT to analyze and generate a response
     String hint = GptPromptEngineering.getDecryptionHint(pseudocode, lineNumber);
@@ -773,7 +773,7 @@ public class DecryptionPuzzleController {
     ChatMessage userHintMessage = new ChatMessage("assistant", hint);
 
     // Get GPT's response
-    getChatResponse(userHintMessage, true);
+    getChatResponse(userHintMessage);
 
     // Update the hint index
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
