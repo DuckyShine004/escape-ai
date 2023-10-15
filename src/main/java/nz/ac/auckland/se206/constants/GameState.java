@@ -53,7 +53,7 @@ public class GameState {
   public static boolean isPrinting = false;
 
   /** maximum time for the round, will change in options, default is 120 seconds */
-  public static int maxTime = 120;
+  public static int maxTime = 10;
 
   /** number of riddles solved */
   public static int riddlesSolved = 0;
