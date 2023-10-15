@@ -99,6 +99,9 @@ public class LogicGatePuzzleController {
 
   @FXML private ProgressBar pgbGptThinking;
 
+  // label for end logic gate so player can know what it is
+  @FXML private Label lblFinalGate;
+
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
 
@@ -146,10 +149,12 @@ public class LogicGatePuzzleController {
   private int swapping;
 
   // highlight colour for hover gate
-  private String activeHighlight = "16b2c7"; // darker blue
+  private String activeHighlight = "004078"; // darker blue
+  // 16b2c7 too similar
+  // 004078
 
   // highlight colour for about to swap gate
-  private String swappingHighlight = "1194a6"; // lighter blue
+  private String swappingHighlight = "00325e"; // darker blue
 
   // Logic Gate list
   // 0 - AND
@@ -544,7 +549,7 @@ public class LogicGatePuzzleController {
    */
   private void setSubmissionGates() {
 
-    // set up for debug testing purposes
+    // set up
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
@@ -557,6 +562,9 @@ public class LogicGatePuzzleController {
     // locked end gate
     currentAssembly.add(
         new LogicGate(LogicGate.Logic.OR)); // start as OR, but change to NOR if already solved
+    lblFinalGate.setText("OR");
+
+
 
     // lays out current assembly
     updateGateLayout();
@@ -605,6 +613,7 @@ public class LogicGatePuzzleController {
 
       // change last gate to XNOR
       currentAssembly.set(currentAssembly.size() - 1, new LogicGate(LogicGate.Logic.NOR));
+      lblFinalGate.setText("NOR");
 
       // update visuals of gate layout
       updateGateLayout();
@@ -789,7 +798,7 @@ public class LogicGatePuzzleController {
     String solvedPrompt =
         "Congratulate me on solving the logic gate puzzle, I now have learned what an "
             + currentAssembly.get(currentAssembly.size() - 1).getType()
-            + " does,  but I might like to ask more questions about logic gates";
+            + " does";
 
     ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
 
