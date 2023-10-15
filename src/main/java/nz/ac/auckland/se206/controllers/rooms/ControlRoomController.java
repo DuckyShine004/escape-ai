@@ -14,6 +14,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -112,6 +113,9 @@ public class ControlRoomController extends RoomController {
     // Stop the heartbeat sound effect
     AudioManager.stopHeartBeat();
 
+    // Play the victory sound effect
+    AudioManager.loadAudio(Clip.VICTORY);
+
     // Update the leaderboard - UNCOMMENT FOR FINAL
     // LeaderboardManager.update();
   }
@@ -137,6 +141,9 @@ public class ControlRoomController extends RoomController {
 
     // Stop the heartbeat sound effect
     AudioManager.stopHeartBeat();
+
+    // Play the victory sound effect
+    AudioManager.loadAudio(Clip.VICTORY);
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
     // LeaderboardManager.update();

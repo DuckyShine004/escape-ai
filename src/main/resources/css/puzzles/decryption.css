@@ -90,7 +90,7 @@
 .description-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: #71deff;
+  -fx-text-inner-color: #ffff6d;
   -fx-font-family: "JetBrainsMono NF";
   -fx-opacity: 1;
 }
