@@ -8,16 +8,6 @@ import nz.ac.auckland.se206.constants.Interactions;
 public class GptPromptEngineering {
 
   /**
-   * Generates a GPT prompt engineering string for the decryption puzzle backstory.
-   *
-   * @return the generated prompt engineering string
-   */
-  public static String initializeDecryptionResponse() {
-    return "You are the AI of a terminal. You should simply greet the user and reply to them. Your"
-        + " response should never exceed 20 words.";
-  }
-
-  /**
    * Generates a GPT prompt engineering string for the logic gate backstory.
    *
    * @return the generated prompt engineering string
@@ -80,8 +70,8 @@ public class GptPromptEngineering {
     // return the decryption hint
     return "Why is line " // give GPT the line to check
         + lineNumber
-        + " incorrect for the following pseudocode? '--' lines are correct, so do not worry about"
-        + " them. Give a short hint and do not include line numbers: \n\n" // add restrictions
+        + " incorrect for the following pseudocode?. Give a short hint and do not include line"
+        + " numbers: \n\n" // add restrictions
         + pseudocode
         + "\n\n"
         + "You must not include line numbers, and it should not exceed 15 words. Give"
@@ -148,10 +138,10 @@ public class GptPromptEngineering {
    */
   public static String addInstructions() {
     return "If the player asks for a hint, let them know that by pressing the hint button, your"
-               + " drives will be updated with knowledge so that you can assist them. If the player"
-               + " includes 'Please reword: ' at the start of their response, please respond with"
-               + " a creative rewording of the phrase. Any response  you make should not exceed"
-               + " 20 words.";
+        + " drives will be updated with knowledge so that you can assist them. If the player"
+        + " includes 'Please reword: ' at the start of their response, please respond with"
+        + " a creative rewording of the phrase. Any response  you make should not exceed"
+        + " 20 words.";
   }
 
   /**

@@ -1,4 +1,3 @@
-
 /* Style for navigation buttons */
 .navigation-button {
   -fx-background-color: white;
@@ -32,15 +31,20 @@
 
 /* Style for choice buttons */
 .choice-button {
-  -fx-background-color: #000000;
-  -fx-text-fill: #ffd700;
-  -fx-font-size: 14px;
-  -fx-font-weight: bold;
+  -fx-background-color: black;
+  -fx-text-fill: #43fbfa;
+  -fx-font-size: 16px;
+  -fx-font-family: "JetBrainsMono NF Bold";
   -fx-padding: 10px 20px;
   -fx-background-radius: 5px;
   -fx-border-radius: 5px;
-  -fx-border-color: #ffd700;
+  -fx-border-color: #43fbfa;
   -fx-border-width: 2px;
+}
+
+.choice-button:hover {
+  -fx-text-fill: #ff4a54;
+  -fx-border-color: #ff4a54;
 }
 
 /* Styling for the grid pane */
@@ -51,14 +55,4 @@
 /* Styling for the text field */
 .custom-text-field:disabled {
   -fx-opacity: 1;
-}
-
-/* Hover effect */
-.choice-button:hover {
-  -fx-background-color: #222222;
-}
-
-/* Pressed effect */
-.choice-button:pressed {
-  -fx-background-color: #111111;
 }

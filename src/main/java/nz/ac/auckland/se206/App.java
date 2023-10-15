@@ -81,6 +81,21 @@ public class App extends Application {
 
     // Initialize the selection sound effect
     AudioManager.addAudio(Clip.SELECTION, "/sounds/selection.mp3");
+
+    // Initialize the heart beat sound effect
+    AudioManager.addAudio(Clip.HEART_BEAT, "/sounds/heart_beat.wav");
+
+    // Initialize the dialogue sound effect
+    AudioManager.addAudio(Clip.DIALOGUE, "/sounds/dialogue.mp3");
+  }
+
+  /**
+   * This method initialises the terminal scene
+   *
+   * @throws IOException
+   */
+  public static void initializeTerminalScene() throws IOException {
+    SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
   }
 
   /**
@@ -140,9 +155,6 @@ public class App extends Application {
 
     // backstory scene
     SceneManager.addAppUi(AppUi.BACKSTORY, loadFxml("menus/backstory"));
-
-    // terminal screen
-    SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
 
     // winning screen
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
@@ -214,6 +226,8 @@ public class App extends Application {
 
     // Initialize audio clips
     initializeAudio();
+
+    // Immediately stop the dialogue because there is a bug
 
     // add scenes to sceneManager, along with the fonts to be used
     initalizeScenes();

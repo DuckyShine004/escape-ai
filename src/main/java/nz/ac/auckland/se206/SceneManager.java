@@ -50,6 +50,7 @@ public class SceneManager {
       sceneMap.remove(AppUi.OFFICE);
       sceneMap.remove(AppUi.BREAKER);
       sceneMap.remove(AppUi.CONTROL);
+      sceneMap.remove(AppUi.TERMINAL);
     } catch (Exception e) {
       System.out.println("scenes don't exist yet");
     }
