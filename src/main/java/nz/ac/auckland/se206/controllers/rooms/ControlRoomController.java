@@ -13,6 +13,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -111,6 +112,9 @@ public class ControlRoomController extends RoomController {
     // Stop the timer
     Timer.stop();
 
+    // Stop the heartbeat sound effect
+    AudioManager.stopHeartBeat();
+
     // Update the leaderboard - UNCOMMENT FOR FINAL
     // LeaderboardManager.update();
   }
@@ -133,6 +137,9 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Stop the heartbeat sound effect
+    AudioManager.stopHeartBeat();
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
     // LeaderboardManager.update();
@@ -206,6 +213,9 @@ public class ControlRoomController extends RoomController {
 
     // If all puzzles are solved, then we can terminate the AI
     if (GameState.isRiddleResolved && GameState.isLogicGateSolved && GameState.isDecryptionSolved) {
+      // Play the heart beat sound effect
+      AudioManager.playHeartBeat();
+
       // Create a new chat message
       ChatMessage terminationMessage =
           new ChatMessage(

@@ -81,6 +81,9 @@ public class App extends Application {
 
     // Initialize the selection sound effect
     AudioManager.addAudio(Clip.SELECTION, "/sounds/selection.mp3");
+
+    // Initialize the heart beat sound effect
+    AudioManager.addAudio(Clip.HEART_BEAT, "/sounds/heart_beat.wav");
   }
 
   /**
