@@ -67,7 +67,6 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getDecryptionHint(String pseudocode, int lineNumber) {
-    System.out.println(lineNumber);
     // return the decryption hint
     return "Why is line " // give GPT the line to check
         + lineNumber

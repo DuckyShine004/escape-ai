@@ -756,7 +756,6 @@ public class DecryptionPuzzleController {
 
   /** Generate a GPT response. GPT should give a hint for the current pseudocode. */
   private void getUserHint() {
-    System.out.println(hintIndex);
     // Initialize a new instance of gpt
     initializeChat();
 
