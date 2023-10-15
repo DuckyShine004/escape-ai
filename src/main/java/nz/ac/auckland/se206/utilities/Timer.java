@@ -7,6 +7,8 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** The timer class keeps track of the time left for the player. */
@@ -38,7 +40,6 @@ public class Timer {
             new KeyFrame(
                 Duration.seconds(1),
                 event -> {
-                  // Update the timer
                   Timer.update();
                 }));
   }
@@ -142,6 +143,7 @@ public class Timer {
     // Check if the timer has timed out
     if (isTimedOut()) {
       stop();
+      AudioManager.loadAudio(Clip.GAME_OVER);
       App.setUi(AppUi.LOSING);
     }
   }

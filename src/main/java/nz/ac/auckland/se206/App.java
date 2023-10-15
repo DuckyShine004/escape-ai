@@ -87,6 +87,12 @@ public class App extends Application {
 
     // Initialize the dialogue sound effect
     AudioManager.addAudio(Clip.DIALOGUE, "/sounds/dialogue.mp3");
+
+    // Initialize the victory sound effect
+    AudioManager.addAudio(Clip.VICTORY, "/sounds/victory.mp3");
+
+    // Initialize the game over sound effect
+    AudioManager.addAudio(Clip.GAME_OVER, "/sounds/game_over.mp3");
   }
 
   /**

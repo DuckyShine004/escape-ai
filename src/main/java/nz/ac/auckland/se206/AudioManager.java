@@ -15,7 +15,9 @@ public class AudioManager {
     MAKING_SELECTION,
     SELECTION,
     HEART_BEAT,
-    DIALOGUE
+    DIALOGUE,
+    VICTORY,
+    GAME_OVER
   }
 
   private static HashMap<Clip, AudioClip> audioMap = new HashMap<>();
