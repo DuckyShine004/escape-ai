@@ -70,9 +70,6 @@ public class LogicGatePuzzleController {
   @FXML private Label lblHelperGate2;
   @FXML private Label lblHelperGate3;
 
-  // list to hold helper gates
-  private List<Label> lblHelperGates;
-
   // input logic img views
   @FXML private ImageView imgInput0;
   @FXML private ImageView imgInput1;
@@ -106,16 +103,6 @@ public class LogicGatePuzzleController {
   // label for end logic gate so player can know what it is
   @FXML private Label lblFinalGate;
 
-  // list of panes to change colour based on logic in the current wire
-  private List<Wire> logicInSection;
-
-  // list of the Image Views inputing true or false.  Constant values
-  private List<ImageView> logicInputs;
-
-  // input logic lights
-  private Image redLight;
-  private Image greenLight;
-
   // Grid of answer logic gates [ROW:COLUMN]
   //  00 01
   //  10 11 END
@@ -142,6 +129,19 @@ public class LogicGatePuzzleController {
 
   // background blue circuit image
   @FXML private ImageView imgBlueCircuits;
+
+  // input logic lights
+  private Image redLight;
+  private Image greenLight;
+
+  // list of panes to change colour based on logic in the current wire
+  private List<Wire> logicInSection;
+
+  // list to hold helper gates
+  private List<Label> lblHelperGates;
+
+  // list of the Image Views inputing true or false.  Constant values
+  private List<ImageView> logicInputs;
 
   // current logic gates in submission grid list
   private List<LogicGate> currentAssembly;
@@ -199,6 +199,7 @@ public class LogicGatePuzzleController {
   private Image clickableImage;
   private Image getInformationImage;
 
+  /** This method initailizes all the fields and lists. Additionally, it sets up the logic gate. */
   @FXML
   private void initialize() {
     // start timer
@@ -249,6 +250,7 @@ public class LogicGatePuzzleController {
     initiailizeChat();
   }
 
+  /** This method initaiailizes the chat area with a greeting message. */
   private void initiailizeChat() {
     // initialize the chat message field
     ChatMessage gptMessage;
@@ -349,6 +351,7 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
+
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
@@ -362,6 +365,7 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
+
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
@@ -374,6 +378,9 @@ public class LogicGatePuzzleController {
     gptThread.start();
   }
 
+  /**
+   * This method will start the loading animation within the progress bar. This will take 2 seconds.
+   */
   private void startLoadingBar() {
     // Set the initial visibility
     pgbGptThinking.setVisible(true);
@@ -410,11 +417,13 @@ public class LogicGatePuzzleController {
 
     // append the result to the text area
     taGptText.appendText("ai> " + gptOutput + "\n\n");
-
-    System.out.println("call talk");
-    GameState.tts.speak(gptOutput, AppUi.LOGIC_PUZZLE);
   }
 
+  /**
+   * This method will update trigger when the user submits their prompt into the text field.
+   *
+   * @param event when the user presses enter.
+   */
   @FXML
   private void onEnterInput(KeyEvent event) {
     // get input from text field
@@ -924,18 +933,20 @@ public class LogicGatePuzzleController {
     updateLogicTrail(false);
   }
 
+  /** This method will set the opacity of the hint button to 0.25 on hover. */
   @FXML
   private void onHintEntered() {
     pgHint.setOpacity(0.25);
   }
 
+  /** This method will set the opacity of the hint button to 0 on exit hover. */
   @FXML
   private void onHintExited() {
     pgHint.setOpacity(0);
   }
 
   /*
-   * This method changes the scene back to the Breaker Room
+   * This method changes the scene back to the Breaker Room.
    */
   @FXML
   private void onBackToBreaker() {
@@ -970,12 +981,22 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 0 click, triggering the general gate clicked method.
+   *
+   * @param event when the user clicks on gate 0.
+   */
   @FXML
   private void onGate0Clicked(MouseEvent event) {
     // on hover enter
     onClickedGate(0);
   }
 
+  /**
+   * This method will trigger on gate 0 hover causeing highlighting.
+   *
+   * @param event when the user's mouse enters gate 0.
+   */
   @FXML
   private void onGate0Enter(MouseEvent event) {
     //
@@ -984,6 +1005,11 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 0 hover causeing highlighting to cease.
+   *
+   * @param event when the user's mouse exits gate 0.
+   */
   @FXML
   private void onGate0Exit(MouseEvent event) {
     //
@@ -992,12 +1018,22 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 1 click, triggering the general gate clicked method.
+   *
+   * @param event when the user clicks on gate 1.
+   */
   @FXML
   private void onGate1Clicked(MouseEvent event) {
     //
     onClickedGate(1);
   }
 
+  /**
+   * This method will trigger on gate 1 hover causeing highlighting.
+   *
+   * @param event when the user's mouse enters gate 1.
+   */
   @FXML
   private void onGate1Enter(MouseEvent event) {
     //
@@ -1006,6 +1042,11 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 1 hover causeing highlighting to cease.
+   *
+   * @param event when the user's mouse exits gate 1.
+   */
   @FXML
   private void onGate1Exit(MouseEvent event) {
     //
@@ -1014,12 +1055,22 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 2 click, triggering the general gate clicked method.
+   *
+   * @param event when the user clicks on gate 2.
+   */
   @FXML
   private void onGate2Clicked(MouseEvent event) {
     //
     onClickedGate(2);
   }
 
+  /**
+   * This method will trigger on gate 2 hover causeing highlighting.
+   *
+   * @param event when the user's mouse enters gate 2.
+   */
   @FXML
   private void onGate2Enter(MouseEvent event) {
     //
@@ -1028,6 +1079,11 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 2 hover causeing highlighting to cease.
+   *
+   * @param event when the user's mouse exits gate 2.
+   */
   @FXML
   private void onGate2Exit(MouseEvent event) {
     //
@@ -1036,12 +1092,22 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 3 click, triggering the general gate clicked method.
+   *
+   * @param event when the user clicks on gate 3.
+   */
   @FXML
   private void onGate3Clicked(MouseEvent event) {
     //
     onClickedGate(3);
   }
 
+  /**
+   * This method will trigger on gate 3 hover causeing highlighting.
+   *
+   * @param event when the user's mouse enters gate 3.
+   */
   @FXML
   private void onGate3Enter(MouseEvent event) {
     //
@@ -1050,6 +1116,11 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 3 hover causeing highlighting to cease.
+   *
+   * @param event when the user's mouse exits gate 3.
+   */
   @FXML
   private void onGate3Exit(MouseEvent event) {
     //
@@ -1058,12 +1129,22 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 4 click, triggering the general gate clicked method.
+   *
+   * @param event when the user clicks on gate 4.
+   */
   @FXML
   private void onGate4Clicked(MouseEvent event) {
     //
     onClickedGate(4);
   }
 
+  /**
+   * This method will trigger on gate 4 hover causeing highlighting.
+   *
+   * @param event when the user's mouse enters gate 4.
+   */
   @FXML
   private void onGate4Enter(MouseEvent event) {
     //
@@ -1072,6 +1153,11 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 4 hover causeing highlighting to cease.
+   *
+   * @param event when the user's mouse exits gate 4.
+   */
   @FXML
   private void onGate4Exit(MouseEvent event) {
     //
@@ -1080,12 +1166,22 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 5 click, triggering the general gate clicked method.
+   *
+   * @param event when the user clicks on gate 5.
+   */
   @FXML
   private void onGate5Clicked(MouseEvent event) {
     //
     onClickedGate(5);
   }
 
+  /**
+   * This method will trigger on gate 5 hover causeing highlighting.
+   *
+   * @param event when the user's mouse enters gate 5.
+   */
   @FXML
   private void onGate5Enter(MouseEvent event) {
     //
@@ -1094,6 +1190,11 @@ public class LogicGatePuzzleController {
     }
   }
 
+  /**
+   * This method will trigger on gate 5 hover causeing highlighting to cease.
+   *
+   * @param event when the user's mouse exits gate 5.
+   */
   @FXML
   private void onGate5Exit(MouseEvent event) {
     //
@@ -1206,6 +1307,12 @@ public class LogicGatePuzzleController {
 
   }
 
+  /**
+   * This method generates the hint prompt to send to GPT. This method will return the prompt as a
+   * String.
+   *
+   * @return the hint prompt.
+   */
   private String getHintPrompt() {
     //
     String hintPrompt;

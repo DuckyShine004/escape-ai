@@ -106,6 +106,8 @@ public class ControlRoomController extends RoomController {
             + " artificial intelligence control our fate. May this choice pave the way for a"
             + " brighter future for all of us...";
 
+    GameState.muted = true;
+
     // Switch to the winning scene
     App.initializeWinningScene();
     App.setUi(AppUi.WINNING);
@@ -134,6 +136,8 @@ public class ControlRoomController extends RoomController {
     GameState.finalMessage =
         "Excellent work! You have taught the AI the value of human life and it has chosen to"
             + " harmoniously coexist with humanity. May this peace endure...";
+
+    GameState.muted = true;
 
     // Switch to the winning scene
     App.initializeWinningScene();
