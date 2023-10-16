@@ -107,9 +107,9 @@ public class Timer {
   }
 
   /**
-   * This method returns the time taken.
+   * Retrieves the time taken for the player to complete the game.
    *
-   * @return timeTaken the time taken
+   * @return the total in-game elapsed time.
    */
   public static int getTimeTaken() {
     return timeTaken;

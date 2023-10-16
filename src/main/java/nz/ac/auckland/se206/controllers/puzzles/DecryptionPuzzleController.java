@@ -1117,7 +1117,10 @@ public class DecryptionPuzzleController {
     setPolygonExited(pgEmptyRight);
   }
 
-  /** Disable password tab components. */
+  /**
+   * Disable password tab components. This will ensure the password tab has the correct colors set
+   * for it.
+   */
   private void disablePasswordTabComponents() {
     // Set exited color for the pane
     setPaneExited(paPassword);

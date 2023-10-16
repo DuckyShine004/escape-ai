@@ -133,9 +133,10 @@ public class GeneralOfficeController extends RoomController {
   }
 
   /**
-   * This method returns the room hint for the general office by running the getOfficeHint method.
+   * This method returns the room hint for the general office. Or more specifically, it returns the
+   * prompt input for GPT.
    *
-   * @return the room hint for the general office
+   * @return the room hint for the general office.
    */
   @Override
   protected String getRoomHint() {
