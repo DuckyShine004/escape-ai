@@ -74,33 +74,25 @@ public class BreakerRoomController extends RoomController {
     App.setUi(AppUi.CONTROL);
   }
 
-  /**
-   * When the cursor is hovered over the hint button, the hint button is highlighted.
-   */
+  /** When the cursor is hovered over the hint button, the hint button is highlighted. */
   @FXML
   private void onHintEntered() {
     pgHint.setOpacity(0.25);
   }
 
-  /**
-   * When the cursor is not hovered over the hint button, the hint button is not highlighted.
-   */
+  /** When the cursor is not hovered over the hint button, the hint button is not highlighted. */
   @FXML
   private void onHintExited() {
     pgHint.setOpacity(0);
   }
 
-  /**
-   * When the cursor is hovered over the circuit box, the circuit box is highlighted.
-   */
+  /** When the cursor is hovered over the circuit box, the circuit box is highlighted. */
   @FXML
   private void onCircuitBoxEntered() {
     paCircuitBox.setOpacity(GameState.overlayCapacity);
   }
 
-  /**
-   * When the cursor is not hovered over the circuit box, the circuit box is not highlighted.
-   */
+  /** When the cursor is not hovered over the circuit box, the circuit box is not highlighted. */
   @FXML
   private void onCircuitBoxExited() {
     paCircuitBox.setOpacity(0);

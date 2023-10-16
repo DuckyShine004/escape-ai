@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers.rooms;
 
+import java.io.FileInputStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -25,6 +27,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.HintManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.GameState.Difficulty;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -75,6 +78,11 @@ public abstract class RoomController {
   @FXML private Circle crcEye1;
   @FXML private Circle crcEye2;
 
+  @FXML private Button btnToggleTtsMute;
+
+  @FXML private Image mutedImage;
+  @FXML private Image talkingImage;
+
   /** This method initialiszes the room controller using a default method. */
   @FXML
   protected void initialize() {
@@ -84,6 +92,17 @@ public abstract class RoomController {
     playerChatProperty.set(GameState.currentPlayerMessage);
     lblOldestChat.textProperty().bind(oldestChatProperty);
     lblAiChat2.textProperty().bind(aiChatProperty);
+
+    try {
+      // load glass image
+      this.mutedImage = new Image(new FileInputStream("src/main/resources/images/mutedavatar.png"));
+      this.talkingImage =
+          new Image(new FileInputStream("src/main/resources/images/avataroutline.png"));
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
     initializeChat();
 
     createNewTimeLine();
@@ -96,6 +115,34 @@ public abstract class RoomController {
             chatBubbleVisible = false;
           }
         });
+  }
+
+  /**
+   * This method toggles the tts mute state.
+   *
+   * @param event
+   */
+  @FXML
+  private void onToggleTtsMute(Event event) {
+    // toggle mute
+    GameState.muted = !GameState.muted;
+
+    // mute current message
+    GameState.tts.stop();
+
+    updateAvatarImage();
+
+    System.out.println("Muted: " + GameState.muted);
+  }
+
+  /** This method will update the image of the avatar based on whether the AI is muted or not. */
+  private void updateAvatarImage() {
+    // update avatar image
+    if (GameState.muted) {
+      imgAvatar.setImage(this.mutedImage);
+    } else {
+      imgAvatar.setImage(this.talkingImage);
+    }
   }
 
   /**
@@ -275,14 +322,12 @@ public abstract class RoomController {
    */
   @FXML
   protected void onAiClicked(MouseEvent event) {
-    // Toggle the mute status of the TTS
-    GameState.muted = GameState.muted == false;
-
-    // Stop the TTS
-    GameState.tts.stop();
 
     // Toggle the chatting state of the game
     GameState.isChatting = !GameState.isChatting;
+
+    Boolean isVisible = btnToggleTtsMute.isVisible();
+    this.btnToggleTtsMute.setVisible(!isVisible);
 
     // If the game state is chatting, then set the chat components to visible
     if (GameState.isChatting) {
@@ -448,6 +493,8 @@ public abstract class RoomController {
       lblAiChat2.setVisible(true);
       chatBubbleVisible = true;
     }
+
+    GameState.tts.speak(message, AppUi.OFFICE);
   }
 
   /** Swap the order of the labels in the chat area. */

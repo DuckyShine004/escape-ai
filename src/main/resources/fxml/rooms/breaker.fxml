@@ -178,7 +178,7 @@
       </ImageView>
       <ImageView fx:id="imgAvatar" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="340.0" onMouseClicked="#onAiClicked" onMouseEntered="#onMouseEnterAi" onMouseExited="#onMouseExitAi" styleClass="imageView">
          <image>
-            <Image url="@../../images/mutedavatar.png" />
+            <Image url="@../../images/avataroutline.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -198,5 +198,6 @@
       <Label fx:id="lblEye1" layoutX="89.0" layoutY="370.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
       <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
       <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" opacity="0.75" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" visible="false" wrapText="true" />
+      <Button fx:id="btnToggleTtsMute" layoutX="80.0" layoutY="300.0" mnemonicParsing="false" onAction="#onToggleTtsMute" styleClass="toggle-mute-btn" stylesheets="@../../css/index.css" text="Toggle Mute" visible="false" />
    </children>
 </Pane>
