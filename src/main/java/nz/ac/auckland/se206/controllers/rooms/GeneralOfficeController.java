@@ -52,7 +52,7 @@ public class GeneralOfficeController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the left scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onLeftButton() throws IOException {
@@ -62,40 +62,32 @@ public class GeneralOfficeController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the right scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onRightButton() throws IOException {
     App.setUi(AppUi.BREAKER);
   }
 
-  /**
-   * When the cursor is hovered over the hint, the opacity increases.
-   */
+  /** When the cursor is hovered over the hint, the opacity increases. */
   @FXML
   private void onHintEntered() {
     pgHint.setOpacity(0.25);
   }
 
-  /**
-   * When the cursor is not hovered over the hint, the opacity decreases.
-   */
+  /** When the cursor is not hovered over the hint, the opacity decreases. */
   @FXML
   private void onHintExited() {
     pgHint.setOpacity(0);
   }
 
-  /**
-   * When the cursor is hovered over the desktop, the opacity increases.
-   */
+  /** When the cursor is hovered over the desktop, the opacity increases. */
   @FXML
   private void onDesktopEntered() {
     pgDesktop.setOpacity(GameState.overlayCapacity);
   }
 
-  /**
-   * When the cursor is not hovered over the desktop, the opacity decreases.
-   */
+  /** When the cursor is not hovered over the desktop, the opacity decreases. */
   @FXML
   private void onDesktopExited() {
     pgDesktop.setOpacity(0);
@@ -141,9 +133,9 @@ public class GeneralOfficeController extends RoomController {
   }
 
   /**
-   * This method returns the room hint for the general office.
+   * This method returns the room hint for the general office by running the getOfficeHint method.
    *
-   * @return the room hint
+   * @return the room hint for the general office
    */
   @Override
   protected String getRoomHint() {

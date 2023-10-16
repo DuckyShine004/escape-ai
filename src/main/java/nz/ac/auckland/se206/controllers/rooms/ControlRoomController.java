@@ -76,7 +76,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the left scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onLeftButton() throws IOException {
@@ -86,7 +86,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the right scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onRightButton() throws IOException {
@@ -96,7 +96,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On yes clicked, if the button is pressed, then switch to the winning scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onYesButton() throws Exception {
@@ -126,7 +126,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On no clicked, if the button is pressed, then switch to the winning scene.
    *
-   * @throws Exception
+   * @throws Exception if the file is not found
    */
   @FXML
   private void onNoButton() throws Exception {
@@ -165,7 +165,7 @@ public class ControlRoomController extends RoomController {
   }
 
   /**
-   * On control panel entered, if the control panel is entered, then set the opacity to the overlay
+   * On control panel entered, if the control panel is entered, then set the opacity to the overlay capacity.
    */
   @FXML
   private void onControlPanelEntered() {
@@ -180,6 +180,7 @@ public class ControlRoomController extends RoomController {
 
   /**
    * On control keyboard entered, if the control keyboard is entered, then set the opacity to the
+   * overlay capacity.
    */
   @FXML
   private void onControlKeyboardEntered() {
