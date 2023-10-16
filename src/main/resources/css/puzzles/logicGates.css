@@ -33,9 +33,9 @@
 }
 
 .gpt-text-area {
-  -fx-text-fill: #00FFFF; 
-  -fx-font-family: "Monospace", sans-serif;
-  -fx-font-size: 12px;
+  -fx-text-fill: #fbfbfb; 
+  -fx-font-family: "SansSerif", sans-serif;
+  -fx-font-size: 14px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
   -fx-min-width: 100%; 
@@ -60,8 +60,8 @@
 
 .input-text-field {
   -fx-text-fill: #00FFFF; 
-  -fx-font-family: "Monospace", sans-serif;
-  -fx-font-size: 12px;
+  -fx-font-family: "SansSerif", sans-serif;
+  -fx-font-size: 15px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
   -fx-min-width: 100%; 
@@ -76,4 +76,29 @@
   -fx-background-color: rgb(18, 157, 176);
 
 
+}
+.progress-bar > .bar {
+  -fx-background-color: linear-gradient(
+      from 0px .75em to .75em 0px,
+      repeat,
+      -fx-accent 0%,
+      -fx-accent 49%,
+      derive(-fx-accent, 30%) 50%,
+      derive(-fx-accent, 30%) 99%
+  );
+}
+
+.progress-bar {
+  -fx-background-insets: 0; /* Remove background insets */
+  -fx-border-color: #333333; /* Dark border color */
+  -fx-border-width: 2; /* Border width */
+  -fx-padding: 5; /* Padding around the ProgressBar */
+  -fx-border-radius: 5; /* Rounded corners */
+}
+
+.final-gate-label {
+  -fx-text-fill: #000000; 
+  -fx-font-family: "SansSerif", sans-serif;
+  -fx-font-size: 25px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);
 }

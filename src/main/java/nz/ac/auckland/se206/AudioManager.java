@@ -1,18 +1,28 @@
 package nz.ac.auckland.se206;
 
 import java.util.HashMap;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
+import nz.ac.auckland.se206.utilities.Timer;
 
 /**
  * This manager clas contains methods for storing and playing audio clips that are used throughout
  * the game.
  */
 public class AudioManager {
+  private static Timeline dialogue;
+  private static Timeline heartBeat;
 
   /** This enum represents the different audio clips that can be used in the game. */
   public enum Clip {
     MAKING_SELECTION,
-    SELECTION
+    SELECTION,
+    HEART_BEAT,
+    DIALOGUE,
+    VICTORY,
+    GAME_OVER
   }
 
   private static HashMap<Clip, AudioClip> audioMap = new HashMap<>();
@@ -20,8 +30,8 @@ public class AudioManager {
   /**
    * This method adds an audio clip to the audio map.
    *
-   * @param clip
-   * @param path
+   * @param clip the clip
+   * @param path the path to the sound file
    */
   public static void addAudio(Clip clip, String path) {
     AudioClip audio = new AudioClip(App.class.getResource(path).toString());
@@ -31,9 +41,77 @@ public class AudioManager {
   /**
    * This method loads an audio clip from the audio map.
    *
-   * @param clip
+   * @param clip the clip
    */
   public static void loadAudio(Clip clip) {
     audioMap.get(clip).play();
+  }
+
+  /**
+   * Initialize a looping sound effect.
+   *
+   * @param timeline the timeline to be set
+   * @param clip the clip
+   * @param delay the delay
+   * @return the initialized timeline
+   */
+  private static Timeline getTimedSound(Timeline timeline, Clip clip, double delay) {
+    timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(delay),
+                event -> {
+                  loadAudio(clip);
+                }));
+
+    return timeline;
+  }
+
+  /**
+   * Check if the dialogue sound effect is playing.
+   *
+   * @return boolean value based on whether dialgoue is playing
+   */
+  public static boolean isDialoguePlaying() {
+    return dialogue.getStatus() == Timeline.Status.PAUSED;
+  }
+
+  /** Play the heart beat sound effect. */
+  public static void playHeartBeat() {
+    // Initialize the heart beat sound effect
+    heartBeat = getTimedSound(heartBeat, Clip.HEART_BEAT, 2);
+
+    // Set the cycle and play the sound effect
+    heartBeat.setCycleCount(Timer.getIntegerTime());
+    heartBeat.play();
+  }
+
+  /** Play the dialogue sound effect. */
+  public static void playDialogue() {
+    dialogue = getTimedSound(dialogue, Clip.DIALOGUE, 0.1);
+
+    // Set the cycle and play the sound effect
+    dialogue.setCycleCount(Timeline.INDEFINITE);
+    dialogue.play();
+  }
+
+  /** Pause the dialogue sound effect. */
+  public static void pauseDialogue() {
+    dialogue.pause();
+  }
+
+  /** Resume playing the dialogue sound effect. */
+  public static void resumeDialogue() {
+    dialogue.play();
+  }
+
+  /** Stop the heart beat sound effect. */
+  public static void stopHeartBeat() {
+    heartBeat.stop();
+  }
+
+  /** Completely stop playing the dialogue sound effect. */
+  public static void stopDialogue() {
+    dialogue.stop();
   }
 }

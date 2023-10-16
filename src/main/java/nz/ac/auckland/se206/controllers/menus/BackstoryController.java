@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.utilities.Timer;
 
@@ -108,5 +109,8 @@ public class BackstoryController {
 
     // Reset the number of times the backstory has been updated
     GameState.backStoryUpdated = 0;
+
+    // Reset the printing state
+    Instructions.isInstructionsPrinted = false;
   }
 }

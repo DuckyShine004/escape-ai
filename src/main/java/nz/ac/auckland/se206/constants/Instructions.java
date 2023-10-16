@@ -35,6 +35,14 @@ public class Instructions {
   public static final String incorrectSequence =
       "Searching sequence database... \n\n" + "Results found: 0 \n\n" + "Sequence is incorrect!";
 
+  public static final String allPuzzleSolved =
+      "File debugged correctly...\n\n"
+          + "Retrieving control keyboard status...\n\n"
+          + "Status: accessible";
+
+  public static final String decryptionPuzzleSolved =
+      "File debugged correctly... \n\n" + "You can now exit...\n\n" + "Other tasks await...";
+
   public static final String emptySequence =
       "Critical error: no sequence detected! \n\n"
           + "Click a line number to create a sequence... \n\n"

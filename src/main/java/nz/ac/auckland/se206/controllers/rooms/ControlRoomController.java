@@ -9,15 +9,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /**
@@ -25,12 +30,16 @@ import nz.ac.auckland.se206.utilities.Timer;
  * scene. This class extends {@link RoomController}.
  */
 public class ControlRoomController extends RoomController {
+  @FXML private Pane paButton;
   @FXML private Pane paControlPanel;
 
   @FXML private Label lblTime;
-  @FXML private Label lblQuestion1;
-  @FXML private Label lblQuestion2;
+  @FXML private Label lblEye1;
+  @FXML private Label lblEye2;
   @FXML private Label lblHintCounter;
+
+  @FXML private Circle crcEye1;
+  @FXML private Circle crcEye2;
 
   @FXML private Button btnNo;
   @FXML private Button btnYes;
@@ -85,16 +94,6 @@ public class ControlRoomController extends RoomController {
   }
 
   /**
-   * On mouse clicked, if the button is pressed, then switch to the terminal scene.
-   *
-   * @throws IOException
-   */
-  @FXML
-  private void onPlayPuzzleButton() {
-    App.setUi(AppUi.TERMINAL);
-  }
-
-  /**
    * On yes clicked, if the button is pressed, then switch to the winning scene.
    *
    * @throws IOException
@@ -113,6 +112,12 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Stop the heartbeat sound effect
+    AudioManager.stopHeartBeat();
+
+    // Play the victory sound effect
+    AudioManager.loadAudio(Clip.VICTORY);
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
     // LeaderboardManager.update();
@@ -136,6 +141,12 @@ public class ControlRoomController extends RoomController {
 
     // Stop the timer
     Timer.stop();
+
+    // Stop the heartbeat sound effect
+    AudioManager.stopHeartBeat();
+
+    // Play the victory sound effect
+    AudioManager.loadAudio(Clip.VICTORY);
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
     // LeaderboardManager.update();
@@ -208,9 +219,19 @@ public class ControlRoomController extends RoomController {
 
   /** On mouse clicked, if the control panel is pressed, then switch to the terminal scene. */
   @FXML
-  private void onControlPanelClicked() {
+  private void onControlPanelClicked() throws IOException {
     // We should not give anymore hints for clicking on the control panel
     Interactions.isControlPanelClicked = true;
+
+    // Initialize the terminal if player has not clicked on it before
+    if (SceneManager.getUi(AppUi.TERMINAL) == null) {
+      App.initializeTerminalScene();
+    }
+
+    // If the dialogue is paused, play it
+    if (AudioManager.isDialoguePlaying()) {
+      AudioManager.resumeDialogue();
+    }
 
     // Switch to terminal puzzle scene
     App.setUi(AppUi.TERMINAL);
@@ -223,7 +244,10 @@ public class ControlRoomController extends RoomController {
     Interactions.isControlKeyboardClicked = true;
 
     // If all puzzles are solved, then we can terminate the AI
-    if (GameState.isRiddleResolved && GameState.isLogicGateSolved && GameState.isDecryptionSolved) {
+    if (KeyEventsHandler.isAllPuzzleSolved()) {
+      // Play the heart beat sound effect
+      AudioManager.playHeartBeat();
+
       // Create a new chat message
       ChatMessage terminationMessage =
           new ChatMessage(
@@ -241,12 +265,23 @@ public class ControlRoomController extends RoomController {
       GameState.isSolved = true;
 
       // Make visible all final question components
-      recBlur.setVisible(GameState.isSolved);
-      lblQuestion1.setVisible(GameState.isSolved);
-      lblQuestion2.setVisible(GameState.isSolved);
-      imgButton.setVisible(GameState.isSolved);
-      btnYes.setVisible(GameState.isSolved);
-      btnNo.setVisible(GameState.isSolved);
+      recBlur.setVisible(true);
+      paButton.setVisible(true);
+
+      // Make AI invisible
+      imgAvatar.setVisible(false);
+      crcEye1.setOpacity(0);
+      crcEye2.setOpacity(0);
+      lblEye1.setOpacity(0);
+      lblEye2.setOpacity(0);
+
+      // Make the side buttons invisible
+      btnLeft.setVisible(false);
+      btnRight.setVisible(false);
+
+      // Make the AI speech invisible and disable it
+      lblAiChat2.setOpacity(0);
+      lblAiChat2.setDisable(true);
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question

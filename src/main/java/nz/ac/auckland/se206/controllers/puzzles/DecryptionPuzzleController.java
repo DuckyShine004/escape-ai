@@ -39,6 +39,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Number;
 import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
@@ -478,8 +479,8 @@ public class DecryptionPuzzleController {
     memoryUsed = 0;
 
     // Create a grid of memory cells
-    for (double y = 0; y < 5; y++) {
-      for (double x = 0; x < 15; x++) {
+    for (double y = 0; y < 8; y++) {
+      for (double x = 0; x < 30; x++) {
         setMemoryLocation(x, y, 5, 5);
       }
     }
@@ -488,7 +489,7 @@ public class DecryptionPuzzleController {
     memoryUsed = getMemoryUsed();
 
     // Set the memory used text
-    lblMemory.setText("USING " + memoryUsed + " OUT OF 32 GiB");
+    lblMemory.setText("USING " + memoryUsed + " OUT OF 128 GiB");
   }
 
   /** Intialize the matrix rain for the decryption puzzle. */
@@ -715,9 +716,8 @@ public class DecryptionPuzzleController {
    * Generate a response from GPT.
    *
    * @param entityMessage the chat message to be sent to GPT.
-   * @param isHint the flag for if the user input is a hint.
    */
-  private void getChatResponse(ChatMessage entityMessage, boolean isHint) {
+  private void getChatResponse(ChatMessage entityMessage) {
     // Initialize the loading bar
     initializeLoadingBar();
 
@@ -771,7 +771,7 @@ public class DecryptionPuzzleController {
     HintManager.updateHintCounter();
 
     // Get the incorrect line number for the following pseudocode and hint index
-    int lineNumber = Integer.valueOf(sequence.charAt(hintIndex));
+    int lineNumber = Character.getNumericValue(sequence.charAt(hintIndex));
 
     // Get the hint prompt for GPT to analyze and generate a response
     String hint = GptPromptEngineering.getDecryptionHint(pseudocode, lineNumber);
@@ -780,7 +780,7 @@ public class DecryptionPuzzleController {
     ChatMessage userHintMessage = new ChatMessage("assistant", hint);
 
     // Get GPT's response
-    getChatResponse(userHintMessage, true);
+    getChatResponse(userHintMessage);
 
     // Update the hint index
     hintIndex = (hintIndex + 1) % GameState.maxSequence;
@@ -793,7 +793,7 @@ public class DecryptionPuzzleController {
    */
   private double getMemoryUsed() {
     // Get the ratio of memory used
-    memoryUsed = (memoryUsed / 75) * 32;
+    memoryUsed = (memoryUsed / 240) * 128;
 
     // Get the memory used to 2 decimal places
     String roundedMemoryUsed = String.format("%.2f", memoryUsed);
@@ -907,8 +907,8 @@ public class DecryptionPuzzleController {
    */
   private void setMemoryLocation(double x, double y, double w, double h) {
     // Initialize the offsets
-    double horizontalOffset = 5;
-    double verticalOffset = 85;
+    double horizontalOffset = 12;
+    double verticalOffset = 90;
 
     // Intialize the padding
     double padding = 5;
@@ -1152,18 +1152,25 @@ public class DecryptionPuzzleController {
     // Print the correct sequence message to the chat
     printCorrectSequence();
 
+    // Update all labels associated with solving the puzzle
+    setLabelsSolved();
+
+    // The decryption puzzle is now solved
+    GameState.isDecryptionSolved = true;
+
+    // Print the puzzle solve message based on what the puzzle game state is
+    if (KeyEventsHandler.isAllPuzzleSolved()) {
+      Printer.printDecryptionPuzzleFinished(taChat, Instructions.allPuzzleSolved);
+    } else {
+      Printer.printDecryptionPuzzleFinished(taChat, Instructions.decryptionPuzzleSolved);
+    }
+
     // Set cursor to default for all line panes and disable all lines
     for (int line = 0; line < pseudocodeLines; line++) {
       Pane paLineClick = (Pane) paDecryption.lookup("#paLineClick" + line);
       paLineClick.setCursor(Cursor.DEFAULT);
       paLineClick.setDisable(true);
     }
-
-    // Update all labels associated with solving the puzzle
-    setLabelsSolved();
-
-    // The decryption puzzle is now solved
-    GameState.isDecryptionSolved = true;
   }
 
   /** Handle the event when user incorrectly inputs the sequence. */

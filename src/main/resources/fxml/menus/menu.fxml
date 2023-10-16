@@ -400,6 +400,14 @@
                   <Font size="4.0" />
                </font>
             </Label>
+            <Label layoutX="10.0" layoutY="470.0" opacity="0.6" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="GALLON - JAMIE - JOHN" textFill="#f85454">
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="50.0" layoutY="20.0" opacity="0.75" prefHeight="15.0" prefWidth="120.0" styleClass="miscellaneous-border-pane" stylesheets="@../../css/menus/mainMenu.css">
@@ -679,7 +687,7 @@
             <Glow level="0.8" />
          </effect>
       </Pane>
-      <Label layoutX="50.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="1.0.0" textFill="#f85454">
+      <Label layoutX="50.0" layoutY="400.0" styleClass="custom-label" stylesheets="@../../css/menus/mainMenu.css" text="1.0.0 - T21" textFill="#f85454">
          <effect>
             <Glow level="0.75" />
          </effect>
@@ -730,7 +738,7 @@
             </DropShadow>
          </effect>
       </Line>
-      <Label layoutX="20.0" layoutY="140.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="NAME OF GAME" textFill="#f9ff58">
+      <Label layoutX="20.0" layoutY="140.0" styleClass="custom-title" stylesheets="@../../css/menus/mainMenu.css" text="ROGUE RESURGENCE" textFill="#f9ff58">
          <font>
             <Font size="40.0" />
          </font>

@@ -1,10 +1,13 @@
 package nz.ac.auckland.se206.utilities;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextArea;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.constants.GameState;
+import nz.ac.auckland.se206.constants.Instructions;
 
 /**
  * This utility class contains a method to print text onto the text area, letter by letter, used
@@ -25,6 +28,10 @@ public class Printer {
    * @param speed the speed at which the letters will be printed
    */
   public static void printText(TextArea textArea, String message, double speed) {
+    // Play the printing dialogue sound effect
+    AudioManager.playDialogue();
+
+    // Initialize pointers
     currentLetterPosition = 0;
     currentMessage = message;
 
@@ -60,6 +67,7 @@ public class Printer {
         e -> {
           GameState.isPrinting = false;
           printTextEvent.getKeyFrames().removeAll();
+          AudioManager.stopDialogue();
         });
   }
 
@@ -67,6 +75,7 @@ public class Printer {
   public static void stop() {
     GameState.isPrinting = false;
     printTextEvent.stop();
+    AudioManager.stopDialogue();
   }
 
   /**
@@ -87,5 +96,27 @@ public class Printer {
    */
   public static String getCurrentMessage() {
     return currentMessage;
+  }
+
+  /**
+   * Print the puzzle solved message to the text area when the decryption puzzle is successfully
+   * solved by the player.
+   *
+   * @param textArea the passed in text area
+   * @param message the message to be printed
+   */
+  public static void printDecryptionPuzzleFinished(TextArea textArea, String message) {
+    // Initialize a pause transition
+    PauseTransition pause = new PauseTransition(Duration.seconds(2));
+
+    // Print the final message on finish
+    pause.setOnFinished(
+        event -> {
+          textArea.clear();
+          printText(textArea, message, Instructions.printSpeed);
+        });
+
+    // Sleep for the duration specified
+    pause.play();
   }
 }

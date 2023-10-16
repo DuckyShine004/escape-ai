@@ -59,7 +59,7 @@
 .custom-text-area {
   -fx-text-alignment: top-left;
   -fx-background-color: rgba(255, 255, 255, 0);
-  -fx-text-inner-color: rgb(255, 255, 255);
+  -fx-text-inner-color: white;
   -fx-font-family: "JetBrainsMono NF";
   -fx-opacity: 1;
 }
@@ -83,5 +83,36 @@
 }
 
 .custom-text-area .scroll-pane .content {
+  -fx-background-color: transparent;
+}
+
+/* For the description text area */
+.description-text-area {
+  -fx-text-alignment: top-left;
+  -fx-background-color: rgba(255, 255, 255, 0);
+  -fx-text-inner-color: #ffff6d;
+  -fx-font-family: "JetBrainsMono NF";
+  -fx-opacity: 1;
+}
+
+.description-text-area .scroll-bar:horizontal:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
+
+.description-text-area .scroll-bar:vertical:disabled {
+  -fx-pref-height: 1;
+  -fx-opacity: 0;
+}
+
+.description-text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.description-text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+.description-text-area .scroll-pane .content {
   -fx-background-color: transparent;
 }

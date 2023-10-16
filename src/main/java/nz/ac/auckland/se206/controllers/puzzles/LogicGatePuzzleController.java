@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -79,26 +84,13 @@ public class LogicGatePuzzleController {
   @FXML private ImageView imgInput7;
 
   // remaining wires with constituent pairs for wire bending
-  @FXML private Pane pneInput8;
-  @FXML private Pane pneInput82;
-
-  @FXML private Pane pneInput9;
-  @FXML private Pane pneInput92;
-
-  @FXML private Pane pneInput10;
-  @FXML private Pane pneInput102;
-
-  @FXML private Pane pneInput11;
-  @FXML private Pane pneInput112;
-
-  @FXML private Pane pneInput12;
-  @FXML private Pane pneInput122;
-
-  @FXML private Pane pneInput13;
-  @FXML private Pane pneInput132;
-
-  @FXML private Pane pneInput14; // end gate
-  @FXML private Pane pneInput142;
+  @FXML private ImageView imgWire1;
+  @FXML private ImageView imgWire2;
+  @FXML private ImageView imgWire3;
+  @FXML private ImageView imgWire4;
+  @FXML private ImageView imgWire5;
+  @FXML private ImageView imgWire6;
+  @FXML private ImageView imgWire7;
 
   @FXML private ImageView imgSolvedLight;
 
@@ -108,6 +100,11 @@ public class LogicGatePuzzleController {
 
   // glass screen covereing end gate
   @FXML private ImageView imgGlassScreen;
+
+  @FXML private ProgressBar pgbGptThinking;
+
+  // label for end logic gate so player can know what it is
+  @FXML private Label lblFinalGate;
 
   // list of panes to change colour based on logic in the current wire
   private List<Wire> logicInSection;
@@ -156,10 +153,12 @@ public class LogicGatePuzzleController {
   private int swapping;
 
   // highlight colour for hover gate
-  private String activeHighlight = "16b2c7"; // darker blue
+  private String activeHighlight = "004078"; // darker blue
+  // 16b2c7 too similar
+  // 004078
 
   // highlight colour for about to swap gate
-  private String swappingHighlight = "1194a6"; // lighter blue
+  private String swappingHighlight = "00325e"; // darker blue
 
   // Logic Gate list
   // 0 - AND
@@ -181,9 +180,6 @@ public class LogicGatePuzzleController {
   // next 2 positions are resulting from second layer
   // final value is calulated, and if true, puzzle is solved
   private List<Boolean> logicTrail;
-
-  private String onLogicColour = "00ff00"; // green
-  private String offLogicColour = "ff0000"; // red
 
   // This is the number of first column gates
   // x
@@ -332,6 +328,7 @@ public class LogicGatePuzzleController {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+
             // set GPT's response
             System.out.println(this.toString());
             setChatResponse();
@@ -344,14 +341,13 @@ public class LogicGatePuzzleController {
 
     gptTask.setOnRunning(
         event -> {
-          if (!firstMessage) {
-            taGptText.appendText("Hmm... Let me think...\n\n");
-          }
+          startLoadingBar();
         });
 
     // set text field to enabled on failed
     gptTask.setOnFailed(
         event -> {
+          pgbGptThinking.setVisible(false);
           if (item != null) {
             firstMessage = false;
 
@@ -366,6 +362,7 @@ public class LogicGatePuzzleController {
     // set text field to enabled on succeeded
     gptTask.setOnSucceeded(
         event -> {
+          pgbGptThinking.setVisible(false);
           if (item != null) {
             firstMessage = false;
 
@@ -379,6 +376,19 @@ public class LogicGatePuzzleController {
 
     // start the thread
     gptThread.start();
+  }
+
+  private void startLoadingBar() {
+    // Set the initial visibility
+    pgbGptThinking.setVisible(true);
+    pgbGptThinking.setProgress(0);
+
+    Timeline task =
+        new Timeline(
+            new KeyFrame(Duration.ZERO, new KeyValue(pgbGptThinking.progressProperty(), 0)),
+            new KeyFrame(Duration.seconds(2), new KeyValue(pgbGptThinking.progressProperty(), 1)));
+
+    task.play();
   }
 
   /**
@@ -543,7 +553,7 @@ public class LogicGatePuzzleController {
    */
   private void setSubmissionGates() {
 
-    // set up for debug testing purposes
+    // set up
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.AND));
     currentAssembly.add(new LogicGate(LogicGate.Logic.OR));
@@ -556,6 +566,9 @@ public class LogicGatePuzzleController {
     // locked end gate
     currentAssembly.add(
         new LogicGate(LogicGate.Logic.OR)); // start as OR, but change to NOR if already solved
+    lblFinalGate.setText("OR");
+
+
 
     // lays out current assembly
     updateGateLayout();
@@ -604,6 +617,7 @@ public class LogicGatePuzzleController {
 
       // change last gate to XNOR
       currentAssembly.set(currentAssembly.size() - 1, new LogicGate(LogicGate.Logic.NOR));
+      lblFinalGate.setText("NOR");
 
       // update visuals of gate layout
       updateGateLayout();
@@ -734,17 +748,17 @@ public class LogicGatePuzzleController {
     displayInputImages();
 
     // second column
-    logicInSection.add(new Wire(this.pneInput8, this.pneInput82));
-    logicInSection.add(new Wire(this.pneInput9, this.pneInput92));
-    logicInSection.add(new Wire(this.pneInput10, this.pneInput102));
-    logicInSection.add(new Wire(this.pneInput11, this.pneInput112));
+    logicInSection.add(new Wire(this.imgWire1));
+    logicInSection.add(new Wire(this.imgWire2));
+    logicInSection.add(new Wire(this.imgWire3));
+    logicInSection.add(new Wire(this.imgWire4));
 
     // third column
-    logicInSection.add(new Wire(this.pneInput12, this.pneInput122));
-    logicInSection.add(new Wire(this.pneInput13, this.pneInput132));
+    logicInSection.add(new Wire(this.imgWire5));
+    logicInSection.add(new Wire(this.imgWire6));
 
     // fourth column
-    logicInSection.add(new Wire(this.pneInput14, this.pneInput142));
+    logicInSection.add(new Wire(this.imgWire7));
 
     // set solved light to red / off
     imgSolvedLight.setImage(redLight);
@@ -758,16 +772,16 @@ public class LogicGatePuzzleController {
 
     for (int i = 0; i < logicInSection.size(); i++) {
 
-      String colour;
+      Boolean colour;
 
       if (logicTrail.get(i + 8) == true) {
 
         // set colour to Green
-        colour = onLogicColour;
+        colour = true;
       } else {
 
         // set colour to Red
-        colour = offLogicColour;
+        colour = false;
       }
 
       // set background of pane to colour
@@ -788,7 +802,7 @@ public class LogicGatePuzzleController {
     String solvedPrompt =
         "Congratulate me on solving the logic gate puzzle, I now have learned what an "
             + currentAssembly.get(currentAssembly.size() - 1).getType()
-            + " does,  but I might like to ask more questions about logic gates";
+            + " does";
 
     ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
 
