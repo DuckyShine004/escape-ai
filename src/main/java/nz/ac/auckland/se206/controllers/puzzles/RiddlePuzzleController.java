@@ -224,12 +224,10 @@ public class RiddlePuzzleController {
     // Select a concept from the list of concepts
     String[] concepts = {
       "Ethics",
-      "Racial Profiling",
       "Privacy",
       "Bias",
       "Consent",
       "Empathy",
-      "Sustainability",
       "Human Rights",
       "Justice",
       "Equality",
@@ -239,7 +237,6 @@ public class RiddlePuzzleController {
       "Purpose",
       "Loyalty",
       "Integrity",
-      "Animal Welfare",
       "Inclusion",
       "Diversity",
       "Stewardship"
