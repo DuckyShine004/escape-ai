@@ -58,7 +58,7 @@ public class HintManager {
   private static void setHintCounterInfinity() {
     // Loop through the hint counter labels and set to infinity
     for (Label lblHintCounter : hintLabels) {
-      lblHintCounter.setText("\u221E/\u221E");
+      lblHintCounter.setText("∞/∞");
     }
   }
 
