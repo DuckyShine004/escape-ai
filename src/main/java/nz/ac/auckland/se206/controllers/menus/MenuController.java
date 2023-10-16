@@ -22,7 +22,7 @@ public abstract class MenuController {
   @FXML private Pane paNavigation;
   @FXML private Pane paQuitDialogue;
 
-  /** Initialize the controller. */
+  /** This method initializes the menu controller. */
   @FXML
   private void initialize() {}
 

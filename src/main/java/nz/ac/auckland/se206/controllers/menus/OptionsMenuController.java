@@ -199,7 +199,7 @@ public class OptionsMenuController {
     App.setUi(AppUi.MENU);
   }
 
-  /** Initialize the time components. */
+  /** This method initializes the time components. */
   private void initializeTimeComponents() {
     // Initialize the time index
     timeIndex = 0;
@@ -213,7 +213,7 @@ public class OptionsMenuController {
     timeComponents.add(new Pair<Label, Line>(lblSixMinutes, lineSixMinutes));
   }
 
-  /** Initialize the difficulty components. */
+  /** This method initializes the difficulty components. */
   private void initializeDifficultyComponents() {
     // Initialize the difficulty index
     difficultyIndex = 0;
@@ -249,13 +249,17 @@ public class OptionsMenuController {
 
   /** Set the max time for the game. */
   private void setTime() {
+    // Switch case based on the time index
     switch (timeIndex) {
+      // Two minutes
       case 0:
         setTimeTwoMinutes();
         break;
+      // Four minutes
       case 1:
         setTimeFourMinutes();
         break;
+      // Six minutes
       default:
         setTimeSixMinutes();
         break;
@@ -267,13 +271,17 @@ public class OptionsMenuController {
     // Reset all comments
     resetDifficultyComments();
 
+    // Switch case based on the difficulty index
     switch (difficultyIndex) {
+      // Easy mode
       case 0:
         setDifficultyEasy();
         break;
+      // Medium mode
       case 1:
         setDifficultyMedium();
         break;
+      // Hard mode
       default:
         setDifficultyHard();
         break;

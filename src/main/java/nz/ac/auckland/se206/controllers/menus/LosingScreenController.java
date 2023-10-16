@@ -21,7 +21,7 @@ public class LosingScreenController extends MenuController {
   @FXML private Pane paPlayAgain;
   @FXML private Pane paQuitDialogue;
 
-  /** Initialize the losing screen controller. */
+  /** This method initializes the losing screen controller. */
   @FXML
   private void initialize() {}
 
@@ -47,7 +47,7 @@ public class LosingScreenController extends MenuController {
     paQuitDialogue.setVisible(true);
   }
 
-  /** When back to main menu is clicked, go back to main menu */
+  /** When back to main menu is clicked, go back to main menu. */
   @Override
   @FXML
   protected void onNavigationPaneClicked() {

@@ -54,7 +54,9 @@ public class TerminalController {
 
   private Timeline loadingTime;
 
-  /** Initializes the terminal screen. */
+  /**
+   * This method initialises the terminal screen by iniitialising the terminal, globe, and labels.
+   */
   @FXML
   private void initialize() {
     // Add the label to list of labels to be updated
@@ -161,7 +163,7 @@ public class TerminalController {
     App.setUi(AppUi.DECRYPTION);
   }
 
-  /** Initializes the bootup message. */
+  /** This method helps to initialise the bootup message by printing to the text area. */
   private void initializeTerminal() {
     printToTextArea(taTerminal, Instructions.bootup, Instructions.printSpeed);
   }
@@ -185,7 +187,7 @@ public class TerminalController {
     updateSphereRotation(20);
   }
 
-  /** Initialize all labels used in the terminal scene. */
+  /** This method helps to initialize all labels used in the terminal scene. */
   private void initializeLabels() {
     // Initialize the date labels
     initializeDateLabels();
@@ -194,7 +196,7 @@ public class TerminalController {
     lblOperatingSystem.setText(System.getProperty("os.name").toUpperCase());
   }
 
-  /** Initialize all date labels. */
+  /** This method helps to initialize all date labels. */
   private void initializeDateLabels() {
     // Retrieve the local date
     LocalDate date = LocalDate.now();
@@ -237,7 +239,7 @@ public class TerminalController {
   }
 
   /**
-   * Rotate the globe indefinitely.
+   * This method allows the globe to rotate indefinitely.
    *
    * @param speed the speed at which the globe will be rotated.
    */

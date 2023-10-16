@@ -21,7 +21,7 @@ public class BackstoryController {
   @FXML private Pane paSelect;
   @FXML private Pane paContinue;
 
-  /** Initialize the backstory controller. */
+  /** This method initializes the backstory controller. */
   @FXML
   private void initialize() {}
 
@@ -45,7 +45,7 @@ public class BackstoryController {
     startGame();
   }
 
-  /** Starts the game. */
+  /** This method starts the game by first resetting the global variables. */
   private void startGame() {
     resetGlobalVariables();
 
