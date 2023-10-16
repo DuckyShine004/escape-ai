@@ -53,7 +53,7 @@ public class ControlRoomController extends RoomController {
   @FXML private ImageView imgAvatarShaddow;
   @FXML private ImageView imgEmotion;
 
-  /** Initializes the control room. */
+  /** This method initialises the control room using the super initialise method. */
   @FXML
   protected void initialize() {
     super.initialize();
@@ -84,6 +84,11 @@ public class ControlRoomController extends RoomController {
     App.setUi(AppUi.OFFICE);
   }
 
+  /**
+   * On mouse clicked, if the button is pressed, then switch to the terminal scene.
+   *
+   * @throws IOException
+   */
   @FXML
   private void onPlayPuzzleButton() {
     App.setUi(AppUi.TERMINAL);
@@ -136,36 +141,51 @@ public class ControlRoomController extends RoomController {
     // LeaderboardManager.update();
   }
 
+  /** On hint entered, if the hint is entered, then set the opacity to the overlay capacity. */
   @FXML
   private void onHintEntered() {
     pgHint.setOpacity(0.25);
   }
 
+  /** On hint exited, if the hint is exited, then set the opacity to 0. */
   @FXML
   private void onHintExited() {
     pgHint.setOpacity(0);
   }
 
+  /**
+   * On control panel entered, if the control panel is entered, then set the opacity to the overlay
+   */
   @FXML
   private void onControlPanelEntered() {
     paControlPanel.setOpacity(GameState.overlayCapacity);
   }
 
+  /** On control panel exited, if the control panel is exited, then set the opacity to 0. */
   @FXML
   private void onControlPanelExited() {
     paControlPanel.setOpacity(0);
   }
 
+  /**
+   * On control keyboard entered, if the control keyboard is entered, then set the opacity to the
+   */
   @FXML
   private void onControlKeyboardEntered() {
     pgControlKeyboard.setOpacity(GameState.overlayCapacity);
   }
 
+  /** On control keyboard exited, if the control keyboard is exited, then set the opacity to 0. */
   @FXML
   private void onControlKeyboardExited() {
     pgControlKeyboard.setOpacity(0);
   }
 
+  /**
+   * This method handles the click event on the hint button.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
     super.onHintClicked(mouseEvent);

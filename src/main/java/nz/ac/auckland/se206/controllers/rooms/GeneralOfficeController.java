@@ -18,8 +18,8 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
 /**
- * The controller for the office room, which gives all the functionality for the office room
- * scene. This class extends {@link RoomController}.
+ * The controller for the office room, which gives all the functionality for the office room scene.
+ * This class extends {@link RoomController}.
  */
 public class GeneralOfficeController extends RoomController {
 
@@ -38,7 +38,7 @@ public class GeneralOfficeController extends RoomController {
   @FXML private ImageView imgAvatar;
   @FXML private ImageView imgEmotion;
 
-  /** Initializes the general office. */
+  /** This method intializes the general office using the room controller super method. */
   @FXML
   protected void initialize() {
     super.initialize();
@@ -69,21 +69,33 @@ public class GeneralOfficeController extends RoomController {
     App.setUi(AppUi.BREAKER);
   }
 
+  /**
+   * When the cursor is hovered over the hint, the opacity increases.
+   */
   @FXML
   private void onHintEntered() {
     pgHint.setOpacity(0.25);
   }
 
+  /**
+   * When the cursor is not hovered over the hint, the opacity decreases.
+   */
   @FXML
   private void onHintExited() {
     pgHint.setOpacity(0);
   }
 
+  /**
+   * When the cursor is hovered over the desktop, the opacity increases.
+   */
   @FXML
   private void onDesktopEntered() {
     pgDesktop.setOpacity(GameState.overlayCapacity);
   }
 
+  /**
+   * When the cursor is not hovered over the desktop, the opacity decreases.
+   */
   @FXML
   private void onDesktopExited() {
     pgDesktop.setOpacity(0);
@@ -108,6 +120,11 @@ public class GeneralOfficeController extends RoomController {
     }
   }
 
+  /**
+   * This method handles the click event on the hint button.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   @Override
   public void onHintClicked(MouseEvent mouseEvent) {
@@ -123,6 +140,11 @@ public class GeneralOfficeController extends RoomController {
     getUserHint(true);
   }
 
+  /**
+   * This method returns the room hint for the general office.
+   *
+   * @return the room hint
+   */
   @Override
   protected String getRoomHint() {
     return GptPromptEngineering.getOfficeRoomHint();

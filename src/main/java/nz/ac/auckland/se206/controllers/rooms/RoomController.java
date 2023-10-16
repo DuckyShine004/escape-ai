@@ -38,6 +38,15 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
  * breaker room, control room, and office room.
  */
 public abstract class RoomController {
+  private static StringProperty aiChatProperty = new SimpleStringProperty();
+  private static StringProperty playerChatProperty = new SimpleStringProperty();
+  private static StringProperty oldestChatProperty = new SimpleStringProperty();
+  private static ChatCompletionRequest gptRequest;
+
+  protected static boolean isThinking = false;
+  protected static String eyes = "Nasser";
+  protected static boolean chatBubbleVisible = true;
+
   @FXML private Pane paRoom;
   @FXML private ImageView imgRoom;
 
@@ -66,16 +75,7 @@ public abstract class RoomController {
   @FXML private Circle crcEye1;
   @FXML private Circle crcEye2;
 
-  private static StringProperty aiChatProperty = new SimpleStringProperty();
-  private static StringProperty playerChatProperty = new SimpleStringProperty();
-  private static StringProperty oldestChatProperty = new SimpleStringProperty();
-  private static ChatCompletionRequest gptRequest;
-
-  protected static boolean isThinking = false;
-  protected static String eyes = "Nasser";
-  protected static boolean chatBubbleVisible = true;
-
-  /** Initialize the room. */
+  /** This method initialiszes the room controller using a default method. */
   @FXML
   protected void initialize() {
     lblAiChat.textProperty().bind(aiChatProperty);
@@ -268,38 +268,68 @@ public abstract class RoomController {
     timeline.play();
   }
 
+  /**
+   * When the AI icon is clicked, this method is called. This method toggles the chat components.
+   *
+   * @param event the mouse event
+   */
   @FXML
   protected void onAiClicked(MouseEvent event) {
+    // Toggle the mute status of the TTS
     GameState.muted = GameState.muted == false;
+
+    // Stop the TTS
     GameState.tts.stop();
+
+    // Toggle the chatting state of the game
     GameState.isChatting = !GameState.isChatting;
+
+    // If the game state is chatting, then set the chat components to visible
     if (GameState.isChatting) {
-      vbChat.setVisible(true);
-      tfChat.setVisible(true);
-      recOpaque.setVisible(true);
-      lblAiChat2.setVisible(false);
-      chatBubbleVisible = false;
-      if (GameState.currentAiMessage == "") {
-        lblAiChat.setVisible(false);
-        lblOldestChat.setVisible(false);
-      }
-      if (GameState.currentPlayerMessage == "") {
-        lblPlayerChat.setVisible(false);
-        lblOldestChat.setVisible(false);
-      }
+      setChatComponentsVisible();
     } else {
-      vbChat.setVisible(false);
-      tfChat.setVisible(false);
-      recOpaque.setVisible(false);
-      lblAiChat2.setVisible(true);
-      chatBubbleVisible = true;
+      setChatComponentsNotVisible();
     }
+  }
+
+  /** When the game state is chatting, set visibility of chat components to true. */
+  private void setChatComponentsVisible() {
+    // If the chat bubble is not visible, then set it to visible
+    vbChat.setVisible(true);
+    tfChat.setVisible(true);
+    recOpaque.setVisible(true);
+    lblAiChat2.setVisible(false);
+    chatBubbleVisible = false;
+
+    // If the AI chat is empty, then set the oldest chat to not visible
+    if (GameState.currentAiMessage == "") {
+      lblAiChat.setVisible(false);
+      lblOldestChat.setVisible(false);
+    }
+
+    // If the player chat is empty, then set the oldest chat to not visible
+    if (GameState.currentPlayerMessage == "") {
+      lblPlayerChat.setVisible(false);
+      lblOldestChat.setVisible(false);
+    }
+  }
+
+  /** When the game state is not chatting, set visibility of chat components to false. */
+  private void setChatComponentsNotVisible() {
+    vbChat.setVisible(false);
+    tfChat.setVisible(false);
+    recOpaque.setVisible(false);
+    lblAiChat2.setVisible(true);
+    chatBubbleVisible = true;
   }
 
   /** starting thinking and set the thinking components to visible */
   public void startThinking() {
+    // Set the chat components to visible
     tfChat.setDisable(true);
     tfChat.setOpacity(0.5);
+
+    // Set the eye components to visible
     lblEye1.setVisible(true);
     lblEye2.setVisible(true);
     crcEye1.setVisible(true);
@@ -309,8 +339,11 @@ public abstract class RoomController {
 
   /** stop thinking and set the thinking components to not visible */
   public void stopThinking() {
+    // Set the chat components to not visible
     tfChat.setDisable(false);
     tfChat.setOpacity(1);
+
+    // Set the eye components to not visible
     lblEye2.setVisible(false);
     lblEye1.setVisible(false);
     crcEye1.setVisible(false);
@@ -318,15 +351,25 @@ public abstract class RoomController {
     isThinking = false;
   }
 
+  /**
+   * When the mouse enters the AI icon, the shadow is visible.
+   *
+   * @param event
+   */
   @FXML
   private void onMouseEnterAi(Event event) {
-    // enter
+    // Set AI shadow visible
     imgAvatarShaddow.setVisible(true);
   }
 
+  /**
+   * When the mouse exits the AI icon, the shadow is not visible.
+   *
+   * @param event
+   */
   @FXML
   private void onMouseExitAi(Event event) {
-    // enter
+    // set AI shadow not visible
     imgAvatarShaddow.setVisible(false);
   }
 
@@ -407,7 +450,7 @@ public abstract class RoomController {
     }
   }
 
-  // Method to swap the order of the labels
+  /** Swap the order of the labels in the chat area. */
   private void swapLabelsOrder() {
     // Get the current index of lblAiChat
     int aiChatIndex = vbChat.getChildren().indexOf(lblAiChat);
@@ -423,6 +466,11 @@ public abstract class RoomController {
     }
   }
 
+  /**
+   * This method handles the click event on the hint button.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
     // If the difficulty is hard, ignore user.
@@ -467,5 +515,6 @@ public abstract class RoomController {
     return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
   }
 
+  /** An abstract method that returns the room hint for the current room. */
   protected abstract String getRoomHint();
 }
