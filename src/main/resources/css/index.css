@@ -61,5 +61,8 @@
   -fx-font-family: "JetBrainsMono NF Bold";
   -fx-font-size: 16px;
   -fx-background-color: rgb(210, 210, 210);
+}
 
+.toggle-mute-btn:hover {
+  -fx-background-color: rgb(160, 160, 160);
 }
