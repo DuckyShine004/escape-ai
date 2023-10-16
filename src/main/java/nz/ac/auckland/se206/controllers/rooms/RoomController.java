@@ -87,7 +87,7 @@ public abstract class RoomController {
   @FXML private Circle crcEye1;
   @FXML private Circle crcEye2;
 
-  @FXML private Button btnToggleTtsMute;
+  @FXML private ImageView btnToggleTtsMute;
 
   @FXML private Image mutedImage;
   @FXML private Image talkingImage;
@@ -105,9 +105,8 @@ public abstract class RoomController {
 
     try {
       // load glass image
-      this.mutedImage = new Image(new FileInputStream("src/main/resources/images/mutedavatar.png"));
-      this.talkingImage =
-          new Image(new FileInputStream("src/main/resources/images/avataroutline.png"));
+      this.mutedImage = new Image(new FileInputStream("src/main/resources/images/redmic.png"));
+      this.talkingImage = new Image(new FileInputStream("src/main/resources/images/greenmic.png"));
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -148,10 +147,11 @@ public abstract class RoomController {
   /** This method will update the image of the avatar based on whether the AI is muted or not. */
   private void updateAvatarImage() {
     // update avatar image
+
     if (GameState.muted) {
-      imgAvatar.setImage(this.mutedImage);
+      btnToggleTtsMute.setImage(mutedImage);
     } else {
-      imgAvatar.setImage(this.talkingImage);
+      btnToggleTtsMute.setImage(talkingImage);
     }
   }
 
