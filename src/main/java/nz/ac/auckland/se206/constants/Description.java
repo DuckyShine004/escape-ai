@@ -1,8 +1,8 @@
 package nz.ac.auckland.se206.constants;
 
 /**
- * This constants class contains the database of descriptions that could be randomly drawn form for the
- * decryption puzzle. The descriptions are stored as strings.
+ * This constants class contains the database of descriptions that could be randomly drawn form for
+ * the decryption puzzle. The descriptions are stored as strings.
  */
 public class Description {
   public static final String description0 =

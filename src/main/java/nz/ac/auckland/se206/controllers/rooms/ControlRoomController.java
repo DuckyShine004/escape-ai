@@ -76,7 +76,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the left scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onLeftButton() throws IOException {
@@ -86,7 +86,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the right scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onRightButton() throws IOException {
@@ -96,7 +96,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On yes clicked, if the button is pressed, then switch to the winning scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onYesButton() throws Exception {
@@ -105,6 +105,8 @@ public class ControlRoomController extends RoomController {
         "Outstanding work! You've neutralized the AI that threatened humanity. We mustn't let"
             + " artificial intelligence control our fate. May this choice pave the way for a"
             + " brighter future for all of us...";
+
+    GameState.muted = true;
 
     // Switch to the winning scene
     App.initializeWinningScene();
@@ -126,7 +128,7 @@ public class ControlRoomController extends RoomController {
   /**
    * On no clicked, if the button is pressed, then switch to the winning scene.
    *
-   * @throws Exception
+   * @throws Exception if the file is not found
    */
   @FXML
   private void onNoButton() throws Exception {
@@ -134,6 +136,8 @@ public class ControlRoomController extends RoomController {
     GameState.finalMessage =
         "Excellent work! You have taught the AI the value of human life and it has chosen to"
             + " harmoniously coexist with humanity. May this peace endure...";
+
+    GameState.muted = true;
 
     // Switch to the winning scene
     App.initializeWinningScene();
@@ -166,6 +170,7 @@ public class ControlRoomController extends RoomController {
 
   /**
    * On control panel entered, if the control panel is entered, then set the opacity to the overlay
+   * capacity.
    */
   @FXML
   private void onControlPanelEntered() {
@@ -180,6 +185,7 @@ public class ControlRoomController extends RoomController {
 
   /**
    * On control keyboard entered, if the control keyboard is entered, then set the opacity to the
+   * overlay capacity.
    */
   @FXML
   private void onControlKeyboardEntered() {

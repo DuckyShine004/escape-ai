@@ -57,7 +57,7 @@ public class BreakerRoomController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the left scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onLeftButton() throws IOException {
@@ -67,7 +67,7 @@ public class BreakerRoomController extends RoomController {
   /**
    * On mouse clicked, if the button is pressed, then switch to the right scene.
    *
-   * @throws IOException
+   * @throws IOException if the file is not found
    */
   @FXML
   private void onRightButton() throws IOException {

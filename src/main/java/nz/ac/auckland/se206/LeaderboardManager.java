@@ -25,7 +25,7 @@ public class LeaderboardManager {
    * This method initializes the leaderboard. It reads the best time from the leaderboard file and
    * sets the time labels.
    *
-   * @throws Exception
+   * @throws Exception if the file is not found
    */
   public static void initialize() throws Exception {
     // Initialize the file path
@@ -49,7 +49,7 @@ public class LeaderboardManager {
   /**
    * This method is responsible for initialising the file path.
    *
-   * @throws Exception
+   * @throws Exception if the file is not found
    */
   private static void initializeFilePath() throws Exception {
     // Get the file location and file path
@@ -64,7 +64,7 @@ public class LeaderboardManager {
   /**
    * This method is responsible for updating the leaderboard.
    *
-   * @throws Exception
+   * @throws Exception if the file is not found
    */
   public static void update() throws Exception {
     // Get the current time
