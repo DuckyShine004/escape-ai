@@ -215,9 +215,9 @@
             </VBox>
          </children>
       </HBox>
-      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.                              Your goal is to turn the light green.                                 " wrapText="true">
+      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.  Your goal is to turn the light green.                                 " wrapText="true">
          <font>
-            <Font size="42.0" />
+            <Font name="SansSerif Regular" size="42.0" />
          </font>
       </TextArea>
       <TextField fx:id="tfTextInput" editable="false" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" visible="false" />

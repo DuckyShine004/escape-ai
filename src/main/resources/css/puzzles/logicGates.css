@@ -33,8 +33,8 @@
 }
 
 .gpt-text-area {
-  -fx-text-fill: #00FFFF; 
-  -fx-font-family: "Monospace", sans-serif;
+  -fx-text-fill: #fbfbfb; 
+  -fx-font-family: "SansSerif", sans-serif;
   -fx-font-size: 14px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
@@ -60,7 +60,7 @@
 
 .input-text-field {
   -fx-text-fill: #00FFFF; 
-  -fx-font-family: "Monospace", sans-serif;
+  -fx-font-family: "SansSerif", sans-serif;
   -fx-font-size: 15px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
@@ -98,7 +98,7 @@
 
 .final-gate-label {
   -fx-text-fill: #000000; 
-  -fx-font-family: "Monospace", sans-serif;
+  -fx-font-family: "SansSerif", sans-serif;
   -fx-font-size: 25px;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 1);
 }
