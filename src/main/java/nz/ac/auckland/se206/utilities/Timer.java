@@ -11,7 +11,10 @@ import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-/** The timer class keeps track of the time left for the player. */
+/**
+ * This utility class keeps track globally across all scenes the time the player has left in the
+ * round of the game.
+ */
 public class Timer {
   private static Timeline timer;
 
@@ -157,13 +160,13 @@ public class Timer {
     return time == 0;
   }
 
-  /** Start the timer. */
+  /** This method starts the timer by setting the cycle count. */
   public static void play() {
     timer.setCycleCount(time);
     timer.play();
   }
 
-  /** Pause or stop the timer. */
+  /** This method is responsible for pausing or stopping the timer. */
   public static void stop() {
     timer.stop();
   }

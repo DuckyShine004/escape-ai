@@ -30,7 +30,10 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the chat view. */
+/**
+ * The controller for the riddle puzzle, which gives all functionality and implementation for the
+ * riddle puzzle.
+ */
 public class RiddlePuzzleController {
   @FXML private Label lblChat;
   @FXML private Label lblEye1;
@@ -110,7 +113,7 @@ public class RiddlePuzzleController {
     if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
       paNext.setDisable(true);
       loadRiddle();
-    } 
+    }
 
     // instantiate the tts
     this.tts = GameState.tts;
@@ -130,29 +133,17 @@ public class RiddlePuzzleController {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(109), // Duration between updates
+                Duration.millis(100), // Duration between updates
                 new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
                     // Check the isThinking variable
                     if (isThinking) {
-                      int randomNum = (int) (Math.random() * 3);
-                      char randomChar = ' ';
-                      if (randomNum == 0) {
-                        randomChar =
-                            (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
-                      } else if (randomNum == 1) {
-                        randomChar =
-                            (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
-                      } else if (randomNum == 2) {
-                        randomChar =
-                            (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
-                      }
+                      // Get a random character
+                      char randomChar = getRandomCharacter();
 
-                      eyes = eyes.substring(1) + randomChar;
-                      // Update the label's text with the random character
-                      lblEye1.setText(eyes.substring(0, 3));
-                      lblEye2.setText(eyes.substring(3));
+                      // Update the eyes
+                      updateEyes(randomChar);
                     }
                   }
                 }));
@@ -165,9 +156,39 @@ public class RiddlePuzzleController {
   }
 
   /**
-   * Set chat property of label to new chat
+   * Generates a random character that is a number, uppercase, or lowercase letter.
    *
-   * @param msg the chat message to append
+   * @return the random character
+   */
+  private char getRandomCharacter() {
+    int randomNum = (int) (Math.random() * 3);
+    if (randomNum == 0) {
+      return (char) (Math.random() * 10 + '0'); // Random number (0-9)
+    } else if (randomNum == 1) {
+      return (char) (Math.random() * 10 + 'A'); // Random uppercase letter (A-Z)
+    } else if (randomNum == 2) {
+      return (char) (Math.random() * 26 + 'a'); // Random lowercase letter (a-z)
+    } else {
+      return ' ';
+    }
+  }
+
+  /**
+   * Updates the eyes with a random character.
+   *
+   * @param randomChar the random character to update the eyes with
+   */
+  private void updateEyes(char randomChar) {
+    eyes = eyes.substring(1) + randomChar;
+    // Update the label's text with the random character
+    lblEye1.setText(eyes.substring(0, 3));
+    lblEye2.setText(eyes.substring(3));
+  }
+
+  /**
+   * Set chat property of label to new chat.
+   *
+   * @param msg the chat message to append.
    */
   private void appendChatMessage(String chat) {
     chatProperty.set(chat);
@@ -184,7 +205,7 @@ public class RiddlePuzzleController {
    * Generates a random number between 0 and 20, excluding the two numbers used in the previous
    * riddle.
    *
-   * @return the random number
+   * @return the random number.
    */
   private int getRandomNumber() {
     int randomNumber = (int) (Math.random() * 20);
@@ -197,7 +218,7 @@ public class RiddlePuzzleController {
   /**
    * Loads a riddle from the GPT model.
    *
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
    */
   private void loadRiddle() {
     // Select a concept from the list of concepts
@@ -316,7 +337,7 @@ public class RiddlePuzzleController {
     newThread.start();
   }
 
-  /** starting thinking and set the thinking components to visible */
+  /** starting thinking and set the thinking components to visible. */
   private void startThinking() {
     lblEye1.setVisible(true);
     lblEye2.setVisible(true);
@@ -325,7 +346,7 @@ public class RiddlePuzzleController {
     isThinking = true;
   }
 
-  /** stop thinking and set the thinking components to not visible */
+  /** stop thinking and set the thinking components to not visible. */
   private void stopThinking() {
     lblEye2.setVisible(false);
     lblEye1.setVisible(false);

@@ -44,7 +44,10 @@ import nz.ac.auckland.se206.utilities.Number;
 import nz.ac.auckland.se206.utilities.Printer;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the decryption puzzle scene. */
+/**
+ * The controller for the decryption puzzle, which contains all the functionality for the decryption
+ * puzzle.
+ */
 public class DecryptionPuzzleController {
   @FXML private Pane paLine0;
   @FXML private Pane paLine1;
@@ -139,7 +142,11 @@ public class DecryptionPuzzleController {
 
   private TextToSpeech tts;
 
-  /** Initializes the decryption puzzle. */
+  /**
+   * This method initialises the decryption puzzle.
+   *
+   * @throws Exception thrown when there is an error initializing the decryption puzzle.
+   */
   @FXML
   private void initialize() throws Exception {
     // Password tab is initially open
@@ -994,7 +1001,7 @@ public class DecryptionPuzzleController {
     polygon.setFill(Color.rgb(20, 20, 23));
   }
 
-  /** Enable components when a task is finished. */
+  /** This method renables components when a task is finished. */
   private void enableComponents() {
     // Enable the hint pane
     paHint.setDisable(false);
@@ -1006,7 +1013,7 @@ public class DecryptionPuzzleController {
     resizeLabelFontSize(lblHint, 18);
   }
 
-  /** Enable empty pane components. */
+  /** This method renables the empty pane components. */
   private void enableEmptyComponents() {
     // Enable empty tab components
     enableEmptyTabComponents();
@@ -1025,7 +1032,7 @@ public class DecryptionPuzzleController {
     paEmptyComponentBar.setDisable(false);
   }
 
-  /** Enable password pane components. */
+  /** This method enables the password pane components. */
   private void enablePasswordComponents() {
     // Enable password tab components
     enablePasswordTabComponents();
@@ -1039,7 +1046,7 @@ public class DecryptionPuzzleController {
     pgPasswordComponent.setDisable(false);
   }
 
-  /** Enable empty tab components. */
+  /** This method enables the empty tab components again. */
   private void enableEmptyTabComponents() {
     // Set entered color for the pane
     setPaneEntered(paEmpty);
@@ -1049,7 +1056,7 @@ public class DecryptionPuzzleController {
     setPolygonEntered(pgEmptyRight);
   }
 
-  /** Enable password tab components. */
+  /** This method enables the password tab components again. */
   private void enablePasswordTabComponents() {
     // Set entered color for the pane
     setPaneEntered(paPassword);
@@ -1059,7 +1066,7 @@ public class DecryptionPuzzleController {
     setPolygonEntered(pgPasswordRight);
   }
 
-  /** Disable components when a task is running. */
+  /** This method disables the components when a task is running. */
   private void disableComponents() {
     // Disable the hint pane
     paHint.setDisable(true);
@@ -1068,7 +1075,7 @@ public class DecryptionPuzzleController {
     paAnalyze.setDisable(true);
   }
 
-  /** Disable empty pane components. */
+  /** This method disables the empty pane components. */
   private void disableEmptyComponents() {
     // Disable empty tab components
     disableEmptyTabComponents();
@@ -1087,7 +1094,7 @@ public class DecryptionPuzzleController {
     paEmptyComponentBar.setDisable(true);
   }
 
-  /** Disable password pane components. */
+  /** This method disables the password pane components. */
   private void disablePasswordComponents() {
     // Disable password tab components
     disablePasswordTabComponents();
@@ -1101,7 +1108,7 @@ public class DecryptionPuzzleController {
     pgPasswordComponent.setDisable(true);
   }
 
-  /** Disable empty tab components. */
+  /** This method disables the empty tab components. */
   private void disableEmptyTabComponents() {
     // Set exited color for the pane
     setPaneExited(paEmpty);

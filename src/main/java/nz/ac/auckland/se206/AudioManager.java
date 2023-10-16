@@ -7,10 +7,15 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.utilities.Timer;
 
+/**
+ * This manager clas contains methods for storing and playing audio clips that are used throughout
+ * the game.
+ */
 public class AudioManager {
   private static Timeline dialogue;
   private static Timeline heartBeat;
 
+  /** This enum represents the different audio clips that can be used in the game. */
   public enum Clip {
     MAKING_SELECTION,
     SELECTION,
@@ -23,7 +28,7 @@ public class AudioManager {
   private static HashMap<Clip, AudioClip> audioMap = new HashMap<>();
 
   /**
-   * Add audio to the audio map.
+   * This method adds an audio clip to the audio map.
    *
    * @param clip the clip
    * @param path the path to the sound file
@@ -34,7 +39,7 @@ public class AudioManager {
   }
 
   /**
-   * Loads an audio clip and plays it.
+   * This method loads an audio clip from the audio map.
    *
    * @param clip the clip
    */

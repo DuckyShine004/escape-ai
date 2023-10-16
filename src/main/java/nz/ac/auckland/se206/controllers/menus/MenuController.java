@@ -7,6 +7,10 @@ import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * The abstract controller for menus, which contains all the methods shared across the main menu,
+ * winning screen and losing screen.
+ */
 public abstract class MenuController {
   @FXML private Pane paNo;
   @FXML private Pane paYes;
@@ -18,7 +22,7 @@ public abstract class MenuController {
   @FXML private Pane paNavigation;
   @FXML private Pane paQuitDialogue;
 
-  /** Initialize the controller. */
+  /** This method initializes the menu controller. */
   @FXML
   private void initialize() {}
 

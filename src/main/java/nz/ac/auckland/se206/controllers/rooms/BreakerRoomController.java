@@ -19,7 +19,10 @@ import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.utilities.Timer;
 
-/** Controller class for the breaker room. */
+/**
+ * The controller for the breaker room, which gives all the functionality for the breaker room
+ * scene. This class extends {@link RoomController}.
+ */
 public class BreakerRoomController extends RoomController {
 
   @FXML private Pane paCircuitBox;
@@ -40,7 +43,7 @@ public class BreakerRoomController extends RoomController {
   @FXML private ImageView imgAvatarShaddow;
   @FXML private ImageView imgEmotion;
 
-  /** Initialize the breaker room. */
+  /** This method initializes the breaker room. */
   @FXML
   protected void initialize() {
     super.initialize();
@@ -71,27 +74,39 @@ public class BreakerRoomController extends RoomController {
     App.setUi(AppUi.CONTROL);
   }
 
+  /**
+   * When the cursor is hovered over the hint button, the hint button is highlighted.
+   */
   @FXML
   private void onHintEntered() {
     pgHint.setOpacity(0.25);
   }
 
+  /**
+   * When the cursor is not hovered over the hint button, the hint button is not highlighted.
+   */
   @FXML
   private void onHintExited() {
     pgHint.setOpacity(0);
   }
 
+  /**
+   * When the cursor is hovered over the circuit box, the circuit box is highlighted.
+   */
   @FXML
   private void onCircuitBoxEntered() {
     paCircuitBox.setOpacity(GameState.overlayCapacity);
   }
 
+  /**
+   * When the cursor is not hovered over the circuit box, the circuit box is not highlighted.
+   */
   @FXML
   private void onCircuitBoxExited() {
     paCircuitBox.setOpacity(0);
   }
 
-  /** Change the scene to the logic puzzle */
+  /** This method changes the scene to the logic puzzle. */
   @FXML
   private void onCircuitBoxClicked() {
     // We should not give anymore hints for clicking on the circuit box
@@ -101,6 +116,11 @@ public class BreakerRoomController extends RoomController {
     App.setUi(AppUi.LOGIC_PUZZLE);
   }
 
+  /**
+   * This method handles the click event on the hint button.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   @Override
   public void onHintClicked(MouseEvent mouseEvent) {
@@ -116,6 +136,7 @@ public class BreakerRoomController extends RoomController {
     getUserHint(true);
   }
 
+  /** This method gets the hint for the breaker room. */
   @Override
   protected String getRoomHint() {
     return GptPromptEngineering.getBreakerRoomHint();

@@ -4,6 +4,10 @@ import java.io.FileInputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * This utility class creates the wire object to be used in the logic gate puzzle, with a method to
+ * change the colour of the wire.
+ */
 public class Wire {
   private ImageView wire;
 

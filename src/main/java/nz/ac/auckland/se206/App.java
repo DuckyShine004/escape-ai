@@ -74,7 +74,7 @@ public class App extends Application {
     Font.loadFont(App.class.getResourceAsStream("/fonts/" + font + "." + extension), size);
   }
 
-  /** Initialize all audio clips to be used in the project */
+  /** Initialize all audio clips to be used in the project. */
   private static void initializeAudio() {
     // Initialize the making selection sound effect
     AudioManager.addAudio(Clip.MAKING_SELECTION, "/sounds/making_selection.wav");
@@ -105,7 +105,7 @@ public class App extends Application {
   }
 
   /**
-   * This method initialises the breaker scene
+   * This method initialises the breaker scene.
    *
    * @throws IOException
    */
@@ -114,7 +114,7 @@ public class App extends Application {
   }
 
   /**
-   * This method will initialize the control scene
+   * This method will initialize the control scene.
    *
    * @throws IOException
    */
@@ -123,7 +123,7 @@ public class App extends Application {
   }
 
   /**
-   * This method will initialize the office scene
+   * This method will initialize the office scene.
    *
    * @throws IOException
    */
@@ -132,7 +132,7 @@ public class App extends Application {
   }
 
   /**
-   * This method will initialize the winning screen scene
+   * This method will initialize the winning screen scene.
    *
    * @throws IOException
    */
@@ -142,7 +142,7 @@ public class App extends Application {
 
   /*
    * This method will initalize the scenes, by storing instances of the loaded
-   * fxmls in SceneManager
+   * fxmls in SceneManager.
    *
    * @throws IOException
    */
@@ -173,6 +173,12 @@ public class App extends Application {
     // this causes double initaliizing
   }
 
+  /**
+   * This method will initalize the puzzle scenes, by storing instances of the loaded fxmls in
+   * SceneManager.
+   *
+   * @throws IOException
+   */
   protected static void initalizePuzzleScenes() throws IOException {
     // office room
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));

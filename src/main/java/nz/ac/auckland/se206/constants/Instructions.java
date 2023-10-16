@@ -3,6 +3,10 @@ package nz.ac.auckland.se206.constants;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * This constants class contains the instructions for the decryption puzzle stored as strings that
+ * can be easily accessed.
+ */
 public class Instructions {
   public static final String bootup =
       "OS: "

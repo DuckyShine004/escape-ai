@@ -14,11 +14,15 @@ import nz.ac.auckland.se206.constants.Instructions;
 import nz.ac.auckland.se206.constants.Interactions;
 import nz.ac.auckland.se206.utilities.Timer;
 
+/**
+ * The controller for the backstory screen, which gives the user the backstory for the game before
+ * the game begins.
+ */
 public class BackstoryController {
   @FXML private Pane paSelect;
   @FXML private Pane paContinue;
 
-  /** Initialize the backstory controller. */
+  /** This method initializes the backstory controller. */
   @FXML
   private void initialize() {}
 
@@ -42,7 +46,7 @@ public class BackstoryController {
     startGame();
   }
 
-  /** Starts the game. */
+  /** This method starts the game by first resetting the global variables. */
   private void startGame() {
     resetGlobalVariables();
 

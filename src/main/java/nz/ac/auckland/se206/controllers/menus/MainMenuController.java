@@ -7,6 +7,10 @@ import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * The controller for the main menu, which handles navigation and user interactions. This class
+ * extends {@link MenuController}.
+ */
 public class MainMenuController extends MenuController {
   @FXML private Pane paNo;
   @FXML private Pane paYes;

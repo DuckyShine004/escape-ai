@@ -7,6 +7,10 @@ import java.util.Scanner;
 import nz.ac.auckland.se206.controllers.menus.WinningScreenController;
 import nz.ac.auckland.se206.utilities.Timer;
 
+/**
+ * This manager class contains methods for storing and updating the leaderboard seen at the end of
+ * the game.
+ */
 public class LeaderboardManager {
   private static int timeBest;
   private static int timeTaken;
@@ -17,6 +21,12 @@ public class LeaderboardManager {
 
   private static File fileLocation;
 
+  /**
+   * This method initializes the leaderboard. It reads the best time from the leaderboard file and
+   * sets the time labels.
+   *
+   * @throws Exception
+   */
   public static void initialize() throws Exception {
     // Initialize the file path
     initializeFilePath();
@@ -36,6 +46,11 @@ public class LeaderboardManager {
     scanner.close();
   }
 
+  /**
+   * This method is responsible for initialising the file path.
+   *
+   * @throws Exception
+   */
   private static void initializeFilePath() throws Exception {
     // Get the file location and file path
     fileLocation = new File(App.class.getProtectionDomain().getCodeSource().getLocation().toURI());
@@ -46,6 +61,11 @@ public class LeaderboardManager {
     filePath += "/src/main/resources/text/leaderboard.txt";
   }
 
+  /**
+   * This method is responsible for updating the leaderboard.
+   *
+   * @throws Exception
+   */
   public static void update() throws Exception {
     // Get the current time
     timeTaken = Timer.getTimeTaken();

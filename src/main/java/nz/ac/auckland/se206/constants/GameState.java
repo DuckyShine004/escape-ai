@@ -4,28 +4,35 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
-/** Represents the state of the game. */
+/**
+ * This constants class stores the global variables present in the game. These constants should all
+ * be reset when playing the game again.
+ */
 public class GameState {
 
+  // Enum for the game difficulty
   public enum Difficulty {
     EASY,
     MEDIUM,
     HARD
   }
 
-  /** tts starts muted */
+  /** Indicates whether or not the tts is muted. */
   public static boolean muted = true;
 
-  /** Text to speach instance that must be closed by the end of the program */
+  /** Text to speach instance that must be closed by the end of the program. */
   public static TextToSpeech tts;
 
+  /** Indicates whether the AI is speaking or not. */
   public static boolean isSpeaking = false;
 
+  /** Stores the current room the player is in. */
   public static AppUi currentRoom = AppUi.MENU;
 
+  /** Indicates whether the AI is chatting or not. */
   public static boolean isChatting = false;
 
-  /** Game difficulty, starts in easy */
+  /** Game difficulty, starts in easy. */
   public static Difficulty gameDifficulty = Difficulty.EASY;
 
   /** Indicates whether the game is in developer mode. */
@@ -34,31 +41,31 @@ public class GameState {
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
 
-  /** Indicates whether the logic gate puzzle has been solved */
+  /** Indicates whether the logic gate puzzle has been solved. */
   public static boolean isLogicGateSolved = false;
 
-  /** Indicates whether the decryption puzzle has been solved */
+  /** Indicates whether the decryption puzzle has been solved. */
   public static boolean isDecryptionSolved = false;
 
-  /** Indicates whether all puzzles have been solved */
+  /** Indicates whether all puzzles have been solved. */
   public static boolean isSolved = false;
 
-  /** Stores the final message */
+  /** Stores the final message. */
   public static String finalMessage = "";
 
-  /** Stores the gpt request */
+  /** Stores the gpt request. */
   public static ChatCompletionRequest gptRequest;
 
-  /** Indicates whether the program has a printing event going on */
+  /** Indicates whether the program has a printing event going on. */
   public static boolean isPrinting = false;
 
-  /** maximum time for the round, will change in options, default is 120 seconds */
+  /** maximum time for the round, will change in options, default is 120 seconds. */
   public static int maxTime = 120;
 
-  /** number of riddles solved */
+  /** number of riddles solved. */
   public static int riddlesSolved = 0;
 
-  /** the maximum sequence input limit for the decryption puzzle */
+  /** the maximum sequence input limit for the decryption puzzle. */
   public static int maxSequence = 4;
 
   /** the number of pseudocodes in decrpytion puzzle. */
@@ -82,6 +89,6 @@ public class GameState {
   /** The current player message. */
   public static String currentPlayerMessage = "";
 
-  /** The number of times the backstory has been updated */
+  /** The number of times the backstory has been updated. */
   public static int backStoryUpdated = 0;
 }

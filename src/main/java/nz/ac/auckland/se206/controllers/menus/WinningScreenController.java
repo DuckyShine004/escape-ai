@@ -13,7 +13,14 @@ import nz.ac.auckland.se206.LeaderboardManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
 
+/**
+ * The controller for the winning screen, which handles offers the user to play again or return to
+ * main menu. This class extends {@link MenuController}.
+ */
 public class WinningScreenController extends MenuController {
+  public static StringProperty spTimeBest;
+  public static StringProperty spTimeTaken;
+  
   @FXML private Pane paNo;
   @FXML private Pane paYes;
   @FXML private Pane paExit;
@@ -28,8 +35,6 @@ public class WinningScreenController extends MenuController {
   @FXML private TextArea taMessage;
 
   private StringProperty spMessage;
-  public static StringProperty spTimeBest;
-  public static StringProperty spTimeTaken;
 
   /** Initialize the winning screen controller. */
   @FXML

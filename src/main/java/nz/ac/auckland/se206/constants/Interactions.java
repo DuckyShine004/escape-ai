@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206.constants;
 
+/**
+ * This constants class contains the boolean values of whether or not the player has interacted with
+ * specific things in the game, which can also be reset by calling the reset method.
+ */
 public class Interactions {
   /** Indicates whether the desktop in the office room has been clicked or not. */
   public static boolean isDesktopClicked = false;
