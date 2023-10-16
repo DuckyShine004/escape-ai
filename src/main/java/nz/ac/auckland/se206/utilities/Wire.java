@@ -39,10 +39,9 @@ public class Wire {
   }
 
   /**
-   * This will set the background colour of the wires. The colour can for the wires can either be
-   * red or green.
+   * This will set the image of the wires. The colour can for the wires can either be red or green.
    *
-   * @param colour the colour of the wire.
+   * @param colour the boolean value of the wire.
    */
   public void setBackground(Boolean colour) {
     // set background colour
