@@ -496,30 +496,30 @@ public class DecryptionPuzzleController {
   private void initializeMatrixRain() {
     new AnimationTimer() {
       // Keep track of when the previous frame was called
-      long lastTimerCall = 0;
+      private long lastTimerCall = 0;
 
       // Initialize the font size
-      int fontSize = 16;
+      private int fontSize = 16;
 
       // Get the width and height of the matrix rain canvas
-      int width = (int) cvsMatrixRain.getWidth();
-      int height = (int) cvsMatrixRain.getHeight();
+      private int width = (int) cvsMatrixRain.getWidth();
+      private int height = (int) cvsMatrixRain.getHeight();
 
       // Get the number of columns for the matrix pane
-      int columns = (int) Math.floor(cvsMatrixRain.getWidth() / fontSize);
+      private int columns = (int) Math.floor(cvsMatrixRain.getWidth() / fontSize);
 
       // Initialize array to store each rain drop's last position
-      int[] verticalPositions = new int[columns];
+      private int[] verticalPositions = new int[columns];
 
       // Nanoseconds in a millisecond and get 100ms
-      long nanoseconds = 1000000;
-      long animationDelay = nanoseconds * 100;
+      private long nanoseconds = 1000000;
+      private long animationDelay = nanoseconds * 100;
 
       // Initialize instance of random method
-      Random random = new Random();
+      private Random random = new Random();
 
       // Get the graphic context of the matrix rain canvas
-      GraphicsContext gcMatrixRain = cvsMatrixRain.getGraphicsContext2D();
+      private GraphicsContext gcMatrixRain = cvsMatrixRain.getGraphicsContext2D();
 
       public void handle(long now) {
         // Check if the current frame is drawing the matrix rain
@@ -938,18 +938,17 @@ public class DecryptionPuzzleController {
    * entered.
    */
   private void setUserSequence() {
-    // Initialize a new sequence
-    String newSequence = "";
+    StringBuilder newSequence = new StringBuilder();
 
     // Get which line numbers are selected by the user
     for (int line = 0; line < pseudocodeLines; line++) {
       if (isLineSelected[line]) {
-        newSequence += line + 1;
+        newSequence.append(line + 1);
       }
     }
 
     // Update the old user's sequence
-    lblSequence.setText(newSequence);
+    lblSequence.setText(newSequence.toString());
   }
 
   /**

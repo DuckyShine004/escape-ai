@@ -24,15 +24,30 @@ public class App extends Application {
 
   private static Scene scene;
 
+  /**
+   * The main method of this JavaFX application.
+   *
+   * @param args The command line arguments.
+   */
   public static void main(final String[] args) {
     launch();
   }
 
+  /**
+   * Sets the root to the scene associated to the input enum. The method expects that the file is
+   * "src/main/resources/fxml".
+   *
+   * @param appUi The enum of the scene to be returned.
+   */
   public static void setRoot(String fxml) throws IOException {
     scene.setRoot(loadFxml(fxml));
   }
 
-  // input enum for the ui the app is changing to
+  /**
+   * This method sets the UI of the scene.
+   *
+   * @param appUi The enum of the scene to be returned.
+   */
   public static void setUi(AppUi newUi) {
     // scene.setRoot
     // get the Parent for that Ui
@@ -98,7 +113,7 @@ public class App extends Application {
   /**
    * This method initialises the terminal scene
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found
    */
   public static void initializeTerminalScene() throws IOException {
     SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
@@ -107,7 +122,7 @@ public class App extends Application {
   /**
    * This method initialises the breaker scene.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found
    */
   public static void initializeBreakerScene() throws IOException {
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
@@ -116,7 +131,7 @@ public class App extends Application {
   /**
    * This method will initialize the control scene.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found
    */
   public static void initializeControlScene() throws IOException {
     SceneManager.addAppUi(AppUi.CONTROL, loadFxml("rooms/control"));
@@ -125,7 +140,7 @@ public class App extends Application {
   /**
    * This method will initialize the office scene.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found
    */
   public static void initializeOfficeScene() throws IOException {
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
@@ -134,7 +149,7 @@ public class App extends Application {
   /**
    * This method will initialize the winning screen scene.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found
    */
   public static void initializeWinningScene() throws IOException {
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
@@ -144,7 +159,7 @@ public class App extends Application {
    * This method will initalize the scenes, by storing instances of the loaded
    * fxmls in SceneManager.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found
    */
   private static void initalizeScenes() throws IOException {
     // initialize the timer

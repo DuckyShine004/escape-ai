@@ -47,6 +47,15 @@ public abstract class RoomController {
   protected static String eyes = "Nasser";
   protected static boolean chatBubbleVisible = true;
 
+  /**
+   * Generates a GPT prompt engineering string for the case where the player has no more hints.
+   *
+   * @return the generated prompt engineering string
+   */
+  private static String getNoMoreHints() {
+    return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
+  }
+
   @FXML private Pane paRoom;
   @FXML private ImageView imgRoom;
 
@@ -216,15 +225,28 @@ public abstract class RoomController {
    * @param message the message to be appended to the text area.
    */
   public void setUserResponse(String message) {
+    // Swap the order of the labels
     swapLabelsOrder();
+
+    // If both the AI and player messages are not empty, then set the oldest chat to visible
     if (GameState.currentPlayerMessage != "" && GameState.currentAiMessage != "") {
       oldestChatProperty.set(GameState.currentPlayerMessage);
       lblOldestChat.setVisible(true);
     }
+
+    // Set the player message
     GameState.currentPlayerMessage = message;
+
+    // Set the player chat label
     playerChatProperty.set(GameState.currentPlayerMessage);
+
+    // Clear the chat text field
     tfChat.clear();
+
+    // Set the player chat label to visible
     lblPlayerChat.setVisible(true);
+
+    // Change the styling of the oldest chat label
     lblOldestChat.getStyleClass().remove("chat-bubble");
     lblOldestChat.getStyleClass().add("chat-bubble1");
   }
@@ -240,8 +262,10 @@ public abstract class RoomController {
                   public void handle(ActionEvent event) {
                     // Check the isThinking variable
                     if (isThinking) {
+                      // Get a random number between 0 and 2
                       int randomNum = (int) (Math.random() * 3);
                       char randomChar = ' ';
+                      // Randomly generate a character
                       if (randomNum == 0) {
                         randomChar =
                             (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
@@ -253,6 +277,7 @@ public abstract class RoomController {
                             (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
                       }
 
+                      // Update the eyes string
                       eyes = eyes.substring(1) + randomChar;
                       // Update the label's text with the random character
                       lblEye1.setText(eyes.substring(0, 3));
@@ -323,7 +348,7 @@ public abstract class RoomController {
     chatBubbleVisible = true;
   }
 
-  /** starting thinking and set the thinking components to visible */
+  /** starting thinking and set the thinking components to visible. */
   public void startThinking() {
     // Set the chat components to visible
     tfChat.setDisable(true);
@@ -337,7 +362,7 @@ public abstract class RoomController {
     isThinking = true;
   }
 
-  /** stop thinking and set the thinking components to not visible */
+  /** stop thinking and set the thinking components to not visible. */
   public void stopThinking() {
     // Set the chat components to not visible
     tfChat.setDisable(false);
@@ -354,7 +379,7 @@ public abstract class RoomController {
   /**
    * When the mouse enters the AI icon, the shadow is visible.
    *
-   * @param event
+   * @param event the mouse event
    */
   @FXML
   private void onMouseEnterAi(Event event) {
@@ -365,7 +390,7 @@ public abstract class RoomController {
   /**
    * When the mouse exits the AI icon, the shadow is not visible.
    *
-   * @param event
+   * @param event the mouse event
    */
   @FXML
   private void onMouseExitAi(Event event) {
@@ -431,19 +456,32 @@ public abstract class RoomController {
   /**
    * Sets the most recent AI message
    *
-   * @param message
+   * @param message the message to be set
    */
   protected void setAiMessage(String message) {
+    // Swap the order of the labels
     swapLabelsOrder();
+
+    // If both the AI and player messages are not empty, then set the oldest chat to visible
     if (GameState.currentAiMessage != "" && GameState.currentPlayerMessage != "") {
       oldestChatProperty.set(GameState.currentAiMessage);
       lblOldestChat.setVisible(true);
     }
+
+    // Set the AI message
     GameState.currentAiMessage = message;
+
+    // Set the AI chat label
     aiChatProperty.set(GameState.currentAiMessage);
+
+    // Set the AI chat label to visible
     lblAiChat.setVisible(true);
+
+    // Change the styling of the oldest chat label
     lblOldestChat.getStyleClass().remove("chat-bubble1");
     lblOldestChat.getStyleClass().add("chat-bubble");
+
+    // If the game state is no longer chatting, then set the chat bubble to visible
     if (GameState.isChatting == false) {
       lblAiChat2.setVisible(true);
       chatBubbleVisible = true;
@@ -504,15 +542,6 @@ public abstract class RoomController {
 
     // Get GPT's response
     getChatResponse(userHintMessage, true);
-  }
-
-  /**
-   * Generates a GPT prompt engineering string for the case where the player has no more hints.
-   *
-   * @return the generated prompt engineering string
-   */
-  private static String getNoMoreHints() {
-    return GptPromptEngineering.getNoMoreHints(GameState.currentRoom);
   }
 
   /** An abstract method that returns the room hint for the current room. */

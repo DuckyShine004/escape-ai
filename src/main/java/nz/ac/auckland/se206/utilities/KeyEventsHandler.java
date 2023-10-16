@@ -12,14 +12,6 @@ import nz.ac.auckland.se206.constants.GameState;
  * key events are those that occur globally.
  */
 public class KeyEventsHandler implements EventHandler<KeyEvent> {
-  @Override
-  public void handle(KeyEvent event) {
-    if (event.getCode() == KeyCode.ESCAPE && GameState.isDeveloperMode) {
-      // Handle the Escape key press
-      App.setUi(AppUi.MENU);
-    }
-  }
-
   /**
    * Return a boolean value based on whether all the puzzles are solved.
    *
@@ -29,5 +21,13 @@ public class KeyEventsHandler implements EventHandler<KeyEvent> {
     return GameState.isDecryptionSolved
         && GameState.isRiddleResolved
         && GameState.isLogicGateSolved;
+  }
+
+  @Override
+  public void handle(KeyEvent event) {
+    if (event.getCode() == KeyCode.ESCAPE && GameState.isDeveloperMode) {
+      // Handle the Escape key press
+      App.setUi(AppUi.MENU);
+    }
   }
 }
