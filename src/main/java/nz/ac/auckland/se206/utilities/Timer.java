@@ -25,11 +25,7 @@ public class Timer {
 
   private static List<Label> labels;
 
-  /**
-   * Initializes the timer. Call this method statically when you want to initialize a timer.
-   *
-   * @param time the input time. This should be 2, 4, or 6 minutes only (in seconds).
-   */
+  /** Initializes the timer. Call this method statically when you want to initialize a timer. */
   public static void initialize() {
     // Initially, time taken is zero
     timeTaken = 0;
@@ -104,16 +100,27 @@ public class Timer {
   /**
    * Returns the integer value of the time left (in seconds).
    *
-   * @return int
+   * @return the integer time
    */
   public static int getIntegerTime() {
     return time;
   }
 
+  /**
+   * This method returns the time taken.
+   *
+   * @return timeTaken the time taken
+   */
   public static int getTimeTaken() {
     return timeTaken;
   }
 
+  /**
+   * Returns the string value of the time taken.
+   *
+   * @param time the time taken
+   * @return the string value of the time taken
+   */
   public static String getTimeTakenMessage(int time) {
     // Initialize fields
     int minutes = time / 60;

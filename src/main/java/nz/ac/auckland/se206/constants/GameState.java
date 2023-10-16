@@ -10,7 +10,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  */
 public class GameState {
 
-  // Enum for the game difficulty
+  /** This enum stores the different game difficulties. */
   public enum Difficulty {
     EASY,
     MEDIUM,
@@ -77,7 +77,7 @@ public class GameState {
   /** The number of hints the player currently has. Default is infinity (easy). */
   public static int hintCounter = Integer.MAX_VALUE;
 
-  /** The critical time at which GPT switches persona */
+  /** The critical time at which GPT switches persona. */
   public static int criticalTime = 30;
 
   /** Overlay opacity for the room interactions. */
