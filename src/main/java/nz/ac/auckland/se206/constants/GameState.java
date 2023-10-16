@@ -20,6 +20,9 @@ public class GameState {
   /** Indicates whether or not the tts is muted. */
   public static boolean muted = false;
 
+  /** Indicates the number of times tts has been played */
+  public static int numberOfTextToSpeach = 0;
+
   /** Text to speach instance that must be closed by the end of the program. */
   public static TextToSpeech tts;
 

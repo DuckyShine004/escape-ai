@@ -501,6 +501,7 @@ public abstract class RoomController {
    */
   protected void setAiMessage(String message) {
     swapLabelsOrder();
+
     if (GameState.currentAiMessage != "" && GameState.currentPlayerMessage != "") {
       oldestChatProperty.set(GameState.currentAiMessage);
       lblOldestChat.setVisible(true);
@@ -515,7 +516,14 @@ public abstract class RoomController {
       chatBubbleVisible = true;
     }
 
-    GameState.tts.speak(message, AppUi.OFFICE);
+    // ensure the tts on the first and second duplicate inital message do not play tts
+    if (GameState.numberOfTextToSpeach != 1 && GameState.numberOfTextToSpeach != 2) {
+      // start tts on message
+      GameState.tts.speak(message, AppUi.OFFICE);
+    } else {
+      // increment number of tts calls
+      GameState.numberOfTextToSpeach++;
+    }
   }
 
   /** Swap the order of the labels in the chat area. */

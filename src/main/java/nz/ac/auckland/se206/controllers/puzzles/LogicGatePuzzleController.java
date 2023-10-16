@@ -171,7 +171,6 @@ public class LogicGatePuzzleController {
 
   private List<ImageView> helperGates;
 
-  private boolean firstMessage = true;
 
   // logic pathway list that stores the current boolean logic in each node entering and exiting
   // store as list
@@ -349,7 +348,6 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
-            firstMessage = false;
 
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
@@ -364,7 +362,6 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
-            firstMessage = false;
 
             if (item instanceof TextField) {
               toggleTextField((TextField) item);

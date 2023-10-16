@@ -11,9 +11,6 @@ import javafx.scene.image.ImageView;
 public class Wire {
   private ImageView wire;
 
-  private String onLogicColour = "00ff00"; // green
-  private String offLogicColour = "ff0000"; // red
-
   private Image greenWire;
   private Image redWire;
 

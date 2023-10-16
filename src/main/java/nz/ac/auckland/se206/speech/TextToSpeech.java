@@ -139,6 +139,8 @@ public class TextToSpeech {
           System.out.println("succeeded in talking");
         });
 
+    // increment number of tts calls by 1
+    GameState.numberOfTextToSpeach = GameState.numberOfTextToSpeach + 1;
     speechThread.start();
   }
 
