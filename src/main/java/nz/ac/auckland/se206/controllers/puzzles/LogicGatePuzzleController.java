@@ -171,8 +171,6 @@ public class LogicGatePuzzleController {
 
   private List<ImageView> helperGates;
 
-  private boolean firstMessage = true;
-
   // logic pathway list that stores the current boolean logic in each node entering and exiting
   // store as list
   // first 8 positions are the inital given logic
@@ -351,8 +349,6 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
-            firstMessage = false;
-
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
@@ -366,8 +362,6 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
-            firstMessage = false;
-
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
@@ -638,8 +632,8 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method will take in current gate's inputs, as well as its type, will return the result of
-   * this boolean oporation
+   * This method will take in current gate's inputs, as well as its type, and will perform bit-wise
+   * operations to determine the logic gate outputs.
    *
    * @param a the first value, a.
    * @param b the second value, b.
