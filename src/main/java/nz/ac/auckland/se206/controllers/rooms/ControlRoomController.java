@@ -165,7 +165,8 @@ public class ControlRoomController extends RoomController {
   }
 
   /**
-   * On control panel entered, if the control panel is entered, then set the opacity to the overlay capacity.
+   * On control panel entered, if the control panel is entered, then set the opacity to the overlay
+   * capacity.
    */
   @FXML
   private void onControlPanelEntered() {

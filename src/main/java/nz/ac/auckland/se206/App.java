@@ -37,7 +37,8 @@ public class App extends Application {
    * Sets the root to the scene associated to the input enum. The method expects that the file is
    * "src/main/resources/fxml".
    *
-   * @param appUi The enum of the scene to be returned.
+   * @param fxml the fxml file.
+   * @throws IOException when the fxml file could not be loaded.
    */
   public static void setRoot(String fxml) throws IOException {
     scene.setRoot(loadFxml(fxml));

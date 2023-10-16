@@ -278,9 +278,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * this method toggles the disabled state of a given button input
+   * This method toggles the disabled state of a given input button. The button is also a of type
+   * polygon.
    *
-   * @param btn
+   * @param btn the button to be toggled.
    */
   private void toggleButton(Polygon btn) {
     // toogle disabled
@@ -288,10 +289,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method clears the text from a given text field It also toggles the disabled state of the
-   * text field
+   * This method clears the text from a given text field. It also toggles the disabled state of the
+   * text field.
    *
-   * @param tf
+   * @param tf the text field to be toggled.
    */
   private void toggleTextField(TextField tf) {
     // clear input
@@ -472,7 +473,8 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This Method sets up the logicGate array list
+   * This Method sets up the logicGate array list. The logic gates available are the AND, NAND, OR,
+   * and NOR gates. The indexing for each gate is shown below.
    *
    * <p>Logic Gate list slots :: 0-AND :: 1-NAND :: 2-OR :: 3-NOR
    */
@@ -500,7 +502,10 @@ public class LogicGatePuzzleController {
     setSubmissionGates();
   }
 
-  /** This method sets up the right side bar logic gate guide */
+  /**
+   * This method sets up the right side bar logic gate guide. Additionally, it initializes the array
+   * of logic gates to be used later on, and any logic gate labels.
+   */
   private void setHelperGateImgs() {
 
     helperGates = new ArrayList<>();
@@ -549,7 +554,7 @@ public class LogicGatePuzzleController {
 
   /**
    * This method is probably just a debug method to quickly add gates to the middle grid for testing
-   * purposes
+   * purposes.
    */
   private void setSubmissionGates() {
 
@@ -567,8 +572,6 @@ public class LogicGatePuzzleController {
     currentAssembly.add(
         new LogicGate(LogicGate.Logic.OR)); // start as OR, but change to NOR if already solved
     lblFinalGate.setText("OR");
-
-
 
     // lays out current assembly
     updateGateLayout();
@@ -632,9 +635,9 @@ public class LogicGatePuzzleController {
    * This method will take in current gate's inputs, as well as its type, will return the result of
    * this boolean oporation
    *
-   * @param a
-   * @param b
-   * @param logic
+   * @param a the first value, a.
+   * @param b the second value, b.
+   * @param logic enum that checks which gate is used.
    */
   private boolean compare(boolean a, boolean b, LogicGate.Logic logic) {
 
@@ -687,7 +690,12 @@ public class LogicGatePuzzleController {
     }
   }
 
-  /** This method loads the input images */
+  /**
+   * This method initializes and loads the input images. The input images consist of a red light and
+   * a green light.
+   *
+   * @throws Exception when the image cannot be loaded.
+   */
   private void loadInputImages() throws Exception {
     //
     this.redLight =
@@ -700,7 +708,10 @@ public class LogicGatePuzzleController {
                 "src/main/resources/images/BreakerRoom/LogicGatePuzzle/Wires/greenlight.png"));
   }
 
-  /** This method displays the loaded images */
+  /**
+   * This method displays the loaded images. Additionally, if the player solves the puzzle, the
+   * green light will turn on, otherwise, maintain the red light status.
+   */
   private void displayInputImages() {
 
     // loop through inputs
@@ -826,7 +837,9 @@ public class LogicGatePuzzleController {
 
   /**
    * This method will set currently clicked background to active colour, and will reset non active
-   * gates to clear colour
+   * gates to clear colour.
+   *
+   * @param active the current gate that is active.
    */
   private void updateActiveBackgrounds(int active) {
     // switch statement to change all gates based on int active
@@ -1074,9 +1087,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method toggles the gate and table image of the given helperGate
+   * This method toggles the helper logic gate, labels, and table image of the given helper logic
+   * gate.
    *
-   * @param helperGate
+   * @param helperGate the input helper logic gate.
    */
   private void toggleHelperGate(int helperGate) {
 
@@ -1106,9 +1120,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method is the on click method for helper gate 1
+   * This method is the on click method for helper gate 1. This should toggle the helper gate
+   * labeled 1.
    *
-   * @param event
+   * @param event the event to be handled.
    */
   @FXML
   private void onHelper1Clicked(Event event) {
@@ -1116,9 +1131,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method is the on click method for helper gate 2
+   * This method is the on click method for helper gate 2. This should toggle the helper gate
+   * labeled 2.
    *
-   * @param event
+   * @param event the event to be handled.
    */
   @FXML
   private void onHelper2Clicked(Event event) {
@@ -1126,9 +1142,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method is the on click method for helper gate 3
+   * This method is the on click method for helper gate 3. This should toggle the helper gate
+   * labeled 3.
    *
-   * @param event
+   * @param event the event to be handled.
    */
   @FXML
   private void onHelper3Clicked(Event event) {
@@ -1136,9 +1153,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * on click method for the hint button
+   * When the hint button is clicked, events should be handled. Addtionally, GPT should generate a
+   * hint for the player.
    *
-   * @param event
+   * @param mouseEvent the mouse event to be captured.
    */
   @FXML
   private void onHintClicked(MouseEvent mouseEvent) {
