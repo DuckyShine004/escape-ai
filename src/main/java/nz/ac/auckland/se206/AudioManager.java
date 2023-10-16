@@ -12,9 +12,6 @@ import nz.ac.auckland.se206.utilities.Timer;
  * the game.
  */
 public class AudioManager {
-  private static Timeline dialogue;
-  private static Timeline heartBeat;
-
   /** This enum represents the different audio clips that can be used in the game. */
   public enum Clip {
     MAKING_SELECTION,
@@ -25,6 +22,8 @@ public class AudioManager {
     GAME_OVER
   }
 
+  private static Timeline dialogue;
+  private static Timeline heartBeat;
   private static HashMap<Clip, AudioClip> audioMap = new HashMap<>();
 
   /**
@@ -48,22 +47,22 @@ public class AudioManager {
   }
 
   /**
-   * Initialize a looping sound effect.
+   * Initialize a looping sound effect using a timeline.
    *
-   * @param timeline the timeline to be set
    * @param clip the clip
    * @param delay the delay
    * @return the initialized timeline
    */
-  private static Timeline getTimedSound(Timeline timeline, Clip clip, double delay) {
-    timeline =
+  private static Timeline getTimedSound(Clip clip, double delay) {
+    // Initialize the timeline
+    Timeline timeline =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(delay),
+                Duration.seconds(delay), // Delay
                 event -> {
-                  loadAudio(clip);
+                  loadAudio(clip); // Play the sound effect
                 }));
-
+    // Return the timeline
     return timeline;
   }
 
@@ -79,7 +78,7 @@ public class AudioManager {
   /** Play the heart beat sound effect. */
   public static void playHeartBeat() {
     // Initialize the heart beat sound effect
-    heartBeat = getTimedSound(heartBeat, Clip.HEART_BEAT, 2);
+    heartBeat = getTimedSound(Clip.HEART_BEAT, 2);
 
     // Set the cycle and play the sound effect
     heartBeat.setCycleCount(Timer.getIntegerTime());
@@ -88,7 +87,7 @@ public class AudioManager {
 
   /** Play the dialogue sound effect. */
   public static void playDialogue() {
-    dialogue = getTimedSound(dialogue, Clip.DIALOGUE, 0.1);
+    dialogue = getTimedSound(Clip.DIALOGUE, 0.1);
 
     // Set the cycle and play the sound effect
     dialogue.setCycleCount(Timeline.INDEFINITE);
