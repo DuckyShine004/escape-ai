@@ -168,9 +168,9 @@ public class RiddlePuzzleController {
   }
 
   /**
-   * Set chat property of label to new chat
+   * Set chat property of label to new chat.
    *
-   * @param msg the chat message to append
+   * @param msg the chat message to append.
    */
   private void appendChatMessage(String chat) {
     chatProperty.set(chat);
@@ -187,7 +187,7 @@ public class RiddlePuzzleController {
    * Generates a random number between 0 and 20, excluding the two numbers used in the previous
    * riddle.
    *
-   * @return the random number
+   * @return the random number.
    */
   private int getRandomNumber() {
     int randomNumber = (int) (Math.random() * 20);
@@ -200,7 +200,7 @@ public class RiddlePuzzleController {
   /**
    * Loads a riddle from the GPT model.
    *
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
    */
   private void loadRiddle() {
     // Select a concept from the list of concepts
@@ -319,7 +319,7 @@ public class RiddlePuzzleController {
     newThread.start();
   }
 
-  /** starting thinking and set the thinking components to visible */
+  /** starting thinking and set the thinking components to visible. */
   private void startThinking() {
     lblEye1.setVisible(true);
     lblEye2.setVisible(true);
@@ -328,7 +328,7 @@ public class RiddlePuzzleController {
     isThinking = true;
   }
 
-  /** stop thinking and set the thinking components to not visible */
+  /** stop thinking and set the thinking components to not visible. */
   private void stopThinking() {
     lblEye2.setVisible(false);
     lblEye1.setVisible(false);
