@@ -38,7 +38,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.utilities.KeyEventsHandler;
 import nz.ac.auckland.se206.utilities.Number;
 import nz.ac.auckland.se206.utilities.Printer;
@@ -140,8 +139,6 @@ public class DecryptionPuzzleController {
 
   private ChatCompletionRequest gptRequest;
 
-  private TextToSpeech tts;
-
   /**
    * This method initialises the decryption puzzle.
    *
@@ -151,9 +148,6 @@ public class DecryptionPuzzleController {
   private void initialize() throws Exception {
     // Password tab is initially open
     isPasswordTabOpen = true;
-
-    // get the game state instance of tts
-    this.tts = GameState.tts;
 
     // Add the label to list of labels to be updated
     Timer.addLabel(lblTime);
@@ -891,9 +885,6 @@ public class DecryptionPuzzleController {
 
     // Append the result to the text area
     printHint(gptOutput);
-
-    // Make text-to-speech read GPT's output
-    tts.speak(gptOutput, AppUi.DECRYPTION);
   }
 
   /**
@@ -1117,7 +1108,10 @@ public class DecryptionPuzzleController {
     setPolygonExited(pgEmptyRight);
   }
 
-  /** Disable password tab components. */
+  /**
+   * Disable password tab components. This will ensure the password tab has the correct colors set
+   * for it.
+   */
   private void disablePasswordTabComponents() {
     // Set exited color for the pane
     setPaneExited(paPassword);

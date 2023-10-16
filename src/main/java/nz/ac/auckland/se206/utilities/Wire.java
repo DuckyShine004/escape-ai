@@ -14,6 +14,11 @@ public class Wire {
   private Image greenWire;
   private Image redWire;
 
+  /**
+   * Constructor method for creating a new wire object.
+   *
+   * @param wire the image of the wire.
+   */
   public Wire(ImageView wire) {
     this.wire = wire;
 
@@ -34,9 +39,10 @@ public class Wire {
   }
 
   /**
-   * Takes in colour to set background pane colour to
+   * This will set the background colour of the wires. The colour can for the wires can either be
+   * red or green.
    *
-   * @param colour
+   * @param colour the colour of the wire.
    */
   public void setBackground(Boolean colour) {
     // set background colour

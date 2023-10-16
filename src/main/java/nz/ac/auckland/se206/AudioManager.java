@@ -47,23 +47,20 @@ public class AudioManager {
   }
 
   /**
-   * Initialize a looping sound effect using a timeline.
+   * Initialize a looping sound effect for the given clip using a timeline. The audio should loop
+   * given the delay.
    *
-   * @param clip the clip
-   * @param delay the delay
-   * @return the initialized timeline
+   * @param clip the clip to be played.
+   * @param delay the delay of the audio.
+   * @return the initialized timeline.
    */
   private static Timeline getTimedSound(Clip clip, double delay) {
-    // Initialize the timeline
-    Timeline timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(delay), // Delay
-                event -> {
-                  loadAudio(clip); // Play the sound effect
-                }));
-    // Return the timeline
-    return timeline;
+    return new Timeline(
+        new KeyFrame(
+            Duration.seconds(delay), // Delay
+            event -> {
+              loadAudio(clip); // Play the sound effect
+            }));
   }
 
   /**
