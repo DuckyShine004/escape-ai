@@ -252,6 +252,9 @@ public class LogicGatePuzzleController {
 
   /** This method initaiailizes the chat area with a greeting message. */
   private void initiailizeChat() {
+
+    taGptText.appendText("\n\n");
+
     // initialize the chat message field
     ChatMessage gptMessage;
 
@@ -416,7 +419,7 @@ public class LogicGatePuzzleController {
     gptRequest.addMessage(gptMessage);
 
     // append the result to the text area
-    taGptText.appendText("ai> " + gptOutput + "\n\n");
+    taGptText.appendText(gptOutput + "\n\n");
   }
 
   /**
@@ -442,7 +445,7 @@ public class LogicGatePuzzleController {
       inputMessage = new ChatMessage("user", input);
 
       // appent input to text area
-      taGptText.appendText("user> " + input + "\n\n");
+      taGptText.appendText(input + "\n\n");
 
       // get the gpt response
       getChatResponse(inputMessage, tfTextInput);
@@ -1279,7 +1282,7 @@ public class LogicGatePuzzleController {
   private void onHintClicked(MouseEvent mouseEvent) {
     // no hints for hard mode
     if (GameState.gameDifficulty == Difficulty.HARD) {
-      taGptText.appendText("System> " + "Hard Mode has Disabled Hints" + "\n\n");
+      taGptText.appendText("Hard Mode has Disabled Hints" + "\n\n");
       pgHint.setDisable(true);
       return;
     }
@@ -1296,7 +1299,7 @@ public class LogicGatePuzzleController {
     ChatMessage inputMessage = new ChatMessage("user", getHintPrompt());
 
     // appent input to text area
-    taGptText.appendText("user> " + "Please give me a hint" + "\n\n");
+    taGptText.appendText("Please give me a hint" + "\n\n");
 
     // get the gpt response
     getChatResponse(inputMessage, pgHint);
@@ -1395,9 +1398,9 @@ public class LogicGatePuzzleController {
     String helpMessage =
         "Swap the logic gates by clicking them.  \n"
             + "Your Goal is to turn the end light on (green) \n"
-            + " Last Gate is covered by glass";
+            + " Last Gate is covered by glass\n";
 
     // append help message to text area
-    taGptText.appendText("System> " + helpMessage + "\n\n");
+    taGptText.appendText(helpMessage + "\n\n");
   }
 }
