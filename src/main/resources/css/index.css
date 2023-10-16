@@ -57,12 +57,20 @@
   -fx-opacity: 1;
 }
 
+
+/* Button Style */
 .toggle-mute-btn {
   -fx-font-family: "JetBrainsMono NF Bold";
+
+  -fx-background-color: #3498db; /* Change this to your desired button color */
+  -fx-text-fill: white;
   -fx-font-size: 16px;
-  -fx-background-color: rgb(210, 210, 210);
+  -fx-font-weight: bold;
+  -fx-padding: 10px 20px;
+  -fx-background-radius: 5px;
 }
 
+/* Hover Effect */
 .toggle-mute-btn:hover {
-  -fx-background-color: rgb(160, 160, 160);
+  -fx-background-color: #2980b9; /* Change this to the hover color you prefer */
 }
