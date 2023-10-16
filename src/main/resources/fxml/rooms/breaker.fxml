@@ -147,8 +147,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <Button fx:id="btnLeft" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
-      <Button fx:id="btnRight" layoutX="650.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onRightButton" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
+      <Button fx:id="btnLeft" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onLeftButton" onMouseExited="#onLeftExit" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&lt;" />
+      <Button fx:id="btnRight" layoutX="650.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#onRightButton" onMouseExited="#onRightExit" prefHeight="50.0" prefWidth="50.0" styleClass="navigation-button" stylesheets="@../../css/index.css" text="&gt;" />
       <Pane fx:id="paCircuitBox" layoutX="275.0" layoutY="68.0" onMouseClicked="#onCircuitBoxClicked" onMouseEntered="#onCircuitBoxEntered" onMouseExited="#onCircuitBoxExited" opacity="0.0" prefHeight="210.0" prefWidth="245.0" style="-fx-background-color: #FFFF00;">
          <cursor>
             <Cursor fx:constant="HAND" />

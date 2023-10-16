@@ -86,6 +86,7 @@ public abstract class RoomController {
   /** This method initialiszes the room controller using a default method. */
   @FXML
   protected void initialize() {
+
     lblAiChat.textProperty().bind(aiChatProperty);
     aiChatProperty.set(GameState.currentAiMessage);
     lblPlayerChat.textProperty().bind(playerChatProperty);
@@ -416,6 +417,26 @@ public abstract class RoomController {
   private void onMouseExitAi(Event event) {
     // set AI shadow not visible
     imgAvatarShaddow.setVisible(false);
+  }
+
+  /**
+   * Then the user clicks the left button, then when the user moves mouse off button.
+   *
+   * @param event
+   */
+  @FXML
+  private void onLeftExit(MouseEvent event) {
+    updateAvatarImage();
+  }
+
+  /**
+   * Then the user clicks the right button, then when the user moves mouse off button.
+   *
+   * @param event
+   */
+  @FXML
+  private void onRightExit(MouseEvent event) {
+    updateAvatarImage();
   }
 
   /**
