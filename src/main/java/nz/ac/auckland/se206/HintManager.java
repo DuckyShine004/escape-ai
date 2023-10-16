@@ -15,6 +15,7 @@ public class HintManager {
   private static List<Node> hintNodes;
   private static List<Label> hintLabels;
 
+  /** This method is responsible for initialising the hint manager. */
   public static void initialize() {
     // Initialize fields
     hintLabels = new ArrayList<Label>();
@@ -88,7 +89,7 @@ public class HintManager {
     }
   }
 
-  /** Enable all hint buttons. */
+  /** This method is responsible for enabling all hint buttons. */
   public static void enableHints() {
     // Disable all hint buttons
     for (Node hint : hintNodes) {
@@ -96,7 +97,7 @@ public class HintManager {
     }
   }
 
-  /** Disable all hint buttons */
+  /** This method is responsible for disabling all hint buttons. */
   public static void disableHints() {
     // Disable all hint buttons
     for (Node hint : hintNodes) {
