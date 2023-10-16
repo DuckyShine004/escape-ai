@@ -133,29 +133,17 @@ public class RiddlePuzzleController {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(109), // Duration between updates
+                Duration.millis(100), // Duration between updates
                 new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
                     // Check the isThinking variable
                     if (isThinking) {
-                      int randomNum = (int) (Math.random() * 3);
-                      char randomChar = ' ';
-                      if (randomNum == 0) {
-                        randomChar =
-                            (char) (Math.random() * 26 + 'A'); // Random uppercase letter (A-Z)
-                      } else if (randomNum == 1) {
-                        randomChar =
-                            (char) (Math.random() * 10 + '0'); // Random uppercase letter (A-Z)
-                      } else if (randomNum == 2) {
-                        randomChar =
-                            (char) (Math.random() * 26 + 'a'); // Random uppercase letter (A-Z)
-                      }
+                      // Get a random character
+                      char randomChar = getRandomCharacter();
 
-                      eyes = eyes.substring(1) + randomChar;
-                      // Update the label's text with the random character
-                      lblEye1.setText(eyes.substring(0, 3));
-                      lblEye2.setText(eyes.substring(3));
+                      // Update the eyes
+                      updateEyes(randomChar);
                     }
                   }
                 }));
@@ -165,6 +153,36 @@ public class RiddlePuzzleController {
 
     // Start the timeline
     timeline.play();
+  }
+
+  /**
+   * Generates a random character that is a number, uppercase, or lowercase letter.
+   *
+   * @return the random character
+   */
+  private char getRandomCharacter() {
+    int randomNum = (int) (Math.random() * 3);
+    if (randomNum == 0) {
+      return (char) (Math.random() * 10 + '0'); // Random number (0-9)
+    } else if (randomNum == 1) {
+      return (char) (Math.random() * 10 + 'A'); // Random uppercase letter (A-Z)
+    } else if (randomNum == 2) {
+      return (char) (Math.random() * 26 + 'a'); // Random lowercase letter (a-z)
+    } else {
+      return ' ';
+    }
+  }
+
+  /**
+   * Updates the eyes with a random character.
+   *
+   * @param randomChar the random character to update the eyes with
+   */
+  private void updateEyes(char randomChar) {
+    eyes = eyes.substring(1) + randomChar;
+    // Update the label's text with the random character
+    lblEye1.setText(eyes.substring(0, 3));
+    lblEye2.setText(eyes.substring(3));
   }
 
   /**
