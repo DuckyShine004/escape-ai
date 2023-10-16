@@ -349,8 +349,6 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
-            firstMessage = false;
-
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
@@ -364,8 +362,6 @@ public class LogicGatePuzzleController {
         event -> {
           pgbGptThinking.setVisible(false);
           if (item != null) {
-            firstMessage = false;
-
             if (item instanceof TextField) {
               toggleTextField((TextField) item);
             } else {
