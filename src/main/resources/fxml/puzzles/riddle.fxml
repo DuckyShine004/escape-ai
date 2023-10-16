@@ -103,7 +103,7 @@
       </Line>
       <Pane layoutY="420.0" prefHeight="60.0" prefWidth="720.0" style="-fx-background-color: black;">
       </Pane>
-      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/riddle.css">
          <effect>
             <Bloom threshold="0.0" />
          </effect>
