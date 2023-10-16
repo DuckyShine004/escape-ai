@@ -303,10 +303,11 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method initalizes a gpt message
+   * Retrieve a response from GPT, given that there is some sort of prompt imput. Additionally, this
+   * response must be displayed to the user.
    *
-   * @param gptMessage
-   * @param item
+   * @param gptMessage the GPT input prompt.
+   * @param item the input object.
    */
   private void getChatResponse(ChatMessage gptMessage, Object item) {
     // add user input to GPT's user input history
@@ -445,7 +446,10 @@ public class LogicGatePuzzleController {
     }
   }
 
-  /** This method sets the styles for this scene */
+  /**
+   * This method sets the styles for this scene. This will load all images that contribute to the
+   * overall aesthetics of the room.
+   */
   private void setStyles() {
     try {
       // load glass image
@@ -580,7 +584,7 @@ public class LogicGatePuzzleController {
     updateLogicTrail(true);
   }
 
-  /** This method will layout the current assembly of logic gates */
+  /** This method will update the layout of the current assembly of logic gates. */
   private void updateGateLayout() {
 
     for (int j = 0; j < currentAssemblyImages.size(); j++) {
@@ -593,7 +597,9 @@ public class LogicGatePuzzleController {
 
   /**
    * This method will calculate the logical pathway for the current assembly This is calculations
-   * based on a grid of logic gates See Rules/Guidance Doccument to understand layout calculations:
+   * based on a grid of logic gates. See Rules/Guidance Doccument to understand layout calculations.
+   *
+   * @param firstTime check if it is the first time a logic gate has been switched.
    */
   private void updateLogicTrail(boolean firstTime) {
     // for now this is of unvarying size
@@ -664,7 +670,10 @@ public class LogicGatePuzzleController {
     return output;
   }
 
-  /** This method sets a random number */
+  /**
+   * This method will set up a random grid of logic gates. The layout as mentioned, is random,
+   * however, the logic gates must also be arranged in a way it is possible for the player to solve.
+   */
   private void setRandomInput() {
 
     List<Boolean> tempLogic = new ArrayList<>();
@@ -732,7 +741,8 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method will set up each imgView showing the player what the current logic is in each wire
+   * This method will set up each image view showing the player what the current logic is in each
+   * wire.
    */
   private void setUpLogicTrail() {
     // adding panes to array of panes
@@ -778,7 +788,10 @@ public class LogicGatePuzzleController {
     updateDisplayLogicTrail();
   }
 
-  /** This Method decides what colour trail each logic input should be */
+  /**
+   * This method decides what colour trail each logic gate should have. The logic trail is also
+   * referring to the wire colour.
+   */
   private void updateDisplayLogicTrail() {
 
     for (int i = 0; i < logicInSection.size(); i++) {
@@ -805,7 +818,10 @@ public class LogicGatePuzzleController {
     }
   }
 
-  /** Solved method that changes aspects of UI and GameState */
+  /**
+   * Set and change the user interface and the game's states, once the player has solved the logic
+   * gate puzzle.
+   */
   private void setSolved() {
     // the puzzle has been solved
     imgSolvedLight.setImage(greenLight);
@@ -881,7 +897,13 @@ public class LogicGatePuzzleController {
     }
   }
 
-  /** This method will swap the gates a and b */
+  /**
+   * Given two logic gates, logic gate a, and logic gate b, perform a swap. Any user interface
+   * changes should be handled.
+   *
+   * @param a the logic gate, a.
+   * @param b the logic gate, b.
+   */
   private void swapGates(int a, int b) {
     // swap gates
     LogicGate temp = currentAssembly.get(a);
@@ -927,10 +949,10 @@ public class LogicGatePuzzleController {
   }
 
   /**
-   * This method takes in the currently clicked gate, and determins if it should be highlighed or
-   * swapped
+   * This method takes in the currently clicked gate, and determines if it should be highlighted or
+   * swapped.
    *
-   * @param current
+   * @param current the index of the current logic gate.
    */
   private void onClickedGate(int current) {
 
@@ -1262,9 +1284,9 @@ public class LogicGatePuzzleController {
 
   /**
    * This method is called when the player clicks the get help icon because they don't know what
-   * they should be doing
+   * they should be doing.
    *
-   * @param event
+   * @param event the event to be handled.
    */
   @FXML
   private void onGetToDoHelp(MouseEvent event) {

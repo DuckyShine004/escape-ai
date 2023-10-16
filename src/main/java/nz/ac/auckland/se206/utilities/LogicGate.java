@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
  */
 public class LogicGate {
 
-  /** This enum represents the different types of logic gates that can be used in the logic gate */
+  /** This enum represents the different types of logic gates that can be used in the logic gate. */
   public enum Logic {
     AND,
     OR,
@@ -22,7 +22,7 @@ public class LogicGate {
   @FXML private Image img;
   @FXML private Image tableImg;
 
-  /** constructor for intializing logic gate. */
+  /** Constructor for intializing logic gate. */
   public LogicGate(Logic type) {
     this.type = type;
     loadGateImage(type);

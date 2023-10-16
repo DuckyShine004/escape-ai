@@ -45,17 +45,15 @@ public class App extends Application {
   }
 
   /**
-   * This method sets the UI of the scene.
+   * This method sets the UI of the scene, should the scene ever switch.
    *
-   * @param appUi The enum of the scene to be returned.
+   * @param newUi the new scene to be set.
    */
   public static void setUi(AppUi newUi) {
-    // scene.setRoot
-    // get the Parent for that Ui
-
+    // Check which room we are changing from
     System.out.println("changing from " + GameState.currentRoom + " to " + newUi);
 
-    // if not in one of the main rooms
+    // If the player is not in one of the main rooms
     if (GameState.currentRoom != AppUi.OFFICE
         && GameState.currentRoom != AppUi.BREAKER
         && GameState.currentRoom != AppUi.CONTROL) {
@@ -63,6 +61,7 @@ public class App extends Application {
       GameState.tts.stop();
     }
 
+    // Set the new room
     GameState.currentRoom = newUi;
     scene.setRoot(SceneManager.getUi(newUi));
   }
@@ -114,7 +113,7 @@ public class App extends Application {
   /**
    * This method initialises the terminal scene
    *
-   * @throws IOException if the fxml file is not found
+   * @throws IOException if the fxml file is not found.
    */
   public static void initializeTerminalScene() throws IOException {
     SceneManager.addAppUi(AppUi.TERMINAL, loadFxml("menus/terminal"));
@@ -123,7 +122,7 @@ public class App extends Application {
   /**
    * This method initialises the breaker scene.
    *
-   * @throws IOException if the fxml file is not found
+   * @throws IOException if the fxml file is not found.
    */
   public static void initializeBreakerScene() throws IOException {
     SceneManager.addAppUi(AppUi.BREAKER, loadFxml("rooms/breaker"));
@@ -132,7 +131,7 @@ public class App extends Application {
   /**
    * This method will initialize the control scene.
    *
-   * @throws IOException if the fxml file is not found
+   * @throws IOException if the fxml file is not found.
    */
   public static void initializeControlScene() throws IOException {
     SceneManager.addAppUi(AppUi.CONTROL, loadFxml("rooms/control"));
@@ -141,7 +140,7 @@ public class App extends Application {
   /**
    * This method will initialize the office scene.
    *
-   * @throws IOException if the fxml file is not found
+   * @throws IOException if the fxml file is not found.
    */
   public static void initializeOfficeScene() throws IOException {
     SceneManager.addAppUi(AppUi.OFFICE, loadFxml("rooms/office"));
@@ -150,17 +149,17 @@ public class App extends Application {
   /**
    * This method will initialize the winning screen scene.
    *
-   * @throws IOException if the fxml file is not found
+   * @throws IOException if the fxml file is not found.
    */
   public static void initializeWinningScene() throws IOException {
     SceneManager.addAppUi(AppUi.WINNING, loadFxml("menus/winning"));
   }
 
-  /*
-   * This method will initalize the scenes, by storing instances of the loaded
-   * fxmls in SceneManager.
+  /**
+   * This method will initalize the scenes, by storing instances of the loaded fxmls in
+   * SceneManager.
    *
-   * @throws IOException if the fxml file is not found
+   * @throws IOException if the fxml file is not found.
    */
   private static void initalizeScenes() throws IOException {
     // initialize the timer
@@ -193,7 +192,7 @@ public class App extends Application {
    * This method will initalize the puzzle scenes, by storing instances of the loaded fxmls in
    * SceneManager.
    *
-   * @throws IOException
+   * @throws IOException if the fxml file is not found.
    */
   protected static void initalizePuzzleScenes() throws IOException {
     // office room
