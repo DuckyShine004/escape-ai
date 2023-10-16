@@ -10,10 +10,19 @@ public class Wire {
   private Pane wire;
   private Pane bendWire;
 
+  /**
+   * This is the constructor for the wire object with one parameter.
+   * @param wire
+   */
   public Wire(Pane wire) {
     this.wire = wire;
   }
 
+  /**
+   * This is the constructor for the wire object with two parameters.
+   * @param wire
+   * @param bendWire
+   */
   public Wire(Pane wire, Pane bendWire) {
     this.wire = wire;
     this.bendWire = bendWire;

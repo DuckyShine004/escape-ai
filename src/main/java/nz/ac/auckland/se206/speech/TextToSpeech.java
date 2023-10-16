@@ -18,9 +18,6 @@ public class TextToSpeech {
     }
   }
 
-  private Thread speechThread;
-  private Task<Void> speechTask;
-
   /**
    * Main function to speak the given list of sentences.
    *
@@ -39,6 +36,8 @@ public class TextToSpeech {
   }
 
   private final Synthesizer synthesizer;
+  private Thread speechThread;
+  private Task<Void> speechTask;
 
   /**
    * Constructs the TextToSpeech object creating and allocating the speech synthesizer. English
