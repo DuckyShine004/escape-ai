@@ -595,7 +595,7 @@ public class RiddlePuzzleController {
    */
   @FXML
   private void onHintEntered() {
-    if (currentRiddle != null) {
+    if (currentRiddle != null || GameState.gameDifficulty == Difficulty.HARD) {
       pgHint.setOpacity(0.25);
       pgHint.setCursor(Cursor.HAND);
     } else {
@@ -610,7 +610,7 @@ public class RiddlePuzzleController {
    */
   @FXML
   private void onHintExited() {
-    if (currentRiddle != null) {
+    if (currentRiddle != null || GameState.gameDifficulty == Difficulty.HARD) {
       pgHint.setOpacity(0);
       pgHint.setCursor(Cursor.DEFAULT);
     }
