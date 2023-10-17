@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
+import nz.ac.auckland.se206.LeaderboardManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -122,7 +123,7 @@ public class ControlRoomController extends RoomController {
     AudioManager.loadAudio(Clip.VICTORY);
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
-    // LeaderboardManager.update();
+    LeaderboardManager.update();
   }
 
   /**
