@@ -582,6 +582,11 @@ public class RiddlePuzzleController {
     getHint = true;
   }
 
+  /**
+   * When the mouse is hovering over the hint button, the hint button is highlighted.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   private void onHintEntered() {
     if (currentRiddle != null) {
@@ -592,6 +597,11 @@ public class RiddlePuzzleController {
     }
   }
 
+  /**
+   * When the mouse is not hovering over the hint button, the hint button is not highlighted.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   private void onHintExited() {
     if (currentRiddle != null) {
