@@ -33,9 +33,9 @@ public class GptPromptEngineering {
         + " the '^' is printed, list three options, each between a set of {} to the player to"
         + " choose from, one of which is " // format riddle to parse easily
         + concept
-        + " and the other two are words that are unrelated to " // generate two additional words
+        + " and the other two are words that are antonyms to " // generate two additional words
         + concept
-        + ". Do not precede the options with anything. This is all your response should contain. "
+        + " that are less than 15 characters long. Do not precede the options with anything. This is all your response should contain. "
         + " If the player begins their response with 'Define: ', they are asking for a hint and you"
         + " should give a definition for the word. If the player begins with the phrase, 'Is it ',"
         + " then they are providing a guess. If the guess is not " // prompt about hints

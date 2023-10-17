@@ -63,21 +63,92 @@
 .button-style:hover {
   -fx-background-color: transparent;
   -fx-text-fill: WHITE; 
+  -fx-cursor: hand;
 }
 
+.hbox {
+  -fx-spacing: 20;
+  -fx-pref-height: 40px;
+}
+.back-pane {
+  -fx-pref-height: 40px; /* Set the preferred height */
+  -fx-pref-width: 80px;  /* Set the preferred width */
+  -fx-background-color: #333333; /* Dark gray background */
+  -fx-border-color: #666666;
+  -fx-border-width: 2px;    /* Border width */
+  -fx-background-radius: 40px 0px 0px 40px;
+  -fx-border-radius: 40px 0px 0px 40px; 
+  cursor: hand;
+}
+
+.label-style {
+  -fx-font-family: "Determination Mono Web";
+  -fx-font-size: 24px;
+}
+
+.back-pane-overlay {
+  -fx-pref-height: 40px; /* Set the preferred height */
+  -fx-pref-width: 80px;  /* Set the preferred width */
+  -fx-background-color: #444444;
+  -fx-border-color: #666666;
+  -fx-border-width: 2px;    /* Border width */
+  -fx-background-radius: 40px 0px 0px 40px;
+  -fx-border-radius: 40px 0px 0px 40px; 
+}
+
+.next-pane {
+  -fx-pref-height: 40px; /* Set the preferred height */
+  -fx-pref-width: 80px;  /* Set the preferred width */
+  -fx-background-color: #333333; /* Dark gray background */
+  -fx-border-color: #666666;
+  -fx-border-width: 2px;    /* Border width */
+  -fx-background-radius: 0px 40px 40px 0px;
+  -fx-border-radius: 0px 40px 40px 0px; 
+  cursor: hand;
+}
+
+.next-pane-overlay {
+  -fx-pref-height: 40px; /* Set the preferred height */
+  -fx-pref-width: 80px;  /* Set the preferred width */
+  -fx-background-color: #444444;
+  -fx-border-color: #666666;
+  -fx-border-width: 2px;    /* Border width */
+  -fx-background-radius: 0px 40px 40px 0px;
+  -fx-border-radius: 0px 40px 40px 0px; 
+}
 
 #btnAnswer1.button-style,
 #btnAnswer2.button-style,
 #btnAnswer3.button-style {
-  -fx-pref-height: 40px; 
-  -fx-pref-width: 120px; 
-  -fx-border-width: 2px; 
-  -fx-border-color: #00FFFF; 
+    -fx-pref-height: 38px;
+    -fx-pref-width: 150px;
+    -fx-background-color: #333333; /* Dark gray background */
+    -fx-background-radius: 5;
+    -fx-border-width: 1px;
+    -fx-border-color: #666666; /* Slightly lighter border */
+    -fx-border-radius: 5;
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#btnAnswer1.button-style:hover,
+#btnAnswer2.button-style:hover,
+#btnAnswer3.button-style:hover {
+    -fx-background-color: #444444; /* Slightly lighter background on hover */
+}
+
+#btnAnswer1.button-style:pressed,
+#btnAnswer2.button-style:pressed,
+#btnAnswer3.button-style:pressed {
+    -fx-background-color: #222222; /* Slightly darker background when pressed */
 }
 
 
+
+
 .button-style .label {
-  -fx-font-size: 13px;
+  -fx-font-size: 14px;
   -fx-font-family: "Determination Mono Web";
 }
 

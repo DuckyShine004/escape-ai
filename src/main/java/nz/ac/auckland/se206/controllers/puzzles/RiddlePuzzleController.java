@@ -239,7 +239,10 @@ public class RiddlePuzzleController {
       "Integrity",
       "Inclusion",
       "Diversity",
-      "Stewardship"
+      "Stewardship",
+      "Sustainability",
+      "Animal Welfare",
+      "Racial Profiling"
     };
 
     // Generate a random number
