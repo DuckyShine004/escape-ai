@@ -1287,6 +1287,7 @@ public class LogicGatePuzzleController {
   private void onHintClicked(MouseEvent mouseEvent) {
     // no hints for hard mode
     if (GameState.gameDifficulty == Difficulty.HARD) {
+      taGptText.clear();
       taGptText.appendText("Hard Mode has Disabled Hints" + "\n\n");
       pgHint.setDisable(true);
       return;
@@ -1303,15 +1304,11 @@ public class LogicGatePuzzleController {
     // create a new instance of input chat message object
     ChatMessage inputMessage = new ChatMessage("user", getHintPrompt());
 
-    // appent input to text area
-    taGptText.appendText("Please give me a hint" + "\n\n");
+    // clear the text area
+    taGptText.clear();
 
     // get the gpt response
     getChatResponse(inputMessage, pgHint);
-
-    // get gpt to talk about the last gate
-
-    // get gpt to talk about the first gates
 
   }
 
@@ -1345,7 +1342,8 @@ public class LogicGatePuzzleController {
               + ", currently the inputs are: "
               + logicInputA
               + " and "
-              + logicInputB;
+              + logicInputB
+              + ". Your answer should not exceed 20 words.";
       hasHintedAtEndGate = true;
 
     } else {
@@ -1380,7 +1378,8 @@ public class LogicGatePuzzleController {
               + " after it that leads to a "
               + desiredLogic
               + " leading from a "
-              + nextGate.getType();
+              + nextGate.getType()
+              + ". Your answer should not exceed 20 words.";
 
       firstGatesHinted++;
       if (firstGatesHinted == 4) {

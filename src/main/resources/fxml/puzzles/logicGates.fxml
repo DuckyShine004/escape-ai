@@ -72,7 +72,7 @@
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button layoutX="600.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" prefHeight="78.0" prefWidth="111.0" styleClass="back-button" stylesheets="@../../css/puzzles/logicGates.css" text="Back" />
+      <Button layoutX="550.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" prefHeight="78.0" prefWidth="111.0" styleClass="back-button" stylesheets="@../../css/puzzles/logicGates.css" text="Back" />
       <HBox layoutX="8.0" layoutY="60.0" prefHeight="450.0" prefWidth="547.0">
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
@@ -215,9 +215,20 @@
             </VBox>
          </children>
       </HBox>
-      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.                                Turn the light on!" wrapText="true">
+      <TextArea disable="true" editable="false" focusTraversable="false" layoutX="518.0" layoutY="60.0" prefHeight="100.0" prefWidth="193.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" style="-fx-text-fill: #ffff6d;" text="Swap the logic gates around to turn the light green." wrapText="true">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
          <font>
-            <Font name="SansSerif Regular" size="22.0" />
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="taGptText" disable="true" editable="false" focusTraversable="false" layoutX="518.0" layoutY="160.0" prefHeight="250.0" prefWidth="193.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+         <font>
+            <Font size="14.0" />
          </font>
       </TextArea>
       <TextField fx:id="tfTextInput" editable="false" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" visible="false" />
