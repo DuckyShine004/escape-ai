@@ -35,10 +35,11 @@ public class GptPromptEngineering {
         + concept
         + " and the other two are words that are antonyms to " // generate two additional words
         + concept
-        + " that are less than 15 characters long. Do not precede the options with anything. This is all your response should contain. "
-        + " If the player begins their response with 'Define: ', they are asking for a hint and you"
-        + " should give a definition for the word. If the player begins with the phrase, 'Is it ',"
-        + " then they are providing a guess. If the guess is not " // prompt about hints
+        + " that are less than 15 characters long. Do not precede the options with anything. This"
+        + " is all your response should contain.  If the player begins their response with 'Define:"
+        + " ', they are asking for a hint and you should give a definition for the word. If the"
+        + " player begins with the phrase, 'Is it ', then they are providing a guess. If the guess"
+        + " is not " // prompt about hints
         + concept
         + ", do not reveal the answer, instead say, 'Hmm I am not too sure about that?' When the"
         + " player guesses the correct answer, say 'Yes! That sounds right with my programming!'"
