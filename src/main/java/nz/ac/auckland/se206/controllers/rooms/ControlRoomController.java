@@ -154,7 +154,7 @@ public class ControlRoomController extends RoomController {
     AudioManager.loadAudio(Clip.VICTORY);
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
-    // LeaderboardManager.update();
+    LeaderboardManager.update();
   }
 
   /** On hint entered, if the hint is entered, then set the opacity to the overlay capacity. */
