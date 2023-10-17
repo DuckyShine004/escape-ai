@@ -538,8 +538,17 @@ public abstract class RoomController {
     // Set the AI message
     GameState.currentAiMessage = message;
 
-    // Set the AI chat label
-    aiChatProperty.set(GameState.currentAiMessage);
+    // Ensure the tts on the first and second duplicate inital message do not play tts
+    if (GameState.numberOfTextToSpeach != 1 && GameState.numberOfTextToSpeach != 2) {
+      // Start tts on message
+      GameState.tts.speak(message, AppUi.OFFICE);
+
+      // Set the AI chat label
+      aiChatProperty.set(GameState.currentAiMessage);
+    } else {
+      // increment number of tts calls
+      GameState.numberOfTextToSpeach++;
+    }
 
     // Set the AI chat label to visible
     lblAiChat.setVisible(true);
@@ -552,15 +561,6 @@ public abstract class RoomController {
     if (GameState.isChatting == false) {
       lblAiChat2.setVisible(true);
       chatBubbleVisible = true;
-    }
-
-    // ensure the tts on the first and second duplicate inital message do not play tts
-    if (GameState.numberOfTextToSpeach != 1 && GameState.numberOfTextToSpeach != 2) {
-      // start tts on message
-      GameState.tts.speak(message, AppUi.OFFICE);
-    } else {
-      // increment number of tts calls
-      GameState.numberOfTextToSpeach++;
     }
   }
 

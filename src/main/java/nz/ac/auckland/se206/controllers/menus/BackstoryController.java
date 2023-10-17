@@ -112,5 +112,8 @@ public class BackstoryController {
 
     // Reset the printing state
     Instructions.isInstructionsPrinted = false;
+
+    // Set the number of tts messages to 0
+    GameState.numberOfTextToSpeach = 0;
   }
 }

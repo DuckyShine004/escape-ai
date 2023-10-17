@@ -9,6 +9,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -562,7 +563,13 @@ public class RiddlePuzzleController {
       return;
     }
 
+    // If the hint button is already pressed
     if (getHint == true) {
+      return;
+    }
+
+    // If there currently is no riddle
+    if (currentRiddle == null) {
       return;
     }
 
@@ -575,14 +582,32 @@ public class RiddlePuzzleController {
     getHint = true;
   }
 
+  /**
+   * When the mouse is hovering over the hint button, the hint button is highlighted.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   private void onHintEntered() {
-    pgHint.setOpacity(0.25);
+    if (currentRiddle != null) {
+      pgHint.setOpacity(0.25);
+      pgHint.setCursor(Cursor.HAND);
+    } else {
+      pgHint.setCursor(Cursor.DEFAULT);
+    }
   }
 
+  /**
+   * When the mouse is not hovering over the hint button, the hint button is not highlighted.
+   *
+   * @param mouseEvent the mouse event
+   */
   @FXML
   private void onHintExited() {
-    pgHint.setOpacity(0);
+    if (currentRiddle != null) {
+      pgHint.setOpacity(0);
+      pgHint.setCursor(Cursor.DEFAULT);
+    }
   }
 
   /** When the mouse is hovering over the pane, the overlay appears (back). */
