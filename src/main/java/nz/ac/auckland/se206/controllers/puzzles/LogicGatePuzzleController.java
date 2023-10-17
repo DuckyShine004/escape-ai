@@ -113,6 +113,9 @@ public class LogicGatePuzzleController {
   // Hint button
   @FXML private Polygon pgHint;
 
+  // Back button
+  @FXML private Pane paBack;
+
   // First Row
   @FXML private ImageView imgAnswerGate0;
   @FXML private ImageView imgAnswerGate1;
@@ -844,6 +847,9 @@ public class LogicGatePuzzleController {
 
     ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
 
+    // clear text area
+    taGptText.clear();
+
     // get the gpt response
     getChatResponse(inputMessage, null);
 
@@ -957,8 +963,20 @@ public class LogicGatePuzzleController {
    * This method changes the scene back to the Breaker Room.
    */
   @FXML
-  private void onBackToBreaker() {
+  private void onBackClicked() {
     App.setUi(AppUi.BREAKER);
+  }
+
+  /** When the mouse is hovering over the pane, the overlay appears (back). */
+  @FXML
+  private void onBackEntered() {
+    paBack.setStyle("-fx-background-color: rgb(29,31,37);");
+  }
+
+  /** When the mouse is not hovering over the pane, the overlay disappears (back). */
+  @FXML
+  private void onBackExited() {
+    paBack.setStyle("-fx-background-color: rgb(20,21,23);");
   }
 
   /**
@@ -1287,6 +1305,7 @@ public class LogicGatePuzzleController {
   private void onHintClicked(MouseEvent mouseEvent) {
     // no hints for hard mode
     if (GameState.gameDifficulty == Difficulty.HARD) {
+      taGptText.clear();
       taGptText.appendText("Hard Mode has Disabled Hints" + "\n\n");
       pgHint.setDisable(true);
       return;
@@ -1303,16 +1322,11 @@ public class LogicGatePuzzleController {
     // create a new instance of input chat message object
     ChatMessage inputMessage = new ChatMessage("user", getHintPrompt());
 
-    // appent input to text area
-    taGptText.appendText("Please give me a hint" + "\n\n");
+    // clear the text area
+    taGptText.clear();
 
     // get the gpt response
     getChatResponse(inputMessage, pgHint);
-
-    // get gpt to talk about the last gate
-
-    // get gpt to talk about the first gates
-
   }
 
   /**
@@ -1345,7 +1359,8 @@ public class LogicGatePuzzleController {
               + ", currently the inputs are: "
               + logicInputA
               + " and "
-              + logicInputB;
+              + logicInputB
+              + ". Your answer should not exceed 20 words.";
       hasHintedAtEndGate = true;
 
     } else {
@@ -1380,7 +1395,8 @@ public class LogicGatePuzzleController {
               + " after it that leads to a "
               + desiredLogic
               + " leading from a "
-              + nextGate.getType();
+              + nextGate.getType()
+              + ". Your answer should not exceed 20 words.";
 
       firstGatesHinted++;
       if (firstGatesHinted == 4) {
@@ -1406,6 +1422,7 @@ public class LogicGatePuzzleController {
             + " Last Gate is covered by glass\n";
 
     // append help message to text area
+    taGptText.clear();
     taGptText.appendText(helpMessage + "\n\n");
   }
 }

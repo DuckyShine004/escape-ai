@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
+import nz.ac.auckland.se206.LeaderboardManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -122,7 +123,7 @@ public class ControlRoomController extends RoomController {
     AudioManager.loadAudio(Clip.VICTORY);
 
     // Update the leaderboard - UNCOMMENT FOR FINAL
-    // LeaderboardManager.update();
+    LeaderboardManager.update();
   }
 
   /**
@@ -291,8 +292,8 @@ public class ControlRoomController extends RoomController {
     } else {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
-      setUserResponse("Let me access the control panel!");
-      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control panel.");
+      setUserResponse("Let me access the control keyboard!");
+      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control keyboard.");
     }
   }
 

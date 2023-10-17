@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,6 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #15151c;" styleClass="anchor-pane" stylesheets="@../../css/puzzles/logicGates.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.puzzles.LogicGatePuzzleController">
    <children>
@@ -72,7 +74,6 @@
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button layoutX="600.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#onBackToBreaker" prefHeight="78.0" prefWidth="111.0" styleClass="back-button" stylesheets="@../../css/puzzles/logicGates.css" text="Back" />
       <HBox layoutX="8.0" layoutY="60.0" prefHeight="450.0" prefWidth="547.0">
          <children>
             <VBox prefHeight="450.0" prefWidth="500.0">
@@ -215,9 +216,20 @@
             </VBox>
          </children>
       </HBox>
-      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.                                Turn the light on!" wrapText="true">
+      <TextArea disable="true" editable="false" focusTraversable="false" layoutX="518.0" layoutY="60.0" prefHeight="100.0" prefWidth="193.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" style="-fx-text-fill: #ffff6d;" text="Swap the logic gates around to turn the light green." wrapText="true">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
          <font>
-            <Font name="SansSerif Regular" size="22.0" />
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="taGptText" disable="true" editable="false" focusTraversable="false" layoutX="518.0" layoutY="160.0" prefHeight="250.0" prefWidth="193.0" styleClass="custom-text-area" stylesheets="@../../css/puzzles/decryption.css" wrapText="true">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+         <font>
+            <Font size="14.0" />
          </font>
       </TextArea>
       <TextField fx:id="tfTextInput" editable="false" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" visible="false" />
@@ -281,6 +293,24 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <ProgressBar fx:id="pgbGptThinking" layoutX="515.0" layoutY="344.0" prefWidth="200.0" progress="0.0" stylesheets="@../../css/puzzles/logicGates.css" />
+      <ProgressBar fx:id="pgbGptThinking" layoutX="430.0" layoutY="360.0" prefWidth="250.0" progress="0.0" styleClass="progress-bar" stylesheets="@../../css/puzzles/logicGates.css" />
+      <Pane fx:id="paBack" focusTraversable="true" layoutX="515.0" layoutY="420.0" onMouseClicked="#onBackClicked" onMouseEntered="#onBackEntered" onMouseExited="#onBackExited" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: rgb(20,20,23);" styleClass="button-border-pane" stylesheets="@../../css/menus/terminal.css">
+         <children>
+            <Label layoutX="24.0" layoutY="2.0" styleClass="custom-label" stylesheets="@../../css/menus/terminal.css" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
    </children>
 </Pane>
