@@ -508,7 +508,7 @@ public abstract class RoomController {
   private void disableChatComponents() {
     tfChat.setEditable(false);
 
-    // Disable all hint buttonss
+    // Disable all hint buttons
     HintManager.disableHints();
   }
 
@@ -516,8 +516,10 @@ public abstract class RoomController {
   private void enableChatComponents() {
     tfChat.setEditable(true);
 
-    // Enable all hint buttonss
-    HintManager.enableHints();
+    // Check if we are able to re-enable the hint buttons
+    if (isHintRetrievable()) {
+      HintManager.enableHints();
+    }
   }
 
   /**
@@ -587,16 +589,6 @@ public abstract class RoomController {
    */
   @FXML
   public void onHintClicked(MouseEvent mouseEvent) {
-    // If the difficulty is hard, ignore user.
-    if (GameState.gameDifficulty == Difficulty.HARD) {
-      return;
-    }
-
-    // If the number of remaining hints is zero
-    if (GameState.hintCounter == 0) {
-      return;
-    }
-
     // Update the hint counter
     HintManager.updateHintCounter();
 
@@ -609,6 +601,16 @@ public abstract class RoomController {
 
   /** Generate a GPT hint response. GPT should give a hint for the current room the user is in. */
   public void getUserHint(Boolean isRoomSolved) {
+    // If the difficulty is hard, ignore user.
+    if (GameState.gameDifficulty == Difficulty.HARD) {
+      return;
+    }
+
+    // If the number of remaining hints is zero
+    if (GameState.hintCounter == 0) {
+      return;
+    }
+
     // Get the hint based on the current room and whether the room is solved
     String hint = (isRoomSolved ? getNoMoreHints() : getRoomHint());
 
@@ -618,6 +620,16 @@ public abstract class RoomController {
 
     // Get GPT's response
     getChatResponse(userHintMessage, true);
+  }
+
+  /**
+   * Retrive a boolean value based on whether the player can retrieve a hint or not. This depends on
+   * the difficulty and the number of hints left.
+   *
+   * @return a boolean value based on the hint.
+   */
+  private boolean isHintRetrievable() {
+    return !(GameState.gameDifficulty == Difficulty.HARD || GameState.hintCounter == 0);
   }
 
   /** An abstract method that returns the room hint for the current room. */
