@@ -34,7 +34,7 @@
 
 .gpt-text-area {
   -fx-text-fill: #fbfbfb; 
-  -fx-font-family: "SansSerif", sans-serif;
+  -fx-font-family: "JetBrainsMono NF Bold";
   -fx-font-size: 14px;
   -fx-border-radius: 5px;
   -fx-padding: 3px;
