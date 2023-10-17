@@ -25,6 +25,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.Algorithm;
@@ -352,6 +354,7 @@ public class DecryptionPuzzleController {
 
     // If the sequence is empty print an error message
     if (lblSequence.getText().isEmpty()) {
+      AudioManager.loadAudio(Clip.WRONG);
       printEmptySequence();
       return;
     }
@@ -1142,6 +1145,9 @@ public class DecryptionPuzzleController {
 
   /** Handle the event when user correctly inputs the sequence. */
   private void handleCorrectUserSequence() {
+    // Play the correct sound effect
+    AudioManager.loadAudio(Clip.CORRECT);
+
     // Print the correct sequence message to the chat
     printCorrectSequence();
 
@@ -1168,6 +1174,10 @@ public class DecryptionPuzzleController {
 
   /** Handle the event when user incorrectly inputs the sequence. */
   private void handleIncorrectUserSequence() {
+    // Play the wrong sound effect
+    AudioManager.loadAudio(Clip.WRONG);
+
+    // Print the incorrect message to the text area
     printIncorrectSequence();
   }
 

@@ -17,6 +17,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -504,6 +506,7 @@ public class RiddlePuzzleController {
                       && responseMsg
                           .getContent()
                           .startsWith("Yes! That sounds right with my programming!")) {
+                    AudioManager.loadAudio(Clip.RIDDLE_SOLVED);
                     GameState.riddlesSolved++;
                     if (GameState.riddlesSolved == 1 || GameState.riddlesSolved == 2) {
                       navigateProperty.set("Next Riddle");
@@ -524,12 +527,15 @@ public class RiddlePuzzleController {
                     // If the answer is incorrect, enable the input buttons again for the other
                     // inputs
                     if (!btn1Pressed) {
+                      AudioManager.loadAudio(Clip.WRONG);
                       btnAnswer1.setDisable(false);
                     }
                     if (!btn2Pressed) {
+                      AudioManager.loadAudio(Clip.WRONG);
                       btnAnswer2.setDisable(false);
                     }
                     if (!btn3Pressed) {
+                      AudioManager.loadAudio(Clip.WRONG);
                       btnAnswer3.setDisable(false);
                     }
                     if (GameState.riddlesSolved != 3) {

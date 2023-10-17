@@ -19,7 +19,11 @@ public class AudioManager {
     HEART_BEAT,
     DIALOGUE,
     VICTORY,
-    GAME_OVER
+    GAME_OVER,
+    WRONG,
+    CORRECT,
+    LOGIC_GATE_SOLVED,
+    RIDDLE_SOLVED
   }
 
   private static Timeline dialogue;
