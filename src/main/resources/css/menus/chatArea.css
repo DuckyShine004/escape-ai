@@ -96,7 +96,6 @@
   -fx-min-width: 380px; /* Minimum width of the chat bubble, adjust as needed */
 }
 
-
 .custom-text-field .typing {
   -fx-font-size: 18;
 }
@@ -121,13 +120,13 @@
 .chat-bubble1 {
   -fx-font-family: "Determination Mono Web";
   -fx-font-size: 16px;
-  -fx-background-color: #37eb37; /* Background color of the chat bubble */
+  -fx-background-color: #49be49; /* Background color of the chat bubble */
   -fx-padding: 10px; /* Padding inside the chat bubble */
   -fx-text-fill: white; /* Text color inside the chat bubble */
   -fx-border-radius: 20px 20px 0 20px; /* Rounded corners, adjust as needed */
   -fx-background-radius: 20px 20px 0 20px; /* Rounded corners, adjust as needed */
   -fx-border-width: 1px; /* Border width of the chat bubble */
-  -fx-border-color: #37eb37; /* Border color of the chat bubble */
+  -fx-border-color: #49be49; /* Border color of the chat bubble */
   -fx-max-width: 70%; /* Maximum width of the chat bubble, adjust as needed */
   -fx-alignment: center-left; /* Align the text to the left inside the chat bubble */
   -fx-min-width: 380px; /* Minimum width of the chat bubble, adjust as needed */
@@ -138,4 +137,3 @@
   -fx-font-size: 17px;
   -fx-background-color: transparent;
 }
-

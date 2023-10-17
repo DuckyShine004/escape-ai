@@ -127,9 +127,10 @@ public abstract class RoomController {
   }
 
   /**
-   * This method toggles the tts mute state.
+   * This method toggles the text-to-speech mute state. Additionally, any user interface changes
+   * must be handled.
    *
-   * @param event
+   * @param event the event to be handled.
    */
   @FXML
   private void onToggleTtsMute(Event event) {
@@ -447,7 +448,7 @@ public abstract class RoomController {
   /**
    * Then the user clicks the left button, then when the user moves mouse off button.
    *
-   * @param event
+   * @param event the mouse event to be handled.
    */
   @FXML
   private void onLeftExit(MouseEvent event) {
@@ -457,7 +458,7 @@ public abstract class RoomController {
   /**
    * Then the user clicks the right button, then when the user moves mouse off button.
    *
-   * @param event
+   * @param event the mouse event to be handled.
    */
   @FXML
   private void onRightExit(MouseEvent event) {

@@ -154,7 +154,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
+      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#2c2e2f" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
       <VBox fx:id="vbChat" layoutX="250.0" layoutY="80.0" prefHeight="300.0" prefWidth="380.0" spacing="10.0" visible="false">
          <Label fx:id="lblOldestChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />
          <Label fx:id="lblAiChat" styleClass="chat-bubble" stylesheets="@../../css/menus/chatArea.css" wrapText="true" />

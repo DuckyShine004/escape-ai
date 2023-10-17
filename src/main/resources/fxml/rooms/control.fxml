@@ -178,7 +178,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#b8babc" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
+      <Rectangle fx:id="recOpaque" arcHeight="5.0" arcWidth="5.0" fill="#2c2e2f" height="432.0" layoutX="0.0" layoutY="44.0" onMouseClicked="#onAiClicked" opacity="0.8" visible="false" width="720.0" />
       <Pane fx:id="paButton" layoutX="160.0" layoutY="65.0" prefHeight="380.0" prefWidth="400.0" visible="false">
          <children>
             <Pane layoutX="354.0" layoutY="44.0" prefHeight="18.0" prefWidth="40.0" style="-fx-background-color: black;" />
