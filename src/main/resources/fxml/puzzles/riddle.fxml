@@ -82,7 +82,7 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5A5A5A" height="432.0" layoutX="0.0" layoutY="44.0" opacity="0.8" width="720.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5A5A5A" height="432.0" layoutY="44.0" opacity="0.8" width="720.0" />
       <Pane fx:id="paChat" layoutX="370.0" layoutY="150.0" prefHeight="200.0" prefWidth="350.0">
          <Label fx:id="lblChat" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" wrapText="true" />
       </Pane>
@@ -101,44 +101,42 @@
             <Glow />
          </effect>
       </Line>
-      <Pane layoutY="420.0" prefHeight="60.0" prefWidth="720.0" style="-fx-background-color: black;">
-      </Pane>
-      <Pane fx:id="paBack" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/menus/terminal.css">
-         <effect>
-            <Bloom threshold="0.0" />
-         </effect>
-         <children>
-            <Pane fx:id="paBackOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
-            <Label layoutX="9.0" layoutY="2.0" text="Back" textFill="RED">
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <effect>
-                  <Glow level="0.2" />
-               </effect>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="paNext" focusTraversable="true" layoutX="635.0" layoutY="425.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="red-border-pane" stylesheets="@../../css/puzzles/riddle.css">
-         <children>
-            <Pane fx:id="paNextOverlay" blendMode="RED" opacity="0.15" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;" visible="false" />
-            <Label layoutX="9.0" layoutY="2.0" text="Next" textFill="RED">
-               <font>
-                  <Font size="30.0" />
-               </font>
-               <effect>
-                  <Glow level="0.2" />
-               </effect>
-            </Label>
-         </children>
-         <effect>
-            <Bloom threshold="0.0" />
-         </effect>
-      </Pane>
-      <HBox layoutX="130.0" layoutY="430.0" spacing="50.0" stylesheets="@../../css/puzzles/riddle.css">
+      <HBox layoutX="15.0" layoutY="430.0" spacing="50.0" styleClass="hbox" stylesheets="@../../css/puzzles/riddle.css">
+        <Pane fx:id="paBack" prefHeight="40.0" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onBackPaneClicked" onMouseEntered="#onBackPaneEntered" onMouseExited="#onBackPaneExited" styleClass="back-pane" stylesheets="@../../css/puzzles/riddle.css">
+          <children>
+            <Pane fx:id="paBackOverlay" styleClass="back-pane-overlay" stylesheets="@../../css/puzzles/riddle.css" visible="false" />
+              <Label layoutX="17.0" layoutY="5.0" text="Back" styleClass="label-style" stylesheets="@../../css/puzzles/riddle.css" textFill="WHITE" >
+                <effect>
+                    <Glow level="0.2" />
+                </effect>
+                  <style>
+                      -fx-background-color: transparent;
+                  </style>
+              </Label>
+          </children>
+          <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         </Pane>
         <Button fx:id="btnAnswer1" mnemonicParsing="false" onAction="#onButtonClicked" prefHeight="40" prefWidth="120" styleClass="button-style" text="Answer 1" />
         <Button fx:id="btnAnswer2" mnemonicParsing="false" onAction="#onButtonClicked" prefHeight="40" prefWidth="120" styleClass="button-style" text="Answer 2" />
         <Button fx:id="btnAnswer3" mnemonicParsing="false" onAction="#onButtonClicked" prefHeight="40" prefWidth="120" styleClass="button-style" text="Answer 3" />
+        <Pane fx:id="paNext" prefHeight="40.0" focusTraversable="true" layoutX="5.0" layoutY="425.0" onMouseClicked="#onNextPaneClicked" onMouseEntered="#onNextPaneEntered" onMouseExited="#onNextPaneExited" styleClass="next-pane" stylesheets="@../../css/puzzles/riddle.css">
+          <children>
+            <Pane fx:id="paNextOverlay" styleClass="next-pane-overlay" stylesheets="@../../css/puzzles/riddle.css" visible="false" />
+              <Label layoutX="15.0" layoutY="5.0" text="Next" styleClass="label-style" stylesheets="@../../css/puzzles/riddle.css" textFill="WHITE" >
+                <effect>
+                    <Glow level="0.2" />
+                </effect>
+                  <style>
+                      -fx-background-color: transparent;
+                  </style>
+              </Label>
+          </children>
+          <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         </Pane>
       </HBox>
       <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="300.0" layoutX="70.0" layoutY="150.0">
          <image>
