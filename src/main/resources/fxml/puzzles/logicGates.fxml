@@ -102,7 +102,7 @@
                                  </cursor></ImageView>
                            </children>
                         </Pane>
-                        <Pane fx:id="pneAnswerGate5" layoutX="194.0" layoutY="196.0" opacity="0.95" prefHeight="60.0" prefWidth="90.0">
+                        <Pane fx:id="pneAnswerGate5" layoutX="194.0" layoutY="191.0" opacity="0.95" prefHeight="60.0" prefWidth="90.0">
                            <children>
                               <ImageView fx:id="imgAnswerGate5" fitHeight="45.0" fitWidth="80.0" layoutX="5.0" layoutY="8.0" onMouseClicked="#onGate5Clicked" onMouseEntered="#onGate5Enter" onMouseExited="#onGate5Exit" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
@@ -215,9 +215,9 @@
             </VBox>
          </children>
       </HBox>
-      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.                           Turn the light green." wrapText="true">
+      <TextArea fx:id="taGptText" editable="false" layoutX="518.0" layoutY="60.0" prefHeight="280.0" prefWidth="193.0" styleClass="gpt-text-area" stylesheets="@../../css/puzzles/logicGates.css" text="Swap logic gates by clicking.                                Turn the light on!" wrapText="true">
          <font>
-            <Font name="SansSerif Regular" size="42.0" />
+            <Font name="SansSerif Regular" size="22.0" />
          </font>
       </TextArea>
       <TextField fx:id="tfTextInput" editable="false" layoutX="518.0" layoutY="340.0" onKeyPressed="#onEnterInput" prefHeight="25.0" prefWidth="202.0" promptText="Enter To Submit" styleClass="input-text-field" stylesheets="@../../css/puzzles/logicGates.css" visible="false" />
