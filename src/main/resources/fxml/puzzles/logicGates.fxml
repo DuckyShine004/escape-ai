@@ -292,6 +292,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <ProgressBar fx:id="pgbGptThinking" layoutX="515.0" layoutY="344.0" prefWidth="200.0" progress="0.0" stylesheets="@../../css/puzzles/logicGates.css" />
+      <ProgressBar fx:id="pgbGptThinking" layoutX="430.0" layoutY="360.0" prefWidth="250.0" progress="0.0" styleClass="progress-bar" stylesheets="@../../css/puzzles/logicGates.css" />
    </children>
 </Pane>

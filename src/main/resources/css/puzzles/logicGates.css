@@ -89,6 +89,7 @@
 }
 
 .progress-bar {
+  -fx-accent: green;
   -fx-background-insets: 0; /* Remove background insets */
   -fx-border-color: #333333; /* Dark border color */
   -fx-border-width: 2; /* Border width */
