@@ -59,6 +59,7 @@ public class BackstoryController {
 
     // Set the timer's countdown time
     Timer.setTime(GameState.maxTime);
+    Timer.resetTimeTaken();
 
     // start the timer
     if (!GameState.isDeveloperMode) {
