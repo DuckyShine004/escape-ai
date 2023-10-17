@@ -844,6 +844,9 @@ public class LogicGatePuzzleController {
 
     ChatMessage inputMessage = new ChatMessage("user", solvedPrompt);
 
+    // clear text area
+    taGptText.clear();
+    
     // get the gpt response
     getChatResponse(inputMessage, null);
 
@@ -1405,6 +1408,7 @@ public class LogicGatePuzzleController {
             + " Last Gate is covered by glass\n";
 
     // append help message to text area
+    taGptText.clear();
     taGptText.appendText(helpMessage + "\n\n");
   }
 }
