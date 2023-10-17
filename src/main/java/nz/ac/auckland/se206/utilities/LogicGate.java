@@ -77,7 +77,7 @@ public class LogicGate {
               new FileInputStream(
                   "src/main/resources/images/BreakerRoom/LogicGatePuzzle/Gates/"
                       + logic.toString()
-                      + ".jpg"));
+                      + ".png"));
     } catch (FileNotFoundException e) {
       System.out.println("FAILED TO FIND LOGIC GATE IMAGE [gate]");
     }
