@@ -199,6 +199,9 @@
       <Label fx:id="lblEye2" layoutX="130.0" layoutY="375.0" styleClass="eye-text" stylesheets="@../../css/menus/chatArea.css" text="A" />
       <Label fx:id="lblAiChat2" layoutX="180.0" layoutY="320.0" onMouseClicked="#onAiClicked" opacity="0.75" styleClass="chat-bubble" stylesheets="@../../css/puzzles/riddle.css" visible="false" wrapText="true" />
       <ImageView fx:id="btnToggleTtsMute" fitHeight="80.0" fitWidth="90.0" layoutX="5.0" layoutY="310.0" onMouseClicked="#onToggleTtsMute" pickOnBounds="true" preserveRatio="true" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
          <image>
             <Image url="@../../images/greenmic.png" />
          </image>
