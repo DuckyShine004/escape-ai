@@ -173,6 +173,13 @@ public class Timer {
     return time == 0;
   }
 
+  /**
+   * Reset the time taken by the player on each run to garuantee the leaderboard works perfectly.
+   */
+  public static void resetTimeTaken() {
+    timeTaken = 0;
+  }
+
   /** This method starts the timer by setting the cycle count. */
   public static void play() {
     timer.setCycleCount(time);
