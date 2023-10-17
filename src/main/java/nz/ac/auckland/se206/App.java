@@ -108,6 +108,18 @@ public class App extends Application {
 
     // Initialize the game over sound effect
     AudioManager.addAudio(Clip.GAME_OVER, "/sounds/game_over.mp3");
+
+    // Initialize the wrong sound effect
+    AudioManager.addAudio(Clip.WRONG, "/sounds/wrong.mp3");
+
+    // Initialize the correct sound effect
+    AudioManager.addAudio(Clip.CORRECT, "/sounds/correct.wav");
+
+    // Initialize the logic gate solved sound effect
+    AudioManager.addAudio(Clip.LOGIC_GATE_SOLVED, "/sounds/logic_gate_solved.mp3");
+
+    // Initialize the riddle solved sound effect
+    AudioManager.addAudio(Clip.RIDDLE_SOLVED, "/sounds/riddle_solved.mp3");
   }
 
   /**

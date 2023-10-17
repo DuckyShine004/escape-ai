@@ -24,6 +24,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.AudioManager;
+import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.HintManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.constants.GameState;
@@ -829,6 +831,9 @@ public class LogicGatePuzzleController {
    * gate puzzle.
    */
   private void setSolved() {
+    // Play the logic gate puzzle solved sound effect
+    AudioManager.loadAudio(Clip.LOGIC_GATE_SOLVED);
+
     // the puzzle has been solved
     imgSolvedLight.setImage(greenLight);
 
