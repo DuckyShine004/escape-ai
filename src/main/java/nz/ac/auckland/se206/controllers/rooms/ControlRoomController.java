@@ -293,7 +293,8 @@ public class ControlRoomController extends RoomController {
       // If the player has not solved all the puzzles, then we should not allow them to access the
       // final question
       setUserResponse("Let me access the control keyboard!");
-      setAiMessage("Sorry, you have not solved all three puzzles yet to unlock the control keyboard.");
+      setAiMessage(
+          "Sorry, you have not solved all three puzzles yet to unlock the control keyboard.");
     }
   }
 
