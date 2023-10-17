@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.AudioManager;
 import nz.ac.auckland.se206.AudioManager.Clip;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.constants.GameState;
 
 /**
  * This utility class keeps track globally across all scenes the time the player has left in the
@@ -155,6 +156,11 @@ public class Timer {
       stop();
       AudioManager.loadAudio(Clip.GAME_OVER);
       App.setUi(AppUi.LOSING);
+    }
+
+    // Change the persona of the AI at 60 seconds remaining regardless of current persona
+    if (getIntegerTime() == 60) {
+      GameState.backStoryUpdated = 6;
     }
   }
 
